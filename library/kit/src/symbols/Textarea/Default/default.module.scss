@@ -1,0 +1,132 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  position: relative;
+  display: block;
+  background: $white;
+  border: 1px solid $gray-light;
+  border-radius: 5px;  overflow: hidden;
+  transition: border 150ms;
+  box-sizing: border-box;
+
+  &:hover {
+
+    border-color: $gray-dark;
+  }
+}
+
+.content {
+
+  position: relative;
+  display: block;
+  z-index: 20;
+}
+
+.placeholder {
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 12px 12px 10px;
+  white-space: pre-wrap;
+  z-index: 10;
+  font-family: inherit;
+  font-weight: $font-weight-light;
+  font-size: 14px;
+  line-height: 1.2;
+  letter-spacing: .1px;
+}
+
+.caption {
+
+  font-size: inherit;
+  color: $gray;
+}
+
+.input {
+
+  position: relative;
+  display: block;
+  border: none;
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  background: transparent;
+  padding: 8px 12px;
+  color: $black;
+  outline: none;
+  margin: 0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: $font-weight-medium;
+  line-height: 1.2;
+  z-index: 20;
+}
+
+.focus,
+.focus:hover {
+
+  border-color: $gray-dark;
+}
+
+.disabled,
+.disabled:hover {
+
+  background: $gray-light;
+  border-color: $gray-light;
+  color: $gray-dark;
+}
+
+.read-only,
+.read-only:hover {
+
+  background: transparent;
+  border-color: transparent;
+}
+
+.mode {
+
+  &--primary,
+  &--primary:hover,
+  &--primary.focus,
+  &--primary.focus:hover {
+
+    border-color: $primary;
+  }
+
+  &--success,
+  &--success:hover,
+  &--success.focus,
+  &--success.focus:hover {
+
+    border-color: $success;
+  }
+
+  &--danger,
+  &--danger:hover,
+  &--danger.focus,
+  &--danger.focus:hover {
+
+    border-color: $danger;
+  }
+}
+
+.align {
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+}

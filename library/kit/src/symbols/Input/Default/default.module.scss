@@ -1,0 +1,117 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  position: relative;
+  display: block;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: $white;
+  overflow: hidden;
+  vertical-align: middle;
+  transition: border-color 150ms;
+}
+
+.input {
+
+  position: relative;
+  display: block;
+  padding: 9px 11px;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: $font-weight-medium;
+  border: none;
+  background: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  color: $black;
+  z-index: 10;
+
+
+}
+
+.disabled,
+.disabled:hover,
+.disabled:active {
+
+  color: $gray;
+  background: $gray-light;
+  border-color: $gray-light;
+}
+
+.placeholder {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding: 12px 11px;
+  font-size: 14px;
+  font-weight: $font-weight-light;
+  color: $gray-dark;
+  z-index: 0;
+}
+
+.mode {
+
+  &--default {
+
+    border-color: $gray-light;
+
+    &:hover,
+    &.in-focus {
+      border-color: $gray-dark;
+    }
+  }
+
+  &--primary {
+
+    border-color: $primary;
+
+    &:hover,
+    &.in-focus {
+      border-color: $primary-dark;
+    }
+
+    &:active {
+      border-color: $primary;
+    }
+  }
+
+  &--danger {
+
+    border-color: $danger;
+
+    &:hover {
+      border-color: $danger-dark;
+    }
+
+    &:active {
+      border-color: $danger;
+    }
+  }
+
+  &--success {
+
+    border-color: $success;
+
+    &:hover {
+      border-color: $success-dark;
+    }
+
+    &:active {
+      border-color: $success;
+    }
+  }
+}
+
+.disabled,
+.disabled:hover, {
+
+  border-color: $gray-light;
+}

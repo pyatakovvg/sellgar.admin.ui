@@ -1,0 +1,48 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 1;
+  background: $white;
+  padding: 16px 24px 16px 16px;
+  border-radius: 8px;
+  align-items: center;
+  @include box-shadow('bottom');
+}
+
+.name {
+
+  display: block;
+  width: 180px;
+}
+
+.description {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 0 0 0 24px;
+}
+
+.control {
+
+  display: block;
+  margin: 0 0 0 32px;
+}
+
+.icon {
+
+  display: block;
+  color: $dark;
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 150ms;
+
+  &:hover {
+    color: $primary;
+  }
+}

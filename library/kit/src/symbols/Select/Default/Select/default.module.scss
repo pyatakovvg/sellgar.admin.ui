@@ -1,0 +1,165 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: $white;
+  overflow: hidden;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: border-color 150ms;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: hidden;
+}
+
+.value {
+
+  position: relative;
+  display: block;
+  padding: 12px 11px;
+  font-size: 14px;
+  height: 37px;
+  font-family: inherit;
+  font-weight: $font-weight-medium;
+  border: none;
+  background: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  color: $black;
+  z-index: 10;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.placeholder {
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding: 12px 11px;
+  font-size: 14px;
+  font-weight: $font-weight-light;
+  color: $gray-dark;
+  z-index: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.controls {
+
+  display: inline-flex;
+  flex-direction: row;
+  flex: 0 0;
+}
+
+.arrow {
+
+  display: inline-flex;
+  flex-direction: column;
+  flex: 0 0;
+  color: $gray;
+  padding: 0 11px 4px 0;
+  justify-content: center;
+  transition: color 150ms;
+}
+
+.icon {
+
+  display: block;
+  color: inherit;
+  font-size: 12px;
+}
+
+.wrapper:hover .arrow,
+.wrapper.in-focus .arrow {
+  color: $gray-dark;
+}
+
+.disabled,
+.disabled:hover,
+.disabled .arrow,
+.disabled:hover .arrow {
+
+  color: $gray;
+  background: $gray-light;
+  border-color: $gray-light;
+  cursor: default;
+}
+
+.mode {
+
+  &--default {
+
+    border-color: $gray-light;
+
+    &:hover,
+    &.in-focus {
+      border-color: $gray-dark;
+    }
+  }
+
+  &--primary {
+
+    border-color: $primary;
+
+    &:hover,
+    &.in-focus {
+      border-color: $primary-dark;
+    }
+
+    &:active {
+      border-color: $primary;
+    }
+  }
+
+  &--danger {
+
+    border-color: $danger;
+
+    &:hover {
+      border-color: $danger-dark;
+    }
+
+    &:active {
+      border-color: $danger;
+    }
+  }
+
+  &--success {
+
+    border-color: $success;
+
+    &:hover {
+      border-color: $success-dark;
+    }
+
+    &:active {
+      border-color: $success;
+    }
+  }
+}
+
+.disabled,
+.disabled:hover, {
+
+  border-color: $gray-light;
+}

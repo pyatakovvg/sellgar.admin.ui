@@ -1,0 +1,24 @@
+{
+  "name": "@package/numeral",
+  "version": "0.0.1",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "types",
+  "scripts": {
+    "build:types": "tsc",
+    "build": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --extensions '.ts,.tsx,.js,.jsx' --copy-files --no-copy-ignored",
+    "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
+  },
+  "dependencies": {
+    "numeral": "2.0.6"
+  },
+  "devDependencies": {
+    "@types/numeral": "2.0.2",
+    "@babel/cli": "7.17.10",
+    "@babel/core": "7.18.2",
+    "@babel/preset-env": "7.18.2",
+    "@babel/preset-typescript": "7.17.12",
+    "cross-env": "7.0.3"
+  }
+}

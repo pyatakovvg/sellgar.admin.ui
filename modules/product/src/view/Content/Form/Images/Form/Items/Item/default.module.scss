@@ -1,0 +1,22 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: inline-block;
+  width: 124px;
+  height: 124px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.image {
+
+  display: block;
+}
+
+.new {
+
+  box-shadow: 0 0 2px 0 $success-light;
+}

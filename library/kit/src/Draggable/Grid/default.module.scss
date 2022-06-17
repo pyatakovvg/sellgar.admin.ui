@@ -1,0 +1,55 @@
+
+@import "~@library/theme";
+
+
+.container {
+
+  display: block;
+  margin: -8px;
+}
+
+.item {
+
+  display: inline-block;
+  padding: 8px;
+  z-index: 9999;
+}
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  background:  lighten($success-light, 45%);
+  padding: 8px;
+  border-radius: 8px;
+  align-items: center;
+}
+
+.handle {
+
+  display: block;
+  color: $white;
+  cursor: grabbing;
+  z-index: 9999;
+}
+
+.helper .icon,
+.handle:hover .icon {
+
+  color: $success-dark;
+}
+
+.icon {
+
+  font-size: 16px;
+  transition: color 200ms;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 0 0 0 16px;
+}

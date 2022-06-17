@@ -1,0 +1,83 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: inline-flex;
+  flex-direction: row;
+  flex: 0 0;
+  align-items: center;
+  vertical-align: middle;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  width: 24px;
+  height: 24px;
+  border: 1px solid $gray-light;
+  background: $white;
+  border-radius: 6px;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: border 150ms, background-color 150ms;
+}
+
+.wrapper:hover .content {
+
+  border-color: $success-light;
+}
+
+.marker {
+
+  display: block;
+  font-size: 14px;
+  color: transparent;
+}
+
+.wrapper.checked .content {
+
+  background: $success-light;
+  border-color: $success-light;
+}
+
+.wrapper:hover.checked .content {
+
+  border-color: $success;
+  background: $success;
+}
+
+.wrapper.checked .content .marker {
+
+  color: $white;
+}
+
+.wrapper.disabled {
+
+  cursor: default;
+}
+
+.wrapper.disabled .content,
+.wrapper.disabled:hover .content {
+
+  background: $gray-light;
+  border-color: $gray-light;
+}
+
+.wrapper.checked.disabled .content .marker {
+
+  color: $gray;
+}
+
+.label {
+
+  display: block;
+  margin: 0 0 0 12px;
+}

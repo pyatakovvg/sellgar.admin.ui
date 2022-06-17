@@ -1,0 +1,33 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: inline-flex;
+  flex-direction: column;
+  flex: 1 0;
+  color: $gray;
+  padding: 0 11px;
+  justify-content: center;
+  transition: color 150ms;
+
+  &:hover {
+    color: $danger;
+  }
+}
+
+.icon {
+
+  display: block;
+  color: inherit;
+  font-size: 13px;
+  margin: 2px 0 0;
+}
+
+.disabled,
+.disabled:hover {
+
+  color: $gray;
+  cursor: default;
+}

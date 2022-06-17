@@ -1,0 +1,18 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: block;
+}
+
+.block {
+
+  display: block;
+
+  & + & {
+
+    margin: 48px 0 0;
+  }
+}

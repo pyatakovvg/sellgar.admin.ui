@@ -1,0 +1,62 @@
+
+@import "~@library/theme";
+
+
+.container {
+
+  display: block;
+}
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  background: lighten($success-light, 45%);
+  padding: 8px;
+  border: 1px solid lighten($success-light, 45%);
+  border-radius: 8px;
+  z-index: 9999;
+  box-shadow: none;
+  transition: box-shadow 200ms;
+
+  & + & {
+
+    margin: 8px 0 0;
+  }
+}
+
+.handle {
+
+  display: inline-flex;
+  flex-direction: column;
+  flex: 0 0;
+  justify-content: center;
+  cursor: grabbing;
+}
+
+.helper {
+
+  @include box-shadow('bottom');
+}
+
+.helper .icon,
+.handle:hover .icon {
+
+  color: $success-dark;
+}
+
+.icon {
+
+  font-size: 16px;
+  color: $white;
+  transition: color 200ms;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 0 0 0 16px;
+}

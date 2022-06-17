@@ -1,0 +1,27 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: auto;
+}
+
+.aside {
+
+  display: block;
+  box-shadow: 0 10px 10px 0 $gray-light;
+  z-index: 20;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  overflow: auto;
+  z-index: 10;
+}

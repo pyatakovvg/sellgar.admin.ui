@@ -23,13 +23,13 @@ echo 'Библиотека "app"'
 echo '------------------------------------'
 cd ./app && npx yarn build && yarn build:types
 
-echo 'Библиотека "design"'
-echo '------------------------------------'
-cd ../design && npx yarn build && yarn build:types
-
 echo 'Библиотека "kit"'
 echo '------------------------------------'
 cd ../kit && npx yarn build && yarn build:types
+
+#echo 'Библиотека "design"'
+#echo '------------------------------------'
+#cd ../design && npx yarn build && yarn build:types
 
 
 echo '------------------------------------'
@@ -39,6 +39,10 @@ echo '------------------------------------'
 cd ../../packages || return
 
 echo ''
+echo 'Пакет "Errors"'
+echo '------------------------------------'
+cd ../errors && npx yarn build && yarn build:types
+echo ''
 echo 'Пакет "request"'
 echo '------------------------------------'
 cd ./request && npx yarn build && yarn build:types
@@ -47,13 +51,13 @@ echo 'Пакет "Dialog"'
 echo '------------------------------------'
 cd ../dialog && npx yarn build && yarn build:types
 echo ''
-echo 'Пакет "Errors"'
-echo '------------------------------------'
-cd ../errors && npx yarn build && yarn build:types
-echo ''
 echo 'Пакет "Push"'
 echo '------------------------------------'
 cd ../push && npx yarn build && yarn build:types
+echo ''
+echo 'Пакет "Numeral"'
+echo '------------------------------------'
+cd ../numeral && npx yarn build && yarn build:types
 
 
 echo '------------------------------------'
@@ -144,7 +148,7 @@ cd ../sign-in && npx yarn build && yarn build:types
 
 echo 'Модуль "utils"'
 echo '------------------------------------'
-cd ../utils && npx yarn build && yarn build:types
+cd ../units && npx yarn build && yarn build:types
 
 echo 'Модуль "users"'
 echo '------------------------------------'

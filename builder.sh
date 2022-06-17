@@ -41,11 +41,11 @@ cd ../../packages || return
 echo ''
 echo 'Пакет "Errors"'
 echo '------------------------------------'
-cd ../errors && npx yarn build && yarn build:types
+cd ./errors && npx yarn build && yarn build:types
 echo ''
 echo 'Пакет "request"'
 echo '------------------------------------'
-cd ./request && npx yarn build && yarn build:types
+cd ../request && npx yarn build && yarn build:types
 echo ''
 echo 'Пакет "Dialog"'
 echo '------------------------------------'

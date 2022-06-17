@@ -1,0 +1,12 @@
+
+@import "~@library/theme";
+
+
+.logotype {
+
+  display: inline-block;
+  width: 139px;
+  height: 40px;
+  background: url("./logotype.svg") no-repeat;
+  background-size: cover;
+}

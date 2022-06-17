@@ -1,0 +1,56 @@
+
+// FONT WEIGHT
+
+$font-weight-light: 300;
+$font-weight-medium: 500;
+$font-weight-bold: 800;
+
+
+// COLORS
+
+$danger:           #B94A43 !default;
+$danger-dark:      #a5413b !default;
+$danger-light:     #CE5851 !default;
+
+$primary:          #8FADC8 !default;
+$primary-dark:     #839fb9 !default;
+$primary-light:    #AAC7E1 !default;
+
+$success:          #75863C !default;
+$success-dark:     #697837 !default;
+$success-light:    #869849 !default;
+
+$info:             #F68D3D !default;
+$info-dark:        #DA7020 !default;
+$info-light:       #F8A363 !default;
+
+$gray:             #b8b9bb !default;
+$gray-dark:        #7E8286 !default;
+$gray-light:       #eff0f4 !default;
+
+$white:            #FFFFFF !default;
+$light:            #FEFEFA !default;
+$smoke:            #fafaf7 !default;
+$dark:             #293138 !default;
+$black:            #000000 !default;
+
+
+// MIXINS
+
+@mixin box-shadow($direction: bottom) {
+  @if ($direction == right) {
+    box-shadow: 3px 0 4px 0 rgba(#7E8286, .2);
+  }
+  @else if ($direction == bottom) {
+    box-shadow: 0 3px 4px 0 rgba(#7E8286, .2);
+  }
+  @else if ($direction == left) {
+    box-shadow: -3px 0 4px 0 rgba(#7E8286, .2);
+  }
+  @else if ($direction == top) {
+    box-shadow: 0 -3px 4px 0 rgba(#7E8286, .2);
+  }
+  @else {
+    @error "Unknown direction #{$direction}.";
+  }
+}

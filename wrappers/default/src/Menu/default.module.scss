@@ -1,0 +1,16 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.menu {
+
+  display: block;
+  padding: 24px 24px 40px;
+}

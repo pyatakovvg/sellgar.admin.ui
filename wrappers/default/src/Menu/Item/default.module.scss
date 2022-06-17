@@ -1,0 +1,81 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  text-decoration: none;
+
+  & + & {
+    margin: 16px 0 0;
+  }
+}
+
+.link {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.icon {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  color: $dark;
+  transition: background 150ms, color 150ms;
+}
+
+.label {
+
+  position: absolute;
+  top: 0;
+  left: 100%;
+  display: none;
+  padding: 0 0 0 32px;
+}
+
+.title {
+
+  display: block;
+  font-size: 16px;
+  font-weight: $font-weight-bold;
+  background: $white;
+  color: $dark;
+  padding: 12px 32px 12px 24px;
+  border-radius: 8px;
+  @include box-shadow('right');
+  transition: background 150ms, color 150ms;
+}
+
+.wrapper:hover .icon {
+
+  background: rgba($primary-dark, .2);
+}
+
+.wrapper:hover .label {
+
+  display: block;
+}
+
+.is-active .icon,
+.is-active:hover .icon {
+  background: $primary-dark;
+  color: $white;
+}
+
+.is-active .title {
+  background: $primary-dark;
+  color: $white;
+}

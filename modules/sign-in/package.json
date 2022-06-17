@@ -1,0 +1,35 @@
+{
+  "private": true,
+  "name": "@module/sign-in",
+  "version": "0.0.1",
+  "description": "Utils",
+  "author": "Viktor Pyatakov <pyatakov.viktor@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "types",
+  "scripts": {
+    "build:types": "tsc",
+    "build": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --extensions '.ts,.tsx,.js,.jsx' --copy-files --no-copy-ignored",
+    "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
+  },
+  "dependencies": {
+    "@library/kit": "0.0.1",
+    "@library/theme": "0.0.1",
+    "@widget/profile": "0.0.1",
+    "redux-form": "8.3.8"
+  },
+  "peerDependencies": {
+    "@reduxjs/toolkit": "1.8.2",
+    "react": "18.1.0"
+  },
+  "devDependencies": {
+    "@types/redux-form": "8.3.5",
+    "@babel/cli": "7.17.10",
+    "@babel/core": "7.18.2",
+    "@babel/preset-env": "7.18.2",
+    "@babel/preset-typescript": "7.17.12",
+    "cross-env": "7.0.3"
+  }
+}

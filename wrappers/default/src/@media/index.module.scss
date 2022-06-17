@@ -1,0 +1,10 @@
+
+@import "large.module";
+
+@media only screen and (max-width: 1400px) {
+  //@import "middle.module";
+}
+
+@media only screen and (max-width: 1024px) {
+  //@import "small.module";
+}

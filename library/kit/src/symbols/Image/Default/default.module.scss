@@ -1,0 +1,34 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background: $white;
+  overflow: hidden;
+}
+
+.image {
+
+  display: block;
+  width: 100%;
+}
+
+.height {
+
+  height: 100%;
+}
+
+.image img {
+
+  display: block;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,42 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0;
+  background: $white;
+  padding: 56px 48px 56px;
+  border-radius: 16px;
+  width: 320px;
+}
+
+.header {
+
+  display: block;
+  text-align: center;
+}
+
+.fields {
+
+  display: block;
+  margin: 40px 0 0;
+}
+
+.field {
+
+  display: block;
+
+  & + & {
+    margin: 16px 0 0;
+  }
+}
+
+.controls {
+
+  display: block;
+  text-align: center;
+  margin: 32px 0 0;
+}

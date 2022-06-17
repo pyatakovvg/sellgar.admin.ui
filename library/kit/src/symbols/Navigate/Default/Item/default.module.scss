@@ -1,0 +1,39 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: inline-block;
+  text-decoration: none;
+
+  & + & {
+
+    margin: 0 0 0 24px;
+  }
+}
+
+.link {
+
+  display: block;
+  color: $dark;
+  text-decoration: none;
+  transition: color 150ms;
+
+  &:hover {
+
+    color: $primary;
+  }
+}
+
+.active {
+
+  color: $primary;
+}
+
+.title {
+
+  display: block;
+  color: inherit;
+  font-size: 16px;
+}

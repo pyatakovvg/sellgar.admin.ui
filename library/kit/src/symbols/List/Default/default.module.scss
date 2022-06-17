@@ -1,0 +1,18 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: block;
+  border: 1px solid $gray-light;
+  border-radius: 8px;
+  background: $white;
+  overflow: auto;
+}
+
+.content {
+
+  display: block;
+  padding: 8px 8px 16px;
+}

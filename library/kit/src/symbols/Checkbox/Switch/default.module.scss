@@ -1,0 +1,82 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: inline-flex;
+  flex-direction: row;
+  flex: 0 0;
+  align-items: center;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  width: 40px;
+  height: 24px;
+  padding: 3px;
+  background: $gray-light;
+  border-radius: 12px;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  cursor: pointer;
+  overflow: hidden;
+  transition: border 150ms, background-color 150ms;
+
+  &:hover {
+
+    background: $success-light;
+  }
+}
+
+.marker {
+
+  display: flex;
+  background: $white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  box-shadow: 1px 0 1px 0 $gray;
+  transition: color 150ms;
+}
+
+.content:hover .marker {
+
+  box-shadow: 1px 0 1px 0 $gray-dark;
+}
+
+.checked {
+
+  align-items: flex-end;
+  background: $success-light;
+}
+
+.checked:hover {
+
+  background: $success;
+}
+
+.checked .marker {
+
+
+  box-shadow: -1px 0 1px 0 $gray-dark;
+}
+
+.disabled,
+.disabled:hover {
+
+  background: $gray-light;
+  cursor: default;
+}
+
+.disabled .marker {
+
+  background: $gray;
+  box-shadow: none;
+}

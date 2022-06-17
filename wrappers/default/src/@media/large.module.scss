@@ -1,0 +1,45 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  background: $gray-light;
+  overflow: auto;
+}
+
+.header {
+
+  display: block;
+  border-bottom: 1px solid $gray-light;
+  z-index: 20;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.aside {
+
+  display: block;
+  background: $white;
+  border-right: 1px solid $gray-light;
+  z-index: 20;
+}
+
+.module {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: auto;
+  z-index: 10;
+}

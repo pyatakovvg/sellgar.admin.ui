@@ -1,0 +1,51 @@
+
+@import "~@library/theme";
+
+
+@keyframes animate-1 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(.6);
+  }
+}
+
+
+.wrapper {
+
+  display: inline-block;
+  font-size: 0;
+  white-space: nowrap;
+  padding: 4px;
+  border-radius: 14px;
+}
+
+.point {
+
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: $primary;
+
+  & + & {
+
+    margin: 0 0 0 8px;
+  }
+}
+
+.point:nth-child(1) {
+  background: $primary;
+  animation: animate-1 450ms ease-in-out alternate infinite;
+}
+
+.point:nth-child(2) {
+  background: $info;
+  animation: animate-1 450ms 150ms ease-in-out alternate infinite;
+}
+
+.point:nth-child(3) {
+  background: $success;
+  animation: animate-1 450ms 300ms ease-in-out alternate infinite;
+}

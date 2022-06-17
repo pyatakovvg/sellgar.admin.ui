@@ -1,0 +1,66 @@
+
+@import "~@library/theme";
+
+
+.button {
+
+  display: inline-block;
+  padding: 9px 32px;
+  font-size: 14px;
+  font-family: inherit;
+  border-radius: 8px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: background-color 150ms, border-color 150ms;
+
+  &:disabled,
+  &:disabled:hover,
+  &:disabled:active {
+
+    color: $gray;
+    cursor: default;
+  }
+}
+
+.mode {
+
+  &--primary {
+
+    color: $primary;
+
+    &:hover {
+      color: $primary-dark;
+    }
+
+    &:active {
+      color: $primary;
+    }
+  }
+
+  &--danger {
+
+    color: $danger;
+
+    &:hover {
+      color: $danger-dark;
+    }
+
+    &:active {
+      color: $danger;
+    }
+  }
+
+  &--success {
+
+    color: $success;
+
+    &:hover {
+      color: $success-dark;
+    }
+
+    &:active {
+      color: $success;
+    }
+  }
+}

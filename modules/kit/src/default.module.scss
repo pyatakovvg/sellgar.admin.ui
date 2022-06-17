@@ -1,0 +1,39 @@
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  padding: 42px;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.block {
+
+  display: block;
+  align-items: flex-start;
+
+  & + & {
+    margin: 24px 0 0;
+  }
+}
+
+.row {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.col {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}

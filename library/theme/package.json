@@ -1,0 +1,15 @@
+{
+  "private": false,
+  "name": "@library/theme",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "./src/default.scss",
+  "scripts": {
+    "login": "npm login --registry=https://registry.npmjs.org/",
+    "publish": "npm publish --registry=https://registry.npmjs.org/ --access=public"
+  },
+  "files": [
+    "src",
+    "package.json"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "lerna": "4.0.0",
+  "version": "independent",
+  "packages": [
+    "wrappers/*",
+    "packages/*",
+    "modules/*",
+    "library/*",
+    "helpers/*",
+    "widgets/*",
+    "app/*"
+  ],
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {}
+}

@@ -1,0 +1,29 @@
+{
+  "private": true,
+  "name": "@helper/utils",
+  "version": "0.0.1",
+  "description": "Utils",
+  "author": "Viktor Pyatakov <pyatakov.viktor@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "types": "lib",
+  "files": [
+    "lib",
+    "package.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production && tsc",
+    "start:dev": "cross-env NODE_ENV=development tsc --watch"
+  },
+  "dependencies": {
+  },
+  "peerDependencies": {
+  },
+  "devDependencies": {
+    "cross-env": "7.0.3"
+  }
+}

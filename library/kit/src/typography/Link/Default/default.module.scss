@@ -1,0 +1,17 @@
+
+@import "~@library/theme";
+
+
+.content {
+
+  display: inline-block;
+  font-size: 16px;
+  color: $primary-dark;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,62 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: inline-flex;
+  flex-direction: row;
+  flex: 0 0;
+  align-items: center;
+  padding: 8px 10px 8px 16px;
+  font-family: inherit;
+  border-radius: 8px;
+  color: $info;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid $info;
+  transition: color 150ms, border-color 150ms;
+
+  &:hover {
+
+    color: $info-dark;
+    border-color: $info-dark;
+  }
+
+  &:active {
+
+    color: $info-light;
+    border-color: $info-light;
+  }
+}
+
+.icon {
+
+  display: block;
+  font-size: 21px;
+}
+
+.title {
+
+  display: block;
+  font-size: 16px;
+  margin: 0 0 0 10px;
+  font-weight: $font-weight-medium;
+}
+
+.count {
+
+  display: inline-flex;
+  flex-direction: column;
+  flex: 1 0;
+  width: 21px;
+  height: 21px;
+  font-size: 12px;
+  margin: 0 0 0 10px;
+  border-radius: 50%;
+  font-weight: $font-weight-medium;
+  background: $info;
+  color: $white;
+  justify-content: center;
+  align-items: center;
+}

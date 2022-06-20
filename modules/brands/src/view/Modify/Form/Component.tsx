@@ -15,7 +15,7 @@ function ModifyForm({ handleSubmit, valid, pristine }: any): JSX.Element {
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>
       <div className={styles['header']}>
-        <Header level={4}>Единица измерения</Header>
+        <Header level={4}>Производитель</Header>
       </div>
       <div className={styles['content']}>
         <div className={styles['row']}>

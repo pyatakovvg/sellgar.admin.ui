@@ -7,7 +7,7 @@ echo '------------------------------------'
 cd ./helpers || return
 
 echo ''
-echo 'Пакет "Default"'
+echo 'Пакет "Utils"'
 echo '------------------------------------'
 cd ./utils && npx yarn build
 
@@ -94,7 +94,7 @@ echo '------------------------------------'
 cd ./bucket && npx yarn build && yarn build:types
 
 echo ''
-echo 'Пакет "profile"'
+echo 'Пакет "Profile"'
 echo '------------------------------------'
 cd ../profile && npx yarn build && yarn build:types
 
@@ -106,51 +106,51 @@ echo '------------------------------------'
 
 cd ../../modules || return
 
-echo 'Модуль "attributes"'
+echo 'Модуль "Attributes"'
 echo '------------------------------------'
 cd ./attributes && npx yarn build && yarn build:types
 
-echo 'Модуль "brands"'
+echo 'Модуль "Brands"'
 echo '------------------------------------'
 cd ../brands && npx yarn build && yarn build:types
 
-echo 'Модуль "categories"'
+echo 'Модуль "Categories"'
 echo '------------------------------------'
 cd ../categories && npx yarn build && yarn build:types
 
-echo 'Модуль "error"'
+echo 'Модуль "Error"'
 echo '------------------------------------'
 cd ../error && npx yarn build && yarn build:types
 
-echo 'Модуль "groups"'
+echo 'Модуль "Groups"'
 echo '------------------------------------'
 cd ../groups && npx yarn build && yarn build:types
 
-echo 'Модуль "images"'
+echo 'Модуль "Images"'
 echo '------------------------------------'
 cd ../images && npx yarn build && yarn build:types
 
-echo 'Модуль "main"'
+echo 'Модуль "Main"'
 echo '------------------------------------'
 cd ../main && npx yarn build && yarn build:types
 
-echo 'Модуль "product"'
+echo 'Модуль "Product"'
 echo '------------------------------------'
 cd ../product && npx yarn build && yarn build:types
 
-echo 'Модуль "products"'
+echo 'Модуль "Products"'
 echo '------------------------------------'
 cd ../products && npx yarn build && yarn build:types
 
-echo 'Модуль "sign-in"'
+echo 'Модуль "SignIn"'
 echo '------------------------------------'
 cd ../sign-in && npx yarn build && yarn build:types
 
-echo 'Модуль "utils"'
+echo 'Модуль "Units"'
 echo '------------------------------------'
 cd ../units && npx yarn build && yarn build:types
 
-echo 'Модуль "users"'
+echo 'Модуль "Users"'
 echo '------------------------------------'
 cd ../users && npx yarn build && yarn build:types
 

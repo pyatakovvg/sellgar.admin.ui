@@ -58,6 +58,10 @@ echo ''
 echo 'Пакет "Numeral"'
 echo '------------------------------------'
 cd ../numeral && npx yarn build && yarn build:types
+echo ''
+echo 'Пакет "Moment"'
+echo '------------------------------------'
+cd ../moment && npx yarn build && yarn build:types
 
 
 echo '------------------------------------'

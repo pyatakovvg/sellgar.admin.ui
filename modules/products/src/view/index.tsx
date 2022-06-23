@@ -5,6 +5,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+import Filter from './Filter';
 import Content from './Content';
 
 import { createProduct, getProducts, resetStateAction } from '../index';
@@ -40,6 +41,9 @@ function Products(): JSX.Element {
         <Header level={2}>Витрина</Header>
         <Button onClick={handleAdd}>Добавить</Button>
       </header>
+      <aside className={styles['filter']}>
+        <Filter />
+      </aside>
       <section className={styles['content']}>
         <Content />
       </section>

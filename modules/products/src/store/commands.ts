@@ -9,6 +9,10 @@ import {
   getProductsRequestAction,
   getProductsRequestFailAction,
   getProductsRequestSuccessAction,
+
+  changeStatusRequestAction,
+  changeStatusRequestFailAction,
+  changeStatusRequestSuccessAction,
 } from './slice';
 
 
@@ -40,10 +44,28 @@ export const getProducts = () => async (dispatch: any): Promise<any> => {
       method: 'get',
     });
 
-    dispatch(getProductsRequestSuccessAction(result['data']));
+    dispatch(getProductsRequestSuccessAction(result));
   }
   catch(error: any) {
 
     dispatch(getProductsRequestFailAction());
+  }
+};
+
+export const updateProduct = (uuid: string, data: any) => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(changeStatusRequestAction());
+
+    const result = await request({
+      url: '/api/v1/products/' + uuid + '/only',
+      method: 'put',
+      data,
+    });
+
+    dispatch(changeStatusRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
+    dispatch(changeStatusRequestFailAction());
   }
 };

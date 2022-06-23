@@ -57,6 +57,14 @@
 
 .modes {
 
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 0 0 0 40px;
+}
+
+.available {
+
   display: block;
   margin: 0 0 0 40px;
 }
@@ -78,5 +86,14 @@
 
   &:hover {
     color: $primary;
+  }
+}
+
+.row {
+
+  display: block;
+
+  & + & {
+    margin: 8px 0 0;
   }
 }

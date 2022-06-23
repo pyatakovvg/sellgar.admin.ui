@@ -4,9 +4,10 @@
     "outDir": "./lib",
     "declaration": true,
     "declarationDir": "./types",
-    "emitDeclarationOnly": false
+    "emitDeclarationOnly": false,
   },
   "include": [
     "src",
+    "react-app-env.d.ts"
   ]
 }

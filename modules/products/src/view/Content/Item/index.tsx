@@ -1,11 +1,15 @@
 
-import { Image } from '@library/kit';
+import moment from '@package/moment';
+import {Image, Checkbox, Text} from '@library/kit';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import Common from './Common';
 import Modes from './Modes';
+
+import { updateProduct } from '../../../index';
 
 import cn from 'classnames';
 import styles from './default.module.scss';
@@ -18,11 +22,25 @@ interface IProps {
   category: any;
   brand: any;
   modes: Array<any>;
+  isUse: boolean;
+  isAvailable: boolean;
+  createdAt: string;
+  updatedAt: string;
 }
 
 
-function Item({ uuid, gallery, group, category, brand, modes }: IProps): JSX.Element {
+function Item({ uuid, gallery, group, category, brand, modes, isUse, isAvailable, createdAt, updatedAt }: IProps): JSX.Element {
+  const dispatch = useDispatch();
   const iconClassName = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-ellipsis'), []);
+
+
+  function handleStatusChange(status: boolean) {
+    dispatch<any>(updateProduct(uuid, { isUse: status, updatedAt }))
+  }
+
+  function handleAvailableChange(status: boolean) {
+    dispatch<any>(updateProduct(uuid, { isAvailable: status, updatedAt }))
+  }
 
   return (
     <div className={styles['wrapper']}>
@@ -40,9 +58,19 @@ function Item({ uuid, gallery, group, category, brand, modes }: IProps): JSX.Ele
         </div>
         <div className={styles['common']}>
           <Common group={group} category={category} brand={brand} />
+          <Text type={'description'}>Добавлен: { moment(createdAt).format('DD.MM.YYYY HH:mm') }</Text>
+          <Text type={'description'}>Изменен: { moment(updatedAt).format('DD.MM.YYYY HH:mm') }</Text>
         </div>
         <div className={styles['modes']}>
           <Modes modes={modes} />
+        </div>
+        <div className={styles['available']}>
+          <div className={styles['row']}>
+            <Checkbox value={isUse} onChange={handleStatusChange}>на витрине</Checkbox>
+          </div>
+          <div className={styles['row']}>
+            <Checkbox value={isAvailable} onChange={handleAvailableChange}>в наличии</Checkbox>
+          </div>
         </div>
       </div>
       <div className={styles['control']}>

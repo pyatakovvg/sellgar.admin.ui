@@ -1,28 +1,20 @@
 {
-  "private": true,
-  "name": "@module/products",
+  "name": "@package/moment",
   "version": "0.0.1",
-  "description": "users",
-  "author": "Viktor Pyatakov <pyatakov.viktor@gmail.com>",
-  "homepage": "",
   "license": "ISC",
   "main": "lib/index.js",
   "module": "lib/index.js",
   "types": "types",
   "scripts": {
-    "build:types": "tsc",
-    "build": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --extensions '.ts,.tsx,.js,.jsx' --copy-files --no-copy-ignored",
+    "build": "cross-env NODE_ENV=production tsc",
     "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
   },
   "dependencies": {
-    "@package/numeral": "0.0.1",
-    "@package/moment": "0.0.1"
-  },
-  "peerDependencies": {
-    "react": "18.1.0",
-    "react-router-dom": "6.3.0"
+    "moment": "2.29.3",
+    "moment-timezone": "0.5.34"
   },
   "devDependencies": {
+    "@types/moment": "2.13.0",
     "@babel/cli": "7.17.10",
     "@babel/core": "7.18.2",
     "@babel/preset-env": "7.18.2",

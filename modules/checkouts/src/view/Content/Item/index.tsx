@@ -1,5 +1,6 @@
 
 import { Text } from '@library/kit';
+import numeral from '@package/numeral';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -47,7 +48,7 @@ function Item({ uuid, status, delivery, payment, products, price, currency }: an
           <Text>{ payment?.['displayName'] ?? '---' }</Text>
         </div>
         <div className={styles['price']}>
-          <Text type={'strong'}>{ price } { currency?.['displayName'] ?? '---' }</Text>
+          <Text type={'strong'}>{ numeral(price).format() } { currency?.['displayName'] ?? '---' }</Text>
         </div>
       </div>
       <div className={styles['control']}>

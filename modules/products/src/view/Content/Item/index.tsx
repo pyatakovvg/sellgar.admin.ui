@@ -1,6 +1,5 @@
 
-import moment from '@package/moment';
-import {Image, Checkbox, Text} from '@library/kit';
+import { Image, Checkbox, Text } from '@library/kit';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -68,10 +67,10 @@ function Item({ uuid, gallery, group, category, brand, modes, isUse, isAvailable
         </div>
         <div className={styles['available']}>
           <div className={styles['row']}>
-            <Checkbox value={isUse} onChange={handleStatusChange}>на витрине</Checkbox>
+            <Checkbox value={isUse} onChange={handleStatusChange}><Text>на витрине</Text></Checkbox>
           </div>
           <div className={styles['row']}>
-            <Checkbox value={isAvailable} onChange={handleAvailableChange}>в наличии</Checkbox>
+            <Checkbox value={isAvailable} onChange={handleAvailableChange}><Text>в наличии</Text></Checkbox>
           </div>
         </div>
       </div>

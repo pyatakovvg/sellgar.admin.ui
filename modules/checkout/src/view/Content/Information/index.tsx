@@ -25,10 +25,10 @@ function Information({ delivery, payment, price, currency, customer }: any): JSX
             <Metric label={'Сумма к оплате'}>{ numeral(price).format() } { currency?.['displayName'] }</Metric>
           </div>
         </div>
-        {customer['address'] && (
+        {customer?.['address'] && (
           <div className={styles['row']}>
             <div className={styles['col']}>
-              <Metric label={'Адрес'}>{ customer['address']['value'] }</Metric>
+              <Metric label={'Адрес'}>{ customer?.['address']?.['value'] ?? '---' }</Metric>
             </div>
           </div>
         )}

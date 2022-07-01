@@ -1,6 +1,4 @@
 
-import { Header } from '@library/kit';
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -34,9 +32,6 @@ function Products(): JSX.Element | null {
 
   return (
     <section className={styles['wrapper']}>
-      <header className={styles['header']}>
-        <Header level={2}>Заказ</Header>
-      </header>
       <section className={styles['content']}>
         <Content />
       </section>

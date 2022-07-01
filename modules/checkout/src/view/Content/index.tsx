@@ -27,9 +27,11 @@ function Content(): JSX.Element {
       <div className={styles['block']}>
         <Information {...data} />
       </div>
-      <div className={styles['block']}>
-        <Products {...data} />
-      </div>
+      { !! data['products'].length && (
+        <div className={styles['block']}>
+          <Products {...data} />
+        </div>
+      )}
       {data['description'] && (
         <div className={styles['block']}>
           <Description {...data} />

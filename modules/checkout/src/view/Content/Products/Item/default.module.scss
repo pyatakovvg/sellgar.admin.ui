@@ -1,0 +1,49 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  background: $white;
+  border-radius: 8px;
+  padding: 24px 8px;
+  @include box-shadow('bottom');
+}
+
+.vendor {
+
+  display: block;
+  text-align: center;
+}
+
+.image {
+
+  display: block;
+  width: 124px;
+  height: 124px;
+  margin: 8px auto 0;
+}
+
+.title {
+
+  display: block;
+  text-align: center;
+  margin: 16px 0 0;
+}
+
+.mode {
+
+  display: block;
+  text-align: center;
+  margin: 8px 0 0;
+}
+
+.price {
+
+  display: block;
+  text-align: center;
+  margin: 24px 0 0;
+}

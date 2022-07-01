@@ -18,6 +18,7 @@
 
   display: block;
   width: 180px;
+  white-space: nowrap;
 }
 
 .code {
@@ -25,6 +26,15 @@
   display: block;
   width: 180px;
   margin: 0 0 0 24px;
+  white-space: nowrap;
+}
+
+.group {
+
+  display: block;
+  width: 180px;
+  margin: 0 0 0 24px;
+  white-space: nowrap;
 }
 
 .description {

@@ -9,6 +9,10 @@ import {
   createImagesRequestAction,
   createImagesRequestFailAction,
   createImagesRequestSuccessAction,
+
+  deleteImagesRequestAction,
+  deleteImagesRequestFailAction,
+  deleteImagesRequestSuccessAction,
 } from './slice';
 
 
@@ -44,5 +48,23 @@ export const uploadImages = (data: any) => async (dispatch: any): Promise<any> =
   catch(error: any) {
 
     dispatch(createImagesRequestFailAction());
+  }
+};
+
+export const deleteImages = (uuid: string) => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(deleteImagesRequestAction());
+
+    const result = await request({
+      url: '/api/v1/images/' + uuid,
+      method: 'delete',
+      data: null,
+    });
+
+    dispatch(deleteImagesRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
+    dispatch(deleteImagesRequestFailAction());
   }
 };

@@ -14,10 +14,11 @@ interface IProps {
   name: string;
   code: string;
   description: string;
+  group: any;
 }
 
 
-function Item({ uuid, name, code, description }: IProps): JSX.Element {
+function Item({ uuid, name, code, group, description }: IProps): JSX.Element {
   const dispatch = useDispatch();
   const iconClassName = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-ellipsis'), []);
 
@@ -32,6 +33,9 @@ function Item({ uuid, name, code, description }: IProps): JSX.Element {
       </div>
       <div className={styles['code']}>
         <Text>{ code }</Text>
+      </div>
+      <div className={styles['group']}>
+        <Text>{ group?.['name'] ?? '---' }</Text>
       </div>
       <div className={styles['description']}>
         <Text type={'description'}>{ description }</Text>

@@ -51,7 +51,9 @@
 
 .common {
 
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
   margin: 0 0 0 40px;
 }
 
@@ -96,4 +98,12 @@
   & + & {
     margin: 8px 0 0;
   }
+}
+
+.date {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  justify-content: flex-end;
 }

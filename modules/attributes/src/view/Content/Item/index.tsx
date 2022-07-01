@@ -41,9 +41,6 @@ function Item({ uuid, name, description, category, unit }: IProps): JSX.Element 
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['group']}>
-        <Text>{ category ? category['name'] : '---' }</Text>
-      </div>
       <div className={styles['name']}>
         <Text type={'strong'}>{ name }</Text>
       </div>

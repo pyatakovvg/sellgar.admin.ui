@@ -8,16 +8,17 @@ import { useDispatch } from 'react-redux';
 import Content from './Content';
 import Modify from './Modify';
 
-import { getCategories, resetStateAction } from '../index';
+import { getGroups, getCategories, resetStateAction } from '../index';
 
 import styles from './default.module.scss';
 
 
-function Users(): JSX.Element {
+function Categories(): JSX.Element {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     async function init() {
+      await dispatch<any>(getGroups());
       await dispatch<any>(getCategories());
     }
     init();
@@ -34,10 +35,14 @@ function Users(): JSX.Element {
     <section className={styles['wrapper']}>
       <header className={styles['header']}>
         <Header level={2}>Категория товара</Header>
-        <Button onClick={handleAdd}>Добавить</Button>
       </header>
       <section className={styles['content']}>
-        <Content />
+        <div className={styles['list']}>
+          <Content />
+        </div>
+        <div className={styles['controls']}>
+          <Button onClick={handleAdd}>Добавить</Button>
+        </div>
       </section>
 
       <Dialog name={'modify'}>
@@ -47,4 +52,4 @@ function Users(): JSX.Element {
   );
 }
 
-export default Users;
+export default Categories;

@@ -93,14 +93,9 @@ echo '------------------------------------'
 cd ../../widgets || return
 
 echo ''
-echo 'Пакет "bucket"'
-echo '------------------------------------'
-cd ./bucket && npx yarn build && yarn build:types
-
-echo ''
 echo 'Пакет "Profile"'
 echo '------------------------------------'
-cd ../profile && npx yarn build && yarn build:types
+cd ./profile && npx yarn build && yarn build:types
 
 
 echo ''
@@ -157,5 +152,17 @@ cd ../units && npx yarn build && yarn build:types
 echo 'Модуль "Users"'
 echo '------------------------------------'
 cd ../users && npx yarn build && yarn build:types
+
+echo 'Модуль "Checkout"'
+echo '------------------------------------'
+cd ../checkout && npx yarn build && yarn build:types
+
+echo 'Модуль "Checkouts"'
+echo '------------------------------------'
+cd ../checkouts && npx yarn build && yarn build:types
+
+echo 'Модуль "Comments"'
+echo '------------------------------------'
+cd ../comments && npx yarn build && yarn build:types
 
 exit 0

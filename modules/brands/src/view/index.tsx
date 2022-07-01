@@ -34,10 +34,14 @@ function Users(): JSX.Element {
     <section className={styles['wrapper']}>
       <header className={styles['header']}>
         <Header level={2}>Производитель товара</Header>
-        <Button onClick={handleAdd}>Добавить</Button>
       </header>
       <section className={styles['content']}>
-        <Content />
+        <div className={styles['list']}>
+          <Content />
+        </div>
+        <div className={styles['controls']}>
+          <Button onClick={handleAdd}>Добавить</Button>
+        </div>
       </section>
 
       <Dialog name={'modify'}>

@@ -2,6 +2,10 @@
 import request from "@package/request";
 
 import {
+  getGroupsRequestAction,
+  getGroupsRequestFailAction,
+  getGroupsRequestSuccessAction,
+
   getCategoryRequestAction,
   getCategoryRequestFailAction,
   getCategoryRequestSuccessAction,
@@ -20,20 +24,35 @@ import {
 } from './slice';
 
 
+export const getGroups = () => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(getGroupsRequestAction());
+
+    const result = await request({
+      url: '/api/v1/groups',
+      method: 'get',
+    });
+
+    dispatch(getGroupsRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
+    dispatch(getGroupsRequestFailAction());
+    return null;
+  }
+};
+
 export const getCategory = (uuid: string) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getCategoryRequestAction());
 
     const result = await request({
-      url: '/api/v1/categories',
+      url: '/api/v1/categories/' + uuid,
       method: 'get',
-      params: {
-        uuid,
-      },
     });
 
     dispatch(getCategoryRequestSuccessAction());
-    return result['data'][0] || null;
+    return result['data'] || null;
   }
   catch(error: any) {
 

@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 
 import Common from './Common';
 import Modes from './Modes';
+import Date from './Date';
 
 import { updateProduct } from '../../../index';
 
@@ -58,8 +59,9 @@ function Item({ uuid, gallery, group, category, brand, modes, isUse, isAvailable
         </div>
         <div className={styles['common']}>
           <Common group={group} category={category} brand={brand} />
-          <Text type={'description'}>Добавлен: { moment(createdAt).format('DD.MM.YYYY HH:mm') }</Text>
-          <Text type={'description'}>Изменен: { moment(updatedAt).format('DD.MM.YYYY HH:mm') }</Text>
+          <div className={styles['date']}>
+            <Date createdAt={createdAt} updatedAt={updatedAt} />
+          </div>
         </div>
         <div className={styles['modes']}>
           <Modes modes={modes} />

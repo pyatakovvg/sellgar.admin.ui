@@ -26,4 +26,5 @@ export { default as Link } from './typography/Link';
 export { default as Text } from './typography/Text';
 export { default as Label } from './typography/Label';
 export { default as Header } from './typography/Header';
+export { default as Metric } from './typography/Metric';
 export { default as Logotype } from './typography/Logotype';

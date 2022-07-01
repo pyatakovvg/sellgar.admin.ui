@@ -24,9 +24,6 @@ function ModifyForm({ handleSubmit, pristine, valid }: any): JSX.Element {
           <InputField label={'Наименование'} name={'name'} disabled={inProcess} />
         </div>
         <div className={styles['row']}>
-          <SelectField clearable label={'Группа товаров'} name={'categoryUuid'} options={categories} optionKey={'uuid'} optionValue={'name'} disabled={inProcess} />
-        </div>
-        <div className={styles['row']}>
           <SelectField clearable label={'Единица измерения'} name={'unitUuid'} options={units} optionKey={'uuid'} optionValue={'name'} disabled={inProcess} />
         </div>
         <div className={styles['row']}>

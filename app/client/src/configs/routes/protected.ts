@@ -38,6 +38,21 @@ const routes: Array<any> = [
     module: import('@module/units'),
   },
   {
+    path: '/checkouts',
+    wrapper: 'default',
+    module: import('@module/checkouts'),
+  },
+  {
+    path: '/checkouts/:uuid',
+    wrapper: 'default',
+    module: import('@module/checkout'),
+  },
+  {
+    path: '/comments',
+    wrapper: 'default',
+    module: import('@module/comments'),
+  },
+  {
     path: '/images',
     module: import('@module/images'),
   },

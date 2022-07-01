@@ -6,7 +6,7 @@ import React from 'react';
 import styles from './default.module.scss';
 
 
-function Test(): JSX.Element {
+function Main(): JSX.Element {
   return (
     <section className={styles['wrapper']}>
       <header className={styles['header']}>
@@ -19,4 +19,4 @@ function Test(): JSX.Element {
   );
 }
 
-export default Test;
+export default Main;

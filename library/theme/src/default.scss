@@ -39,16 +39,16 @@ $black:            #000000 !default;
 
 @mixin box-shadow($direction: bottom) {
   @if ($direction == right) {
-    box-shadow: 3px 0 4px 0 rgba(#7E8286, .2);
+    box-shadow: 2px 0 2px 0 rgba($black, .1);
   }
   @else if ($direction == bottom) {
-    box-shadow: 0 3px 4px 0 rgba(#7E8286, .2);
+    box-shadow: 0 2px 2px 0 rgba($black, .1);
   }
   @else if ($direction == left) {
-    box-shadow: -3px 0 4px 0 rgba(#7E8286, .2);
+    box-shadow: -2px 0 2px 0 rgba($black, .1);
   }
   @else if ($direction == top) {
-    box-shadow: 0 -3px 4px 0 rgba(#7E8286, .2);
+    box-shadow: 0 -2px 2px 0 rgba($black, .1);
   }
   @else {
     @error "Unknown direction #{$direction}.";

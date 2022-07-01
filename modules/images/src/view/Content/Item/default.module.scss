@@ -39,12 +39,12 @@
 .icon {
 
   display: block;
-  color: $dark;
+  color: $danger-light;
   font-size: 16px;
   cursor: pointer;
   transition: color 150ms;
 
   &:hover {
-    color: $primary;
+    color: $danger-dark;
   }
 }

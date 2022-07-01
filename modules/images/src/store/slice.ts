@@ -61,6 +61,16 @@ const slice = createSlice({
       ];
       state['inUploadProcess'] = false;
     },
+
+    deleteImagesRequestAction(state: IState) {
+      state['inUploadProcess'] = true;
+    },
+    deleteImagesRequestFailAction(state: IState) {
+      state['inUploadProcess'] = false;
+    },
+    deleteImagesRequestSuccessAction(state: IState, { payload }: IData) {
+      state['inUploadProcess'] = false;
+    },
   },
 });
 
@@ -74,6 +84,10 @@ export const {
   createImagesRequestAction,
   createImagesRequestFailAction,
   createImagesRequestSuccessAction,
+
+  deleteImagesRequestAction,
+  deleteImagesRequestFailAction,
+  deleteImagesRequestSuccessAction,
 } = slice['actions'];
 
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];

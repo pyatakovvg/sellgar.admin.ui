@@ -23,7 +23,6 @@ function Modify({ data }: IProps): JSX.Element | null {
   React.useEffect(() => {
     async function init() {
       await dispatch<any>(getUnits());
-      await dispatch<any>(getCategories());
       if (data && ('uuid' in data)) {
         const result = await dispatch<any>(getAttribute(data['uuid']));
         setUnit(result);
@@ -34,7 +33,8 @@ function Modify({ data }: IProps): JSX.Element | null {
 
   async function handleSubmit(data: any) {
     let result;
-    if (data && ('uuid' in data)) {
+
+    if (data && data['uuid']) {
       result = await dispatch<any>(updateAttribute(data));
     }
     else {
@@ -56,7 +56,6 @@ function Modify({ data }: IProps): JSX.Element | null {
           uuid: unit?.['uuid'] || undefined,
           name: unit?.['name'] || undefined,
           description: unit?.['description'] || undefined,
-          categoryUuid: unit?.['category']?.['uuid'] || null,
           unitUuid: unit?.['unit']?.['uuid'] || null,
           order: unit?.['order'] || 0,
         }}

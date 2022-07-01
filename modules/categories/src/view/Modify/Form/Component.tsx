@@ -1,15 +1,16 @@
 
-import { InputField, TextareaField, Button, Header } from '@library/kit';
+import { InputField, TextareaField, SelectField, Button, Header } from '@library/kit';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectInUploadProcess } from '../../../index';
+import { selectGroups, selectInUploadProcess } from '../../../index';
 
 import styles from './default.module.scss';
 
 
 function ModifyForm({ handleSubmit, valid, pristine }: any): JSX.Element {
+  const groups = useSelector(selectGroups);
   const inProcess = useSelector(selectInUploadProcess);
 
   return (
@@ -23,6 +24,16 @@ function ModifyForm({ handleSubmit, valid, pristine }: any): JSX.Element {
         </div>
         <div className={styles['row']}>
           <InputField label={'Код'} name={'code'} disabled={inProcess} />
+        </div>
+        <div className={styles['row']}>
+          <SelectField
+            label={'Группа'}
+            name={'groupUuid'}
+            disabled={inProcess}
+            options={groups}
+            optionKey={'uuid'}
+            optionValue={'name'}
+          />
         </div>
         <div className={styles['row']}>
           <TextareaField label={'Описание'} name={'description'} disabled={inProcess} />

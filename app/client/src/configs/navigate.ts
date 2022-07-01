@@ -6,6 +6,16 @@ const navigate = [
     icon: 'fa-solid fa-bag-shopping',
   },
   {
+    title: 'Заказы',
+    path: '/checkouts',
+    icon: 'fa-solid fa-money-bill',
+  },
+  {
+    title: 'Комментарии',
+    path: '/comments',
+    icon: 'fa-solid fa-comments',
+  },
+  {
     title: 'Параметры',
     path: '/params/groups',
     icon: 'fa-solid fa-gear',

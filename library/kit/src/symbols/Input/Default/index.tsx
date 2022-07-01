@@ -14,6 +14,7 @@ interface IProps {
   mode?: TMode;
   value?: string;
   name?: string;
+  readOnly?: boolean;
   placeholder?: string;
   disabled?: boolean;
   autoFocus?: boolean;
@@ -23,7 +24,7 @@ interface IProps {
 }
 
 
-function PasswordInput({ className, type, mode, value, name, placeholder, autoFocus, disabled, onBlur, onFocus, onChange }: IProps): JSX.Element | null {
+function DefaultInput({ className, type, mode, value, name, readOnly, placeholder, autoFocus, disabled, onBlur, onFocus, onChange }: IProps): JSX.Element | null {
   const [isFocus, setFocus] = React.useState<boolean>(false);
   const [isPlaceholder, setPlaceHolder] = React.useState<boolean>(false);
 
@@ -35,6 +36,7 @@ function PasswordInput({ className, type, mode, value, name, placeholder, autoFo
   }, {
     [styles['in-focus']]: isFocus,
     [styles['disabled']]: disabled,
+    [styles['read-only']]: readOnly,
   }), [className, isFocus, disabled]);
   const inputClassName = React.useMemo(() => cn(styles['input']), []);
 
@@ -73,6 +75,7 @@ function PasswordInput({ className, type, mode, value, name, placeholder, autoFo
         type={type}
         value={value}
         name={name}
+        readOnly={readOnly}
         autoFocus={autoFocus}
         disabled={disabled}
         onFocus={handleFocus}
@@ -86,15 +89,16 @@ function PasswordInput({ className, type, mode, value, name, placeholder, autoFo
   );
 }
 
-PasswordInput.defaultProps = {
+DefaultInput.defaultProps = {
   className: null,
   type: 'text',
   mode: 'default',
   value: '',
   name: '',
+  readOnly: false,
   placeholder: '',
   autoFocus: false,
   disabled: false,
 };
 
-export default PasswordInput;
+export default DefaultInput;

@@ -1,0 +1,47 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.header {
+
+  display: block;
+  padding: 0 0 0 20px;
+}
+
+.content {
+
+  display: block;
+  margin: 10px 0 0;
+  background: $white;
+  border-radius: 8px;
+  padding: 40px 50px;
+}
+
+.row {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+
+  & + & {
+    margin: 24px 0 0;
+  }
+}
+
+.col {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+
+  & + & {
+    margin: 0 0 0 16px;
+  }
+}

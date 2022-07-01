@@ -1,0 +1,12 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: block;
+  padding: 16px;
+  background: $white;
+  border-radius: 8px;
+  @include box-shadow('bottom');
+}

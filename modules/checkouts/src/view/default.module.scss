@@ -1,0 +1,41 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  padding: 40px 40px 80px;
+  max-width: 1200px;
+}
+
+.header {
+
+  display: block;
+}
+
+.filter {
+
+  display: block;
+  margin: 48px 0 0;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 24px 0 0;
+}
+
+.item {
+
+  display: block;
+
+  & + & {
+
+    margin: 16px 0 0;
+  }
+}

@@ -61,7 +61,7 @@
 
   &--default {
 
-    border-color: $gray-light;
+    border-color: $gray;
 
     &:hover,
     &.in-focus {
@@ -114,4 +114,10 @@
 .disabled:hover, {
 
   border-color: $gray-light;
+}
+
+.read-only {
+
+  border-color: transparent;
+  background: transparent;
 }

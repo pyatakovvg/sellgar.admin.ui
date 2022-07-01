@@ -38,8 +38,12 @@ function Products(): JSX.Element {
   return (
     <section className={styles['wrapper']}>
       <header className={styles['header']}>
-        <Header level={2}>Витрина</Header>
-        <Button onClick={handleAdd}>Добавить</Button>
+        <div className={styles['text']}>
+          <Header level={2}>Витрина</Header>
+        </div>
+        <div className={styles['control']}>
+          <Button onClick={handleAdd}>Добавить</Button>
+        </div>
       </header>
       <aside className={styles['filter']}>
         <Filter />

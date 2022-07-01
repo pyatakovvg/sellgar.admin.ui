@@ -1,0 +1,24 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  justify-content: center;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.control {
+
+  display: block;
+  margin: 0 0 0 24px;
+}

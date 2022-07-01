@@ -13,17 +13,7 @@
 
 .header {
 
-  display: flex;
-  flex-direction: row;
-  flex: 1 0;
-  align-items: center;
-}
-
-.text {
-
-  display: flex;
-  flex-direction: column;
-  flex: 1 0;
+  display: block;
 }
 
 .filter {
@@ -40,12 +30,7 @@
   margin: 28px 0 0;
 }
 
-.item {
+.controls {
 
   display: block;
-
-  & + & {
-
-    margin: 16px 0 0;
-  }
 }

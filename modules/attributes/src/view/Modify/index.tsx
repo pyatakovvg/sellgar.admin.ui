@@ -5,7 +5,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import Form from './Form';
-import { getUnits, getCategories, getAttribute, createAttribute, updateAttribute } from '../../index';
+import { getUnits, getAttribute, createAttribute, updateAttribute } from '../../index';
 
 import styles from './default.module.scss';
 

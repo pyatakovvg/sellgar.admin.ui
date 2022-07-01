@@ -12,7 +12,7 @@ import { getOrder, resetStateAction, selectData } from '../index';
 import styles from './default.module.scss';
 
 
-function Products(): JSX.Element {
+function Products(): JSX.Element | null {
   const params: any = useParams();
   const dispatch = useDispatch();
 

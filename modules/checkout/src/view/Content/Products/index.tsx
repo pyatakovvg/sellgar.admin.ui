@@ -16,7 +16,7 @@ function Products({ products }: any): JSX.Element {
       </div>
       <div className={styles['content']}>
         <div className={styles['container']}>
-          {products.map((item) => (
+          {products.map((item: any) => (
             <div key={item['uuid']} className={styles['item']}>
               <Item {...item} />
             </div>

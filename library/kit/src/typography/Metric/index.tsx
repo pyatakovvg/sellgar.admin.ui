@@ -10,7 +10,7 @@ interface IProps {
   type?: TType;
   className?: string;
   label?: string | null;
-  children: string;
+  children: string | JSX.Element | Array<JSX.Element>;
 }
 
 

@@ -13,7 +13,7 @@ function MetricDefault({ children, label }: any) {
         </div>
       )}
       <div className={styles['content']}>
-        { children }
+        { React.Children.map(children, (child: any) => React.cloneElement(child)) }
       </div>
     </div>
   );

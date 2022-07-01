@@ -87,7 +87,7 @@ export const {
   changeStatusRequestAction,
   changeStatusRequestFailAction,
   changeStatusRequestSuccessAction,
-} = slice['actions'];
+} = slice['actions'] as any;
 
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
 export const selectMeta = (state: IRootStore): Array<any> => state[REDUCER_NAME]['meta'];

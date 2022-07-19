@@ -15,9 +15,9 @@ import styles from './default.module.scss';
 
 function Modes(): JSX.Element {
   const inProcess = useSelector(selectInProcess);
-  const errors = useSelector(getFormSyncErrors('modify'));
+  const errors: any = useSelector(getFormSyncErrors('modify')) || {};
   const contentClassName = React.useMemo(() => cn(styles['content'], {
-    [styles['error']]: typeof errors?.['attributes'] === 'string',
+    [styles['error']]: typeof errors['attributes'] === 'string',
   }), [errors]);
 
   return (

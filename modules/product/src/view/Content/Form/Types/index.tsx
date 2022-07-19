@@ -20,12 +20,12 @@ function Types() {
   const brands = useSelector(selectBrands);
   const inProcess = useSelector(selectInProcess);
 
-  const values = useSelector(getFormValues('modify'));
+  const values = useSelector(getFormValues('modify')) as any;
 
   React.useEffect(() => {
     async function init() {
       if (values['groupUuid']) {
-        await dispatch(getCategories(values['groupUuid']));
+        await dispatch<any>(getCategories(values['groupUuid']));
       }
     }
     init();

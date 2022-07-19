@@ -17,14 +17,14 @@ function OptionsList({ fields, disabled }: any) {
 
   const targetValue = React.useMemo(() => {
     const modes = fields.getAll();
-    const index = modes.findIndex(item => item.isTarget);
+    const index = modes.findIndex((item: any) => item.isTarget);
     if (index < 0) {
       return null;
     }
     return 'modes[' + index + '].isTarget';
   }, [values]);
 
-  function handleChangeTarget(value) {
+  function handleChangeTarget(value: string) {
     for (let index in fields.getAll()) {
       dispatch(change('modify', 'modes[' + index + '].isTarget', false));
     }

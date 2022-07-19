@@ -13,7 +13,7 @@ interface IProps {
   type?: TType;
   value?: any | null;
   disabled?: boolean;
-  children: any;
+  children?: any;
 }
 
 

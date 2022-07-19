@@ -14,7 +14,7 @@ import styles from './default.module.scss';
 
 
 function Images() {
-  const errors = useSelector(getFormSyncErrors('modify'));
+  const errors: any = useSelector(getFormSyncErrors('modify')) || {};
   const contentClassName = React.useMemo(() => cn(styles['content'], {
     [styles['error']]: !! errors['gallery'],
   }), [errors]);

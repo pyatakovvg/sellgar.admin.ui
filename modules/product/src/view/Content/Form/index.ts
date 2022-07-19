@@ -5,7 +5,7 @@ import Component from './Component';
 
 
 function validate(value: any) {
-  const errors = {};
+  const errors: any = {};
 
   if ('gallery' in value) {
     if (!value['gallery'].length) {
@@ -50,9 +50,9 @@ function validate(value: any) {
     errors['modes'] = 'Необходимо добавить';
   }
   else {
-    const modeArrayErrors = [];
-    value['modes'].forEach((mode, index) => {
-      const modeErrors = {};
+    const modeArrayErrors: Array<any> = [];
+    value['modes'].forEach((mode: any, index: number) => {
+      const modeErrors: any = {};
 
       if ( ! mode['vendor']) {
         modeErrors['vendor'] = 'Необходимо заполнить';
@@ -82,9 +82,9 @@ function validate(value: any) {
     errors['attributes'] = 'Необходимо добавить';
   }
   else {
-    const attrArrayErrors = [];
-    value['attributes'].forEach((attr, index) => {
-      const attrErrors = {};
+    const attrArrayErrors: Array<any> = [];
+    value['attributes'].forEach((attr: any, index: number) => {
+      const attrErrors: any = {};
 
       if ( ! attr['attributeUuid']) {
         attrErrors['attributeUuid'] = 'Необходимо выбрать';

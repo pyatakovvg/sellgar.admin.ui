@@ -32,7 +32,7 @@ function ModeField({ field, data, disabled, onRemove }: IModifyFieldProps) {
     <div className={styles['wrapper']}>
       <div className={styles['name']}>
         <SelectField
-          require
+          required
           simple
           clearable={false}
           name={`${field}.attributeUuid`}
@@ -44,7 +44,7 @@ function ModeField({ field, data, disabled, onRemove }: IModifyFieldProps) {
       </div>
       <div className={styles['value']}>
         <InputField
-          require
+          required
           name={`${field}.value`}
           disabled={disabled}
         />

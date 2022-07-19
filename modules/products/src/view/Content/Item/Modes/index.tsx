@@ -8,29 +8,41 @@ import styles from './default.module.scss';
 
 
 interface IProps {
+  title: string;
   modes: Array<any>;
 }
 
 
-function Label({ label, children }: any) {
+function Label({ label, children, isUse, isTarget }: any) {
   return (
     <div className={styles['row']}>
       <div className={styles['label']}>
-        <Text type={'strong'}>{ label }</Text>
+        <Text type={'description'}>{ label }</Text>
       </div>
       <div className={styles['content']}>
-        <Text>{ children }</Text>
+        <Text type={'description'}>{ children }</Text>
       </div>
+      {isUse && (
+        <span className={styles['is-use']}>A</span>
+      )}
+      {isTarget && (
+        <span className={styles['is-target']}>T</span>
+      )}
     </div>
   );
 }
 
-function Item({ modes }: IProps): JSX.Element {
+function Item({ title, modes }: IProps) {
   return (
     <div className={styles['wrapper']}>
-      {modes.map((item) => (
-        <Label key={item['uuid']} label={`${item['value']} [${item['vendor']}]`}> - { numeral(item['price']).format() } { item['currency']['displayName'] }</Label>
-      ))}
+      <div className={styles['header']}>
+        <Text type={'strong'}>{ title || 'нет названия' }</Text>
+      </div>
+      <div className={styles['modes']}>
+        {modes.map((item) => (
+          <Label key={item['uuid']} {...item} label={`${item['value']} [${item['vendor']}]`}> - { numeral(item['price']).format() } { item['currency']['displayName'] }</Label>
+        ))}
+      </div>
     </div>
   );
 }

@@ -17,6 +17,7 @@ import styles from './default.module.scss';
 
 interface IProps {
   uuid: string;
+  title: string;
   gallery: Array<any>;
   group: any;
   category: any;
@@ -29,7 +30,7 @@ interface IProps {
 }
 
 
-function Item({ uuid, gallery, group, category, brand, modes, isUse, isAvailable, createdAt, updatedAt }: IProps): JSX.Element {
+function Item({ uuid, title, gallery, group, category, brand, modes, isUse, isAvailable, createdAt, updatedAt }: IProps): JSX.Element {
   const dispatch = useDispatch();
   const iconClassName = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-ellipsis'), []);
 
@@ -63,7 +64,7 @@ function Item({ uuid, gallery, group, category, brand, modes, isUse, isAvailable
           </div>
         </div>
         <div className={styles['modes']}>
-          <Modes modes={modes} />
+          <Modes title={title} modes={modes} />
         </div>
         <div className={styles['available']}>
           <div className={styles['row']}>

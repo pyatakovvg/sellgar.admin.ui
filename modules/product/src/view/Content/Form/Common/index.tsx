@@ -28,7 +28,12 @@ function Common() {
           <div className={styles['field']}>
             <div className={styles['external-id']}>
               <div className={styles['input']}>
-                <InputField name="externalId" label="Номер товара" maxLength={9} />
+                <InputField
+                  required
+                  name="externalId"
+                  label="Номер товара"
+                  maxLength={64}
+                />
               </div>
               <div className={styles['button']}>
                 <Button mode={'success'} onClick={handleGenerateExternalId}>Сгенерировать</Button>
@@ -40,24 +45,18 @@ function Common() {
         <div className={styles['fields']}>
           <div className={styles['field']}>
             <InputField
+              required
               name={'title'}
               label={'Название'}
+              maxLength={256}
             />
           </div>
           <div className={styles['field']}>
             <InputField
               name={'originalName'}
               label={'Оригинальное название'}
+              maxLength={256}
             />
-          </div>
-        </div>
-        <div>
-          <div>
-            {/*<EditorField*/}
-            {/*  name="description"*/}
-            {/*  label="Описание"*/}
-            {/*  disabled={inProcess}*/}
-            {/*/>*/}
           </div>
         </div>
       </div>

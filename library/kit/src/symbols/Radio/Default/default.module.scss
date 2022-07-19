@@ -1,0 +1,57 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: center;
+  cursor: pointer;
+}
+
+.control {
+
+  display: block;
+}
+
+.label {
+
+  display: block;
+  margin: 2px 0 0 8px;
+}
+
+.marker {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: $white;
+  border: 1px solid $gray;
+  box-sizing: border-box;
+
+  &:after {
+
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    content: '';
+  }
+}
+
+.is-active {
+
+  border-color: $info;
+
+  &:after {
+    background: $info;
+  }
+}

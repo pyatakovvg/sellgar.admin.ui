@@ -4,16 +4,36 @@ import { selectGroups, selectCategories, selectBrands, selectInProcess } from ".
 import { Header, SelectField } from "@library/kit";
 
 import React from 'react';
-import { useSelector } from "react-redux";
+import { getFormValues, change } from 'redux-form';
+import { useSelector, useDispatch } from "react-redux";
+
+import { getCategories } from '../../../../store/commands';
 
 import styles from './default.module.scss';
 
 
 function Types() {
+  const dispatch = useDispatch();
+
   const groups = useSelector(selectGroups);
   const categories = useSelector(selectCategories);
   const brands = useSelector(selectBrands);
   const inProcess = useSelector(selectInProcess);
+
+  const values = useSelector(getFormValues('modify'));
+
+  React.useEffect(() => {
+    async function init() {
+      if (values['groupUuid']) {
+        await dispatch(getCategories(values['groupUuid']));
+      }
+    }
+    init();
+  }, [values['groupUuid']]);
+
+  function handleResetCategory() {
+    dispatch(change('modify', 'categoryUuid', null));
+  }
 
   return (
     <div className={styles['wrapper']}>
@@ -24,6 +44,7 @@ function Types() {
         <div className={styles['fields']}>
           <div className={styles['field']}>
             <SelectField
+              required
               simple
               name="groupUuid"
               label="Группа"
@@ -31,21 +52,24 @@ function Types() {
               optionKey="uuid"
               optionValue="name"
               disabled={inProcess}
+              onChange={handleResetCategory}
             />
           </div>
           <div className={styles['field']}>
             <SelectField
+              required
               simple
               name="categoryUuid"
               label="Категория"
               options={categories}
               optionKey="uuid"
               optionValue="name"
-              disabled={inProcess}
+              disabled={inProcess || ! values['groupUuid']}
             />
           </div>
           <div className={styles['field']}>
             <SelectField
+              required
               simple
               name="brandUuid"
               label="Производитель"

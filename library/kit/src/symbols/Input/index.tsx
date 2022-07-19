@@ -14,6 +14,7 @@ interface IProps {
   mode?: TMode;
   value?: string;
   name?: string;
+  maxLength?: number;
   placeholder?: string;
   disabled?: boolean;
   autoFocus?: boolean;
@@ -23,7 +24,7 @@ interface IProps {
 }
 
 
-function Factory({ type, ...rest }: IProps): JSX.Element | null {
+function Factory({ type, ...rest }: IProps) {
   switch(type) {
     case 'search': return <SearchInput {...rest} />;
     case 'email': return <DefaultInput type={'email'} {...rest} />;

@@ -20,7 +20,7 @@ function Header() {
         <Text>Значение</Text>
       </div>
       <div className={styles['label']}>
-        <Text>В-на</Text>
+        <Text>Вел-на</Text>
       </div>
       <div className={styles['label']}>
         <span className={cn(styles['icon'], 'fas fa-exclamation')} />

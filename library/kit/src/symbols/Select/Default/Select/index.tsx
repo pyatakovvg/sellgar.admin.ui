@@ -21,7 +21,7 @@ interface IProps {
 }
 
 
-function Select({ inFocus, mode, value, placeholder, disabled, clearable, onClick, onReset }: IProps): JSX.Element | null {
+function Select({ inFocus, mode, value, placeholder, disabled = false, clearable, onClick, onReset }: IProps): JSX.Element | null {
   const [isPlaceholder, setPlaceHolder] = React.useState<boolean>(false);
 
   const wrapperClassName = React.useMemo(() => cn(styles['wrapper'], {

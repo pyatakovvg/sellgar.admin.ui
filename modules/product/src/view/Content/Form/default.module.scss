@@ -5,6 +5,7 @@
 .wrapper {
 
   display: block;
+  max-width: 900px;
 }
 
 .block {
@@ -15,4 +16,11 @@
 
     margin: 48px 0 0;
   }
+}
+
+.controls {
+
+  display: block;
+  margin: 32px 0 0;
+  text-align: right;
 }

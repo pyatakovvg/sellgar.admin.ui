@@ -1,18 +1,23 @@
 
+import { Button } from '@library/kit';
+
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { isValid, isPristine, submit } from 'redux-form';
 
 import Content from './Content';
 
-import { getAttributes, getCurrencies, getProduct, getGroups, getCategories, getBrands, resetStateAction } from '../index';
+import { getAttributes, getCurrencies, getProduct, getGroups, getBrands, resetStateAction } from '../index';
 
 import styles from './default.module.scss';
 
 
-function Product(): JSX.Element {
+function Product() {
   const params: any = useParams();
   const dispatch = useDispatch();
+  const valid = useSelector(isValid('modify'));
+  const pristine = useSelector(isPristine('modify'));
 
   React.useEffect(() => {
     async function init() {
@@ -20,7 +25,6 @@ function Product(): JSX.Element {
       await dispatch<any>(getBrands());
       await dispatch<any>(getAttributes());
       await dispatch<any>(getCurrencies());
-      await dispatch<any>(getCategories());
       await dispatch<any>(getProduct(params['uuid']));
     }
     init();
@@ -29,8 +33,15 @@ function Product(): JSX.Element {
     }
   }, []);
 
+  function handleSubmit() {
+    dispatch(submit('modify'));
+  }
+
   return (
     <section className={styles['wrapper']}>
+      <div className={styles['controls']}>
+        <Button type={'submit'} onClick={handleSubmit} disabled={ ! valid || pristine}>Отправить</Button>
+      </div>
       <section className={styles['content']}>
         <Content />
       </section>

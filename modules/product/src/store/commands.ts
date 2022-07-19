@@ -105,13 +105,16 @@ export const getGroups = () => async (dispatch: any): Promise<any> => {
   }
 };
 
-export const getCategories = () => async (dispatch: any): Promise<any> => {
+export const getCategories = (groupUuid: string) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getCategoriesRequestAction());
 
     const result = await request({
       url: '/api/v1/categories',
       method: 'get',
+      params: {
+        groupUuid,
+      }
     });
 
     dispatch(getCategoriesRequestSuccessAction(result['data']));

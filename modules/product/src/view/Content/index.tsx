@@ -17,7 +17,6 @@ function Content(): JSX.Element {
   const data: any = useSelector(selectData);
 
   async function handleSubmit(data: any) {
-    console.log(data)
     await dispatch<any>(updateProduct(data));
   }
 

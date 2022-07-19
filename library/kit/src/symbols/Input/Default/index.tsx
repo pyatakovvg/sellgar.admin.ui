@@ -18,13 +18,14 @@ interface IProps {
   placeholder?: string;
   disabled?: boolean;
   autoFocus?: boolean;
+  maxLength?: number;
   onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
   onFocus?(event: React.FocusEvent<HTMLInputElement>): void;
   onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
 }
 
 
-function DefaultInput({ className, type, mode, value, name, readOnly, placeholder, autoFocus, disabled, onBlur, onFocus, onChange }: IProps): JSX.Element | null {
+function DefaultInput({ className, type, mode, value, name, readOnly, placeholder, autoFocus, disabled, onBlur, onFocus, onChange, ...rest }: IProps) {
   const [isFocus, setFocus] = React.useState<boolean>(false);
   const [isPlaceholder, setPlaceHolder] = React.useState<boolean>(false);
 
@@ -72,6 +73,7 @@ function DefaultInput({ className, type, mode, value, name, readOnly, placeholde
     <div className={wrapperClassName}>
       <input
         className={inputClassName}
+        {...rest}
         type={type}
         value={value}
         name={name}

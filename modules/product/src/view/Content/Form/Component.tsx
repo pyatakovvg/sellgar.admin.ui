@@ -1,6 +1,4 @@
 
-import { Button } from '@library/kit';
-
 import React from 'react';
 
 import Images from './Images';
@@ -13,9 +11,9 @@ import Description from './Description';
 import styles from './default.module.scss';
 
 
-function Form({ handleSubmit, valid, pristine }: any) {
+function Form({ handleSubmit }: any) {
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles['wrapper']} onSubmit={handleSubmit}>
       <div className={styles['block']}>
         <Images />
       </div>
@@ -33,9 +31,6 @@ function Form({ handleSubmit, valid, pristine }: any) {
       </div>
       <div className={styles['block']}>
         <Description />
-      </div>
-      <div className={styles['controls']}>
-        <Button type={'submit'} disabled={ ! valid || pristine}>Отправить</Button>
       </div>
     </form>
   );

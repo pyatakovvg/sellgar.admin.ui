@@ -7,8 +7,17 @@
   display: flex;
   flex-direction: column;
   flex: 1 0;
-  padding: 40px 40px 80px;
-  max-width: 900px;
+  overflow: auto;
+}
+
+.controls {
+
+  display: block;
+  background: $white;
+  padding: 8px 16px;
+  text-align: right;
+  @include box-shadow('bottom');
+  z-index: 20;
 }
 
 .content {
@@ -16,4 +25,7 @@
   display: flex;
   flex-direction: column;
   flex: 1 0;
+  padding: 40px 40px 80px;
+  z-index: 10;
+  overflow: auto;
 }

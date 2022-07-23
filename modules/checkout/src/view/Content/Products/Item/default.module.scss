@@ -36,7 +36,9 @@
 
 .mode {
 
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
   text-align: center;
   margin: 8px 0 0;
 }

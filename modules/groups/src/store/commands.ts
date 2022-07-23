@@ -49,6 +49,9 @@ export const getGroups = () => async (dispatch: any): Promise<any> => {
     const result = await request({
       url: '/api/v1/groups',
       method: 'get',
+      params: {
+        include: ['category'],
+      }
     });
 
     dispatch(getGroupsRequestSuccessAction(result['data']));

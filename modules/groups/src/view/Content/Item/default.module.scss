@@ -5,6 +5,13 @@
 .wrapper {
 
   display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.content {
+
+  display: flex;
   flex-direction: row;
   flex: 1 1;
   background: $white;
@@ -12,6 +19,14 @@
   border-radius: 8px;
   align-items: center;
   @include box-shadow('bottom');
+}
+
+.category {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 8px 0 0 32px;
 }
 
 .name {
@@ -51,5 +66,14 @@
 
   &:hover {
     color: $primary;
+  }
+}
+
+.item {
+
+  display: block;
+
+  & + & {
+    margin: 8px 0 0;
   }
 }

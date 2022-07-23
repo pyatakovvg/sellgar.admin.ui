@@ -31,7 +31,7 @@ function Common() {
                 <InputField
                   required
                   name="externalId"
-                  label="Номер товара"
+                  label="Номер товара/URL наименование"
                   maxLength={64}
                 />
               </div>

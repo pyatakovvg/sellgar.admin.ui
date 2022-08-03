@@ -1,6 +1,6 @@
 
-import { Text } from '@library/kit';
 import { openDialog } from "@package/dialog";
+import { Text, Checkbox } from '@library/kit';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -31,7 +31,7 @@ interface IProps {
 }
 
 
-function Item({ uuid, name, description, category, unit }: IProps): JSX.Element {
+function Item({ uuid, name, description, unit, isFiltered }: IProps): JSX.Element {
   const dispatch = useDispatch();
   const iconClassName = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-ellipsis'), []);
 
@@ -50,6 +50,9 @@ function Item({ uuid, name, description, category, unit }: IProps): JSX.Element 
       <div className={styles['description']}>
         <Text type={'description'}>{ description }</Text>
       </div>
+      <div className={styles['is-filtered']}>
+        <Checkbox value={isFiltered} onChange={() => {}} />
+      </div>
       <div className={styles['control']}>
         <span className={iconClassName} onClick={() => handleUpdate(uuid)} />
       </div>
@@ -57,4 +60,4 @@ function Item({ uuid, name, description, category, unit }: IProps): JSX.Element 
   );
 }
 
-export default Item;
+export default React.memo(Item);

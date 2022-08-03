@@ -58,6 +58,7 @@ function Modify({ data }: IProps): JSX.Element | null {
           description: unit?.['description'] || undefined,
           unitUuid: unit?.['unit']?.['uuid'] || null,
           order: unit?.['order'] || 0,
+          isFiltered: unit?.['isFiltered'] || false,
         }}
         onSubmit={handleSubmit}
       />

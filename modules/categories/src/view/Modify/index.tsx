@@ -18,13 +18,13 @@ interface IProps {
 function Modify({ data }: IProps): JSX.Element | null {
   const dispatch = useDispatch();
 
-  const [unit, setUnit] = React.useState(null);
+  const [category, setCategory] = React.useState(null);
 
   React.useEffect(() => {
     async function init() {
       if (data && ('uuid' in data)) {
         const result = await dispatch<any>(getCategory(data['uuid']));
-        setUnit(result);
+        setCategory(result);
       }
     }
     init();
@@ -43,14 +43,16 @@ function Modify({ data }: IProps): JSX.Element | null {
     }
   }
 
-  if (data && ! unit) {
+  if (data && ! category) {
     return null;
   }
+
+  console.log(category)
 
   return (
     <div className={styles['wrapper']}>
       <Form
-        initialValues={{ ...unit || {} }}
+        initialValues={{ ...category || {} }}
         onSubmit={handleSubmit}
       />
     </div>

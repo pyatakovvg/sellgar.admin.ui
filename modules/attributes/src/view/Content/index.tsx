@@ -23,12 +23,14 @@ function Users(): JSX.Element {
   }
 
   return (
-    <div>
-      {data.map((item: any): JSX.Element => (
-        <div key={item['uuid']} className={styles['item']}>
-          <Item {...item} />
-        </div>
-      ))}
+    <div className={styles['wrapper']}>
+      {data.map((item: any): JSX.Element => {
+        return (
+          <div key={item['uuid']} className={styles['item']}>
+            <Item {...item} />
+          </div>
+        )
+      })}
     </div>
   );
 }

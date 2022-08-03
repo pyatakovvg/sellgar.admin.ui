@@ -17,7 +17,7 @@ interface IProps {
 }
 
 
-function DefaultCheckbox({ className, value, children, disabled, onChange }: IProps): JSX.Element | null {
+function DefaultCheckbox({ className, value, children, disabled, onChange }: IProps) {
   const wrapperClassName = React.useMemo(() => cn(styles['wrapper'], {
     [styles['checked']]: value,
     [styles['disabled']]: disabled,

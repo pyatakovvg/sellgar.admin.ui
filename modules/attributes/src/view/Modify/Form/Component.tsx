@@ -1,5 +1,5 @@
 
-import { InputField, TextareaField, SelectField, Button, Header } from '@library/kit';
+import { InputField, TextareaField, SelectField, CheckboxField, Button, Header, Text } from '@library/kit';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -11,7 +11,6 @@ import styles from './default.module.scss';
 
 function ModifyForm({ handleSubmit, pristine, valid }: any): JSX.Element {
   const units = useSelector(selectUnits);
-  const categories = useSelector(selectCategories);
   const inProcess = useSelector(selectInUploadProcess);
 
   return (
@@ -28,6 +27,11 @@ function ModifyForm({ handleSubmit, pristine, valid }: any): JSX.Element {
         </div>
         <div className={styles['row']}>
           <TextareaField label={'Описание'} name={'description'} disabled={inProcess} />
+        </div>
+        <div className={styles['row']}>
+          <CheckboxField label={'Описание'} name={'isFiltered'}>
+            <Text>использовать фильтрацию</Text>
+          </CheckboxField>
         </div>
       </div>
       <div className={styles['control']}>

@@ -11,7 +11,7 @@ interface IProps {
   className?: string;
   value: boolean;
   mode?: TMode;
-  children?: JSX.Element | string;
+  children?: any;
   disabled?: boolean;
   onChange(value: boolean): void;
 }

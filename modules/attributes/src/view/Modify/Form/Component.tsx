@@ -4,7 +4,7 @@ import { InputField, TextareaField, SelectField, CheckboxField, Button, Header, 
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectUnits, selectCategories, selectInUploadProcess } from '../../../index';
+import { selectUnits, selectInUploadProcess } from '../../../store/slice';
 
 import styles from './default.module.scss';
 
@@ -29,7 +29,7 @@ function ModifyForm({ handleSubmit, pristine, valid }: any): JSX.Element {
           <TextareaField label={'Описание'} name={'description'} disabled={inProcess} />
         </div>
         <div className={styles['row']}>
-          <CheckboxField label={'Описание'} name={'isFiltered'}>
+          <CheckboxField name={'isFiltered'}>
             <Text>использовать фильтрацию</Text>
           </CheckboxField>
         </div>

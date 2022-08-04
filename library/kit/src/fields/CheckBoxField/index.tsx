@@ -7,7 +7,7 @@ import CheckBox from '../../symbols/Checkbox';
 
 interface IProps {
   name: string;
-  children?: string;
+  children?: any;
   mode?: string;
   disabled?: boolean;
   onChange?(value: boolean): void;

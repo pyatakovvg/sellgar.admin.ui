@@ -36,10 +36,10 @@ function Gallery() {
   const formData: any = useSelector(getFormValues('modify'));
 
   const data = useSelector(selectGallery);
-  const [images, setImages] = React.useState(formData['gallery']);
+  const [images, setImages] = React.useState<Array<any>>(formData['gallery']);
 
   function handleChange(data: any) {
-    setImages(getComposeArray(images,data));
+    setImages(getComposeArray(images, data));
   }
 
   function handleSubmit() {

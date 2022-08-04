@@ -20,7 +20,7 @@ function Item({ uuid, isSelected, onChange }: IProps) {
         <Checkbox value={isSelected} onChange={() => onChange({ uuid })} />
       </div>
       <div className={styles['image']}>
-        <Image src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + uuid + '?size=small'} />
+        <Image src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + uuid + '?size=124x124'} />
       </div>
     </div>
   );

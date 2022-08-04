@@ -49,7 +49,7 @@ function Item({ uuid, title, gallery, group, category, brand, modes, isUse, isAv
         <div className={styles['image']}>
           {gallery?.[0]
             ? (
-              <Image src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + gallery[0]['uuid'] + '?size=small'} />
+              <Image src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + gallery[0]['uuid'] + '?size=124x124'} />
             )
            : (
              <span className={styles['no-image']}>

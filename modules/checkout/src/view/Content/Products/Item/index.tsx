@@ -15,7 +15,7 @@ function Item({ productUuid, imageUuid, vendor, value, title, count, price, curr
         <Text type={'description'}>{ vendor }</Text>
       </div>
       <div className={styles['image']}>
-        <Image src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + imageUuid + '?size=small'} />
+        <Image src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + imageUuid + '?size=124x124'} />
       </div>
       <div className={styles['title']}>
         <Link to={process.env['PUBLIC_URL'] + '/products/' + productUuid}>

@@ -14,7 +14,7 @@ interface IProps {
 function Item({ data }: IProps): JSX.Element {
   return (
     <div className={styles['wrapper']}>
-      <Image src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + data['uuid'] + '?size=large'} />
+      <Image src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + data['uuid'] + '?size=640x640'} />
     </div>
   );
 }

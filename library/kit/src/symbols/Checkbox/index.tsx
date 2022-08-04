@@ -11,13 +11,13 @@ interface IProps {
   className?: string;
   type?: TType;
   value: boolean;
-  children?: JSX.Element | string;
+  children?: any;
   disabled?: boolean;
   onChange(value: boolean): void;
 }
 
 
-function Factory({ type, children, ...rest }: IProps): JSX.Element | null {
+function Factory({ type, children, ...rest }: IProps) {
   switch(type) {
     case 'switch': return <Switch {...rest} />;
     default: return <Default {...rest}>{ children }</Default>;

@@ -28,6 +28,7 @@ interface IProps {
   description: string;
   category: ICategory;
   unit: IUtil;
+  isFiltered: boolean;
 }
 
 

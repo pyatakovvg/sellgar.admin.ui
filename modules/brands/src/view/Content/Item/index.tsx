@@ -10,19 +10,18 @@ import styles from './default.module.scss';
 
 
 interface IProps {
-  uuid: string;
   name: string;
   code: string;
   description: string;
 }
 
 
-function Item({ uuid, name, code, description }: IProps): JSX.Element {
+function Item({ name, code, description }: IProps) {
   const dispatch = useDispatch();
   const iconClassName = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-ellipsis'), []);
 
-  function handleUpdate(uuid: string) {
-    dispatch<any>(openDialog('modify', { uuid }));
+  function handleUpdate(code: string) {
+    dispatch<any>(openDialog('modify', { code }));
   }
 
   return (
@@ -37,10 +36,10 @@ function Item({ uuid, name, code, description }: IProps): JSX.Element {
         <Text type={'description'}>{ description }</Text>
       </div>
       <div className={styles['control']}>
-        <span className={iconClassName} onClick={() => handleUpdate(uuid)} />
+        <span className={iconClassName} onClick={() => handleUpdate(code)} />
       </div>
     </div>
   );
 }
 
-export default Item;
+export default React.memo(Item);

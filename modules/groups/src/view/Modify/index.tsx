@@ -22,8 +22,8 @@ function Modify({ data }: IProps): JSX.Element | null {
 
   React.useEffect(() => {
     async function init() {
-      if (data && ('uuid' in data)) {
-        const result = await dispatch<any>(getGroup(data['uuid']));
+      if (data && ('code' in data)) {
+        const result = await dispatch<any>(getGroup(data['code']));
         setUnit(result);
       }
     }
@@ -32,7 +32,7 @@ function Modify({ data }: IProps): JSX.Element | null {
 
   async function handleSubmit(data: any) {
     let result;
-    if ('uuid' in data) {
+    if ('code' in data) {
       result = await dispatch<any>(updateGroup(data));
     }
     else {

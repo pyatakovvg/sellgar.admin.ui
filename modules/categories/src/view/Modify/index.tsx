@@ -5,7 +5,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import Form from './Form';
-import { getCategory, createCategory, updateCategory } from '../../index';
+import { getCategory, createCategory, updateCategory } from '../../store/commands';
 
 import styles from './default.module.scss';
 
@@ -15,15 +15,15 @@ interface IProps {
 }
 
 
-function Modify({ data }: IProps): JSX.Element | null {
+function Modify({ data }: IProps) {
   const dispatch = useDispatch();
 
   const [category, setCategory] = React.useState(null);
 
   React.useEffect(() => {
     async function init() {
-      if (data && ('uuid' in data)) {
-        const result = await dispatch<any>(getCategory(data['uuid']));
+      if (data && ('code' in data)) {
+        const result = await dispatch<any>(getCategory(data['code']));
         setCategory(result);
       }
     }
@@ -32,7 +32,7 @@ function Modify({ data }: IProps): JSX.Element | null {
 
   async function handleSubmit(data: any) {
     let result;
-    if ('uuid' in data) {
+    if ('code' in data) {
       result = await dispatch<any>(updateCategory(data));
     }
     else {
@@ -46,8 +46,6 @@ function Modify({ data }: IProps): JSX.Element | null {
   if (data && ! category) {
     return null;
   }
-
-  console.log(category)
 
   return (
     <div className={styles['wrapper']}>

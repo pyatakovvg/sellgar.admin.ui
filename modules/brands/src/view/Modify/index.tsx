@@ -5,7 +5,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import Form from './Form';
-import { getBrand, createBrand, updateBrand } from '../../index';
+import { getBrand, createBrand, updateBrand } from '../../store/commands';
 
 import styles from './default.module.scss';
 
@@ -15,15 +15,15 @@ interface IProps {
 }
 
 
-function Modify({ data }: IProps): JSX.Element | null {
+function Modify({ data }: IProps) {
   const dispatch = useDispatch();
 
   const [unit, setUnit] = React.useState(null);
 
   React.useEffect(() => {
     async function init() {
-      if (data && ('uuid' in data)) {
-        const result = await dispatch<any>(getBrand(data['uuid']));
+      if (data && ('code' in data)) {
+        const result = await dispatch<any>(getBrand(data['code']));
         setUnit(result);
       }
     }
@@ -32,7 +32,7 @@ function Modify({ data }: IProps): JSX.Element | null {
 
   async function handleSubmit(data: any) {
     let result;
-    if ('uuid' in data) {
+    if ('code' in data) {
       result = await dispatch<any>(updateBrand(data));
     }
     else {

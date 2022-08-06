@@ -48,7 +48,7 @@ function Item({ uuid, name, code, description, categories, isEdit = true }: IPro
       {categories && (
         <div className={styles['category']}>
           {categories.map((item) => (
-            <div key={item['uuid']} className={styles['item']}>
+            <div key={item['code']} className={styles['item']}>
               <Item {...item} isEdit={false} />
             </div>
           ))}

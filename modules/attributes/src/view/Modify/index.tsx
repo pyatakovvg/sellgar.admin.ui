@@ -5,7 +5,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import Form from './Form';
-import { getUnits, getAttribute, createAttribute, updateAttribute } from '../../index';
+import { getUnits, getCategories, getAttribute, createAttribute, updateAttribute } from '../../index';
 
 import styles from './default.module.scss';
 
@@ -15,7 +15,7 @@ interface IProps {
 }
 
 
-function Modify({ data }: IProps): JSX.Element | null {
+function Modify({ data }: IProps) {
   const dispatch = useDispatch();
 
   const [unit, setUnit] = React.useState(null);
@@ -23,6 +23,7 @@ function Modify({ data }: IProps): JSX.Element | null {
   React.useEffect(() => {
     async function init() {
       await dispatch<any>(getUnits());
+      await dispatch<any>(getCategories());
       if (data && ('uuid' in data)) {
         const result = await dispatch<any>(getAttribute(data['uuid']));
         setUnit(result);

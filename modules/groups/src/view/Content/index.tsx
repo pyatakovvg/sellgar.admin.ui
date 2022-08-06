@@ -11,7 +11,7 @@ import { selectData } from '../../index';
 import styles from './default.module.scss';
 
 
-function Users(): JSX.Element {
+function Groups(): JSX.Element {
   const data: Array<any> = useSelector(selectData);
 
   if ( ! data.length) {
@@ -25,7 +25,7 @@ function Users(): JSX.Element {
   return (
     <div>
       {data.map((item: any): JSX.Element => (
-        <div key={item['uuid']} className={styles['item']}>
+        <div key={item['code']} className={styles['item']}>
           <Item {...item} />
         </div>
       ))}
@@ -33,4 +33,4 @@ function Users(): JSX.Element {
   );
 }
 
-export default Users;
+export default Groups;

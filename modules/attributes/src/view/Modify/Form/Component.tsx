@@ -4,13 +4,14 @@ import { InputField, TextareaField, SelectField, CheckboxField, Button, Header, 
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectUnits, selectInUploadProcess } from '../../../store/slice';
+import { selectUnits, selectCategories, selectInUploadProcess } from '../../../store/slice';
 
 import styles from './default.module.scss';
 
 
 function ModifyForm({ handleSubmit, pristine, valid }: any): JSX.Element {
   const units = useSelector(selectUnits);
+  const categories = useSelector(selectCategories);
   const inProcess = useSelector(selectInUploadProcess);
 
   return (
@@ -20,17 +21,23 @@ function ModifyForm({ handleSubmit, pristine, valid }: any): JSX.Element {
       </div>
       <div className={styles['content']}>
         <div className={styles['row']}>
+          <InputField label={'Код'} name={'code'} disabled={inProcess} />
+        </div>
+        <div className={styles['row']}>
           <InputField label={'Наименование'} name={'name'} disabled={inProcess} />
         </div>
         <div className={styles['row']}>
           <SelectField clearable label={'Единица измерения'} name={'unitUuid'} options={units} optionKey={'uuid'} optionValue={'name'} disabled={inProcess} />
         </div>
         <div className={styles['row']}>
+          <SelectField clearable label={'Категория'} name={'categoryCode'} options={categories} optionKey={'code'} optionValue={'name'} disabled={inProcess} />
+        </div>
+        <div className={styles['row']}>
           <TextareaField label={'Описание'} name={'description'} disabled={inProcess} />
         </div>
         <div className={styles['row']}>
           <CheckboxField name={'isFiltered'}>
-            <Text>использовать фильтрацию</Text>
+            <Text>использовать при фильтрации</Text>
           </CheckboxField>
         </div>
       </div>

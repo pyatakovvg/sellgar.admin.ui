@@ -46,6 +46,24 @@ export const getUnits = () => async (dispatch: any): Promise<any> => {
   }
 };
 
+export const getCategories = () => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(getCategoriesRequestAction());
+
+    const result = await request({
+      url: '/api/v1/categories',
+      method: 'get',
+    });
+
+    dispatch(getCategoriesRequestSuccessAction(result['data']));
+
+  }
+  catch(error: any) {
+
+    dispatch(getCategoriesRequestFailAction());
+  }
+};
+
 export const getAttribute = (uuid: string) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getAttributeRequestAction());

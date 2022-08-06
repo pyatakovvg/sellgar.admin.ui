@@ -10,7 +10,7 @@ import styles from './default.module.scss';
 
 
 interface ICategory {
-  uuid: string;
+  code: string;
   name: string;
   description: string;
 }
@@ -32,7 +32,7 @@ interface IProps {
 }
 
 
-function Item({ uuid, name, description, unit, isFiltered }: IProps): JSX.Element {
+function Item({ uuid, name, description, category, unit, isFiltered }: IProps): JSX.Element {
   const dispatch = useDispatch();
   const iconClassName = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-ellipsis'), []);
 
@@ -47,6 +47,9 @@ function Item({ uuid, name, description, unit, isFiltered }: IProps): JSX.Elemen
       </div>
       <div className={styles['unit']}>
         <Text>{ unit ? unit['name'] : '---' }</Text>
+      </div>
+      <div className={styles['unit']}>
+        <Text>{ category ? category['name'] : '---' }</Text>
       </div>
       <div className={styles['description']}>
         <Text type={'description'}>{ description }</Text>

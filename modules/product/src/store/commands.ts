@@ -71,13 +71,16 @@ export const getCurrencies = () => async (dispatch: any): Promise<any> => {
   }
 };
 
-export const getAttributes = () => async (dispatch: any): Promise<any> => {
+export const getAttributes = (categoryCode: string) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getAttributesRequestAction());
 
     const result = await request({
       url: '/api/v1/attributes',
       method: 'get',
+      params: {
+        categoryCode,
+      }
     });
 
     dispatch(getAttributesRequestSuccessAction(result['data']));
@@ -105,7 +108,7 @@ export const getGroups = () => async (dispatch: any): Promise<any> => {
   }
 };
 
-export const getCategories = (groupUuid: string) => async (dispatch: any): Promise<any> => {
+export const getCategories = (groupCode: string) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getCategoriesRequestAction());
 
@@ -113,7 +116,7 @@ export const getCategories = (groupUuid: string) => async (dispatch: any): Promi
       url: '/api/v1/categories',
       method: 'get',
       params: {
-        groupUuid,
+        groupCode,
       }
     });
 

@@ -8,7 +8,7 @@ import { isValid, isPristine, submit } from 'redux-form';
 
 import Content from './Content';
 
-import { getAttributes, getCurrencies, getProduct, getGroups, getBrands, resetStateAction } from '../index';
+import { getCurrencies, getProduct, getGroups, getBrands, resetStateAction } from '../index';
 
 import styles from './default.module.scss';
 
@@ -23,7 +23,6 @@ function Product() {
     async function init() {
       await dispatch<any>(getGroups());
       await dispatch<any>(getBrands());
-      await dispatch<any>(getAttributes());
       await dispatch<any>(getCurrencies());
       await dispatch<any>(getProduct(params['uuid']));
     }

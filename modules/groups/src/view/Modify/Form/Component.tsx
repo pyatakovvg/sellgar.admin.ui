@@ -19,10 +19,10 @@ function ModifyForm({ handleSubmit, valid, pristine }: any): JSX.Element {
       </div>
       <div className={styles['content']}>
         <div className={styles['row']}>
-          <InputField label={'Наименование'} name={'name'} disabled={inProcess} />
+          <InputField label={'Код'} name={'code'} disabled={inProcess} />
         </div>
         <div className={styles['row']}>
-          <InputField label={'Код'} name={'code'} disabled={inProcess} />
+          <InputField label={'Наименование'} name={'name'} disabled={inProcess} />
         </div>
         <div className={styles['row']}>
           <TextareaField label={'Описание'} name={'description'} disabled={inProcess} />

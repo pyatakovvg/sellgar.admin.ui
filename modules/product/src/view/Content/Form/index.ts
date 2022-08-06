@@ -13,21 +13,21 @@ function validate(value: any) {
     }
   }
 
-  if ('groupUuid' in value) {
-    if ( ! value['groupUuid']) {
-      errors['groupUuid'] = 'Необходимо выбрать';
+  if ('groupCode' in value) {
+    if ( ! value['groupCode']) {
+      errors['groupCode'] = 'Необходимо выбрать';
     }
   }
 
-  if ('categoryUuid' in value) {
-    if ( ! value['categoryUuid']) {
-      errors['categoryUuid'] = 'Необходимо выбрать';
+  if ('categoryCode' in value) {
+    if ( ! value['categoryCode']) {
+      errors['categoryCode'] = 'Необходимо выбрать';
     }
   }
 
-  if ('brandUuid' in value) {
-    if ( ! value['brandUuid']) {
-      errors['brandUuid'] = 'Необходимо выбрать';
+  if ('brandCode' in value) {
+    if ( ! value['brandCode']) {
+      errors['brandCode'] = 'Необходимо выбрать';
     }
   }
 

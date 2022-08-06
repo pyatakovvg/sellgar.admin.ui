@@ -11,7 +11,7 @@ import { selectData } from '../../index';
 import styles from './default.module.scss';
 
 
-function Users(): JSX.Element {
+function Users() {
   const data: Array<any> = useSelector(selectData);
 
   if ( ! data.length) {
@@ -23,9 +23,9 @@ function Users(): JSX.Element {
   }
 
   return (
-    <div>
+    <div className={styles['wrapper']}>
       {data.map((item: any): JSX.Element => (
-        <div key={item['uuid']} className={styles['item']}>
+        <div key={item['code']} className={styles['item']}>
           <Item {...item} />
         </div>
       ))}

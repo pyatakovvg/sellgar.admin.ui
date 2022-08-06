@@ -17,9 +17,13 @@ const navigate = [
   },
   {
     title: 'Параметры',
-    path: '/params/groups',
+    path: '/params/brands',
     icon: 'fa-solid fa-gear',
     navigate: [
+      {
+        title: 'Производитель',
+        path: '/params/brands',
+      },
       {
         title: 'Группа',
         path: '/params/groups',
@@ -27,10 +31,6 @@ const navigate = [
       {
         title: 'Категория',
         path: '/params/categories',
-      },
-      {
-        title: 'Производитель',
-        path: '/params/brands',
       },
       {
         title: 'Атрибуты',

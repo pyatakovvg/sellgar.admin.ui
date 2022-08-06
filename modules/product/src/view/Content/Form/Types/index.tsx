@@ -7,7 +7,7 @@ import React from 'react';
 import { getFormValues, change } from 'redux-form';
 import { useSelector, useDispatch } from "react-redux";
 
-import { getCategories } from '../../../../store/commands';
+import { getCategories, getAttributes } from '../../../../store/commands';
 
 import styles from './default.module.scss';
 
@@ -24,15 +24,28 @@ function Types() {
 
   React.useEffect(() => {
     async function init() {
-      if (values['groupUuid']) {
-        await dispatch<any>(getCategories(values['groupUuid']));
+      if (values['groupCode']) {
+        await dispatch<any>(getCategories(values['groupCode']));
       }
     }
     init();
-  }, [values['groupUuid']]);
+  }, [values['groupCode']]);
+
+  React.useEffect(() => {
+    async function init() {
+      if (values['categoryCode']) {
+        await dispatch<any>(getAttributes(values['categoryCode']));
+      }
+    }
+    init();
+  }, [values['categoryCode']]);
 
   function handleResetCategory() {
-    dispatch(change('modify', 'categoryUuid', null));
+    dispatch(change('modify', 'categoryCode', null));
+  }
+
+  function handleResetAttributes() {
+    dispatch(change('modify', 'attributes', []));
   }
 
   return (
@@ -46,10 +59,10 @@ function Types() {
             <SelectField
               required
               simple
-              name="groupUuid"
+              name="groupCode"
               label="Группа"
               options={groups}
-              optionKey="uuid"
+              optionKey="code"
               optionValue="name"
               disabled={inProcess}
               onChange={handleResetCategory}
@@ -59,22 +72,23 @@ function Types() {
             <SelectField
               required
               simple
-              name="categoryUuid"
+              name="categoryCode"
               label="Категория"
               options={categories}
-              optionKey="uuid"
+              optionKey="code"
               optionValue="name"
-              disabled={inProcess || ! values['groupUuid']}
+              disabled={inProcess || ! values['groupCode']}
+              onChange={handleResetAttributes}
             />
           </div>
           <div className={styles['field']}>
             <SelectField
               required
               simple
-              name="brandUuid"
+              name="brandCode"
               label="Производитель"
               options={brands}
-              optionKey="uuid"
+              optionKey="code"
               optionValue="name"
               disabled={inProcess}
             />

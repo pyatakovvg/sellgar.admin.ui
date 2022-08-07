@@ -72,7 +72,7 @@ const slice = createSlice({
     },
     updateGroupRequestSuccessAction(state: IState, { payload }) {
       state['data'] = state['data'].map((item) => {
-        if (item['uuid'] === payload['uuid']) {
+        if (item['code'] === payload['code']) {
           return {
             ...item,
             ...payload,

@@ -20,7 +20,7 @@ import {
 } from './slice';
 
 
-export const getGroup = (uuid: string) => async (dispatch: any): Promise<any> => {
+export const getGroup = (code: string) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getGroupRequestAction());
 
@@ -28,7 +28,7 @@ export const getGroup = (uuid: string) => async (dispatch: any): Promise<any> =>
       url: '/api/v1/groups',
       method: 'get',
       params: {
-        uuid,
+        code,
       }
     });
 

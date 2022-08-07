@@ -11,7 +11,7 @@ import { selectData } from '../../index';
 import styles from './default.module.scss';
 
 
-function Groups(): JSX.Element {
+function Groups() {
   const data: Array<any> = useSelector(selectData);
 
   if ( ! data.length) {

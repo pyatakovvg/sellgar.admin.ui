@@ -27,7 +27,7 @@ function Users(): JSX.Element {
   }, []);
 
   function handleAdd() {
-    dispatch<any>(openDialog('modify'));
+    dispatch<any>(openDialog('modify', { new: true }));
   }
 
   return (

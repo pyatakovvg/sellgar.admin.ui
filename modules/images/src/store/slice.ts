@@ -69,6 +69,7 @@ const slice = createSlice({
       state['inUploadProcess'] = false;
     },
     deleteImagesRequestSuccessAction(state: IState, { payload }: IData) {
+      state['data'] = state['data'].filter((item) => item['uuid'] !== payload['uuid']);
       state['inUploadProcess'] = false;
     },
   },

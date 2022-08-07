@@ -15,9 +15,8 @@ interface IProps {
 }
 
 
-function Modify({ data }: IProps): JSX.Element | null {
+function Modify({ data }: IProps) {
   const dispatch = useDispatch();
-
   const [unit, setUnit] = React.useState(null);
 
   React.useEffect(() => {
@@ -32,11 +31,11 @@ function Modify({ data }: IProps): JSX.Element | null {
 
   async function handleSubmit(data: any) {
     let result;
-    if ('code' in data) {
-      result = await dispatch<any>(updateGroup(data));
+    if (data['new']) {
+      result = await dispatch<any>(createGroup(data));
     }
     else {
-      result = await dispatch<any>(createGroup(data));
+      result = await dispatch<any>(updateGroup(data));
     }
     if (result) {
       dispatch<any>(closeDialog());

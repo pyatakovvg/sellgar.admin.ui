@@ -7,13 +7,14 @@ import { FieldArray, getFormSyncErrors } from 'redux-form';
 
 import ModeFields from "./ModeFields";
 
-import { selectInProcess } from '../../../../index';
+import { selectAttributes, selectInProcess } from '../../../../store/slice';
 
 import cn from 'classnames';
 import styles from './default.module.scss';
 
 
 function Modes(): JSX.Element {
+  const attributes = useSelector(selectAttributes);
   const inProcess = useSelector(selectInProcess);
   const errors: any = useSelector(getFormSyncErrors('modify')) || {};
   const contentClassName = React.useMemo(() => cn(styles['content'], {
@@ -26,13 +27,15 @@ function Modes(): JSX.Element {
         <Header level={4}>Свойства</Header>
       </div>
       <div className={contentClassName}>
-        <FieldArray
-          name="attributes"
-          validate={[(value) => ! value]}
-          // @ts-ignore
-          component={ModeFields}
-          disabled={inProcess}
-        />
+        { !! attributes.length && (
+          <FieldArray
+            name="attributes"
+            validate={[(value) => ! value]}
+            // @ts-ignore
+            component={ModeFields}
+            disabled={inProcess}
+          />
+        )}
       </div>
     </div>
   );

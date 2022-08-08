@@ -12,7 +12,7 @@ import styles from './default.module.scss';
 
 
 function ModifyForm({ handleSubmit, valid, pristine }: any): JSX.Element {
-  const values = useSelector(getFormValues('modify'));
+  const values = useSelector(getFormValues('modify')) as any;
   const inProcess = useSelector(selectInUploadProcess);
 
   return (

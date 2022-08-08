@@ -11,7 +11,7 @@ import styles from './@media/index.module.scss';
 
 
 interface IProps {
-  children: JSX.Element
+  children: any,
 }
 
 
@@ -40,10 +40,10 @@ function NavigateWrapper({ children }: IProps): JSX.Element {
           <Menu items={config['navigate']} />
         </aside>
         <div id={'scroll'} className={styles['module']}>
-          {React.Children.map(children, (child: JSX.Element) => (
+          {React.Children.map(children, (child: any) => (
             React.cloneElement(child, {
               navigate: subMenu,
-            })
+            } as any)
           ))}
         </div>
       </section>

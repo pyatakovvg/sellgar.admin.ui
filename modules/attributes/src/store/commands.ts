@@ -88,13 +88,16 @@ export const getAttribute = (uuid: string) => async (dispatch: any): Promise<any
   }
 };
 
-export const getAttributes = () => async (dispatch: any): Promise<void> => {
+export const getAttributes = (params: any) => async (dispatch: any): Promise<void> => {
   try {
     dispatch(getAttributesRequestAction());
 
     const result = await request({
       url: '/api/v1/attributes',
       method: 'get',
+      params: {
+        ...params,
+      },
     });
 
     dispatch(getAttributesRequestSuccessAction(result['data']));

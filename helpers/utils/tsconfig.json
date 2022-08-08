@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "types": ["node"],
     "outDir": "./lib",
     "declaration": true,
     "declarationDir": "./types",

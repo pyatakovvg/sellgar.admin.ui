@@ -1,24 +1,48 @@
 
 const withURLSearchParams = (query: string) => {
-  const searchURL: any = new URLSearchParams(query);
+  const searchURL: any = new URLSearchParams(query as string);
+  const entries = searchURL.entries();
+
   let params: any = {};
-  for (let param of searchURL) {
-    if ( !! param[1]) {
-      let paramValue = param[1];
-      if (/^\d{1,16}$/.test(paramValue)) {
-        paramValue = Number(paramValue);
-      } else if (/^\d+$/.test(paramValue)) {
-        paramValue = Number(paramValue);
-      } else if (/^([0])+|([0]\w)+$/.test(paramValue)) {
-        paramValue = String(paramValue);
-      } else if (/^(true)$/.test(paramValue)) {
-        paramValue = true;
-      } else if (/^(false)$/.test(paramValue)) {
-        paramValue = false;
+  let result = null;
+
+  do {
+    result = entries.next();
+    const value = result['value'];
+    if (value) {
+      if ( ! (value[0] in params)) {
+        params[value[0]] = value[1];
       }
-      params[param[0]] = paramValue;
+      else {
+        if (params[value[0]] instanceof Array) {
+          params[value[0]] = [...params[value[0]], value[1]];
+        }
+        else {
+          params[value[0]] = [params[value[0]], value[1]];
+        }
+      }
     }
   }
+  while( ! result?.['done']);
+
+  // for (const [index, num] of ) {
+  //   console.log(index, num)
+  //   // if ( !! param[1]) {
+  //   //   let paramValue = param[1];
+  //   //   if (/^\d{1,16}$/.test(paramValue)) {
+  //   //     paramValue = Number(paramValue);
+  //   //   } else if (/^\d+$/.test(paramValue)) {
+  //   //     paramValue = Number(paramValue);
+  //   //   } else if (/^([0])+|([0]\w)+$/.test(paramValue)) {
+  //   //     paramValue = String(paramValue);
+  //   //   } else if (/^(true)$/.test(paramValue)) {
+  //   //     paramValue = true;
+  //   //   } else if (/^(false)$/.test(paramValue)) {
+  //   //     paramValue = false;
+  //   //   }
+  //   //   params[param[0]] = paramValue;
+  //   // }
+  // }
   return params;
 };
 
@@ -32,9 +56,9 @@ export const toObject = (query: string, options = { encoding: true }) => {
     return {};
   }
   if (options['encoding']) {
-    return withURLSearchParams(query);
+    return withURLSearchParams(query.replace(/[?]/g, ''));
   }
-  return withoutURLSearchParams(query);
+  return withoutURLSearchParams(query.replace(/[?]/g, ''));
 };
 
 export const toQuery = (object: any) => {

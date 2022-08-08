@@ -3,13 +3,16 @@ import { InputField, TextareaField, Button, Header } from '@library/kit';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { getFormValues } from 'redux-form';
 
 import { selectInUploadProcess } from '../../../index';
 
+import cn from 'classnames';
 import styles from './default.module.scss';
 
 
 function ModifyForm({ handleSubmit, valid, pristine }: any): JSX.Element {
+  const values = useSelector(getFormValues('modify'));
   const inProcess = useSelector(selectInUploadProcess);
 
   return (
@@ -26,6 +29,18 @@ function ModifyForm({ handleSubmit, valid, pristine }: any): JSX.Element {
         </div>
         <div className={styles['row']}>
           <TextareaField label={'Описание'} name={'description'} disabled={inProcess} />
+        </div>
+        <div className={styles['row']}>
+          <div className={styles['field']}>
+            <div className={styles['input']}>
+              <InputField label={'Иконка'} name={'icon'} disabled={inProcess} />
+            </div>
+            {values['icon'] && (
+              <div className={styles['thumb']}>
+                <span className={cn(styles['icon'], values['icon'])} />
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className={styles['control']}>

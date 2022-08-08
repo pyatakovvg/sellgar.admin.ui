@@ -15,6 +15,7 @@
     "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
   },
   "dependencies": {
+    "@package/push": "0.0.1",
     "@package/dialog": "0.0.1"
   },
   "peerDependencies": {

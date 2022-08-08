@@ -37,3 +37,30 @@
     margin: 16px 0 0;
   }
 }
+
+.field {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: flex-end;
+}
+
+.input {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.thumb {
+
+  display: block;
+  width: 18px;
+  margin: 0 0 8px 16px;
+}
+
+.icon {
+
+  font-size: 18px;
+}

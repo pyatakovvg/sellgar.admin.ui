@@ -1,5 +1,6 @@
 
 import request from "@package/request";
+import { pushSuccess } from '@package/push';
 
 import {
   getImagesRequestAction,
@@ -44,6 +45,7 @@ export const uploadImages = (data: any) => async (dispatch: any): Promise<any> =
     });
 
     dispatch(createImagesRequestSuccessAction(result['data']));
+    dispatch(pushSuccess(`Изображения загружены`));
   }
   catch(error: any) {
 
@@ -62,6 +64,7 @@ export const deleteImages = (uuid: string) => async (dispatch: any): Promise<any
     });
 
     dispatch(deleteImagesRequestSuccessAction(result['data']));
+    dispatch(pushSuccess(`Изображение "${uuid}" удалено`));
   }
   catch(error: any) {
 

@@ -27,7 +27,9 @@
   box-sizing: border-box;
   cursor: pointer;
   overflow: hidden;
-  transition: border 150ms, background-color 150ms;
+  transition:
+    border $transition-duration,
+    background-color $transition-duration;
 
   &:hover {
 
@@ -43,7 +45,7 @@
   height: 18px;
   border-radius: 50%;
   box-shadow: 1px 0 1px 0 $gray;
-  transition: color 150ms;
+  transition: color $transition-duration;
 }
 
 .content:hover .marker {

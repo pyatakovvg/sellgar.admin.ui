@@ -32,4 +32,4 @@ function CheckBoxField({ name, ...props }: IProps) {
   );
 }
 
-export default CheckBoxField;
+export default React.memo(CheckBoxField);

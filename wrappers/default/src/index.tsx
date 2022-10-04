@@ -32,13 +32,15 @@ function NavigateWrapper({ children }: IProps): JSX.Element {
 
   return (
     <div className={styles['wrapper']}>
-      <header className={styles['header']}>
-        <Header />
-      </header>
-      <section className={styles['content']}>
-        <aside className={styles['aside']}>
+      <aside className={styles['aside']}>
+        <header className={styles['header']}>
+          <Header />
+        </header>
+        <menu>
           <Menu items={config['navigate']} />
-        </aside>
+        </menu>
+      </aside>
+      <section className={styles['content']}>
         <div id={'scroll'} className={styles['module']}>
           {React.Children.map(children, (child: any) => (
             React.cloneElement(child, {

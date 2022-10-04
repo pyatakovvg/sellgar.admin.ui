@@ -1,5 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 
 const REDUCER_NAME = 'module/categories';
@@ -12,14 +13,17 @@ interface IRootStore {
 interface IState {
   data: Array<any>;
   groups: Array<any>;
-  inProcess: boolean;
+  inProcessAll: boolean;
+  inProcessOne: boolean;
   inUploadProcess: boolean;
 }
+
 
 const initialState = {
   data: [],
   groups: [],
-  inProcess: false,
+  inProcessAll: false,
+  inProcessOne: false,
   inUploadProcess: false,
 };
 
@@ -28,64 +32,60 @@ const slice = createSlice({
   name: REDUCER_NAME,
   initialState,
   reducers: {
-    resetStateAction(state) {
+    resetStateAction(state: IState) {
       state['data'] = [];
       state['groups'] = [];
-      state['inProcess'] = false;
+      state['inProcessAll'] = false;
+      state['inProcessOne'] = false;
       state['inUploadProcess'] = false;
     },
 
     getGroupsRequestAction() {},
     getGroupsRequestFailAction() {},
-    getGroupsRequestSuccessAction(state, { payload }) {
+    getGroupsRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
       state['groups'] = payload;
     },
 
-    getCategoryRequestAction() {},
-    getCategoryRequestFailAction() {},
-    getCategoryRequestSuccessAction() {},
+    getCategoryRequestAction(state: IState) {
+      state['inProcessOne'] = true;
+    },
+    getCategoryRequestFailAction(state: IState) {
+      state['inProcessOne'] = false;
+    },
+    getCategoryRequestSuccessAction(state: IState) {
+      state['inProcessOne'] = false;
+    },
 
     getCategoriesRequestAction(state: IState) {
-      state['inProcess'] = true;
+      state['inProcessAll'] = true;
     },
     getCategoriesRequestFailAction(state: IState) {
-      state['inProcess'] = false;
+      state['inProcessAll'] = false;
     },
-    getCategoriesRequestSuccessAction(state: IState, { payload }) {
+    getCategoriesRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
       state['data'] = payload;
-      state['inProcess'] = false;
+      state['inProcessAll'] = false;
     },
 
-    createCategoryRequestAction(state: IState) {
+    upsertCategoryRequestAction(state: IState) {
       state['inUploadProcess'] = true;
     },
-    createCategoryRequestFailAction(state: IState) {
+    upsertCategoryRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    createCategoryRequestSuccessAction(state: IState, { payload }) {
-      state['data'] = [
-        ...state['data'],
-        payload,
-      ];
+    upsertCategoryRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
+      state['data'] = payload;
       state['inUploadProcess'] = false;
     },
 
-    updateCategoryRequestAction(state: IState) {
+    deleteCategoryRequestAction(state: IState) {
       state['inUploadProcess'] = true;
     },
-    updateCategoryRequestFailAction(state: IState) {
+    deleteCategoryRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    updateCategoryRequestSuccessAction(state: IState, { payload }) {
-      state['data'] = state['data'].map((item) => {
-        if (item['uuid'] === payload['uuid']) {
-          return {
-            ...item,
-            ...payload,
-          };
-        }
-        return item;
-      });
+    deleteCategoryRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
+      state['data'] = payload;
       state['inUploadProcess'] = false;
     },
   },
@@ -106,18 +106,19 @@ export const {
   getCategoriesRequestFailAction,
   getCategoriesRequestSuccessAction,
 
-  createCategoryRequestAction,
-  createCategoryRequestFailAction,
-  createCategoryRequestSuccessAction,
+  upsertCategoryRequestAction,
+  upsertCategoryRequestFailAction,
+  upsertCategoryRequestSuccessAction,
 
-  updateCategoryRequestAction,
-  updateCategoryRequestFailAction,
-  updateCategoryRequestSuccessAction,
-} = slice['actions'];
+  deleteCategoryRequestAction,
+  deleteCategoryRequestFailAction,
+  deleteCategoryRequestSuccessAction,
+} = slice['actions'] as any;
 
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
 export const selectGroups = (state: IRootStore): Array<any> => state[REDUCER_NAME]['groups'];
-export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];
+export const selectInProcessAll = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcessAll'];
+export const selectInProcessOne = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcessOne'];
 export const selectInUploadProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inUploadProcess'];
 
 export const name = slice['name'];

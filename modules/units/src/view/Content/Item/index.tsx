@@ -1,12 +1,15 @@
 
-import { Text } from '@library/kit';
 import { openDialog } from '@package/dialog';
+
+import { Header, Text } from '@library/kit';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import cn from 'classnames';
-import styles from './default.module.scss';
+import Control from './Control';
+import { deleteUnits } from '../../../store/commands';
+
+import styles from './@media/index.module.scss';
 
 
 interface IProps {
@@ -16,24 +19,34 @@ interface IProps {
 }
 
 
-function Item({ uuid, name, description }: IProps): JSX.Element {
+function Item(props: IProps) {
   const dispatch = useDispatch();
-  const iconClassName = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-ellipsis'), []);
 
-  function handleUpdate(uuid: string) {
-    dispatch<any>(openDialog('modify', { uuid }));
+  function handleEdit() {
+    dispatch(openDialog('modify', { uuid: props['uuid'] }));
+  }
+
+  function handleDelete() {
+    dispatch(deleteUnits([props['uuid']]));
   }
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['name']}>
-        <Text type={'strong'}>{ name }</Text>
-      </div>
-      <div className={styles['description']}>
-        <Text type={'description'}>{ description }</Text>
+      <div className={styles['content']}>
+        <div className={styles['fields']}>
+          <div className={styles['name']}>
+            <Header level={3}>{ props['name'] }</Header>
+          </div>
+          <div className={styles['description']}>
+            <Text type={'strong'}>{ props['description'] || 'не указано' }</Text>
+          </div>
+        </div>
       </div>
       <div className={styles['control']}>
-        <span className={iconClassName} onClick={() => handleUpdate(uuid)} />
+        <Control
+          onEdit={handleEdit}
+          onDelete={handleDelete}
+        />
       </div>
     </div>
   );

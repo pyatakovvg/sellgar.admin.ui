@@ -1,20 +1,17 @@
 
-import { Header } from '@library/kit';
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { FieldArray, getFormSyncErrors } from 'redux-form';
 
-import ModeFields from "./ModeFields";
+import GroupFields from "./GroupFields";
 
-import { selectAttributes, selectInProcess } from '../../../../store/slice';
+import { selectInProcess } from '../../../../store/slice';
 
 import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-function Modes(): JSX.Element {
-  const attributes = useSelector(selectAttributes);
+function Modes() {
   const inProcess = useSelector(selectInProcess);
   const errors: any = useSelector(getFormSyncErrors('modify')) || {};
   const contentClassName = React.useMemo(() => cn(styles['content'], {
@@ -23,19 +20,14 @@ function Modes(): JSX.Element {
 
   return (
     <div className={styles['block']}>
-      <div className={styles['header']}>
-        <Header level={4}>Свойства</Header>
-      </div>
       <div className={contentClassName}>
-        { !! attributes.length && (
-          <FieldArray
-            name="attributes"
-            validate={[(value) => ! value]}
-            // @ts-ignore
-            component={ModeFields}
-            disabled={inProcess}
-          />
-        )}
+        <FieldArray
+          name="attributes"
+          validate={[(value) => ! value]}
+          // @ts-ignore
+          component={GroupFields}
+          disabled={inProcess}
+        />
       </div>
     </div>
   );

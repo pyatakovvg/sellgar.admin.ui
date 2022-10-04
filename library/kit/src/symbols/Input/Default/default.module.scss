@@ -7,19 +7,19 @@
   position: relative;
   display: block;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: $border-radius-small;
   background: $white;
   overflow: hidden;
   vertical-align: middle;
-  transition: border-color 150ms;
+  transition: border-color $transition-duration;
 }
 
 .input {
 
   position: relative;
   display: block;
-  padding: 9px 11px;
-  font-size: 14px;
+  padding: 10px 10px 8px;
+  font-size: 13px;
   font-family: inherit;
   font-weight: $font-weight-medium;
   border: none;

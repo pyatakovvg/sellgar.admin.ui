@@ -45,4 +45,4 @@ InputField.defaultProps = {
   mode: 'default',
 };
 
-export default InputField;
+export default React.memo(InputField);

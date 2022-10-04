@@ -1,0 +1,28 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: block;
+  background: $white;
+  border-radius: 8px;
+  padding: 16px 24px;
+
+  & + & {
+
+    margin: 8px 0 0;
+  }
+}
+
+.content {
+
+  display: block;
+}
+
+.controls {
+
+  display: block;
+  text-align: center;
+  margin: 24px 0 0;
+}

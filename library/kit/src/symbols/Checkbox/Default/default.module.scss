@@ -6,9 +6,8 @@
 
   display: inline-flex;
   flex-direction: row;
-  flex: 0 0;
+  flex: 0 0 auto;
   align-items: center;
-  vertical-align: middle;
   cursor: pointer;
   overflow: hidden;
 }
@@ -17,17 +16,19 @@
 
   display: flex;
   flex-direction: column;
-  flex: 1 0;
-  width: 22px;
-  height: 22px;
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
   border: 1px solid $gray;
   background: $white;
-  border-radius: 6px;
+  border-radius: 4px;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   overflow: hidden;
-  transition: border 150ms, background-color 150ms;
+  transition:
+    border $transition-duration,
+    background-color $transition-duration;
 }
 
 .wrapper:hover .content {
@@ -38,7 +39,7 @@
 .marker {
 
   display: block;
-  font-size: 12px;
+  font-size: 8px;
   color: transparent;
 }
 

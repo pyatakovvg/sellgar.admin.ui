@@ -13,7 +13,7 @@ function Filter() {
   const location = useLocation();
   const navigate = useNavigate();
   const params = query.toObject(location['search']);
-console.log(location['search'], params)
+
   function handleSubmit(data: any) {
     navigate(query.toQuery(data));
   }

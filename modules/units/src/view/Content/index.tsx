@@ -1,36 +1,27 @@
 
-import { Text } from '@library/kit';
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 import Item from './Item';
+import { selectData } from '../../store/slice';
 
-import { selectData } from '../../index';
-
-import styles from './default.module.scss';
+import styles from './@media/index.module.scss';
 
 
-function Users(): JSX.Element {
-  const data: Array<any> = useSelector(selectData);
-
-  if ( ! data.length) {
-    return (
-      <div className={styles['empty']}>
-        <Text type={'strong'}>Нет данных для отображение</Text>
-      </div>
-    );
-  }
+function Content() {
+  const data = useSelector(selectData);
 
   return (
-    <div>
-      {data.map((item: any): JSX.Element => (
-        <div key={item['uuid']} className={styles['item']}>
-          <Item {...item} />
-        </div>
-      ))}
-    </div>
+    <section className={styles['wrapper']}>
+      <section className={styles['content']}>
+        {data.map((item: any) => (
+          <div key={item['uuid']} className={styles['item']}>
+            <Item {...item} />
+          </div>
+        ))}
+      </section>
+    </section>
   );
 }
 
-export default Users;
+export default Content;

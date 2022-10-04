@@ -18,7 +18,7 @@
   display: block;
   color: $dark;
   text-decoration: none;
-  transition: color 150ms;
+  transition: color $transition-duration;
 
   &:hover {
 

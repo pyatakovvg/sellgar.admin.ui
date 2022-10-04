@@ -5,13 +5,15 @@
 .button {
 
   display: inline-block;
-  padding: 8px 32px;
-  font-size: 14px;
+  padding: 9px 24px;
+  font-size: 13px;
   font-family: inherit;
-  border-radius: 8px;
+  border-radius: $border-radius-small;
   cursor: pointer;
-  background: transparent;
-  transition: color 150ms, border-color 150ms;
+  background: $white;
+  transition:
+    color $transition-duration,
+    border-color $transition-duration;
 
   &:disabled,
   &:disabled:hover,

@@ -29,7 +29,7 @@
 .handle {
 
   display: block;
-  color: $white;
+  color: $primary;
   cursor: grabbing;
   z-index: 9999;
 }
@@ -37,13 +37,13 @@
 .helper .icon,
 .handle:hover .icon {
 
-  color: $success-dark;
+  color: $primary-dark;
 }
 
 .icon {
 
   font-size: 16px;
-  transition: color 200ms;
+  transition: color $transition-duration;
 }
 
 .content {

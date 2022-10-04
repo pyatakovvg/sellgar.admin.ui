@@ -1,8 +1,9 @@
 
 import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 
-const REDUCER_NAME = 'module/groups';
+const REDUCER_NAME = 'module/Groups';
 
 
 interface IRootStore {
@@ -11,14 +12,16 @@ interface IRootStore {
 
 interface IState {
   data: Array<any>;
-  inProcess: boolean;
+  inProcessAll: boolean;
+  inProcessOne: boolean;
   inUploadProcess: boolean;
 }
 
 
 const initialState = {
   data: [],
-  inProcess: false,
+  inProcessAll: false,
+  inProcessOne: false,
   inUploadProcess: false,
 };
 
@@ -29,57 +32,51 @@ const slice = createSlice({
   reducers: {
     resetStateAction(state: IState) {
       state['data'] = [];
-      state['inProcess'] = false;
+      state['inProcessAll'] = false;
+      state['inProcessOne'] = false;
       state['inUploadProcess'] = false;
     },
 
-    getGroupRequestAction() {},
-    getGroupRequestFailAction() {},
+    getGroupRequestAction(state: IState) {
+      state['inProcessOne'] = true;
+    },
+    getGroupRequestFailAction(state: IState) {
+      state['inProcessOne'] = false;
+    },
     getGroupRequestSuccessAction(state: IState) {
-      state['inUploadProcess'] = false;
+      state['inProcessOne'] = false;
     },
 
     getGroupsRequestAction(state: IState) {
-      state['inProcess'] = true;
+      state['inProcessAll'] = true;
     },
     getGroupsRequestFailAction(state: IState) {
-      state['inProcess'] = false;
+      state['inProcessAll'] = false;
     },
-    getGroupsRequestSuccessAction(state: IState, { payload }) {
+    getGroupsRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
       state['data'] = payload;
-      state['inProcess'] = false;
+      state['inProcessAll'] = false;
     },
 
-    createGroupRequestAction(state: IState) {
+    upsertGroupRequestAction(state: IState) {
       state['inUploadProcess'] = true;
     },
-    createGroupRequestFailAction(state: IState) {
+    upsertGroupRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    createGroupRequestSuccessAction(state: IState, { payload }) {
-      state['data'] = [
-        ...state['data'],
-        payload,
-      ];
+    upsertGroupRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
+      state['data'] = payload;
       state['inUploadProcess'] = false;
     },
 
-    updateGroupRequestAction(state: IState) {
+    deleteGroupRequestAction(state: IState) {
       state['inUploadProcess'] = true;
     },
-    updateGroupRequestFailAction(state: IState) {
+    deleteGroupRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    updateGroupRequestSuccessAction(state: IState, { payload }) {
-      state['data'] = state['data'].map((item) => {
-        if (item['code'] === payload['code']) {
-          return {
-            ...item,
-            ...payload,
-          };
-        }
-        return item;
-      });
+    deleteGroupRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
+      state['data'] = payload;
       state['inUploadProcess'] = false;
     },
   },
@@ -96,17 +93,18 @@ export const {
   getGroupsRequestFailAction,
   getGroupsRequestSuccessAction,
 
-  createGroupRequestAction,
-  createGroupRequestFailAction,
-  createGroupRequestSuccessAction,
+  upsertGroupRequestAction,
+  upsertGroupRequestFailAction,
+  upsertGroupRequestSuccessAction,
 
-  updateGroupRequestAction,
-  updateGroupRequestFailAction,
-  updateGroupRequestSuccessAction,
-} = slice['actions'];
+  deleteGroupRequestAction,
+  deleteGroupRequestFailAction,
+  deleteGroupRequestSuccessAction,
+} = slice['actions'] as any;
 
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
-export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];
+export const selectInProcessAll = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcessAll'];
+export const selectInProcessOne = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcessOne'];
 export const selectInUploadProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inUploadProcess'];
 
 export const name = slice['name'];

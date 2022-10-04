@@ -1,69 +1,57 @@
 
+import { query } from '@helper/utils';
 import { closeDialog } from '@package/dialog';
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Form from './Form';
-import { getUnits, getCategories, getAttribute, createAttribute, updateAttribute } from '../../index';
+import Loading from './Loading';
 
-import styles from './default.module.scss';
-
-
-interface IProps {
-  data?: any;
-}
+import { getAttribute, upsertAttributes } from '../../store/commands';
+import { selectInProcessOne } from '../../store/slice';
 
 
-function Modify({ data }: IProps) {
+function Modify({ data }: any) {
+  const location = useLocation();
   const dispatch = useDispatch();
 
-  const [unit, setUnit] = React.useState(null);
+  const inProcess = useSelector(selectInProcessOne);
+  const [brand, setBrand] = React.useState(null);
 
   React.useEffect(() => {
     async function init() {
-      await dispatch<any>(getUnits());
-      await dispatch<any>(getCategories());
-      if (data && ('uuid' in data)) {
-        const result = await dispatch<any>(getAttribute(data['uuid']));
-        setUnit(result);
+      const result = await dispatch(getAttribute(data['uuid']));
+      if (result) {
+        setBrand(result);
       }
     }
-    init();
-  }, []);
-
-  async function handleSubmit(data: any) {
-    let result;
-
-    if (data && data['uuid']) {
-      result = await dispatch<any>(updateAttribute(data));
+    if ( !! data?.['uuid']) {
+      init();
     }
-    else {
-      result = await dispatch<any>(createAttribute(data));
-    }
-    if (result) {
-      dispatch<any>(closeDialog());
+  }, [data]);
+
+  async function handleSave(values: any) {
+    const search = query.toObject(location['search']);
+
+    const isSuccess = await dispatch(upsertAttributes(values, search));
+    if (isSuccess) {
+      dispatch(closeDialog());
     }
   }
 
-  if (data && ! unit) {
-    return null;
+  if ( !! data?.['uuid'] && inProcess) {
+    return (
+      <Loading />
+    );
   }
 
   return (
-    <div className={styles['wrapper']}>
-      <Form
-        initialValues={{
-          uuid: unit?.['uuid'] || undefined,
-          name: unit?.['name'] || undefined,
-          description: unit?.['description'] || undefined,
-          unitUuid: unit?.['unit']?.['uuid'] || null,
-          order: unit?.['order'] || 0,
-          isFiltered: unit?.['isFiltered'] || false,
-        }}
-        onSubmit={handleSubmit}
-      />
-    </div>
+    <Form
+      initialValues={brand}
+      onSubmit={handleSave}
+    />
   );
 }
 

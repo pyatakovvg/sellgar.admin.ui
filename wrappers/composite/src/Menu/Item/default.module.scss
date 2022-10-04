@@ -4,17 +4,33 @@
 
 .wrapper {
 
-  display: block;
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  align-items: center;
   text-decoration: none;
-  color: $dark;
-  transition: color 150ms;
+  color: $black;
+  transition: color $transition-duration;
 
   &:hover {
-    color: $primary-dark;
+    color: $primary;
   }
 
   & + & {
-    margin: 0 0 0 24px;
+    margin: 0 0 0 16px;
+  }
+}
+
+.wrapper + .wrapper {
+  &:before {
+
+    display: block;
+    content: '';
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    border: 2px solid $dark;
+    margin: 0 16px 0 0;
   }
 }
 
@@ -28,13 +44,12 @@
 .title {
 
   display: block;
-  font-size: 16px;
+  font-size: 13px;
   color: inherit;
   font-weight: $font-weight-bold;
 }
 
 .is-active {
 
-  color: $primary-dark;
-  text-decoration: underline;
+  color: $primary;
 }

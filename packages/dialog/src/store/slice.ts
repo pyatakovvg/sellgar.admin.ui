@@ -1,5 +1,5 @@
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
 const REDUCER_NAME = 'package/dialog';
@@ -21,7 +21,7 @@ const slice = createSlice({
       state['data'] = null;
     },
 
-    openDialogAction(state, { payload }) {
+    openDialogAction(state, { payload }: PayloadAction<typeof initialState>) {
       state['isOpen'] = true;
       state['name'] = payload['name'];
       state['data'] = payload?.['data'] ?? null;
@@ -40,11 +40,11 @@ export const {
 
   openDialogAction,
   closeDialogAction,
-} = slice['actions'];
+} = slice['actions'] as any;
 
-export const selectName = (state: any) => state[REDUCER_NAME]['name'];
-export const selectData = (state: any) => state[REDUCER_NAME]['data'];
-export const selectIsOpen = (state: any) => state[REDUCER_NAME]['isOpen'];
+export const selectName = (state: any) => state[REDUCER_NAME]['name'] as string;
+export const selectData = (state: any) => state[REDUCER_NAME]['data'] as any;
+export const selectIsOpen = (state: any) => state[REDUCER_NAME]['isOpen'] as boolean;
 
-export const name = slice['name'];
+export const name = slice['name'] as string;
 export const reducer = slice['reducer'];

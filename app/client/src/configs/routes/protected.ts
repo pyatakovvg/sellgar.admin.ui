@@ -53,8 +53,12 @@ const routes: Array<any> = [
     module: import('@module/comments'),
   },
   {
-    path: '/images',
-    module: import('@module/images'),
+    path: '/gallery',
+    module: import('@module/gallery'),
+  },
+  {
+    path: '/gallery/:uuid',
+    module: import('@module/gallery'),
   },
   {
     path: '/users',

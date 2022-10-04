@@ -18,6 +18,7 @@ export { default as Navigate } from './symbols/Navigate';
 export { default as Textarea } from './symbols/Textarea';
 export { Wrapper as RadioContainer } from './symbols/Radio';
 
+export { default as ImageField } from './fields/Image';
 export { default as InputField } from './fields/Input';
 export { default as EditorField } from './fields/Editor';
 export { default as SelectField } from './fields/Select';

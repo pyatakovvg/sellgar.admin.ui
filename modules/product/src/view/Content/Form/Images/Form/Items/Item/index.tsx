@@ -15,7 +15,12 @@ function AddImageForm({ uuid, new: isNew }: any) {
   return (
     <div className={imageClassName}>
       <div className={styles['image']}>
-        <Image src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + uuid + '?size=124x124'}/>
+        <Image
+          width={124}
+          height={124}
+          path={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images'}
+          src={uuid}
+        />
       </div>
     </div>
   );

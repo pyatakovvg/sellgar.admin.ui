@@ -21,9 +21,7 @@ interface IProps {
 }
 
 
-function Select({ inFocus, mode, value, placeholder, disabled = false, clearable, onClick, onReset }: IProps): JSX.Element | null {
-  const [isPlaceholder, setPlaceHolder] = React.useState<boolean>(false);
-
+function Select({ inFocus, mode, value, placeholder, disabled, clearable, onClick, onReset }: IProps): JSX.Element | null {
   const wrapperClassName = React.useMemo(() => cn(styles['wrapper'], {
     [styles['mode--default']]: mode === 'default',
     [styles['mode--danger']]: mode === 'danger',
@@ -52,19 +50,15 @@ function Select({ inFocus, mode, value, placeholder, disabled = false, clearable
     }
   }
 
-  React.useEffect(() => {
-    if ( !! placeholder) {
-      setPlaceHolder(! value && !! placeholder);
-    }
-  }, [placeholder, value]);
-
   return (
     <div className={wrapperClassName}>
       <div className={styles['content']} onClick={handleClick}>
-        <div className={styles['value']}>
-          { value }
-        </div>
-        {isPlaceholder && (
+        { !! value && (
+          <div className={styles['value']}>
+            { value }
+          </div>
+        )}
+        { !! placeholder && ! value && (
           <div className={styles['placeholder']}>
             { placeholder }
           </div>

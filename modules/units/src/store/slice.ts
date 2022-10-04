@@ -1,5 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 
 const REDUCER_NAME = 'module/units';
@@ -11,18 +12,16 @@ interface IRootStore {
 
 interface IState {
   data: Array<any>;
-  inProcess: boolean;
+  inProcessAll: boolean;
+  inProcessOne: boolean;
   inUploadProcess: boolean;
 }
 
-interface IData {
-  payload: Array<any>;
-}
 
-
-const initialState: IState = {
+const initialState = {
   data: [],
-  inProcess: false,
+  inProcessAll: false,
+  inProcessOne: false,
   inUploadProcess: false,
 };
 
@@ -33,58 +32,51 @@ const slice = createSlice({
   reducers: {
     resetStateAction(state: IState) {
       state['data'] = [];
-      state['inProcess'] = false;
+      state['inProcessAll'] = false;
+      state['inProcessOne'] = false;
       state['inUploadProcess'] = false;
     },
 
-    getUnitRequestAction(state: IState) {
-      state['inProcess'] = true;
+    getUnitRequestAction(state: IState): any {
+      state['inProcessOne'] = true;
     },
     getUnitRequestFailAction(state: IState) {
-      state['inProcess'] = false;
+      state['inProcessOne'] = false;
     },
     getUnitRequestSuccessAction(state: IState) {
-      state['inProcess'] = false;
+      state['inProcessOne'] = false;
     },
 
-    getUnitsRequestAction(state: IState) {
-      state['inProcess'] = true;
+    getUnitsRequestAction(state: IState): any {
+      state['inProcessAll'] = true;
     },
     getUnitsRequestFailAction(state: IState) {
-      state['inProcess'] = false;
+      state['inProcessAll'] = false;
     },
-    getUnitsRequestSuccessAction(state: IState, { payload }: IData) {
+    getUnitsRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
       state['data'] = payload;
-      state['inProcess'] = false;
+      state['inProcessAll'] = false;
     },
 
-    createUnitRequest(state) {
+    upsertUnitRequestAction(state: IState) {
       state['inUploadProcess'] = true;
     },
-    createUnitRequestFail(state) {
+    upsertUnitRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    createUnitRequestSuccess(state, { payload }) {
-      state['data'] = [...state['data'], payload];
+    upsertUnitRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
+      state['data'] = payload;
       state['inUploadProcess'] = false;
     },
 
-    updateUnitRequest(state) {
+    deleteUnitRequestAction(state: IState) {
       state['inUploadProcess'] = true;
     },
-    updateUnitRequestFail(state) {
+    deleteUnitRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    updateUnitRequestSuccess(state, { payload }) {
-      state['data'] = state['data'].map((item) => {
-        if (item['uuid'] === payload['uuid']) {
-          return {
-            ...item,
-            ...payload,
-          }
-        }
-        return item;
-      });
+    deleteUnitRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
+      state['data'] = payload;
       state['inUploadProcess'] = false;
     },
   },
@@ -101,17 +93,18 @@ export const {
   getUnitsRequestFailAction,
   getUnitsRequestSuccessAction,
 
-  createUnitRequest,
-  createUnitRequestFail,
-  createUnitRequestSuccess,
+  upsertUnitRequestAction,
+  upsertUnitRequestFailAction,
+  upsertUnitRequestSuccessAction,
 
-  updateUnitRequest,
-  updateUnitRequestFail,
-  updateUnitRequestSuccess,
-} = slice['actions'];
+  deleteUnitRequestAction,
+  deleteUnitRequestFailAction,
+  deleteUnitRequestSuccessAction,
+} = slice['actions'] as any;
 
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
-export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];
+export const selectInProcessAll = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcessAll'];
+export const selectInProcessOne = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcessOne'];
 export const selectInUploadProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inUploadProcess'];
 
 export const name = slice['name'];

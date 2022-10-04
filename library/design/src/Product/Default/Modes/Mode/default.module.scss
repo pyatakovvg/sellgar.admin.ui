@@ -12,7 +12,10 @@
   border: 1px solid rgba($success-light, .6);
   color: $dark;
   cursor: pointer;
-  transition: border 150ms, background-color 150ms, color 150ms;
+  transition:
+    border $transition-duration,
+    background-color $transition-duration,
+    color $transition-duration;
 
   &:hover {
 

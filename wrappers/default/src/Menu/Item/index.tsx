@@ -19,11 +19,11 @@ interface ILinkProps {
 }
 
 
-function Link({ isActive, children, icon }: ILinkProps): JSX.Element {
+function Link({ isActive, children, icon }: ILinkProps) {
+  const iconClassName = React.useMemo(() => cn(styles['icon'], icon), [icon]);
   const linkClassName = React.useMemo(() => cn(styles['link'], {
     [styles['is-active']]: isActive,
   }), [isActive]);
-  const iconClassName = React.useMemo(() => cn(styles['icon'], icon), [icon]);
 
   return (
     <div className={linkClassName}>
@@ -35,14 +35,14 @@ function Link({ isActive, children, icon }: ILinkProps): JSX.Element {
   );
 }
 
-function Item({ path, title, icon }: IItemProps): JSX.Element {
+function Item({ path, title, icon }: IItemProps) {
   return (
       <NavLink className={styles['wrapper']} to={process.env['PUBLIC_URL'] + path}>
-        {({ isActive }) => {
-          return (<Link isActive={isActive} icon={icon}>{ title }</Link>)
-        }}
+        {({ isActive }) => (
+          <Link isActive={isActive} icon={icon}>{ title }</Link>
+        )}
       </NavLink>
   );
 }
 
-export default Item;
+export default React.memo(Item);

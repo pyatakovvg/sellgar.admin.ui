@@ -43,62 +43,42 @@ function validate(value: any) {
     }
   }
 
-  if ( ! ('modes' in value)) {
-    errors['modes'] = 'Необходимо добавить';
-  }
-  else if ( ! value['modes'].length) {
-    errors['modes'] = 'Необходимо добавить';
-  }
-  else {
-    const modeArrayErrors: Array<any> = [];
-    value['modes'].forEach((mode: any, index: number) => {
-      const modeErrors: any = {};
+  if (value['attributes'] && !! value['attributes'].length) {
+    const groupArrayErrors: Array<any> = [];
 
-      if ( ! mode['vendor']) {
-        modeErrors['vendor'] = 'Необходимо заполнить';
-        modeArrayErrors[index] = modeErrors;
-      }
-
-      if ( ! mode['value']) {
-        modeErrors['value'] = 'Необходимо заполнить';
-        modeArrayErrors[index] = modeErrors;
-      }
-
-      if ( ! mode['price']) {
-        modeErrors['price'] = 'Необходимо заполнить';
-        modeArrayErrors[index] = modeErrors;
-      }
-    });
-
-    if (modeArrayErrors.length) {
-      errors['modes'] = modeArrayErrors;
-    }
-  }
-
-  if ( ! ('attributes' in value)) {
-    errors['attributes'] = 'Необходимо добавить';
-  }
-  else if ( ! value['attributes'].length) {
-    errors['attributes'] = 'Необходимо добавить';
-  }
-  else {
-    const attrArrayErrors: Array<any> = [];
     value['attributes'].forEach((attr: any, index: number) => {
-      const attrErrors: any = {};
+      const groupErrors: any = {};
 
-      if ( ! attr['attributeUuid']) {
-        attrErrors['attributeUuid'] = 'Необходимо выбрать';
-        attrArrayErrors[index] = attrErrors;
+      if ( ! attr['name']) {
+        groupErrors['name'] = 'Необходимо заполнить';
+        groupArrayErrors[index] = groupErrors;
       }
+console.log(attr['values'])
+      if (attr['values'] && !! attr['values'].length) {
+        const valueArrayErrors: Array<any> = [];
 
-      if ( ! attr['value']) {
-        attrErrors['value'] = 'Необходимо заполнить';
-        attrArrayErrors[index] = attrErrors;
+        attr['values'].forEach((value: any, index: number) => {
+          const valueErrors: any = {};
+
+          if ( ! value['attributeUuid']) {
+            valueErrors['attributeUuid'] = 'Необходимо выбрать';
+            valueArrayErrors[index] = valueErrors;
+          }
+
+          if ( ! value['value']) {
+            valueErrors['value'] = 'Необходимо заполнить';
+            valueArrayErrors[index] = valueErrors;
+          }
+        });
+
+        if (valueArrayErrors.length) {
+          groupErrors['values'] = valueArrayErrors;
+        }
       }
     });
 
-    if (attrArrayErrors.length) {
-      errors['attributes'] = attrArrayErrors;
+    if (groupArrayErrors.length) {
+      errors['attributes'] = groupArrayErrors;
     }
   }
 

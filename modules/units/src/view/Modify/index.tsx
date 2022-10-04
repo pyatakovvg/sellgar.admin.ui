@@ -2,58 +2,50 @@
 import { closeDialog } from '@package/dialog';
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Form from './Form';
-import { getUnit, createUnit, updateUnits } from '../../index';
+import Loading from './Loading';
 
-import styles from './default.module.scss';
-
-
-interface IProps {
-  data?: any;
-}
+import { getUnit, upsertUnits } from '../../store/commands';
+import { selectInProcessOne } from '../../store/slice';
 
 
-function Modify({ data }: IProps): JSX.Element | null {
+function Modify({ data }: any) {
   const dispatch = useDispatch();
-
+  const inProcess = useSelector(selectInProcessOne);
   const [unit, setUnit] = React.useState(null);
 
   React.useEffect(() => {
     async function init() {
-      if (data && ('uuid' in data)) {
-        const result = await dispatch<any>(getUnit(data['uuid']));
+      const result = await dispatch(getUnit(data['uuid']));
+      if (result) {
         setUnit(result);
       }
     }
-    init();
-  }, []);
+    if ( !! data?.['uuid']) {
+      init();
+    }
+  }, [data]);
 
-  async function handleSubmit(data: any) {
-    let result;
-    if ('uuid' in data) {
-      result = await dispatch<any>(updateUnits(data));
-    }
-    else {
-      result = await dispatch<any>(createUnit(data));
-    }
-    if (result) {
-      dispatch<any>(closeDialog());
+  async function handleSave(values: any) {
+    const isSuccess = await dispatch(upsertUnits(values));
+    if (isSuccess) {
+      dispatch(closeDialog());
     }
   }
 
-  if (data && ! unit) {
-    return null;
+  if ( !! data?.['uuid'] && inProcess) {
+    return (
+      <Loading />
+    );
   }
 
   return (
-    <div className={styles['wrapper']}>
-      <Form
-        initialValues={{ ...unit || {} }}
-        onSubmit={handleSubmit}
-      />
-    </div>
+    <Form
+      initialValues={unit}
+      onSubmit={handleSave}
+    />
   );
 }
 

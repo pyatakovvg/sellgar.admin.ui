@@ -1,13 +1,14 @@
 
-import { selectGroups, selectCategories, selectBrands, selectInProcess } from "../../../../index";
-
-import { Header, SelectField } from "@library/kit";
+import { SelectField, InputField } from "@library/kit";
 
 import React from 'react';
 import { getFormValues, change } from 'redux-form';
 import { useSelector, useDispatch } from "react-redux";
 
+import Price from './Price';
+import ExternalId from './ExternalId';
 import { getCategories, getAttributes } from '../../../../store/commands';
+import { selectGroups, selectCategories, selectBrands, selectInProcess } from "../../../../index";
 
 import styles from './default.module.scss';
 
@@ -24,24 +25,24 @@ function Types() {
 
   React.useEffect(() => {
     async function init() {
-      if (values['groupCode']) {
-        await dispatch<any>(getCategories(values['groupCode']));
+      if (values['groupUuid']) {
+        await dispatch<any>(getCategories(values['groupUuid']));
       }
     }
     init();
-  }, [values['groupCode']]);
+  }, [values['groupUuid']]);
 
   React.useEffect(() => {
     async function init() {
-      if (values['categoryCode']) {
-        await dispatch<any>(getAttributes(values['categoryCode']));
+      if (values['categoryUuid']) {
+        await dispatch<any>(getAttributes(values['categoryUuid']));
       }
     }
     init();
-  }, [values['categoryCode']]);
+  }, [values['categoryUuid']]);
 
   function handleResetCategory() {
-    dispatch(change('modify', 'categoryCode', null));
+    dispatch(change('modify', 'categoryUuid', null));
   }
 
   function handleResetAttributes() {
@@ -50,19 +51,16 @@ function Types() {
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['header']}>
-        <Header level={4}>Классификация</Header>
-      </div>
       <div className={styles['content']}>
         <div className={styles['fields']}>
           <div className={styles['field']}>
             <SelectField
               required
               simple
-              name="groupCode"
+              name="groupUuid"
               label="Группа"
               options={groups}
-              optionKey="code"
+              optionKey="uuid"
               optionValue="name"
               disabled={inProcess}
               onChange={handleResetCategory}
@@ -72,26 +70,45 @@ function Types() {
             <SelectField
               required
               simple
-              name="categoryCode"
+              name="categoryUuid"
               label="Категория"
               options={categories}
-              optionKey="code"
+              optionKey="uuid"
               optionValue="name"
-              disabled={inProcess || ! values['groupCode']}
+              disabled={inProcess || ! values['groupUuid']}
               onChange={handleResetAttributes}
             />
           </div>
+        </div>
+        <div className={styles['fields']}>
           <div className={styles['field']}>
             <SelectField
               required
               simple
-              name="brandCode"
+              name="brandUuid"
               label="Производитель"
               options={brands}
-              optionKey="code"
+              optionKey="uuid"
               optionValue="name"
               disabled={inProcess}
             />
+          </div>
+          <div className={styles['field']}>
+            <InputField
+              required
+              name={'title'}
+              label={'Название'}
+              maxLength={256}
+              disabled={inProcess}
+            />
+          </div>
+        </div>
+        <div className={styles['fields']}>
+          <div className={styles['field']}>
+            <ExternalId inProcess={inProcess} />
+          </div>
+          <div className={styles['field']}>
+            <Price inProcess={inProcess} />
           </div>
         </div>
       </div>

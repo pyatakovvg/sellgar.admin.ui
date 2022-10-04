@@ -1,56 +1,57 @@
 
+import Dialog from '@package/dialog';
 import { query } from '@helper/utils';
-import { Header, Button } from '@library/kit';
-import Dialog, { openDialog } from '@package/dialog';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
+import Header from './Header';
 import Filter from './Filter';
 import Modify from './Modify';
 import Content from './Content';
 
-import { getAttributes, getCategories, resetStateAction } from '../index';
+import { resetStateAction } from '../store/slice';
+import { getAttributes, getCategories, getUnits } from '../store/commands';
 
 import styles from './default.module.scss';
 
 
-function Users(): JSX.Element {
-  const dispatch = useDispatch();
+function Brand() {
   const location = useLocation();
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
-    const params = query.toObject(location['search']);
-
     async function init() {
-      await dispatch<any>(getCategories());
-      await dispatch<any>(getAttributes(params));
+      await dispatch(getUnits());
+      await dispatch(getCategories());
     }
     init();
     return () => {
       dispatch(resetStateAction());
     }
-  }, [location]);
+  }, []);
 
-  function handleAdd() {
-    dispatch<any>(openDialog('modify'));
-  }
+  React.useEffect(() => {
+    async function init() {
+      const search = query.toObject(location['search']);
+
+      await dispatch(getAttributes(search));
+    }
+    init();
+  }, [location]);
 
   return (
     <section className={styles['wrapper']}>
       <header className={styles['header']}>
-        <Header level={2}>Атрибуты</Header>
+        <Header />
       </header>
-      <aside className={styles['filter']}>
-        <Filter />
-      </aside>
       <section className={styles['content']}>
+        <div className={styles['filter']}>
+          <Filter />
+        </div>
         <div className={styles['list']}>
           <Content />
-        </div>
-        <div className={styles['controls']}>
-          <Button onClick={handleAdd}>Добавить</Button>
         </div>
       </section>
 
@@ -61,4 +62,4 @@ function Users(): JSX.Element {
   );
 }
 
-export default Users;
+export default Brand;

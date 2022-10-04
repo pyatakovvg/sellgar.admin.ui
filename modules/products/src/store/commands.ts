@@ -2,6 +2,18 @@
 import request from "@package/request";
 
 import {
+  getBrandsRequestAction,
+  getBrandsRequestFailAction,
+  getBrandsRequestSuccessAction,
+
+  getCategoriesRequestAction,
+  getCategoriesRequestFailAction,
+  getCategoriesRequestSuccessAction,
+
+  getGroupsRequestAction,
+  getGroupsRequestFailAction,
+  getGroupsRequestSuccessAction,
+
   createProductTemplateRequest,
   createProductTemplateRequestFail,
   createProductTemplateRequestSuccess,
@@ -21,7 +33,7 @@ export const createProduct = () => async (dispatch: any): Promise<any> => {
     dispatch(createProductTemplateRequest());
 
     const result = await request({
-      url: '/api/v1/products/template',
+      url: '/api/v1/products/create',
       method: 'post',
     });
 
@@ -35,13 +47,16 @@ export const createProduct = () => async (dispatch: any): Promise<any> => {
   }
 };
 
-export const getProducts = () => async (dispatch: any): Promise<any> => {
+export const getProducts = (search: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getProductsRequestAction());
-
+console.log(search)
     const result = await request({
       url: '/api/v1/products',
       method: 'get',
+      params: {
+        ...search,
+      },
     });
 
     dispatch(getProductsRequestSuccessAction(result));
@@ -57,7 +72,7 @@ export const updateProduct = (uuid: string, data: any) => async (dispatch: any):
     dispatch(changeStatusRequestAction());
 
     const result = await request({
-      url: '/api/v1/products/' + uuid + '/only',
+      url: '/api/v1/products/' + uuid,
       method: 'put',
       data,
     });
@@ -67,5 +82,59 @@ export const updateProduct = (uuid: string, data: any) => async (dispatch: any):
   catch(error: any) {
 
     dispatch(changeStatusRequestFailAction());
+  }
+};
+
+export const getGroups = () => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(getGroupsRequestAction());
+
+    const result = await request({
+      url: '/api/v1/groups',
+      method: 'get',
+    });
+
+    dispatch(getGroupsRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
+    dispatch(getGroupsRequestFailAction());
+  }
+};
+
+export const getCategories = (groupUuid?: string) => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(getCategoriesRequestAction());
+
+    const result = await request({
+      url: '/api/v1/categories',
+      method: 'get',
+      params: {
+        groupUuid,
+      }
+    });
+
+    dispatch(getCategoriesRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
+    dispatch(getCategoriesRequestFailAction());
+  }
+};
+
+export const getBrands = () => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(getBrandsRequestAction());
+
+    const result = await request({
+      url: '/api/v1/brands',
+      method: 'get',
+    });
+
+    dispatch(getBrandsRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
+    dispatch(getBrandsRequestFailAction());
   }
 };

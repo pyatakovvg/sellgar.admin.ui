@@ -23,7 +23,7 @@ interface IProps {
 
 
 function ListDefault({ className, value, options, optionKey = 'id', optionValue = 'value', disabled, onClick }: IProps): JSX.Element | null {
-  const wrapperClassName = React.useMemo(() => cn(styles['wrapper'], className), [className]);
+  const wrapperClassName = React.useMemo(() => cn(styles['wrapper'], className || ''), [className]);
 
   function handleClick(value: any) {
     if (disabled) {
@@ -49,7 +49,7 @@ ListDefault.defaultProps = {
   className: null,
   value: null,
   options: [],
-  optionKey: 'id',
+  optionKey: 'uuid',
   optionValue: 'value',
   disabled: false,
 };

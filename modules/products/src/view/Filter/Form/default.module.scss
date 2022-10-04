@@ -1,0 +1,41 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: flex-end;
+}
+
+.fields {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.field {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+
+  & + & {
+    margin: 0 0 0 16px;
+  }
+}
+
+.check {
+
+  display: block;
+  margin: 26px 0 0 16px;
+}
+
+.control {
+
+  display: block;
+  margin: 0 0 0 24px;
+}

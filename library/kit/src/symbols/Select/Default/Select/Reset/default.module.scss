@@ -10,7 +10,7 @@
   color: $gray;
   padding: 0 11px;
   justify-content: center;
-  transition: color 150ms;
+  transition: color $transition-duration;
 
   &:hover {
     color: $danger;

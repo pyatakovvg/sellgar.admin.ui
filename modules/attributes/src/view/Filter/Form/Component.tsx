@@ -1,15 +1,16 @@
 
-import { InputField, TextareaField, SelectField, CheckboxField, Button, Header, Text } from '@library/kit';
+import { SelectField, Button } from '@library/kit';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectCategories } from '../../../store/slice';
+import { selectCategories, selectUnits } from '../../../store/slice';
 
 import styles from './default.module.scss';
 
 
 function FilterForm({ handleSubmit }: any) {
+  const units = useSelector(selectUnits);
   const categories = useSelector(selectCategories);
 
   return (
@@ -18,11 +19,22 @@ function FilterForm({ handleSubmit }: any) {
         <div className={styles['row']}>
           <SelectField
             clearable
-            label={'Категория'}
+            label={'Категория товара'}
             placeholder={'По всем категориям'}
-            name={'categoryCode'}
+            name={'categoryUuid'}
             options={categories}
-            optionKey={'code'}
+            optionKey={'uuid'}
+            optionValue={'name'}
+          />
+        </div>
+        <div className={styles['row']}>
+          <SelectField
+            clearable
+            label={'Единица измерения'}
+            placeholder={'По всем единицам'}
+            name={'unitUuid'}
+            options={units}
+            optionKey={'uuid'}
             optionValue={'name'}
           />
         </div>

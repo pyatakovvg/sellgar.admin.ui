@@ -9,7 +9,6 @@ import styles from './default.module.scss';
 
 
 function AddImageForm({ items, onChange }: any) {
-
   function handleOrderChange(from: number, to: number) {
     onChange(arrayMoveImmutable(items, from, to));
   }

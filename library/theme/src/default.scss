@@ -1,4 +1,16 @@
 
+// ANIMATION DURATION
+
+$transition-duration: 250ms;
+
+
+// BORDER RADIUS
+
+$border-radius-small: 4px;
+$border-radius-medium: 8px;
+$border-radius-large: 12px;
+
+
 // FONT WEIGHT
 
 $font-weight-light: 300;
@@ -8,44 +20,44 @@ $font-weight-bold: 800;
 
 // COLORS
 
-$danger:           #B94A43 !default;
-$danger-dark:      #a5413b !default;
-$danger-light:     #CE5851 !default;
+$danger:           #D4381E !default;
+$danger-dark:      #B62912 !default;
+$danger-light:     #E35F4A !default;
 
-$primary:          #8FADC8 !default;
-$primary-dark:     #839fb9 !default;
-$primary-light:    #AAC7E1 !default;
+$primary:          #077DEE !default;
+$primary-dark:     #006CD3 !default;
+$primary-light:    #2896FF !default;
 
-$success:          #75863C !default;
-$success-dark:     #697837 !default;
-$success-light:    #869849 !default;
+$success:          #48B820 !default;
+$success-dark:     #43AD1E !default;
+$success-light:    #70D24E !default;
 
-$info:             #F68D3D !default;
-$info-dark:        #DA7020 !default;
-$info-light:       #F8A363 !default;
+$info:             #EAE225 !default;
+$info-dark:        #D6CF2A !default;
+$info-light:       #F3EF83 !default;
 
-$gray:             #b8b9bb !default;
-$gray-dark:        #7E8286 !default;
-$gray-light:       #eff0f4 !default;
+$gray:             #D9D9D9 !default;
+$gray-dark:        #ACACAC !default;
+$gray-light:       #F4F4F4 !default;
 
 $white:            #FFFFFF !default;
 $light:            #FEFEFA !default;
 $smoke:            #fafaf7 !default;
-$dark:             #293138 !default;
-$black:            #000000 !default;
+$dark:             #616161 !default;
+$black:            #2C2C2C !default;
 
 
 // MIXINS
 
 @mixin box-shadow($direction: bottom) {
   @if ($direction == right) {
-    box-shadow: 2px 0 2px 0 rgba($black, .1);
+    box-shadow: 2px 0 2px 0 rgba($black, .06);
   }
   @else if ($direction == bottom) {
-    box-shadow: 0 2px 2px 0 rgba($black, .1);
+    box-shadow: 0 2px 2px 0 rgba($black, .06);
   }
   @else if ($direction == left) {
-    box-shadow: -2px 0 2px 0 rgba($black, .1);
+    box-shadow: -2px 0 2px 0 rgba($black, .06);
   }
   @else if ($direction == top) {
     box-shadow: 0 -2px 2px 0 rgba($black, .1);

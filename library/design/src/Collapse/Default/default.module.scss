@@ -37,7 +37,7 @@
 
   font-size: 14px;
   color: $gray-light;
-  transition: color 150ms;
+  transition: color $transition-duration;
 }
 
 .header:hover .icon {

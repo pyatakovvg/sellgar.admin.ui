@@ -1,5 +1,6 @@
 
 import request from "@package/request";
+import { Dispatch } from '@reduxjs/toolkit';
 
 import {
   getUnitRequestAction,
@@ -10,101 +11,103 @@ import {
   getUnitsRequestFailAction,
   getUnitsRequestSuccessAction,
 
-  createUnitRequest,
-  createUnitRequestFail,
-  createUnitRequestSuccess,
+  upsertUnitRequestAction,
+  upsertUnitRequestFailAction,
+  upsertUnitRequestSuccessAction,
 
-  updateUnitRequest,
-  updateUnitRequestFail,
-  updateUnitRequestSuccess,
+  deleteUnitRequestAction,
+  deleteUnitRequestFailAction,
+  deleteUnitRequestSuccessAction,
 } from './slice';
 
 
-interface IUnit {
-  uuid?: string;
-  name: string;
-  description: string;
-  order?: number;
+export function getUnit(uuid: string): any {
+  return async function(dispatch: Dispatch): Promise<any> {
+    try {
+      dispatch(getUnitRequestAction());
+
+      const result = await request({
+        url: '/api/v1/units',
+        method: 'get',
+        params: {
+          uuid,
+        },
+      });
+
+      dispatch(getUnitRequestSuccessAction(result['data']));
+
+      return result['data'][0];
+    }
+    catch(error: any) {
+
+      dispatch(getUnitRequestFailAction());
+
+      return null;
+    }
+  };
 }
 
+export function getUnits(): any {
+  return async function(dispatch: Dispatch) {
+    try {
+      dispatch(getUnitsRequestAction());
 
-export const getUnit = (uuid: string) => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getUnitRequestAction());
+      const result = await request({
+        url: '/api/v1/units',
+        method: 'get',
+      });
 
-    const result = await request({
-      url: '/api/v1/units',
-      method: 'get',
-      params: {
-        uuid,
-      }
-    });
+      dispatch(getUnitsRequestSuccessAction(result['data']));
+    }
+    catch(error: any) {
 
-    dispatch(getUnitRequestSuccessAction());
+      dispatch(getUnitsRequestFailAction());
+    }
+  };
+}
 
-    return result['data'][0] || null;
+export function upsertUnits(data: any): any {
+  return async function (dispatch: Dispatch): Promise<boolean> {
+    try {
+      dispatch(upsertUnitRequestAction());
+
+      const result = await request({
+        url: '/api/v1/units',
+        method: 'post',
+        data,
+      });
+
+      dispatch(upsertUnitRequestSuccessAction(result['data']));
+
+      return true;
+    }
+    catch (error: any) {
+
+      dispatch(upsertUnitRequestFailAction());
+
+      return false;
+    }
   }
-  catch(error: any) {
+}
 
-    dispatch(getUnitRequestFailAction());
+export function deleteUnits(uuid: Array<string>): any {
+  return async function(dispatch: Dispatch) {
+    try {
+      dispatch(deleteUnitRequestAction());
 
-    return null;
+      const result = await request({
+        url: '/api/v1/units',
+        method: 'delete',
+        params: {
+          uuid,
+        },
+      });
+
+      dispatch(deleteUnitRequestSuccessAction(result['data']));
+    }
+    catch (error: any) {
+
+      dispatch(deleteUnitRequestFailAction());
+    }
   }
-};
-
-export const getUnits = () => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getUnitsRequestAction());
-
-    const result = await request({
-      url: '/api/v1/units',
-      method: 'get',
-    });
-
-    dispatch(getUnitsRequestSuccessAction(result['data']));
-  }
-  catch(error: any) {
-
-    dispatch(getUnitsRequestFailAction());
-  }
-};
-
-export const createUnit = (data: IUnit) => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(createUnitRequest());
-
-    const result = await request({
-      url: '/api/v1/units',
-      method: 'post',
-      data,
-    });
-
-    dispatch(createUnitRequestSuccess(result['data']));
-    return true;
-  }
-  catch(error: any) {
-
-    dispatch(createUnitRequestFail());
-    return false;
-  }
-};
-
-export const updateUnits = (data: IUnit) => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(updateUnitRequest());
-
-    const result = await request({
-      url: '/api/v1/units',
-      method: 'put',
-      data,
-    });
-
-    dispatch(updateUnitRequestSuccess(result['data']));
-    return true;
-  }
-  catch(error: any) {
-
-    dispatch(updateUnitRequestFail());
-    return false;
-  }
-};
+}

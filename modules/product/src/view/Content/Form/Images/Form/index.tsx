@@ -1,6 +1,6 @@
 
 import { Button } from '@library/kit';
-import { openDialog } from '@package/dialog';
+import { openGallery } from '@widget/gallery';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -14,7 +14,7 @@ function AddImageForm({ input }: any) {
   const dispatch = useDispatch();
 
   function handleAddImages() {
-    dispatch<any>(openDialog('gallery'));
+    dispatch<any>(openGallery('gallery'));
   }
 
   return (
@@ -23,7 +23,7 @@ function AddImageForm({ input }: any) {
         <Items items={input['value']} onChange={input.onChange} />
       </div>
       <div className={styles['controls']}>
-        <Button onClick={() => handleAddImages()}>Добавить изображение</Button>
+        <Button form={'outline'} onClick={() => handleAddImages()}>Редактировать</Button>
       </div>
     </div>
   );

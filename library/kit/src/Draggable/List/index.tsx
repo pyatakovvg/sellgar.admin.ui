@@ -14,23 +14,22 @@ const Handle = SortableHandle(function() {
   );
 });
 
-const SortableItem = SortableElement(function({ value }: any) {
+const SortableItem = SortableElement<any>(function({ value }: any) {
   return (
     <div className={styles['wrapper']}>
       <Handle />
       <div className={styles['content']}>
-        {React.cloneElement(value)}
+        { React.cloneElement(value) }
       </div>
     </div>
   );
 });
 
-const SortableList = SortableContainer(function({ items }: any) {
+const SortableList = SortableContainer<any>(function({ items }: any) {
   return (
     <div className={styles['container']}>
       {items.map((child: JSX.Element, index: number) => {
         return (
-          // @ts-ignore
           <SortableItem key={`item-${index}`} index={index} value={child} />
         );
       })}

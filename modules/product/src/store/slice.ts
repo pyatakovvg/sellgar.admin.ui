@@ -11,7 +11,7 @@ interface IRootStore {
 
 interface IState {
   data: object | null;
-  gallery: Array<any>;
+  images: Array<any>;
   groups: Array<any>;
   categories: Array<any>;
   currencies: Array<any>;
@@ -23,7 +23,7 @@ interface IState {
 
 const initialState = {
   data: null,
-  gallery: [],
+  images: [],
   groups: [],
   categories: [],
   currencies: [],
@@ -40,7 +40,7 @@ const slice = createSlice({
   reducers: {
     resetStateAction(state: IState) {
       state['data'] = null;
-      state['gallery'] = [];
+      state['images'] = [];
       state['groups'] = [];
       state['categories'] = [];
       state['currencies'] = [];
@@ -87,7 +87,7 @@ const slice = createSlice({
       state['inUploadProcess'] = false;
     },
     getGalleryRequestSuccessAction(state: IState, { payload }) {
-      state['gallery'] = payload;
+      state['images'] = payload;
       state['inUploadProcess'] = false;
     },
 
@@ -149,15 +149,15 @@ export const {
   updateProductRequestAction,
   updateProductRequestFailAction,
   updateProductRequestSuccessAction,
-} = slice['actions'];
+} = slice['actions'] as any;
 
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
-export const selectGallery = (state: IRootStore): Array<any> => state[REDUCER_NAME]['gallery'];
+export const selectGallery = (state: IRootStore): Array<any> => state[REDUCER_NAME]['images'];
 export const selectCurrencies = (state: IRootStore): Array<any> => state[REDUCER_NAME]['currencies'];
 export const selectGroups = (state: IRootStore): Array<any> => state[REDUCER_NAME]['groups'];
 export const selectCategories = (state: IRootStore): Array<any> => state[REDUCER_NAME]['categories'];
-export const selectAttributes = (state: IRootStore): Array<any> => state[REDUCER_NAME]['attributes'];
 export const selectBrands = (state: IRootStore): Array<any> => state[REDUCER_NAME]['brands'];
+export const selectAttributes = (state: IRootStore): Array<any> => state[REDUCER_NAME]['attributes'];
 export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];
 export const selectInUploadProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inUploadProcess'];
 

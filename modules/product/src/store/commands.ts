@@ -1,6 +1,7 @@
 
 import request from "@package/request";
 import { NotFoundError } from "@package/errors";
+import { pushSuccess } from '@package/push';
 
 import {
   getGroupsRequestAction,
@@ -46,6 +47,8 @@ export const getGallery = () => async (dispatch: any): Promise<any> => {
       method: 'get',
     });
 
+    console.log(444, result)
+
     dispatch(getGalleryRequestSuccessAction(result['data']));
   }
   catch(error: any) {
@@ -71,7 +74,7 @@ export const getCurrencies = () => async (dispatch: any): Promise<any> => {
   }
 };
 
-export const getAttributes = (categoryCode: string) => async (dispatch: any): Promise<any> => {
+export const getAttributes = (categoryUuid: string) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getAttributesRequestAction());
 
@@ -79,7 +82,8 @@ export const getAttributes = (categoryCode: string) => async (dispatch: any): Pr
       url: '/api/v1/attributes',
       method: 'get',
       params: {
-        categoryCode,
+        categoryUuid,
+        include: ['category'],
       }
     });
 
@@ -108,7 +112,7 @@ export const getGroups = () => async (dispatch: any): Promise<any> => {
   }
 };
 
-export const getCategories = (groupCode: string) => async (dispatch: any): Promise<any> => {
+export const getCategories = (groupUuid: string) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getCategoriesRequestAction());
 
@@ -116,7 +120,7 @@ export const getCategories = (groupCode: string) => async (dispatch: any): Promi
       url: '/api/v1/categories',
       method: 'get',
       params: {
-        groupCode,
+        groupUuid,
       }
     });
 
@@ -152,6 +156,9 @@ export const getProduct = (uuid: string) => async (dispatch: any): Promise<any> 
     const result = await request({
       url: '/api/v1/products/' + uuid,
       method: 'get',
+      params: {
+        include: ['prices']
+      }
     });
 
     if ( ! result['data']) {
@@ -173,10 +180,16 @@ export const updateProduct = (data: any) => async (dispatch: any): Promise<any> 
     const result = await request({
       url: '/api/v1/products/' + data['uuid'],
       method: 'put',
-      data,
+      data: {
+        ...data,
+      },
+      params: {
+        include: ['prices']
+      }
     });
 
     dispatch(updateProductRequestSuccessAction(result['data']));
+    dispatch(pushSuccess('Данные обновлены'));
   }
   catch(error: any) {
 

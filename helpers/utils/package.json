@@ -15,7 +15,7 @@
   "dependencies": {},
   "peerDependencies": {},
   "devDependencies": {
-    "cross-env": "7.0.3",
-    "@types/node": "18.6.4"
+    "@types/node": "16.11.51",
+    "cross-env": "7.0.3"
   }
 }

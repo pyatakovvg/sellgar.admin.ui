@@ -17,7 +17,7 @@
     "@module/comments": "0.0.1",
     "@module/error": "0.0.1",
     "@module/groups": "0.0.1",
-    "@module/images": "0.0.1",
+    "@module/gallery": "0.0.1",
     "@module/kit": "0.0.1",
     "@module/main": "0.0.1",
     "@module/products": "0.0.1",
@@ -26,8 +26,9 @@
     "@package/dialog": "0.0.1",
     "@package/push": "0.0.1",
     "@package/request": "0.0.1",
-    "@reduxjs/toolkit": "1.8.3",
+    "@reduxjs/toolkit": "1.8.5",
     "@widget/profile": "0.0.1",
+    "@widget/gallery": "0.0.1",
     "@wrapper/composite": "0.0.1",
     "@wrapper/default": "0.0.1",
     "@wrapper/empty": "0.0.1",
@@ -41,10 +42,10 @@
     "web-vitals": "2.1.4"
   },
   "devDependencies": {
-    "@types/react-dom": "18.0.5",
+    "@types/react-dom": "18.0.6",
     "@types/redux-form": "8.3.5",
     "react-scripts": "5.0.1",
-    "sass": "1.53.0"
+    "sass": "1.54.5"
   },
   "eslintConfig": {
     "extends": [

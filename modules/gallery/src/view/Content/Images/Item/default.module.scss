@@ -1,0 +1,65 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 1;
+  background: $white;
+  padding: 8px 24px 8px 8px;
+  border-radius: 8px;
+  align-items: center;
+  @include box-shadow('bottom');
+}
+
+.image {
+
+  display: block;
+  width: 124px;
+  height: 124px;
+  border: 1px solid $gray-light;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.description {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 0 24px 0 24px;
+  white-space: nowrap;
+  overflow: auto;
+}
+
+.name {
+
+  display: block;
+}
+
+.size {
+
+  display: block;
+  margin: 8px 0 0;
+}
+
+.control {
+
+  display: block;
+}
+
+.icon {
+
+  display: block;
+  color: $danger-light;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color $transition-duration;
+
+  &:hover {
+    color: $danger-dark;
+  }
+}

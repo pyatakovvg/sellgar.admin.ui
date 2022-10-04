@@ -4,13 +4,17 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 import Error from './Error';
 import Loader from './Loader';
+import Empty from './Empty';
 
+import cn from 'classnames';
 import styles from './default.module.scss';
 
 
 interface IProps {
-  type?: 'default';
+  path?: string | undefined;
   src: string;
+  width: number;
+  height: number;
 }
 
 interface IImage {
@@ -79,19 +83,64 @@ function useImage(srcImg: string) {
   throw cache[srcImg].promise;
 }
 
-function MyImage({ src }: { src: string }): JSX.Element {
-  useImage(src);
 
-  return <img src={src} alt={''} />;
+function normalizePath(path: string | undefined, src: string, width?: number, height?:number) {
+  const params = new URLSearchParams();
+
+  if (width) {
+    params.append('width', String(width));
+  }
+
+  if (height) {
+    params.append('height', String(height));
+  }
+
+  const result = params.toString();
+
+  if (path) {
+    return path + '/' + src + (result ? `?${result}` : '');
+  }
+  return src + (result ? `?${result}` : '');
 }
 
-function Default({ src }: IProps): JSX.Element | null {
+function MyImage({ path, src, width, height }: { path?: string | undefined, src: string, width: number, height: number }) {
+  const [isLoaded, setLoaded] = React.useState(false);
+  const refImage = React.useRef<any>(null);
+  const finalPath = React.useMemo(() => normalizePath(path, src, width, height), [path, src, width, height]);
+
+  const className = React.useMemo(() => {
+    if (isLoaded) {
+      const element = refImage['current'];
+      const rect = element.getBoundingClientRect();
+      return cn({
+        [styles['height']]: rect['width'] < rect['height'],
+      });
+    }
+    return '';
+  }, [isLoaded]);
+
+  useImage(finalPath);
+
   return (
-    <div className={styles['wrapper']}>
+    <img ref={refImage} className={className} src={finalPath} alt={''} onLoad={() => setLoaded(true)} />
+  );
+}
+
+function Default({ path, src, ...rest }: IProps) {
+  const ref = React.useRef<any>(null);
+
+  if (path) {
+    if ( ! src) {
+      return <Empty />;
+    }
+  }
+
+  return (
+    <div className={styles['wrapper']} ref={ref}>
       <ErrorBoundary FallbackComponent={Error}>
         <Suspense fallback={<Loader />}>
           <div className={styles['image']}>
-            <MyImage src={src} />
+            <MyImage path={path} src={src} {...rest} />
           </div>
         </Suspense>
       </ErrorBoundary>
@@ -100,7 +149,10 @@ function Default({ src }: IProps): JSX.Element | null {
 }
 
 Default.defaultProps = {
+  path: null,
   src: null,
+  width: null,
+  height: null,
 };
 
-export default Default;
+export default React.memo(Default);

@@ -17,18 +17,18 @@
 
   position: absolute;
   top: 100%;
+  left: 0;
   right: 0;
   display: inline-flex;
   flex-direction: column;
   flex: 1 0;
   padding: 4px 0 0;
-  max-width: 280px;
   max-height: 280px;
-  min-width: 180px;
+  min-width: 220px;
   z-index: 1000;
 }
 
 .shadow {
 
-  box-shadow: 0 4px 8px 0 $gray-light;
+  @include box-shadow('bottom');
 }

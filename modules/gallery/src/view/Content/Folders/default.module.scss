@@ -1,0 +1,28 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  flex-wrap: wrap;
+  margin: -8px;
+}
+
+.item {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  width: 20%;
+  padding: 8px;
+}

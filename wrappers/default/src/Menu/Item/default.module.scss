@@ -4,7 +4,6 @@
 
 .wrapper {
 
-  position: relative;
   display: flex;
   flex-direction: row;
   flex: 1 0;
@@ -20,6 +19,7 @@
   display: flex;
   flex-direction: row;
   flex: 1 0;
+  align-items: center;
 }
 
 .icon {
@@ -27,55 +27,32 @@
   display: flex;
   flex-direction: column;
   flex: 0 0 auto;
-  width: 40px;
-  height: 40px;
-  font-size: 18px;
+  font-size: 16px;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
-  color: $dark;
-  transition: background 150ms, color 150ms;
+  color: $gray-light;
+  transition: color $transition-duration;
 }
 
 .label {
 
-  position: absolute;
-  top: 0;
-  left: 100%;
-  display: none;
-  padding: 0 0 0 32px;
+  display: block;
+  padding: 1px 0 0;
+  margin: 0 0 0 16px;
 }
 
 .title {
 
   display: block;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: $font-weight-bold;
-  background: $white;
-  color: $dark;
-  padding: 12px 32px 12px 24px;
-  border-radius: 8px;
-  @include box-shadow('right');
-  transition: background 150ms, color 150ms;
-}
-
-.wrapper:hover .icon {
-
-  background: rgba($primary-dark, .2);
-}
-
-.wrapper:hover .label {
-
-  display: block;
+  color: $gray-light;
+  transition: color $transition-duration;
 }
 
 .is-active .icon,
-.is-active:hover .icon {
-  background: $primary-dark;
-  color: $white;
-}
-
-.is-active .title {
-  background: $primary-dark;
-  color: $white;
+.is-active:hover .icon,
+.is-active .title,
+.is-active:hover .title {
+  color: $info;
 }

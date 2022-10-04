@@ -2,8 +2,8 @@
 import React from 'react';
 import { Field, WrappedFieldProps } from 'redux-form';
 
+import Editor from '../../Editor';
 import BaseField from '../BaseField';
-import Input from '../../Editor';
 
 
 interface IProps extends WrappedFieldProps {
@@ -21,7 +21,7 @@ function BaseInputField({ input, meta: { error, invalid, touched, active }, ...p
       {...input}
       error={(touched && invalid && ! active) ? error : null}
     >
-      <Input />
+      <Editor />
     </BaseField>
   );
 }
@@ -43,4 +43,4 @@ InputField.defaultProps = {
   mode: 'default',
 };
 
-export default InputField;
+export default React.memo(InputField);

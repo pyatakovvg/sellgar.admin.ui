@@ -14,7 +14,9 @@
 
 .controls {
 
-  display: block;
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
   margin: 24px 0 0;
-  text-align: right;
+  justify-content: center;
 }

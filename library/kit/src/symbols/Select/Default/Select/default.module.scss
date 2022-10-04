@@ -8,13 +8,14 @@
   display: flex;
   flex-direction: row;
   flex: 1 0;
+  height: 36px;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: $border-radius-small;
   background: $white;
   overflow: hidden;
   cursor: pointer;
   vertical-align: middle;
-  transition: border-color 150ms;
+  transition: border-color $transition-duration;
 }
 
 .content {
@@ -29,9 +30,8 @@
 
   position: relative;
   display: block;
-  padding: 12px 11px;
-  font-size: 14px;
-  height: 37px;
+  padding: 13px 10px 10px;
+  font-size: 13px;
   font-family: inherit;
   font-weight: $font-weight-medium;
   border: none;
@@ -48,14 +48,9 @@
 
 .placeholder {
 
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   display: block;
-  padding: 12px 11px;
-  font-size: 14px;
+  padding: 13px 10px 10px;
+  font-size: 13px;
   font-weight: $font-weight-light;
   color: $gray-dark;
   z-index: 0;
@@ -76,10 +71,10 @@
   display: inline-flex;
   flex-direction: column;
   flex: 0 0;
-  color: $gray;
+  color: $gray-dark;
   padding: 0 11px 4px 0;
   justify-content: center;
-  transition: color 150ms;
+  transition: color $transition-duration;
 }
 
 .icon {
@@ -92,17 +87,6 @@
 .wrapper:hover .arrow,
 .wrapper.in-focus .arrow {
   color: $gray-dark;
-}
-
-.disabled,
-.disabled:hover,
-.disabled .arrow,
-.disabled:hover .arrow {
-
-  color: $gray;
-  background: $gray-light;
-  border-color: $gray-light;
-  cursor: default;
 }
 
 .mode {
@@ -159,7 +143,12 @@
 }
 
 .disabled,
-.disabled:hover, {
+.disabled:hover,
+.disabled .arrow,
+.disabled:hover .arrow {
 
+  color: $gray-dark;
+  background: $gray-light;
   border-color: $gray-light;
+  cursor: default;
 }

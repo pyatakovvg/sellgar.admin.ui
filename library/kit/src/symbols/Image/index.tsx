@@ -6,7 +6,10 @@ import Default from './Default';
 
 interface IProps {
   type?: 'default';
+  path?: string | undefined;
   src: string;
+  width: number;
+  height: number;
   crossOrigin?: string;
 }
 

@@ -1,0 +1,29 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  justify-content: center;
+}
+
+.link {
+
+  display: inline-block;
+  font-size: 14px;
+  color: $black;
+  cursor: pointer;
+
+  & + & {
+    margin: 0 0 0 8px;
+  }
+}
+
+.is-active {
+
+  color: $primary;
+  text-decoration: underline;
+}

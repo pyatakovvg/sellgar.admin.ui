@@ -4,19 +4,16 @@
 
 .wrapper {
 
-  display: inline-block;
-  width: 124px;
-  height: 124px;
-  border-radius: 6px;
-  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
 }
 
 .image {
 
   display: block;
-}
-
-.new {
-
-  box-shadow: 0 0 2px 0 $success-light;
+  height: 100%;
+  border: 1px solid $gray-light;
+  border-radius: $border-radius-small;
 }

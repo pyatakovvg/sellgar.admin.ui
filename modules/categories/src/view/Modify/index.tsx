@@ -1,59 +1,56 @@
 
+import { query } from '@helper/utils';
 import { closeDialog } from '@package/dialog';
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Form from './Form';
-import { getCategory, createCategory, updateCategory } from '../../store/commands';
+import Loading from './Loading';
 
-import styles from './default.module.scss';
-
-
-interface IProps {
-  data?: any;
-}
+import { getCategory, upsertCategory } from '../../store/commands';
+import { selectInProcessOne } from '../../store/slice';
 
 
-function Modify({ data }: IProps) {
+function Modify({ data }: any) {
+  const location = useLocation();
   const dispatch = useDispatch();
 
+  const inProcess = useSelector(selectInProcessOne);
   const [category, setCategory] = React.useState(null);
 
   React.useEffect(() => {
     async function init() {
-      if (data && ('code' in data)) {
-        const result = await dispatch<any>(getCategory(data['code']));
+      const result = await dispatch(getCategory(data['uuid']));
+      if (result) {
         setCategory(result);
       }
     }
-    init();
-  }, []);
+    if ( !! data?.['uuid']) {
+      init();
+    }
+  }, [data]);
 
-  async function handleSubmit(data: any) {
-    let result;
-    if ('code' in data) {
-      result = await dispatch<any>(updateCategory(data));
-    }
-    else {
-      result = await dispatch<any>(createCategory(data));
-    }
-    if (result) {
-      dispatch<any>(closeDialog());
+  async function handleSave(values: any) {
+    const search = query.toObject(location['search']);
+    const isSuccess = await dispatch(upsertCategory(values, search));
+    if (isSuccess) {
+      dispatch(closeDialog());
     }
   }
 
-  if (data && ! category) {
-    return null;
+  if ( !! data?.['uuid'] && inProcess) {
+    return (
+      <Loading />
+    );
   }
 
   return (
-    <div className={styles['wrapper']}>
-      <Form
-        initialValues={{ ...category || {} }}
-        onSubmit={handleSubmit}
-      />
-    </div>
+    <Form
+      initialValues={category}
+      onSubmit={handleSave}
+    />
   );
 }
 

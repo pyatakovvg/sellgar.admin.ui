@@ -13,7 +13,7 @@
   background: $primary;
   padding: 6px 14px 6px 6px;
   cursor: pointer;
-  transition: background-color 150ms;
+  transition: background-color $transition-duration;
 
   &:hover {
 

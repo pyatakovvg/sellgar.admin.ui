@@ -1,0 +1,79 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.header {
+
+  display: block;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 8px 0 0;
+}
+
+.editor {
+
+  display: block;
+}
+
+.container {
+
+  display: block;
+  padding: 24px;
+  border-radius: $border-radius-small;
+  border: 1px solid $gray;
+  color: $black;
+  outline: none;
+  transition: border $transition-duration;
+}
+
+.container:hover,
+.container.ProseMirror-focused {
+
+  border-color: $gray-dark;
+}
+
+.container {
+
+  h3 {
+
+    font-size: 18px;
+    font-weight: $font-weight-medium;
+
+    & + * {
+      margin: 24px 0 0;
+    }
+  }
+
+  p {
+    font-size: 13px;
+    line-height: 1.4;
+
+    & + p {
+      margin: 16px 0 0;
+    }
+
+    & + h3 {
+      margin: 24px 0 0;
+    }
+  }
+
+  strong {
+    font-weight: $font-weight-bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+}

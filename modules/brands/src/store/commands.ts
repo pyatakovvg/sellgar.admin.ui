@@ -1,5 +1,6 @@
 
 import request from "@package/request";
+import { Dispatch } from '@reduxjs/toolkit';
 
 import {
   getBrandRequestAction,
@@ -10,91 +11,103 @@ import {
   getBrandsRequestFailAction,
   getBrandsRequestSuccessAction,
 
-  createBrandRequestAction,
-  createBrandRequestFailAction,
-  createBrandRequestSuccessAction,
+  upsertBrandRequestAction,
+  upsertBrandRequestFailAction,
+  upsertBrandRequestSuccessAction,
 
-  updateBrandRequestAction,
-  updateBrandRequestSuccessAction,
-  updateBrandRequestFailAction,
+  deleteBrandRequestAction,
+  deleteBrandRequestFailAction,
+  deleteBrandRequestSuccessAction,
 } from './slice';
 
 
-export const getBrand = (uuid: string) => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getBrandRequestAction());
+export function getBrand(uuid: string): any {
+  return async function(dispatch: Dispatch): Promise<any> {
+    try {
+      dispatch(getBrandRequestAction());
 
-    const result = await request({
-      url: '/api/v1/brands',
-      method: 'get',
-      params: {
-        uuid,
-      }
-    });
+      const result = await request({
+        url: '/api/v1/brands',
+        method: 'get',
+        params: {
+          uuid,
+        },
+      });
 
-    dispatch(getBrandRequestSuccessAction());
-    return result['data'][0] || null;
+      dispatch(getBrandRequestSuccessAction(result['data']));
+
+      return result['data'][0];
+    }
+    catch(error: any) {
+
+      dispatch(getBrandRequestFailAction());
+
+      return null;
+    }
+  };
+}
+
+export function getBrands(): any {
+  return async function(dispatch: Dispatch) {
+    try {
+      dispatch(getBrandsRequestAction());
+
+      const result = await request({
+        url: '/api/v1/brands',
+        method: 'get',
+      });
+
+      dispatch(getBrandsRequestSuccessAction(result['data']));
+    }
+    catch(error: any) {
+
+      dispatch(getBrandsRequestFailAction());
+    }
+  };
+}
+
+export function upsertBrands(data: any): any {
+  return async function (dispatch: Dispatch): Promise<boolean> {
+    try {
+      dispatch(upsertBrandRequestAction());
+
+      const result = await request({
+        url: '/api/v1/brands',
+        method: 'post',
+        data,
+      });
+
+      dispatch(upsertBrandRequestSuccessAction(result['data']));
+
+      return true;
+    }
+    catch (error: any) {
+
+      dispatch(upsertBrandRequestFailAction());
+
+      return false;
+    }
   }
-  catch(error: any) {
+}
 
-    dispatch(getBrandRequestFailAction());
-    return null;
+export function deleteBrands(uuid: Array<string>): any {
+  return async function(dispatch: Dispatch) {
+    try {
+      dispatch(deleteBrandRequestAction());
+
+      const result = await request({
+        url: '/api/v1/brands',
+        method: 'delete',
+        params: {
+          uuid,
+        },
+      });
+
+      dispatch(deleteBrandRequestSuccessAction(result['data']));
+    }
+    catch (error: any) {
+
+      dispatch(deleteBrandRequestFailAction());
+    }
   }
-};
-
-export const getBrands = () => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getBrandsRequestAction());
-
-    const result = await request({
-      url: '/api/v1/brands',
-      method: 'get',
-    });
-
-    dispatch(getBrandsRequestSuccessAction(result['data']));
-  }
-  catch(error: any) {
-
-    dispatch(getBrandsRequestFailAction());
-  }
-};
-
-export const createBrand = (data: any) => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(createBrandRequestAction());
-
-    const result = await request({
-      url: '/api/v1/brands',
-      method: 'post',
-      data,
-    });
-
-    dispatch(createBrandRequestSuccessAction(result['data']));
-    return true;
-  }
-  catch(error: any) {
-
-    dispatch(createBrandRequestFailAction());
-    return false;
-  }
-};
-
-export const updateBrand = (data: any) => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(updateBrandRequestAction());
-
-    const result = await request({
-      url: '/api/v1/brands',
-      method: 'put',
-      data,
-    });
-
-    dispatch(updateBrandRequestSuccessAction(result['data']));
-    return true;
-  }
-  catch(error: any) {
-
-    dispatch(updateBrandRequestFailAction());
-    return false;
-  }
-};
+}

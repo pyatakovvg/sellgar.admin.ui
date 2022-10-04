@@ -15,6 +15,10 @@
     "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
   },
   "dependencies": {
+    "@package/errors": "0.0.1",
+    "@package/push": "0.0.1",
+    "@package/request": "0.0.1",
+    "@widget/gallery": "0.0.1",
     "redux-form": "8.3.8"
   },
   "peerDependencies": {
@@ -22,9 +26,9 @@
     "react-router-dom": "6.3.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.18.6",
-    "@babel/core": "7.18.6",
-    "@babel/preset-env": "7.18.6",
+    "@babel/cli": "7.18.10",
+    "@babel/core": "7.18.10",
+    "@babel/preset-env": "7.18.10",
     "@babel/preset-typescript": "7.18.6",
     "@types/redux-form": "8.3.5",
     "cross-env": "7.0.3"

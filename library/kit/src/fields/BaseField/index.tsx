@@ -2,6 +2,7 @@
 import React from 'react';
 import { WrappedFieldInputProps } from 'redux-form';
 
+import cn from 'classnames';
 import styles from './default.module.scss';
 
 
@@ -16,9 +17,9 @@ interface IProps extends WrappedFieldInputProps {
 }
 
 
-function BaseField({ required, children, label, error, ...props }: IProps) {
+function BaseField({ className, required, children, label, error, ...props }: IProps) {
   return (
-    <div className={styles['wrapper']}>
+    <div className={cn(styles['wrapper'], className)}>
       {label && (
         <div className={styles['label']}>
           { label }
@@ -28,9 +29,11 @@ function BaseField({ required, children, label, error, ...props }: IProps) {
         </div>
       )}
       <div className={styles['container']}>
-        {React.cloneElement(children, {
-          ...props,
-          mode: !! error ? 'danger' : props['mode'],
+        {React.Children.map(children, (child: any) => {
+          return React.cloneElement(child, {
+            ...props,
+            mode: !!error ? 'danger' : props['mode'],
+          })
         })}
       </div>
       { !! error && (
@@ -47,4 +50,4 @@ BaseField.defaultProps = {
   error: null
 };
 
-export default BaseField;
+export default React.memo(BaseField);

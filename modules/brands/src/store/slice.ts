@@ -1,5 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 
 const REDUCER_NAME = 'module/brands';
@@ -11,14 +12,16 @@ interface IRootStore {
 
 interface IState {
   data: Array<any>;
-  inProcess: boolean;
+  inProcessAll: boolean;
+  inProcessOne: boolean;
   inUploadProcess: boolean;
 }
 
 
 const initialState = {
   data: [],
-  inProcess: false,
+  inProcessAll: false,
+  inProcessOne: false,
   inUploadProcess: false,
 };
 
@@ -29,57 +32,51 @@ const slice = createSlice({
   reducers: {
     resetStateAction(state: IState) {
       state['data'] = [];
-      state['inProcess'] = false;
+      state['inProcessAll'] = false;
+      state['inProcessOne'] = false;
       state['inUploadProcess'] = false;
     },
 
-    getBrandRequestAction() {},
-    getBrandRequestFailAction() {},
+    getBrandRequestAction(state: IState): any {
+      state['inProcessOne'] = true;
+    },
+    getBrandRequestFailAction(state: IState) {
+      state['inProcessOne'] = false;
+    },
     getBrandRequestSuccessAction(state: IState) {
-      state['inUploadProcess'] = false;
+      state['inProcessOne'] = false;
     },
 
-    getBrandsRequestAction(state: IState) {
-      state['inProcess'] = true;
+    getBrandsRequestAction(state: IState): any {
+      state['inProcessAll'] = true;
     },
     getBrandsRequestFailAction(state: IState) {
-      state['inProcess'] = false;
+      state['inProcessAll'] = false;
     },
-    getBrandsRequestSuccessAction(state: IState, { payload }) {
+    getBrandsRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
       state['data'] = payload;
-      state['inProcess'] = false;
+      state['inProcessAll'] = false;
     },
 
-    createBrandRequestAction(state: IState) {
+    upsertBrandRequestAction(state: IState) {
       state['inUploadProcess'] = true;
     },
-    createBrandRequestFailAction(state: IState) {
+    upsertBrandRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    createBrandRequestSuccessAction(state: IState, { payload }) {
-      state['data'] = [
-        ...state['data'],
-        payload,
-      ];
+    upsertBrandRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
+      state['data'] = payload;
       state['inUploadProcess'] = false;
     },
 
-    updateBrandRequestAction(state: IState) {
+    deleteBrandRequestAction(state: IState) {
       state['inUploadProcess'] = true;
     },
-    updateBrandRequestFailAction(state: IState) {
+    deleteBrandRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    updateBrandRequestSuccessAction(state: IState, { payload }) {
-      state['data'] = state['data'].map((item) => {
-        if (item['uuid'] === payload['uuid']) {
-          return {
-            ...item,
-            ...payload,
-          };
-        }
-        return item;
-      });
+    deleteBrandRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
+      state['data'] = payload;
       state['inUploadProcess'] = false;
     },
   },
@@ -96,17 +93,18 @@ export const {
   getBrandsRequestFailAction,
   getBrandsRequestSuccessAction,
 
-  createBrandRequestAction,
-  createBrandRequestFailAction,
-  createBrandRequestSuccessAction,
+  upsertBrandRequestAction,
+  upsertBrandRequestFailAction,
+  upsertBrandRequestSuccessAction,
 
-  updateBrandRequestAction,
-  updateBrandRequestFailAction,
-  updateBrandRequestSuccessAction,
-} = slice['actions'];
+  deleteBrandRequestAction,
+  deleteBrandRequestFailAction,
+  deleteBrandRequestSuccessAction,
+} = slice['actions'] as any;
 
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
-export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];
+export const selectInProcessAll = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcessAll'];
+export const selectInProcessOne = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcessOne'];
 export const selectInUploadProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inUploadProcess'];
 
 export const name = slice['name'];

@@ -1,49 +1,71 @@
 
-import { InputField, TextareaField, SelectField, Button, Header } from '@library/kit';
+import { query } from '@helper/utils';
+import { Header, Button, SelectField, ImageField, InputField, TextareaField } from '@library/kit';
 
 import React from 'react';
-import { useSelector } from 'react-redux';
-
-import { selectGroups, selectInUploadProcess } from '../../../index';
-
-import styles from './default.module.scss';
+import { change } from 'redux-form';
+import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 
-function ModifyForm({ handleSubmit, valid, pristine }: any): JSX.Element {
+import { selectGroups, selectInUploadProcess } from '../../../store/slice';
+
+import styles from './@media/index.module.scss';
+
+
+function Form({ handleSubmit }: any) {
+  const dispatch = useDispatch();
+  const location = useLocation();
+
   const groups = useSelector(selectGroups);
   const inProcess = useSelector(selectInUploadProcess);
+
+  React.useEffect(() => {
+    const search = query.toObject(location['search']);
+
+    if (search['groupUuid']) {
+      dispatch(change('modify', 'group.uuid', search['groupUuid']));
+    }
+  }, [location]);
 
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>
       <div className={styles['header']}>
-        <Header level={4}>Категория товара</Header>
+        <Header level={3}>Категория товара</Header>
       </div>
       <div className={styles['content']}>
-        <div className={styles['row']}>
-          <InputField label={'Код'} name={'code'} disabled={inProcess} />
+        <div className={styles['field']}>
+          <div className={styles['container']}>
+            <div className={styles['image']}>
+              <ImageField name={'image'} width={124} height={124} disabled={inProcess} />
+            </div>
+          </div>
         </div>
-        <div className={styles['row']}>
-          <InputField label={'Наименование'} name={'name'} disabled={inProcess} />
-        </div>
-        <div className={styles['row']}>
+        <div className={styles['field']}>
           <SelectField
-            label={'Группа'}
-            name={'groupCode'}
+            label={'Группа товара'}
+            name={'group.uuid'}
             disabled={inProcess}
             options={groups}
-            optionKey={'code'}
+            optionKey={'uuid'}
             optionValue={'name'}
           />
         </div>
-        <div className={styles['row']}>
+        <div className={styles['field']}>
+          <InputField label={'Код'} name={'code'} disabled={inProcess} />
+        </div>
+        <div className={styles['field']}>
+          <InputField label={'Наименование'} name={'name'} disabled={inProcess} />
+        </div>
+        <div className={styles['field']}>
           <TextareaField label={'Описание'} name={'description'} disabled={inProcess} />
         </div>
       </div>
       <div className={styles['control']}>
-        <Button type={'submit'} disabled={ ! valid || pristine || inProcess}>Отправить</Button>
+        <Button type={'submit'} mode={'success'} disabled={inProcess}>Применить</Button>
       </div>
     </form>
   );
 }
 
-export default ModifyForm;
+export default Form;

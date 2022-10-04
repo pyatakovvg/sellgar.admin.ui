@@ -44,7 +44,7 @@ const navigate = [
   },
   {
     title: 'Галлерея',
-    path: '/images',
+    path: '/gallery',
     icon: 'fa-solid fa-images',
   },
   {

@@ -38,7 +38,7 @@ function useGetValue(value: string, option: any, optionValue: string = ''): stri
 
 
 function DefaultSelect({ mode, value, options, optionKey, optionValue, placeholder, disabled, clearable, onFocus, onChange, onBlur }: IProps): JSX.Element | null {
-  const wrapperRef = React.useRef<HTMLHeadingElement | null>(null);
+  const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const [isFocus, setFocus] = React.useState(false);
 
   function handleFocus() {
@@ -74,6 +74,9 @@ function DefaultSelect({ mode, value, options, optionKey, optionValue, placehold
 
   React.useEffect(() => {
     function handleReset(event: any) {
+      if (  ! isFocus) {
+        return void 0;
+      }
       const element = wrapperRef['current'];
       if (element) {
         if ( ! element.contains(event['target'])) {
@@ -85,7 +88,7 @@ function DefaultSelect({ mode, value, options, optionKey, optionValue, placehold
     return () => {
       document.removeEventListener('click', handleReset);
     };
-  }, []);
+  }, [isFocus]);
 
   const selectedOption = useFoundOptionByKey(value, options, optionKey);
   const selectedValue = useGetValue(value, selectedOption, optionValue);

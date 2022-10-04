@@ -11,24 +11,30 @@
   height: 100%;
   justify-content: center;
   align-items: center;
-  background: $white;
   overflow: hidden;
 }
 
 .image {
 
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
   width: 100%;
-}
-
-.height {
-
   height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-size: 10px;
+  background-position: center;
+  background-image: url("./square.svg");
+  overflow: hidden;
 }
 
 .image img {
 
   display: block;
-  width: 100%;
+}
+
+.height {
+
   height: 100%;
 }

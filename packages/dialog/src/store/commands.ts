@@ -1,14 +1,20 @@
 
+import { Dispatch } from '@reduxjs/toolkit';
+
 import {
   openDialogAction,
   closeDialogAction,
 } from './slice';
 
 
-export const openDialog = (name: string, data: any = null) => (dispatch: any) => {
-  dispatch(openDialogAction({ name, data }));
-};
+export function openDialog(name: string, data: any = null): any {
+  return function(dispatch: Dispatch) {
+    dispatch(openDialogAction({ name, data }));
+  }
+}
 
-export const closeDialog = () => (dispatch: any) => {
-  dispatch(closeDialogAction());
-};
+export function closeDialog(): any {
+  return function (dispatch: Dispatch) {
+    dispatch(closeDialogAction());
+  }
+}

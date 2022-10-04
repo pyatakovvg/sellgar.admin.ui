@@ -13,14 +13,14 @@ import styles from './defaults.module.scss';
 interface IProps {
   className?: string;
   name: string;
-  children: JSX.Element;
+  children: any;
   onClose?(): void;
 }
 
 
-function Dialog({ className, name, children, onClose }: IProps): JSX.Element {
+function Dialog({ className, name, children, onClose }: IProps) {
   const dispatch = useDispatch();
-  const wrapperRef = useRef(null);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
 
   const data = useSelector(selectData);
   const isOpen = useSelector(selectIsOpen);
@@ -49,25 +49,26 @@ function Dialog({ className, name, children, onClose }: IProps): JSX.Element {
   }, []);
 
   const classNameCloseDialog = cn(styles['dialog__close'], 'fa-solid fa-xmark');
-  const classNameDialog = cn(styles['dialog'], className);
+  const classNameDialog = cn(styles['dialog'], className || '');
   const classNameContent = cn(styles['wrapper__content']);
 
   const portalElement: any = document.querySelector('#dialog');
 
-  return isOpen && (name === actionDialogName) && (
-    ReactDOM.createPortal((
-      <div className={styles['wrapper']}>
-        <div ref={wrapperRef} className={classNameContent} onClick={handleOutClick} >
-          <div className={classNameDialog}>
-            <span className={classNameCloseDialog} onClick={handleCloseDialog} />
-            <div className={styles['dialog__content']}>
-              { React.cloneElement(children, { data }) }
-            </div>
+  if ( ! isOpen || (name !== actionDialogName)) {
+    return null;
+  }
+  return ReactDOM.createPortal((
+    <div className={styles['wrapper']}>
+      <div ref={wrapperRef} className={classNameContent} onClick={handleOutClick} >
+        <div className={classNameDialog}>
+          <span className={classNameCloseDialog} onClick={handleCloseDialog} />
+          <div className={styles['dialog__content']}>
+            { React.cloneElement<any, any>(children, { data }) }
           </div>
         </div>
       </div>
-    ), portalElement)
-  );
+    </div>
+  ), portalElement);
 }
 
 Dialog.defaultProps = {

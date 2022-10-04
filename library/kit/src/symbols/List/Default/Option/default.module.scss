@@ -9,7 +9,9 @@
   border-radius: 6px;
   cursor: pointer;
   color: $black;
-  transition: background-color 150ms, color 150ms;
+  transition:
+    background-color $transition-duration,
+    color $transition-duration;
 
   &:hover {
 

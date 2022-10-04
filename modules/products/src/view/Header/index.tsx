@@ -1,18 +1,20 @@
 
-import { Button, Header } from '@library/kit';
+import { Header, Button } from '@library/kit';
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 
-import { createProduct } from '../../index';
+import { selectInProcess, createProduct } from '../../index';
 
 import styles from './default.module.scss';
 
 
-function HeaderPage(): JSX.Element {
+function Controls() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const inProcess = useSelector(selectInProcess);
 
   async function handleAdd() {
     const result = await dispatch<any>(createProduct());
@@ -27,11 +29,13 @@ function HeaderPage(): JSX.Element {
       <div className={styles['content']}>
         <Header level={2}>Витрина</Header>
       </div>
-      <div className={styles['control']}>
-        <Button onClick={handleAdd}>Добавить</Button>
+      <div className={styles['controls']}>
+        <div className={styles['create']}>
+          <Button mode={'success'} disabled={inProcess} onClick={handleAdd}>Добавить</Button>
+        </div>
       </div>
     </div>
   );
 }
 
-export default HeaderPage;
+export default Controls;

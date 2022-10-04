@@ -1,88 +1,69 @@
 
-import types from 'prop-types';
-import { unemojify } from "node-emoji";
-import draftToHtml from "draftjs-to-html";
-import { Editor } from "react-draft-wysiwyg";
-import React, { useState, useEffect } from "react";
-import { EditorState, convertToRaw, ContentState, convertFromHTML } from "draft-js";
+import React from "react";
+import StarterKit from '@tiptap/starter-kit';
+import { useEditor, EditorContent } from '@tiptap/react';
 
-import List from './List';
-import Blocks from './Blocks';
-import Styles from './Styles';
-import TextAlign from './TextAlign';
+import Controls from './Controls';
 
-import cn from 'classnames';
-import styles from './defaults.module.scss';
+import styles from './default.module.scss';
 
 
-function EditorHTML({ className, readOnly, value, onChange }: any) {
-  const [isFirst, setFirst] = useState(false);
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+interface IProps {
+  value?: string;
+  onFocus?(e: any): void;
+  onBlur?(e: any): void;
+  onChange?(e: any): void;
+}
 
-  useEffect(() => {
-    if (isFirst) {
-      return void 0;
-    }
 
-    if ( ! onChange) {
-      return void 0;
-    }
+function EditorHTML({ value, onFocus, onChange, onBlur }: IProps) {
+  const editor = useEditor({
+    content: value || '',
+    editable: true,
+    injectCSS: false,
+    extensions: [
+      StarterKit.configure({
+        heading: {
+          levels: [1, 2, 3],
+        },
+      }),
+    ],
+    editorProps: {
+      attributes: {
+        class: styles['container'],
+      },
+    },
+    onFocus({ editor }) {
+      onFocus && onFocus(editor.getHTML());
+    },
+    onUpdate({ editor }) {
+      onChange && onChange(editor.getHTML());
+    },
+    onBlur({ editor }) {
+      onBlur && onBlur(editor.getHTML());
+    },
+  });
 
-    const newValue = unemojify(draftToHtml(convertToRaw(editorState.getCurrentContent())));
-
-    if (value && value !== newValue) {
-      const blocks = convertFromHTML(value);
-      const content = ContentState.createFromBlockArray(blocks.contentBlocks, blocks.entityMap);
-
-      setFirst(true);
-
-      const newValue = unemojify(draftToHtml(convertToRaw(content)));
-      onChange(newValue);
-
-      setEditorState(EditorState.createWithContent(content));
-    }
-  }, [value]);
-
-  function onEditorStateChange(editorState: any) {
-    const newValue = unemojify(draftToHtml(convertToRaw(editorState.getCurrentContent())));
-
-    if (value !== newValue) {
-      onChange(newValue);
-    }
-
-    setEditorState(editorState);
-  }
 
   return (
-    <Editor
-      readOnly={readOnly}
-      editorState={editorState}
-      wrapperClassName={cn(styles['wrapper'], { [styles['wrapper--readonly']]: readOnly })}
-      toolbarClassName={cn(styles['toolbar'], { [styles['toolbar--readonly']]: readOnly })}
-      editorClassName={cn(styles['content'], className, { [styles['content--readonly']]: readOnly })}
-      onEditorStateChange={onEditorStateChange}
-      toolbar={{
-        options: readOnly ? [] : ['inline', 'blockType', 'list', 'textAlign'], // 'link', 'image', 'history'],
-        blockType: { component: Blocks },
-        inline: { component: Styles },
-        list: { component: List },
-        textAlign: { component: TextAlign },
-      }}
-    />
+    <div className={styles['wrapper']}>
+      <div className={styles['header']}>
+        <Controls editor={editor} />
+      </div>
+      <div className={styles['content']}>
+        <EditorContent
+          className={styles['editor']}
+          editor={editor}
+        />
+      </div>
+    </div>
   );
 }
 
-EditorHTML.propTypes = {
-  readOnly: types.bool,
-  className: types.string,
-  value: types.string,
-  onChange: types.func,
-};
 
 EditorHTML.defaultProps = {
-  readOnly: false,
   className: null,
   value: '',
 }
 
-export default EditorHTML;
+export default React.memo(EditorHTML);

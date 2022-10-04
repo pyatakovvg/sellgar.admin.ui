@@ -1,0 +1,32 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.block {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+
+  & + & {
+
+    margin: 0 0 0 16px;
+  }
+}
+
+.button {
+
+  display: block;
+
+  & + & {
+
+    margin: 0 0 0 4px;
+  }
+}

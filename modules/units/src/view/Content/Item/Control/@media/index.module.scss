@@ -1,0 +1,57 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+}
+
+.button {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  padding: 0 16px;
+  background: $white;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: color $transition-duration, background $transition-duration;
+
+  &:last-child {
+    border-radius: 0 $border-radius-small $border-radius-small 0;
+  }
+
+  & + & {
+    border-left: 1px solid $gray-light;
+  }
+}
+
+.icon {
+
+  display: block;
+  font-size: 11px;
+}
+
+.edit {
+
+  color: $primary;
+
+  &:hover {
+    color: $white;
+    background: $primary;
+  }
+}
+
+.delete {
+
+  color: $danger;
+
+  &:hover {
+    color: $white;
+    background: $danger;
+  }
+}

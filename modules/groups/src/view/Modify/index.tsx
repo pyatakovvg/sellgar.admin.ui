@@ -2,57 +2,50 @@
 import { closeDialog } from '@package/dialog';
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Form from './Form';
-import { getGroup, createGroup, updateGroup } from '../../index';
+import Loading from './Loading';
 
-import styles from './default.module.scss';
-
-
-interface IProps {
-  data?: any;
-}
+import { selectInProcessOne } from '../../store/slice';
+import { getGroup, upsertGroups } from '../../store/commands';
 
 
-function Modify({ data }: IProps) {
+function Modify({ data }: any) {
   const dispatch = useDispatch();
-  const [unit, setUnit] = React.useState(null);
+  const inProcess = useSelector(selectInProcessOne);
+  const [group, setGroup] = React.useState(null);
 
   React.useEffect(() => {
     async function init() {
-      if (data && ('code' in data)) {
-        const result = await dispatch<any>(getGroup(data['code']));
-        setUnit(result);
+      const result = await dispatch(getGroup(data['uuid']));
+      if (result) {
+        setGroup(result);
       }
     }
-    init();
-  }, []);
+    if ( !! data?.['uuid']) {
+      init();
+    }
+  }, [data]);
 
-  async function handleSubmit(data: any) {
-    let result;
-    if (data['new']) {
-      result = await dispatch<any>(createGroup(data));
-    }
-    else {
-      result = await dispatch<any>(updateGroup(data));
-    }
-    if (result) {
-      dispatch<any>(closeDialog());
+  async function handleSave(values: any) {
+    const isSuccess = await dispatch(upsertGroups(values));
+    if (isSuccess) {
+      dispatch(closeDialog());
     }
   }
 
-  if (data && ! unit) {
-    return null;
+  if ( !! data?.['uuid'] && inProcess) {
+    return (
+      <Loading />
+    );
   }
 
   return (
-    <div className={styles['wrapper']}>
-      <Form
-        initialValues={{ ...unit || {} }}
-        onSubmit={handleSubmit}
-      />
-    </div>
+    <Form
+      initialValues={group}
+      onSubmit={handleSave}
+    />
   );
 }
 

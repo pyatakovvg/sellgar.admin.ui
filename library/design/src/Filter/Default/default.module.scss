@@ -44,7 +44,7 @@
   color: $primary;
   text-decoration: underline;
   cursor: pointer;
-  transition: color 150ms;
+  transition: color $transition-duration;
 
   &:hover {
 

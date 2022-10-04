@@ -1,36 +1,30 @@
 
-import Dialog from '@package/dialog';
-import { Header } from '@library/kit';
-
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Field, getFormSyncErrors } from 'redux-form';
+import { Field, getFormValues } from 'redux-form';
 
 import Form from './Form';
-import Gallery from './Gallery';
+import Empty from './Empty';
 
-import cn from 'classnames';
 import styles from './default.module.scss';
 
 
 function Images() {
-  const errors: any = useSelector(getFormSyncErrors('modify')) || {};
-  const contentClassName = React.useMemo(() => cn(styles['content'], {
-    [styles['error']]: !! errors['gallery'],
-  }), [errors]);
+  const values = useSelector(getFormValues('modify'));
+
+  if ( ! values['images'].length) {
+    return (
+      <div className={styles['wrapper']}>
+        <Empty />
+      </div>
+    );
+  }
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['header']}>
-        <Header level={4}>Изображения</Header>
+      <div className={styles['content']}>
+        <Field name="images" component={Form} />
       </div>
-      <div className={contentClassName}>
-        <Field name="gallery" component={Form} />
-      </div>
-
-      <Dialog name={'gallery'}>
-        <Gallery />
-      </Dialog>
     </div>
   );
 }

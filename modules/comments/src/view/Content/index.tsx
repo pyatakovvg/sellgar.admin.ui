@@ -4,13 +4,14 @@ import { Text } from '@library/kit';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import Item from './Item';
 
-import { selectData } from '../../index';
+import { selectData } from '../../store/slice';
 
 import styles from './default.module.scss';
 
 
-function Users(): JSX.Element {
+function Content() {
   const data: Array<any> = useSelector(selectData);
 
   if ( ! data.length) {
@@ -22,14 +23,14 @@ function Users(): JSX.Element {
   }
 
   return (
-    <div>
-      {data.map((item: any): JSX.Element => (
+    <div className={styles['wrapper']}>
+      {data.map((item: any) => (
         <div key={item['uuid']} className={styles['item']}>
-
+          <Item {...item} />
         </div>
       ))}
     </div>
   );
 }
 
-export default Users;
+export default Content;

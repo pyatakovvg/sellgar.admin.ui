@@ -18,7 +18,7 @@ function Item({ data }: IProps): JSX.Element {
         <Text>{ data['name'] }</Text>
       </div>
       <div className={styles['content']}>
-        <Image src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + data['uuid']} />
+        <Image width={600} height={600} src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + data['uuid'] + '?width=600'} />
       </div>
     </div>
   );

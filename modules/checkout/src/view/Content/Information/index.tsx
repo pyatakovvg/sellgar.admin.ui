@@ -11,7 +11,7 @@ function Information({ delivery, payment, price, currency, customer }: any): JSX
   return (
     <div className={styles['wrapper']}>
       <div className={styles['header']}>
-        <Header level={4}>Информация</Header>
+        <Header level={3}>Информация</Header>
       </div>
       <div className={styles['content']}>
         <div className={styles['row']}>

@@ -1,45 +1,66 @@
 
-import { Header, Button } from '@library/kit';
+import { query } from '@helper/utils';
+import { Paging } from '@library/design';
+import { createCancelToken } from '@package/request';
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
+import Header from './Header';
 import Filter from './Filter';
 import Content from './Content';
 
-import { getComments, resetStateAction } from '../index';
+import { getComments } from '../store/commands';
+import { selectMeta, resetStateAction } from '../store/slice';
 
 import styles from './default.module.scss';
 
 
-function Products(): JSX.Element {
+function Comments() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const location = useLocation();
+
+  const meta = useSelector(selectMeta);
+
 
   React.useEffect(() => {
+    return () => {
+      dispatch(resetStateAction());
+    };
+  }, []);
+
+  React.useEffect(() => {
+    const cancel =  createCancelToken();
+    const search = query.toObject(location['search']);
+
     async function init() {
-      await dispatch<any>(getComments());
+      await dispatch(getComments(search, { cancel }));
     }
     init();
     return () => {
-      dispatch(resetStateAction());
+      cancel.cancel();
     }
-  }, []);
+  }, [location]);
 
   return (
     <section className={styles['wrapper']}>
       <header className={styles['header']}>
-        <Header level={2}>Комментарии</Header>
+        <Header />
       </header>
-      <aside className={styles['filter']}>
-        <Filter />
-      </aside>
       <section className={styles['content']}>
-        <Content />
+        <aside className={styles['filter']}>
+          <Filter />
+        </aside>
+        <div className={styles['list']}>
+          <Content />
+        </div>
+        <div className={styles['controls']}>
+          <Paging totalRows={meta['totalRows']} onChange={() => {}} />
+        </div>
       </section>
     </section>
   );
 }
 
-export default Products;
+export default Comments;

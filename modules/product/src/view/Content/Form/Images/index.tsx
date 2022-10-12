@@ -10,7 +10,7 @@ import styles from './default.module.scss';
 
 
 function Images() {
-  const values = useSelector(getFormValues('modify'));
+  const values = useSelector(getFormValues('modify')) as any;
 
   if ( ! values['images'].length) {
     return (

@@ -51,7 +51,7 @@ const slice = createSlice({
       state['inProcess'] = false;
     },
 
-    openGalleryAction(state, { payload }: PayloadAction<typeof initialState>) {
+    openGalleryAction(state, { payload }: PayloadAction<string>) {
       state['isOpen'] = true;
       state['name'] = payload;
     },
@@ -74,10 +74,10 @@ export const {
   getGalleryRequestSuccessAction,
 } = slice['actions'] as any;
 
-export const selectIsOpen = (state: IRootStore): Array<any> => state[REDUCER_NAME]['isOpen'];
-export const selectName = (state: IRootStore): Array<any> => state[REDUCER_NAME]['name'];
+export const selectIsOpen = (state: IRootStore): boolean => state[REDUCER_NAME]['isOpen'];
+export const selectName = (state: IRootStore): string => state[REDUCER_NAME]['name'];
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
-export const selectMeta = (state: IRootStore): Array<any> => state[REDUCER_NAME]['meta'];
+export const selectMeta = (state: IRootStore): any => state[REDUCER_NAME]['meta'];
 export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];
 
 export const name = slice['name'];

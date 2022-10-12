@@ -14,8 +14,8 @@ $border-radius-large: 12px;
 // FONT WEIGHT
 
 $font-weight-light: 300;
-$font-weight-medium: 500;
-$font-weight-bold: 800;
+$font-weight-medium: 600;
+$font-weight-bold: 700;
 
 
 // COLORS
@@ -60,7 +60,7 @@ $black:            #2C2C2C !default;
     box-shadow: -2px 0 2px 0 rgba($black, .06);
   }
   @else if ($direction == top) {
-    box-shadow: 0 -2px 2px 0 rgba($black, .1);
+    box-shadow: 0 -2px 2px 0 rgba($black, .06);
   }
   @else {
     @error "Unknown direction #{$direction}.";

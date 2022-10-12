@@ -103,6 +103,11 @@ echo 'Пакет "Profile"'
 echo '------------------------------------'
 cd ./profile && npx yarn build && yarn build:types
 
+echo '------------------------------------'
+echo 'Пакет "Gallery"'
+echo '------------------------------------'
+cd ../gallery && npx yarn build && yarn build:types
+
 
 echo '------------------------------------'
 echo '|        Сборка modules            |'
@@ -136,9 +141,9 @@ echo '------------------------------------'
 cd ../groups && npx yarn build && yarn build:types
 
 echo '------------------------------------'
-echo 'Модуль "Images"'
+echo 'Модуль "Gallery"'
 echo '------------------------------------'
-cd ../images && npx yarn build && yarn build:types
+cd ../gallery && npx yarn build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Main"'

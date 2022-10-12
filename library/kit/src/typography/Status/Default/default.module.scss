@@ -1,0 +1,48 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: inline-flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  align-items: center;
+  font-size: 12px;
+  font-weight: $font-weight-medium;
+  color: $gray-dark;
+
+  &:before {
+
+    display: block;
+    content: '';
+    width: 0;
+    height: 0;
+    border: 3px solid $gray-dark;
+    border-radius: 50%;
+    margin: 0 8px 0 0;
+  }
+}
+
+.mode {
+  &--danger {
+    color: $danger;
+    &:before {
+      border-color: $danger;
+    }
+  }
+
+  &--primary {
+    color: $primary;
+    &:before {
+      border-color: $primary;
+    }
+  }
+
+  &--success {
+    color: $success;
+    &:before {
+      border-color: $success;
+    }
+  }
+}

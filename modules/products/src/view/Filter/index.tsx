@@ -18,6 +18,7 @@ function Filter() {
   }, [location]);
 
   function handleSubmit(data: any) {
+    delete data['page'];
     navigate(query.toQuery(data));
   }
 

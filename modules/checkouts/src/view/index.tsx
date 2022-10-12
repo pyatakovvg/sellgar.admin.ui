@@ -1,42 +1,64 @@
 
-import { Header } from '@library/kit';
+import { query } from '@helper/utils';
+import { Paging } from '@library/design';
+import { createCancelToken } from '@package/request';
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
+import Header from './Header';
 import Filter from './Filter';
 import Content from './Content';
 
-import { getOrders, resetStateAction } from '../index';
+import { getOrders } from '../store/commands';
+import { resetStateAction, selectMeta } from '../store/slice';
 
 import styles from './default.module.scss';
 
 
-function Products(): JSX.Element {
+function Products() {
+  const location = useLocation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  const meta = useSelector(selectMeta);
+
 
   React.useEffect(() => {
-    async function init() {
-      await dispatch<any>(getOrders());
-    }
-    init();
     return () => {
       dispatch(resetStateAction());
     }
   }, []);
 
+  React.useEffect(() => {
+    const cancelOrders = createCancelToken();
+
+    async function init() {
+      const search = query.toObject(location['search']);
+
+      await dispatch<any>(getOrders(search, { token: cancelOrders.token }));
+    }
+    init();
+    return () => {
+      cancelOrders.cancel();
+    };
+  }, [location]);
+
   return (
     <section className={styles['wrapper']}>
       <header className={styles['header']}>
-        <Header level={2}>Заказы</Header>
+        <Header />
       </header>
-      <aside className={styles['filter']}>
-        <Filter />
-      </aside>
       <section className={styles['content']}>
-        <Content />
+        <aside className={styles['filter']}>
+          <Filter />
+        </aside>
+        <div className={styles['list']}>
+          <Content />
+        </div>
+        <div className={styles['controls']}>
+          <Paging totalRows={meta['totalRows']} onChange={() => {}} />
+        </div>
       </section>
     </section>
   );

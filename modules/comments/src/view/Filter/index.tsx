@@ -5,12 +5,12 @@ import { nounDeclension } from '@helper/utils';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectMeta } from '../../index';
+import { selectMeta } from '../../store/slice';
 
 import styles from './default.module.scss';
 
 
-function Users(): JSX.Element {
+function Filter() {
   const meta: any = useSelector(selectMeta);
   const totalRows = meta?.['totalRows'] ?? 0;
 
@@ -21,4 +21,4 @@ function Users(): JSX.Element {
   );
 }
 
-export default Users;
+export default Filter;

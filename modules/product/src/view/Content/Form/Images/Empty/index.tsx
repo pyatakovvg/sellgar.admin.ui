@@ -1,5 +1,5 @@
 
-import { openDialog } from "@package/dialog";
+import { openGallery } from "@widget/gallery";
 import { Button, Text } from '@library/kit';
 
 import React from 'react';
@@ -12,7 +12,7 @@ function Empty() {
   const dispatch = useDispatch();
 
   function handleAddImages() {
-    dispatch<any>(openDialog('gallery'));
+    dispatch<any>(openGallery('gallery'));
   }
 
   return (

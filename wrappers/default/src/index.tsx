@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 
 import Menu from './Menu';
 import Header from './Header';
+import Profile from './Profile';
 
 import styles from './@media/index.module.scss';
 
@@ -36,7 +37,10 @@ function NavigateWrapper({ children }: IProps): JSX.Element {
         <header className={styles['header']}>
           <Header />
         </header>
-        <menu>
+        <div className={styles['profile']}>
+          <Profile />
+        </div>
+        <menu className={styles['menu']}>
           <Menu items={config['navigate']} />
         </menu>
       </aside>

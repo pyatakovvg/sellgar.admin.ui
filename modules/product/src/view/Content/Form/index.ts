@@ -43,6 +43,18 @@ function validate(value: any) {
     }
   }
 
+  if ('price' in value) {
+    if ( ! value['price']) {
+      errors['price'] = 'Необходимо заполнить';
+    }
+  }
+
+  if ('purchasePrice' in value) {
+    if ( ! value['purchasePrice']) {
+      errors['purchasePrice'] = 'Необходимо заполнить';
+    }
+  }
+
   if (value['attributes'] && !! value['attributes'].length) {
     const groupArrayErrors: Array<any> = [];
 
@@ -53,7 +65,7 @@ function validate(value: any) {
         groupErrors['name'] = 'Необходимо заполнить';
         groupArrayErrors[index] = groupErrors;
       }
-console.log(attr['values'])
+
       if (attr['values'] && !! attr['values'].length) {
         const valueArrayErrors: Array<any> = [];
 

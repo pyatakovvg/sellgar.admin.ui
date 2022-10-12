@@ -11,6 +11,7 @@ export {
 } from './store/commands';
 
 export {
+  selectData,
   selectInProcess,
   getProfileRequestSuccessAction
 } from './store/slice';

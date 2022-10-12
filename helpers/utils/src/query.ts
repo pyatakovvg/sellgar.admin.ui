@@ -1,10 +1,48 @@
 
+interface IParams {
+  [key: string]: any;
+}
+
+
+function normalizeParam(param: any): any {
+  if (/^\d+$/ig.test(param)) {
+    return Number(param);
+  }
+  else if (/^true$/.test(param)) {
+    return true;
+  }
+  else if (/^false$/.test(param)) {
+    return false;
+  }
+  else if (/^null$/.test(param)) {
+    return null;
+  }
+  else if (param instanceof Array) {
+    for (let index in param) {
+      param[index] = normalizeParam(param[index]);
+    }
+    return param;
+  }
+  return param;
+}
+
+function normalizeParams(params: IParams): IParams {
+  const newParams: any = {};
+
+  for (let paramKey in params) {
+    const param = params[paramKey];
+    newParams[paramKey] = normalizeParam(param);
+  }
+
+  return newParams;
+}
+
 const withURLSearchParams = (query: string) => {
   const searchURL: any = new URLSearchParams(query as string);
   const entries = searchURL.entries();
 
-  let params: any = {};
   let result = null;
+  let params: IParams = {};
 
   do {
     result = entries.next();
@@ -25,50 +63,22 @@ const withURLSearchParams = (query: string) => {
   }
   while( ! result?.['done']);
 
-  // for (const [index, num] of ) {
-  //   console.log(index, num)
-  //   // if ( !! param[1]) {
-  //   //   let paramValue = param[1];
-  //   //   if (/^\d{1,16}$/.test(paramValue)) {
-  //   //     paramValue = Number(paramValue);
-  //   //   } else if (/^\d+$/.test(paramValue)) {
-  //   //     paramValue = Number(paramValue);
-  //   //   } else if (/^([0])+|([0]\w)+$/.test(paramValue)) {
-  //   //     paramValue = String(paramValue);
-  //   //   } else if (/^(true)$/.test(paramValue)) {
-  //   //     paramValue = true;
-  //   //   } else if (/^(false)$/.test(paramValue)) {
-  //   //     paramValue = false;
-  //   //   }
-  //   //   params[param[0]] = paramValue;
-  //   // }
-  // }
-  return params;
+  return normalizeParams(params);
 };
 
-const withoutURLSearchParams = (query: string) => {
-  const search = query.substring(1);
-  return JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
-};
-
-export const toObject = (query: string, options = { encoding: true }) => {
+export const toObject = (query: string) => {
   if ( ! query) {
     return {};
   }
-  if (options['encoding']) {
-    return withURLSearchParams(query.replace(/[?]/g, ''));
-  }
-  return withoutURLSearchParams(query.replace(/[?]/g, ''));
+  return withURLSearchParams(query.replace(/[?]/g, ''));
 };
 
-export const toQuery = (object: any) => {
+export const toQuery = (params: IParams) => {
   let query: any = {};
-  for (let key in object) {
-    if (object.hasOwnProperty(key)) {
-      const value = object[key];
-      if ( !! value) {
-        query[key] = value;
-      }
+  for (let key in params) {
+    const value = params[key];
+    if ( !! value) {
+      query[key] = value;
     }
   }
   const searchURL = new URLSearchParams(query);

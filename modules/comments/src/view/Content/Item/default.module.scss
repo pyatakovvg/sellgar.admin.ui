@@ -1,0 +1,29 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: block;
+}
+
+.content {
+
+  display: block;
+}
+
+.children {
+
+  display: block;
+  margin: 16px 0 0 24px;
+}
+
+.item {
+
+  display: block;
+
+  & + & {
+
+    margin: 16px 0 0;
+  }
+}

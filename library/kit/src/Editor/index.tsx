@@ -44,6 +44,9 @@ function EditorHTML({ value, onFocus, onChange, onBlur }: IProps) {
     },
   });
 
+  if ( ! editor) {
+    return null;
+  }
 
   return (
     <div className={styles['wrapper']}>

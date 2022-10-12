@@ -23,6 +23,7 @@ interface IProps {
   image: IImage,
   code: string;
   name: string;
+  group: any;
   description: string;
 }
 

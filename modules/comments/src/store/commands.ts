@@ -8,13 +8,19 @@ import {
 } from './slice';
 
 
-export const getComments = () => async (dispatch: any): Promise<any> => {
+export const getComments = (search: any, options: any): any => async (dispatch: any) => {
   try {
     dispatch(getCommentsRequestAction());
 
     const result = await request({
       url: '/api/v1/comments',
       method: 'get',
+      cancelToken: options['cancel']['token'],
+      params: {
+        ...search,
+        take: Number(process.env['REACT_APP_TAKE_ROWS']),
+        skip: (Number(search['page'] ?? 1) - 1) * Number(process.env['REACT_APP_TAKE_ROWS']),
+      },
     });
 
     dispatch(getCommentsRequestSuccessAction(result));

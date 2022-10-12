@@ -24,7 +24,7 @@ const initialState = {
   categories: [],
   brands: [],
   data: [],
-  meta: null,
+  meta: {},
   inProcess: false,
   inUploadProcess: false,
 };
@@ -39,7 +39,7 @@ const slice = createSlice({
       state['categories'] = [];
       state['brands'] = [];
       state['data'] = [];
-      state['meta'] = null;
+      state['meta'] = {};
       state['inProcess'] = false;
       state['inUploadProcess'] = false;
     },
@@ -132,7 +132,7 @@ export const selectGroups = (state: IRootStore): Array<any> => state[REDUCER_NAM
 export const selectCategories = (state: IRootStore): Array<any> => state[REDUCER_NAME]['categories'];
 export const selectBrands = (state: IRootStore): Array<any> => state[REDUCER_NAME]['brands'];
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
-export const selectMeta = (state: IRootStore): Array<any> => state[REDUCER_NAME]['meta'];
+export const selectMeta = (state: IRootStore): any => state[REDUCER_NAME]['meta'];
 export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];
 export const selectInUploadProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inUploadProcess'];
 

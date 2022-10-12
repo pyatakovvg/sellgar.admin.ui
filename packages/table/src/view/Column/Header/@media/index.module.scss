@@ -1,0 +1,34 @@
+
+@import "~@library/theme";
+
+
+th {
+
+  vertical-align: bottom;
+}
+
+.content {
+
+  display: block;
+  font-size: 9px;
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  padding: 16px;
+  color: $black;
+  letter-spacing: .5px;
+}
+
+.left {
+
+  text-align: left;
+}
+
+.right {
+
+  text-align: right;
+}
+
+.center {
+
+  text-align: center;
+}

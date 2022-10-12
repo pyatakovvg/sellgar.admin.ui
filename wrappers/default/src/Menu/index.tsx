@@ -11,14 +11,12 @@ interface IProps {
 }
 
 
-function Menu({ items }: IProps): JSX.Element {
+function Menu({ items }: IProps) {
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['menu']}>
-        {items.map((item: any, index: number) => (
-          <Item key={index} {...item} />
-        ))}
-      </div>
+      {items.map((item: any, index: number) => (
+        <Item key={index} {...item} />
+      ))}
     </div>
   );
 }

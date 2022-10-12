@@ -1,0 +1,14 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: table;
+}
+
+.header {
+
+  display: table-header-group;
+  background: $gray-light;
+}

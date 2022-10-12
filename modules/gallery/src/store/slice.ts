@@ -81,7 +81,7 @@ const slice = createSlice({
     deleteImagesRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    deleteImagesRequestSuccessAction(state: IState, { payload }: IData) {
+    deleteImagesRequestSuccessAction(state: IState, { payload }: any) {
       state['data'] = state['data'].filter((item) => item['uuid'] !== payload['uuid']);
       state['inUploadProcess'] = false;
     },
@@ -106,7 +106,7 @@ export const {
   deleteImagesRequestAction,
   deleteImagesRequestFailAction,
   deleteImagesRequestSuccessAction,
-} = slice['actions'];
+} = slice['actions'] as any;
 
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
 export const selectFolders = (state: IRootStore): Array<any> => state[REDUCER_NAME]['folders'];

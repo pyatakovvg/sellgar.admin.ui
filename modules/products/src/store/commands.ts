@@ -47,15 +47,18 @@ export const createProduct = () => async (dispatch: any): Promise<any> => {
   }
 };
 
-export const getProducts = (search: any) => async (dispatch: any): Promise<any> => {
+export const getProducts = (search: any, options: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getProductsRequestAction());
-console.log(search)
+
     const result = await request({
       url: '/api/v1/products',
       method: 'get',
+      cancelToken: options['token'],
       params: {
         ...search,
+        take: Number(process.env['REACT_APP_TAKE_ROWS']),
+        skip: (Number(search['page'] ?? 1) - 1) * Number(process.env['REACT_APP_TAKE_ROWS']),
       },
     });
 
@@ -85,13 +88,14 @@ export const updateProduct = (uuid: string, data: any) => async (dispatch: any):
   }
 };
 
-export const getGroups = () => async (dispatch: any): Promise<any> => {
+export const getGroups = (options: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getGroupsRequestAction());
 
     const result = await request({
       url: '/api/v1/groups',
       method: 'get',
+      cancelToken: options['token'],
     });
 
     dispatch(getGroupsRequestSuccessAction(result['data']));
@@ -102,16 +106,14 @@ export const getGroups = () => async (dispatch: any): Promise<any> => {
   }
 };
 
-export const getCategories = (groupUuid?: string) => async (dispatch: any): Promise<any> => {
+export const getCategories = (options: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getCategoriesRequestAction());
 
     const result = await request({
       url: '/api/v1/categories',
       method: 'get',
-      params: {
-        groupUuid,
-      }
+      cancelToken: options['token'],
     });
 
     dispatch(getCategoriesRequestSuccessAction(result['data']));
@@ -122,13 +124,14 @@ export const getCategories = (groupUuid?: string) => async (dispatch: any): Prom
   }
 };
 
-export const getBrands = () => async (dispatch: any): Promise<any> => {
+export const getBrands = (options: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getBrandsRequestAction());
 
     const result = await request({
       url: '/api/v1/brands',
       method: 'get',
+      cancelToken: options['token'],
     });
 
     dispatch(getBrandsRequestSuccessAction(result['data']));

@@ -21,8 +21,17 @@ function Price({ inProcess }: IProps) {
     <div className={styles['wrapper']}>
       <div className={styles['price']}>
         <InputField
-          label={'Цена'}
+          required
+          label={'Цена продажи'}
           name={'price'}
+          disabled={inProcess}
+        />
+      </div>
+      <div className={styles['price']}>
+        <InputField
+          required
+          label={'Цена закупки'}
+          name={'purchasePrice'}
           disabled={inProcess}
         />
       </div>

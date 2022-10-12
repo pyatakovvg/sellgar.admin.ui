@@ -1,0 +1,43 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: block;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 10px 0 0;
+  background: $white;
+  border-radius: 8px;
+  padding: 40px 50px;
+}
+
+.fields {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+
+  & + & {
+
+    margin: 16px 0 0;
+  }
+}
+
+.field {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+
+  & + & {
+
+    margin: 16px 0 0;
+  }
+}

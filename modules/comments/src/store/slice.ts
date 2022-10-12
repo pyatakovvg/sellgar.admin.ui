@@ -18,7 +18,7 @@ interface IState {
 
 const initialState = {
   data: [],
-  meta: null,
+  meta: {},
   inProcess: false,
   inUploadProcess: false,
 };
@@ -30,7 +30,7 @@ const slice = createSlice({
   reducers: {
     resetStateAction(state: IState) {
       state['data'] = [];
-      state['meta'] = null;
+      state['meta'] = {};
       state['inProcess'] = false;
       state['inUploadProcess'] = false;
     },
@@ -55,10 +55,10 @@ export const {
   getCommentsRequestAction,
   getCommentsRequestFailAction,
   getCommentsRequestSuccessAction,
-} = slice['actions'];
+} = slice['actions'] as any;
 
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
-export const selectMeta = (state: IRootStore): Array<any> => state[REDUCER_NAME]['meta'];
+export const selectMeta = (state: IRootStore): any => state[REDUCER_NAME]['meta'];
 export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];
 export const selectInUploadProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inUploadProcess'];
 

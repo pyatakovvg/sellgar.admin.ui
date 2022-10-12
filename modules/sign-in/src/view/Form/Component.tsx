@@ -15,7 +15,7 @@ function Form({ handleSubmit }: IProps): JSX.Element {
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>
       <div className={styles['header']}>
-        <Header level={4}>Авторизация</Header>
+        <Header level={3}>Авторизация</Header>
       </div>
       <div className={styles['fields']}>
         <div className={styles['field']}>

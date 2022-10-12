@@ -21,7 +21,7 @@ import {
 } from './slice';
 
 
-export const getFolders = (uuid: string = undefined) => async (dispatch: any): Promise<any> => {
+export const getFolders = (uuid: string): any => async (dispatch: any) => {
   try {
     dispatch(getFoldersRequestAction());
 
@@ -41,7 +41,7 @@ export const getFolders = (uuid: string = undefined) => async (dispatch: any): P
   }
 };
 
-export const getImages = (folderUuid: string = undefined) => async (dispatch: any): Promise<any> => {
+export const getImages = (folderUuid: string): any => async (dispatch: any) => {
   try {
     dispatch(getImagesRequestAction());
 
@@ -61,7 +61,7 @@ export const getImages = (folderUuid: string = undefined) => async (dispatch: an
   }
 };
 
-export const uploadImages = (data: any) => async (dispatch: any): Promise<any> => {
+export const uploadImages = (data: any): any => async (dispatch: any) => {
   try {
     dispatch(createImagesRequestAction());
 
@@ -80,7 +80,7 @@ export const uploadImages = (data: any) => async (dispatch: any): Promise<any> =
   }
 };
 
-export const deleteImages = (uuid: string) => async (dispatch: any): Promise<any> => {
+export const deleteImages = (uuid: string): any => async (dispatch: any) => {
   try {
     dispatch(deleteImagesRequestAction());
 

@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "@package/moment": "0.0.1",
-    "@package/numeral": "0.0.1"
+    "@package/numeral": "0.0.1",
+    "@package/table": "0.0.1"
   },
   "peerDependencies": {
     "react": "18.2.0",

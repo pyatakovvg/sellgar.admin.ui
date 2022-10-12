@@ -48,6 +48,7 @@
 
   h3 {
 
+    display: block;
     font-size: 18px;
     font-weight: $font-weight-medium;
 
@@ -57,20 +58,42 @@
   }
 
   p {
+
+    display: block;
     font-size: 13px;
     line-height: 1.4;
+    font-weight: $font-weight-light;
 
     & + p {
-      margin: 16px 0 0;
+      margin: 8px 0 0;
     }
 
     & + h3 {
       margin: 24px 0 0;
     }
+
+    & + ul {
+      margin: 16px 0 0;
+    }
+  }
+
+  ul {
+
+    display: block;
+    padding: 0 0 0 17px;
+  }
+
+  li {
+
+    list-style: disc;
+    
+    & + li {
+      margin: 16px 0 0;
+    }
   }
 
   strong {
-    font-weight: $font-weight-bold;
+    font-weight: $font-weight-medium;
   }
 
   em {

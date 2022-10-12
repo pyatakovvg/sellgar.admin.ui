@@ -16,7 +16,7 @@ import styles from './default.module.scss';
 
 function Users(): JSX.Element {
   const dispatch = useDispatch();
-  const params = useParams();
+  const params = useParams() as any;
 
   React.useEffect(() => {
     async function init() {

@@ -12,7 +12,7 @@ function Products({ products }: any): JSX.Element {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['header']}>
-        <Header level={4}>Товары</Header>
+        <Header level={3}>Товары</Header>
       </div>
       <div className={styles['content']}>
         <div className={styles['container']}>

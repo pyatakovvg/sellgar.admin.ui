@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import Table from './Table';
 import Empty from './Empty';
 
-import { selectData } from '../../index';
+import { selectData } from '../../store/slice';
 
 
 function Products() {

@@ -12,7 +12,7 @@ import {
 } from './slice';
 
 
-export const getGallery = (params: any) => async (dispatch: Dispatch): Promise<void> => {
+export const getGallery = (params: any): any => async (dispatch: Dispatch) => {
   try {
     dispatch(getGalleryRequestAction());
 
@@ -32,10 +32,10 @@ export const getGallery = (params: any) => async (dispatch: Dispatch): Promise<v
   }
 };
 
-export const openGallery = (name: string) => (dispatch: Dispatch<any>): void => {
+export const openGallery = (name: string): any => (dispatch: Dispatch) => {
   dispatch(openGalleryAction(name));
 };
 
-export const closeGallery = () => (dispatch: Dispatch<any>): void => {
+export const closeGallery = (): any => (dispatch: Dispatch) => {
   dispatch(closeGalleryAction());
 };

@@ -15,7 +15,7 @@ import type { AxiosRequestConfig, CancelTokenSource } from "axios";
 
 
 interface IConfig {
-  baseUrl: string | undefined;
+  baseUrl: string;
 }
 
 

@@ -1,0 +1,36 @@
+
+@import "~@library/theme";
+
+
+td {
+
+  height: 100%;
+  vertical-align: top;
+  overflow: auto;
+
+  &:first-child {
+    .content {
+      padding-left: 0;
+    }
+  }
+
+  &:last-child {
+    .content {
+      padding-right: 0;
+    }
+  }
+}
+
+.col {
+
+  display: block;
+  overflow: auto;
+}
+
+.content {
+
+  display: block;
+  height: 100%;
+  padding: 16px;
+  overflow: auto;
+}

@@ -5,7 +5,8 @@ import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectInProcess, createProduct } from '../../index';
+import { selectInProcess } from '../../store/slice';
+import { createProduct } from '../../store/commands';
 
 import styles from './default.module.scss';
 

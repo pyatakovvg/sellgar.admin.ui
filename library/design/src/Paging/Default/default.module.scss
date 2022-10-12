@@ -1,0 +1,27 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: inline-flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
+.prev {
+
+  display: block;
+}
+
+.content {
+
+  display: block;
+  margin: 3px 24px 0;
+}
+
+.next {
+
+  display: block;
+}

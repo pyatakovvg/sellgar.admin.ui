@@ -1,0 +1,17 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: block;
+  font-size: 14px;
+  color: $black;
+  cursor: pointer;
+}
+
+.is-active {
+
+  color: $primary;
+  text-decoration: underline;
+}

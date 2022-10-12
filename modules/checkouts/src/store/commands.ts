@@ -12,13 +12,17 @@ import {
 } from './slice';
 
 
-export const getOrders = () => async (dispatch: any): Promise<any> => {
+export const getOrders = (search: any, options: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getOrdersRequestAction());
 
     const result = await request({
       url: '/api/v1/checkouts',
       method: 'get',
+      params: {
+        ...search,
+      },
+      cancelToken: options['token'],
     });
 
     dispatch(getOrdersRequestSuccessAction(result));

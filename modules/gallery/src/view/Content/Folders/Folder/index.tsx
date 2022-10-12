@@ -41,7 +41,7 @@ function Folder({ uuid, name, foldersCount, imagesCount }: IProps): JSX.Element 
         <Text>{ name }</Text>
       </div>
       <div className={styles['control']}>
-        <span className={iconClassName} onClick={() => handleDelete(uuid)} />
+        <span className={iconClassName} onClick={() => handleDelete()} />
       </div>
     </div>
   );

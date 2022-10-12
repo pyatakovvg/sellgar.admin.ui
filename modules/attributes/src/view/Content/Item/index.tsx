@@ -22,6 +22,8 @@ interface IProps {
   image: IImage,
   code: string;
   name: string;
+  category: any;
+  unit: any;
   description: string;
 }
 

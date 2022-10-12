@@ -10,11 +10,33 @@
   overflow: auto;
 }
 
+.aside {
+
+  display: block;
+  width: 220px;
+  background: $black;
+  padding: 24px;
+  box-sizing: border-box;
+  z-index: 20;
+}
+
 .header {
 
   display: block;
   background: $black;
   z-index: 20;
+}
+
+.profile {
+
+  display: block;
+  margin: 32px 0 0;
+}
+
+.menu {
+
+  display: block;
+  margin: 64px 0 0;
 }
 
 .content {
@@ -25,14 +47,6 @@
   background: $gray-light;
   overflow: hidden;
   z-index: 10;
-}
-
-.aside {
-
-  display: block;
-  width: 220px;
-  background: $black;
-  z-index: 20;
 }
 
 .module {

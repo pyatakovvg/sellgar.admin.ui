@@ -10,7 +10,7 @@ function Information({ description }: any): JSX.Element {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['header']}>
-        <Header level={4}>Дополнительно</Header>
+        <Header level={3}>Дополнительно</Header>
       </div>
       <div className={styles['content']}>
         <div className={styles['row']}>

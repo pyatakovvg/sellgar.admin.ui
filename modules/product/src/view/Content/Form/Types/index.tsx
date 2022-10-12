@@ -5,8 +5,6 @@ import React from 'react';
 import { getFormValues, change } from 'redux-form';
 import { useSelector, useDispatch } from "react-redux";
 
-import Price from './Price';
-import ExternalId from './ExternalId';
 import { getCategories, getAttributes } from '../../../../store/commands';
 import { selectGroups, selectCategories, selectBrands, selectInProcess } from "../../../../index";
 
@@ -79,8 +77,6 @@ function Types() {
               onChange={handleResetAttributes}
             />
           </div>
-        </div>
-        <div className={styles['fields']}>
           <div className={styles['field']}>
             <SelectField
               required
@@ -93,23 +89,29 @@ function Types() {
               disabled={inProcess}
             />
           </div>
+        </div>
+        <div className={styles['fields']}>
           <div className={styles['field']}>
             <InputField
               required
-              name={'title'}
-              label={'Название'}
+              name={'vendor'}
+              label={'Артикул'}
               maxLength={256}
               disabled={inProcess}
             />
           </div>
-        </div>
-        <div className={styles['fields']}>
           <div className={styles['field']}>
-            <ExternalId inProcess={inProcess} />
+            <InputField
+              required
+              name={'barcode'}
+              label={'Штрихкод'}
+              maxLength={256}
+              disabled={inProcess}
+            />
           </div>
-          <div className={styles['field']}>
-            <Price inProcess={inProcess} />
-          </div>
+          {/*<div className={styles['field']}>*/}
+          {/*  <Price inProcess={inProcess} />*/}
+          {/*</div>*/}
         </div>
       </div>
     </div>

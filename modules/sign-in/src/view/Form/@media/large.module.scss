@@ -8,9 +8,10 @@
   flex-direction: column;
   flex: 0 0;
   background: $white;
-  padding: 56px 48px 56px;
-  border-radius: 16px;
-  width: 320px;
+  padding: 40px 72px;
+  border-radius: $border-radius-medium;
+  width: 400px;
+  box-sizing: border-box;
 }
 
 .header {

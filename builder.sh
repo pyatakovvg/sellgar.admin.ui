@@ -69,6 +69,11 @@ echo 'Пакет "Moment"'
 echo '------------------------------------'
 cd ../moment && npx yarn build && yarn build:types
 
+echo '------------------------------------'
+echo 'Пакет "Table"'
+echo '------------------------------------'
+cd ../table && npx yarn build && yarn build:types
+
 
 echo '------------------------------------'
 echo '|        Сборка wrappers           |'

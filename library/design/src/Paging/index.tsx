@@ -6,9 +6,7 @@ import Default from './Default';
 
 interface IProps {
   type?: 'default';
-  page: number;
   totalRows: number;
-  onChange(page: number): void;
 }
 
 

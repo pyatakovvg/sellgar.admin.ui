@@ -57,7 +57,7 @@ function Products() {
           <Content />
         </div>
         <div className={styles['controls']}>
-          <Paging totalRows={meta['totalRows']} onChange={() => {}} />
+          <Paging totalRows={meta?.['totalRows'] ?? 0} />
         </div>
       </section>
     </section>

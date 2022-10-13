@@ -14,7 +14,11 @@
     "build": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --extensions '.ts,.tsx,.js,.jsx' --copy-files --no-copy-ignored",
     "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@package/dialog": "0.0.1",
+    "@widget/gallery": "0.0.1",
+    "@library/kit": "0.0.1"
+  },
   "peerDependencies": {
     "react": "18.2.0",
     "react-router-dom": "6.3.0"

@@ -1,5 +1,6 @@
 
-import { Header, Button, ImageField, InputField, TextareaField } from '@library/kit';
+import { ImageField } from '@widget/gallery';
+import { Header, Button, InputField, TextareaField } from '@library/kit';
 
 import React from 'react';
 import { useSelector } from 'react-redux';

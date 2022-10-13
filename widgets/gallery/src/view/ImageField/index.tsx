@@ -1,13 +1,13 @@
 
-import Gallery, { openGallery, closeGallery } from '@widget/gallery';
+import { Image, BaseField } from '@library/kit';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Field, WrappedFieldProps } from 'redux-form';
 
 import Empty from './Empty';
-import BaseField from '../BaseField';
-import Image from '../../symbols/Image';
+import Gallery from '../index';
+import { openGallery, closeGallery } from '../../store/commands';
 
 import cn from 'classnames';
 import styles from './@media/index.module.scss';

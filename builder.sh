@@ -29,9 +29,6 @@ echo 'Библиотека "kit"'
 echo '------------------------------------'
 cd ../kit && npx yarn build && yarn build:types
 
-#echo 'Библиотека "design"'
-#echo '------------------------------------'
-#cd ../design && npx yarn build && yarn build:types
 
 
 echo '------------------------------------'
@@ -75,6 +72,7 @@ echo '------------------------------------'
 cd ../table && npx yarn build && yarn build:types
 
 
+
 echo '------------------------------------'
 echo '|        Сборка wrappers           |'
 echo '------------------------------------'
@@ -112,6 +110,14 @@ echo '------------------------------------'
 echo 'Пакет "Gallery"'
 echo '------------------------------------'
 cd ../gallery && npx yarn build && yarn build:types
+
+
+
+echo '------------------------------------'
+echo 'Библиотека "design"'
+echo '------------------------------------'
+cd ../../library/design && npx yarn build && yarn build:types
+
 
 
 echo '------------------------------------'

@@ -1,6 +1,7 @@
 
 import { query } from '@helper/utils';
-import { Header, Button, SelectField, ImageField, InputField, TextareaField } from '@library/kit';
+import { ImageField } from '@widget/gallery';
+import { Header, Button, SelectField, InputField, TextareaField } from '@library/kit';
 
 import React from 'react';
 import { change } from 'redux-form';

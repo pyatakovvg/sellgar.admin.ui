@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Header from './Header';
 import Content from './Content';
 
 import { getOrder, resetStateAction, selectData } from '../index';
@@ -10,7 +11,7 @@ import { getOrder, resetStateAction, selectData } from '../index';
 import styles from './default.module.scss';
 
 
-function Products(): JSX.Element | null {
+function Checkout() {
   const params: any = useParams();
   const dispatch = useDispatch();
 
@@ -31,12 +32,15 @@ function Products(): JSX.Element | null {
   }
 
   return (
-    <section className={styles['wrapper']}>
-      <section className={styles['content']}>
+    <div className={styles['wrapper']}>
+      <div className={styles['header']}>
+        <Header />
+      </div>
+      <div className={styles['content']}>
         <Content />
-      </section>
-    </section>
+      </div>
+    </div>
   );
 }
 
-export default Products;
+export default Checkout;

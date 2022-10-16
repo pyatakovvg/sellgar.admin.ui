@@ -16,10 +16,10 @@ function Information({ delivery, payment, price, currency, customer }: any): JSX
       <div className={styles['content']}>
         <div className={styles['row']}>
           <div className={styles['col']}>
-            <Metric label={'Способ доставки'}>{ delivery?.['displayName'] ?? '---' }</Metric>
+            <Metric label={'Способ доставки'}>{ delivery?.['name'] ?? '---' }</Metric>
           </div>
           <div className={styles['col']}>
-            <Metric label={'Способ оплаты'}>{ payment?.['displayName'] ?? '---' }</Metric>
+            <Metric label={'Способ оплаты'}>{ payment?.['name'] ?? '---' }</Metric>
           </div>
           <div className={styles['col']}>
             <Metric label={'Сумма к оплате'}>{ numeral(price).format() } { currency?.['displayName'] }</Metric>

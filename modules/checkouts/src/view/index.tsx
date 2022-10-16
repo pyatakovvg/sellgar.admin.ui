@@ -11,21 +11,31 @@ import Header from './Header';
 import Filter from './Filter';
 import Content from './Content';
 
-import { getOrders } from '../store/commands';
 import { resetStateAction, selectMeta } from '../store/slice';
+import { getOrders, getStatuses, getDelivery, getPayments } from '../store/commands';
 
 import styles from './default.module.scss';
 
 
-function Products() {
+function Checkouts() {
   const location = useLocation();
   const dispatch = useDispatch();
 
   const meta = useSelector(selectMeta);
 
-
   React.useEffect(() => {
+    const cancelStatuses = createCancelToken();
+    const cancelDelivery = createCancelToken();
+    const cancelPayments = createCancelToken();
+
+    dispatch(getStatuses({ token: cancelStatuses.token }));
+    dispatch(getDelivery({ token: cancelDelivery.token }));
+    dispatch(getPayments({ token: cancelPayments.token }));
+
     return () => {
+      cancelStatuses.cancel();
+      cancelDelivery.cancel();
+      cancelPayments.cancel();
       dispatch(resetStateAction());
     }
   }, []);
@@ -64,4 +74,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Checkouts;

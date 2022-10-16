@@ -8,7 +8,7 @@ import Item from './Item';
 import styles from './default.module.scss';
 
 
-function Products({ products }: any): JSX.Element {
+function Products({ products }: any) {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['header']}>

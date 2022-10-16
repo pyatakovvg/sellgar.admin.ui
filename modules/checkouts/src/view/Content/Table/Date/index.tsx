@@ -17,7 +17,7 @@ function Item({ createdAt, updatedAt }: IProps) {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['field']}>
-        <Text type={'strong'}>{ moment(updatedAt).format('DD.MM.YYYY - HH:mm') }</Text>
+        <Text>{ moment(updatedAt).format('DD.MM.YYYY - HH:mm') }</Text>
       </div>
       <div className={styles['field']}>
         <Text type={'description'}>{ moment(createdAt).format('DD.MM.YYYY - HH:mm') }</Text>

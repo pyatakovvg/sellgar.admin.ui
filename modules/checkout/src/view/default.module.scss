@@ -7,8 +7,14 @@
   display: flex;
   flex-direction: column;
   flex: 1 0;
-  padding: 40px 40px 80px;
-  max-width: 900px;
+  overflow: auto;
+}
+
+.header {
+
+  display: block;
+  height: 70px;
+  z-index: 20;
 }
 
 .content {
@@ -16,4 +22,7 @@
   display: flex;
   flex-direction: column;
   flex: 1 0;
+  padding: 40px 40px 80px;
+  overflow: auto;
+  z-index: 10;
 }

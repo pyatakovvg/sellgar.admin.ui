@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
 import Date from './Date';
+import Info from './Info';
 import Price from './Price';
 import Status from './Status';
 import ExternalId from './ExternalId';
@@ -34,8 +35,11 @@ function Table1() {
           <Column title={'Дата'} align={'left'} width={160}>
             <Date />
           </Column>
-          <Column title={'Номер'} align={'left'} width={140}>
+          <Column title={'Номер'} align={'left'} width={260}>
             <ExternalId />
+          </Column>
+          <Column title={'Дополнительно'} align={'left'}>
+            <Info />
           </Column>
           <Column title={'Сумма'} align={'right'}>
             <Price />

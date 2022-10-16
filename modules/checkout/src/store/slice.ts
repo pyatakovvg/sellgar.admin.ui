@@ -51,7 +51,7 @@ export const {
   getOrderRequestAction,
   getOrderRequestFailAction,
   getOrderRequestSuccessAction,
-} = slice['actions'];
+} = slice['actions'] as any;
 
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
 export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];

@@ -13,7 +13,7 @@ import { selectData } from '../../index';
 import styles from './default.module.scss';
 
 
-function Content(): JSX.Element {
+function Content() {
   const data: any = useSelector(selectData);
 
   return (

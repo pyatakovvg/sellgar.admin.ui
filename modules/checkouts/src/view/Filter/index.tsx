@@ -1,24 +1,37 @@
 
-import { Text } from '@library/kit';
-import { nounDeclension } from '@helper/utils';
+import { query } from '@helper/utils';
 
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-import { selectMeta } from '../../index';
+import Form from './Form';
 
 import styles from './default.module.scss';
 
 
-function Users(): JSX.Element {
-  const meta: any = useSelector(selectMeta);
-  const totalRows = meta?.['totalRows'] ?? 0;
+function Filter() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const search = React.useMemo(() => {
+    return query.toObject(location['search']);
+  }, [location]);
+
+  function handleSubmit(data: any) {
+    delete data['page'];
+    navigate(query.toQuery(data));
+  }
 
   return (
     <div className={styles['wrapper']}>
-      <Text>Найдено { totalRows } { nounDeclension(totalRows, ['счет', 'счета', 'счетов']) }</Text>
+      <Form
+        initialValues={{
+          ...search,
+        }}
+        onSubmit={handleSubmit}
+      />
     </div>
   );
 }
 
-export default Users;
+export default React.memo(Filter);

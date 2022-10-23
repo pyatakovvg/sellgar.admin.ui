@@ -5,7 +5,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isPristine, isValid, submit } from "redux-form";
 
-import { selectInProcess } from '../../index';
+import { selectInProcess } from '../../store/slice';
 
 import styles from './default.module.scss';
 

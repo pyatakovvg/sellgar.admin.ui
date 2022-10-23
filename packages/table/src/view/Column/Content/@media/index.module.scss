@@ -7,18 +7,6 @@ td {
   height: 100%;
   vertical-align: top;
   overflow: auto;
-
-  &:first-child {
-    .content {
-      padding-left: 0;
-    }
-  }
-
-  &:last-child {
-    .content {
-      padding-right: 0;
-    }
-  }
 }
 
 .col {

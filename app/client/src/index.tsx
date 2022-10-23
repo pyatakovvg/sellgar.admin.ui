@@ -1,4 +1,5 @@
 
+import BaseData from '@package/base-data';
 import Push, { pushFail } from '@package/push';
 import { Application, Config, Router, Wrapper } from '@library/app';
 import { getProfile, events as profileEvents } from '@widget/profile';
@@ -77,7 +78,9 @@ import './styles/index.scss';
 
     root.render(
       <Provider store={store}>
-        <AppView />
+        <BaseData>
+          <AppView />
+        </BaseData>
         <Push />
       </Provider>
     );

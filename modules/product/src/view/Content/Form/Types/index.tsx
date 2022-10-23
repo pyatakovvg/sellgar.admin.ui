@@ -1,12 +1,13 @@
 
 import { SelectField } from "@library/kit";
+import { selectGroups } from "@package/base-data";
 
 import React from 'react';
 import { getFormValues, change } from 'redux-form';
 import { useSelector, useDispatch } from "react-redux";
 
 import { getCategories, getAttributes } from '../../../../store/commands';
-import { selectGroups, selectCategories, selectInProcess } from "../../../../index";
+import { selectCategories, selectInProcess } from "../../../../store/slice";
 
 import styles from './default.module.scss';
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { FieldArray, getFormSyncErrors } from 'redux-form';
 
-import GroupFields from "./GroupFields";
+import ProductFields from "./ProductFields";
 
 import { selectInProcess } from '../../../../store/slice';
 
@@ -25,7 +25,7 @@ function Products() {
           name="products"
           validate={[(value) => ! value]}
           // @ts-ignore
-          component={GroupFields}
+          component={ProductFields}
           disabled={inProcess}
         />
       </div>

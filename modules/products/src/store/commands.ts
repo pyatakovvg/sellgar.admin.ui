@@ -2,18 +2,6 @@
 import request from "@package/request";
 
 import {
-  getBrandsRequestAction,
-  getBrandsRequestFailAction,
-  getBrandsRequestSuccessAction,
-
-  getCategoriesRequestAction,
-  getCategoriesRequestFailAction,
-  getCategoriesRequestSuccessAction,
-
-  getGroupsRequestAction,
-  getGroupsRequestFailAction,
-  getGroupsRequestSuccessAction,
-
   createProductTemplateRequest,
   createProductTemplateRequestFail,
   createProductTemplateRequestSuccess,
@@ -89,59 +77,5 @@ export const updateProduct = (data: any) => async (dispatch: any): Promise<any> 
   catch(error: any) {
 
     dispatch(changeStatusRequestFailAction());
-  }
-};
-
-export const getGroups = (options: any) => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getGroupsRequestAction());
-
-    const result = await request({
-      url: '/api/v1/groups',
-      method: 'get',
-      cancelToken: options['token'],
-    });
-
-    dispatch(getGroupsRequestSuccessAction(result['data']));
-  }
-  catch(error: any) {
-
-    dispatch(getGroupsRequestFailAction());
-  }
-};
-
-export const getCategories = (options: any) => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getCategoriesRequestAction());
-
-    const result = await request({
-      url: '/api/v1/categories',
-      method: 'get',
-      cancelToken: options['token'],
-    });
-
-    dispatch(getCategoriesRequestSuccessAction(result['data']));
-  }
-  catch(error: any) {
-
-    dispatch(getCategoriesRequestFailAction());
-  }
-};
-
-export const getBrands = (options: any) => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getBrandsRequestAction());
-
-    const result = await request({
-      url: '/api/v1/brands',
-      method: 'get',
-      cancelToken: options['token'],
-    });
-
-    dispatch(getBrandsRequestSuccessAction(result['data']));
-  }
-  catch(error: any) {
-
-    dispatch(getBrandsRequestFailAction());
   }
 };

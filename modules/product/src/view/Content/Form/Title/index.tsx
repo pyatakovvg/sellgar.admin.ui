@@ -5,7 +5,7 @@ import React from 'react';
 import { useSelector } from "react-redux";
 
 import ExternalId from './ExternalId';
-import { selectInProcess } from "../../../../index";
+import { selectInProcess } from "../../../../store/slice";
 
 import styles from './default.module.scss';
 

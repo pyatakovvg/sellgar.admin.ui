@@ -18,7 +18,7 @@ interface IModifyFieldProps {
 }
 
 
-function ModeField({ field, disabled, onRemove }: IModifyFieldProps) {
+function Group({ field, disabled, onRemove }: IModifyFieldProps) {
   const classNameRemoveAttr = React.useMemo(() => cn(styles['icon'], 'far fa-trash-alt'), []);
 
   function handleRemove() {
@@ -52,4 +52,4 @@ function ModeField({ field, disabled, onRemove }: IModifyFieldProps) {
   );
 }
 
-export default ModeField;
+export default Group;

@@ -12,15 +12,11 @@ import cn from 'classnames';
 import styles from './defaults.module.scss';
 
 
-interface IImage {
-  uuid: string;
-}
-
 interface IProps {
   className?: string;
   name: string;
   type?: 'multiple' | 'simple';
-  value: Array<IImage> | IImage;
+  value: Array<string> | string;
   onSubmit(data: any): void;
 }
 

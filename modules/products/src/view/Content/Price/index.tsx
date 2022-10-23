@@ -19,7 +19,7 @@ function Item({ products }: IProps) {
     <div className={styles['wrapper']}>
       <div className={styles['field']}>
         <div className={styles['price']}>
-          <Text type={'strong'}>{ numeral(Number(product['price'])).format() }</Text>
+          <Text type={'strong'}>{ product['price'] ? numeral(product['price']).format()  : '---'}</Text>
         </div>
         <div className={styles['currency']}>
           <Text type={'strong'}>{ product['currency']?.['displayName'] ?? '---' }</Text>
@@ -27,7 +27,7 @@ function Item({ products }: IProps) {
       </div>
       <div className={styles['field']}>
         <div className={styles['price']}>
-          <Text type={'description'}>{ numeral(Number(product['purchasePrice'])).format() }</Text>
+          <Text type={'description'}>{ product['purchasePrice'] ? numeral(product['purchasePrice']).format() : '---' }</Text>
         </div>
         <div className={styles['currency']}>
           <Text type={'description'}>{ product['currency']?.['displayName'] ?? '---' }</Text>

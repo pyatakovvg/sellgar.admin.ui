@@ -13,46 +13,20 @@ function validate(value: any) {
     }
   }
 
-  if ('groupCode' in value) {
-    if ( ! value['groupCode']) {
-      errors['groupCode'] = 'Необходимо выбрать';
-    }
+  if ( ! value['groupCode']) {
+    errors['groupCode'] = 'Необходимо выбрать';
   }
 
-  if ('categoryCode' in value) {
-    if ( ! value['categoryCode']) {
-      errors['categoryCode'] = 'Необходимо выбрать';
-    }
+  if ( ! value['categoryCode']) {
+    errors['categoryCode'] = 'Необходимо выбрать';
   }
 
-  if ('brandCode' in value) {
-    if ( ! value['brandCode']) {
-      errors['brandCode'] = 'Необходимо выбрать';
-    }
+  if ( ! value['externalId']) {
+    errors['externalId'] = 'Необходимо заполнить';
   }
 
-  if ('externalId' in value) {
-    if ( ! value['externalId']) {
-      errors['externalId'] = 'Необходимо заполнить';
-    }
-  }
-
-  if ('title' in value) {
-    if ( ! value['title']) {
-      errors['title'] = 'Необходимо заполнить';
-    }
-  }
-
-  if ('price' in value) {
-    if ( ! value['price']) {
-      errors['price'] = 'Необходимо заполнить';
-    }
-  }
-
-  if ('purchasePrice' in value) {
-    if ( ! value['purchasePrice']) {
-      errors['purchasePrice'] = 'Необходимо заполнить';
-    }
+  if ( ! value['name']) {
+    errors['name'] = 'Необходимо заполнить';
   }
 
   if (value['attributes'] && !! value['attributes'].length) {

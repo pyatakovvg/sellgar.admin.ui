@@ -5,7 +5,7 @@ import Store, { openStore, closeStore } from '@widget/store';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import GroupList from './GroupList';
+import ProductList from './ProductList';
 
 import styles from './default.module.scss';
 
@@ -20,8 +20,9 @@ function ProductsListField({ fields, disabled }: any) {
 
   function handleChange(data: Array<string>) {
     fields.removeAll();
-    data.forEach((uuid: string) => {
+    data.forEach((uuid: string, index: number) => {
       fields.push({
+        isTarget: index === 0,
         productUuid: uuid,
       });
     });
@@ -31,7 +32,7 @@ function ProductsListField({ fields, disabled }: any) {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['content']}>
-        <GroupList disabled={disabled} fields={fields} />
+        <ProductList disabled={disabled} fields={fields} />
       </div>
       <div className={styles['controls']}>
         <Button

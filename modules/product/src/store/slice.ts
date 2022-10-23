@@ -40,12 +40,8 @@ const slice = createSlice({
   reducers: {
     resetStateAction(state: IState) {
       state['data'] = null;
-      state['images'] = [];
-      state['groups'] = [];
       state['categories'] = [];
-      state['currencies'] = [];
       state['attributes'] = [];
-      state['brands'] = [];
       state['inProcess'] = false;
       state['inUploadProcess'] = false;
     },
@@ -56,39 +52,10 @@ const slice = createSlice({
       state['attributes'] = payload;
     },
 
-    getCurrenciesRequestAction() {},
-    getCurrenciesRequestFailAction() {},
-    getCurrenciesRequestSuccessAction(state: IState, { payload }) {
-      state['currencies'] = payload;
-    },
-
-    getGroupsRequestAction() {},
-    getGroupsRequestFailAction() {},
-    getGroupsRequestSuccessAction(state: IState, { payload }) {
-      state['groups'] = payload;
-    },
-
     getCategoriesRequestAction() {},
     getCategoriesRequestFailAction() {},
     getCategoriesRequestSuccessAction(state: IState, { payload }) {
       state['categories'] = payload;
-    },
-
-    getBrandsRequestAction() {},
-    getBrandsRequestFailAction() {},
-    getBrandsRequestSuccessAction(state: IState, { payload }) {
-      state['brands'] = payload;
-    },
-
-    getGalleryRequestAction(state: IState) {
-      state['inUploadProcess'] = true;
-    },
-    getGalleryRequestFailAction(state: IState) {
-      state['inUploadProcess'] = false;
-    },
-    getGalleryRequestSuccessAction(state: IState, { payload }) {
-      state['images'] = payload;
-      state['inUploadProcess'] = false;
     },
 
     getProductRequestAction(state: IState) {
@@ -122,10 +89,6 @@ export const {
   getAttributesRequestFailAction,
   getAttributesRequestSuccessAction,
 
-  getCurrenciesRequestAction,
-  getCurrenciesRequestFailAction,
-  getCurrenciesRequestSuccessAction,
-
   getGroupsRequestAction,
   getGroupsRequestFailAction,
   getGroupsRequestSuccessAction,
@@ -133,14 +96,6 @@ export const {
   getCategoriesRequestAction,
   getCategoriesRequestFailAction,
   getCategoriesRequestSuccessAction,
-
-  getBrandsRequestAction,
-  getBrandsRequestFailAction,
-  getBrandsRequestSuccessAction,
-
-  getGalleryRequestAction,
-  getGalleryRequestFailAction,
-  getGalleryRequestSuccessAction,
 
   getProductRequestAction,
   getProductRequestFailAction,
@@ -152,11 +107,7 @@ export const {
 } = slice['actions'] as any;
 
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
-export const selectGallery = (state: IRootStore): Array<any> => state[REDUCER_NAME]['images'];
-export const selectCurrencies = (state: IRootStore): Array<any> => state[REDUCER_NAME]['currencies'];
-export const selectGroups = (state: IRootStore): Array<any> => state[REDUCER_NAME]['groups'];
 export const selectCategories = (state: IRootStore): Array<any> => state[REDUCER_NAME]['categories'];
-export const selectBrands = (state: IRootStore): Array<any> => state[REDUCER_NAME]['brands'];
 export const selectAttributes = (state: IRootStore): Array<any> => state[REDUCER_NAME]['attributes'];
 export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];
 export const selectInUploadProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inUploadProcess'];

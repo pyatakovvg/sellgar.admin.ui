@@ -27,6 +27,7 @@
     "@package/dialog": "0.0.1",
     "@package/push": "0.0.1",
     "@package/request": "0.0.1",
+    "@package/base-data": "0.0.1",
     "@reduxjs/toolkit": "1.8.5",
     "@widget/profile": "0.0.1",
     "@widget/store": "0.0.1",

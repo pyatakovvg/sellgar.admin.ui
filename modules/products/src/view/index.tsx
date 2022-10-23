@@ -11,8 +11,8 @@ import Header from './Header';
 import Filter from './Filter';
 import Content from './Content';
 
+import { getProducts } from '../store/commands';
 import { resetStateAction, selectMeta } from '../store/slice';
-import { getBrands, getGroups, getCategories, getProducts } from '../store/commands';
 
 import styles from './default.module.scss';
 
@@ -25,21 +25,7 @@ function Products() {
 
 
   React.useLayoutEffect(() => {
-    const cancelBrands = createCancelToken();
-    const cancelGroups = createCancelToken();
-    const cancelCategories = createCancelToken();
-
-    async function init() {
-      await dispatch<any>(getBrands({ token: cancelBrands['token'] }));
-      await dispatch<any>(getGroups({ token: cancelGroups['token'] }));
-      await dispatch<any>(getCategories({ token: cancelCategories['token'] }));
-    }
-    init();
     return () => {
-      cancelBrands.cancel();
-      cancelGroups.cancel();
-      cancelCategories.cancel();
-
       dispatch(resetStateAction());
     }
   }, []);

@@ -9,7 +9,7 @@ import Empty from './Empty';
 import styles from './default.module.scss';
 
 
-function OptionsList({ fields, disabled }: any) {
+function GroupList({ fields, disabled }: any) {
   function handleRemoveAttr(index: number) {
     fields.remove(index)
   }
@@ -51,4 +51,4 @@ function OptionsList({ fields, disabled }: any) {
   );
 }
 
-export default OptionsList;
+export default GroupList;

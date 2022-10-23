@@ -38,7 +38,7 @@ function Content({ width, alias, data, children }: IProps) {
     if (children instanceof Function) {
       const child = children.call(null, data) || null;
       return (
-        <Row width={width}>
+        <Row width={width === 'auto' ? width : width + 32}>
           { child }
         </Row>
       );

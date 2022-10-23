@@ -1,6 +1,6 @@
 
-import { openGallery } from "@widget/gallery";
 import { Button, Text } from '@library/kit';
+import { openGallery } from "@widget/gallery";
 
 import React from 'react';
 import { useDispatch } from 'react-redux';

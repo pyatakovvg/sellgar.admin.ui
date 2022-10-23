@@ -57,7 +57,7 @@ function Modify({ data }: IProps) {
   return (
     <Form
       initialValues={{
-        ...item
+        ...item,
       }}
       onSubmit={handleSubmit}
     />

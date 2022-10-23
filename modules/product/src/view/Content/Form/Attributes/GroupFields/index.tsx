@@ -8,7 +8,7 @@ import GroupList from './GroupList';
 import styles from './default.module.scss';
 
 
-function AttributeListField({ fields, disabled }: any) {
+function GroupField({ fields, disabled }: any) {
   function handleAddAttr() {
     fields.push({
       values: [],
@@ -32,4 +32,4 @@ function AttributeListField({ fields, disabled }: any) {
   );
 }
 
-export default AttributeListField;
+export default GroupField;

@@ -12,7 +12,7 @@ import Empty from './Empty';
 function OptionsList({ fields, disabled }: any) {
   const dispatch = useDispatch();
 
-  function handleRemoveAttr(index: number) {
+  function handleRemove(index: number) {
     const item = fields.get(index);
     fields.remove(index);
     if (item['isTarget'] && !! fields.length) {
@@ -53,8 +53,8 @@ function OptionsList({ fields, disabled }: any) {
             data={data}
             field={field}
             disabled={disabled}
+            onRemove={() => handleRemove(index)}
             onChange={() => handleChangeTarget(field)}
-            onRemove={() => handleRemoveAttr(index)}
           />
         )
       })}

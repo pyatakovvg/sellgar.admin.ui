@@ -1,14 +1,18 @@
 
-import { Header, InputField, TextareaField, Button } from '@library/kit';
+import { selectCurrencies } from '@package/base-data';
+import { Header, InputField, TextareaField, SelectField, Button } from '@library/kit';
 
-import type { InjectedFormProps } from 'redux-form';
 
 import React from 'react';
+import { useSelector } from 'react-redux';
+import type { InjectedFormProps } from 'redux-form';
 
 import styles from './default.module.scss';
 
 
 function Form({ handleSubmit }: InjectedFormProps) {
+  const currencies = useSelector(selectCurrencies);
+
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>
       <div className={styles['header']}>
@@ -39,7 +43,18 @@ function Form({ handleSubmit }: InjectedFormProps) {
             <InputField name={'price'} label={'Цена продажи'} required />
           </div>
           <div className={styles['col']}>
-            <InputField name={'purchasePrice'} label={'Цена закупки'} required />
+            <div className={styles['price']}>
+              <InputField name={'purchasePrice'} label={'Цена закупки'} required />
+            </div>
+            <div className={styles['currency']}>
+              <SelectField
+                name={'currency.code'}
+                label={'Валюта'}
+                options={currencies}
+                optionKey={'code'}
+                optionValue={'displayName'}
+              />
+            </div>
           </div>
         </div>
         <div className={styles['row']}>

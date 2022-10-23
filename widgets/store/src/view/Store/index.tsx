@@ -15,13 +15,9 @@ import { selectInProcess, selectMeta } from '../../store/slice';
 import styles from './@media/index.module.scss';
 
 
-interface IImage {
-  uuid: string;
-}
-
 interface IProps {
   type?: 'multiple' | 'simple';
-  value: Array<IImage> | IImage;
+  value: Array<string> | string;
   onSubmit(data: any): void;
 }
 
@@ -35,6 +31,7 @@ function Widget({ type, value, onSubmit }: IProps) {
 
   React.useEffect(() => {
     dispatch<any>(getStore({
+      products: value,
       take: 12,
       skip: page * 12,
     }));

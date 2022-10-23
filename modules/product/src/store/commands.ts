@@ -12,21 +12,9 @@ import {
   getAttributesRequestFailAction,
   getAttributesRequestSuccessAction,
 
-  getCurrenciesRequestAction,
-  getCurrenciesRequestFailAction,
-  getCurrenciesRequestSuccessAction,
-
   getCategoriesRequestAction,
   getCategoriesRequestFailAction,
   getCategoriesRequestSuccessAction,
-
-  getBrandsRequestAction,
-  getBrandsRequestFailAction,
-  getBrandsRequestSuccessAction,
-
-  getGalleryRequestAction,
-  getGalleryRequestFailAction,
-  getGalleryRequestSuccessAction,
 
   getProductRequestAction,
   getProductRequestFailAction,
@@ -37,40 +25,6 @@ import {
   updateProductRequestSuccessAction,
 } from './slice';
 
-
-export const getGallery = () => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getGalleryRequestAction());
-
-    const result = await request({
-      url: '/api/v1/images',
-      method: 'get',
-    });
-
-    dispatch(getGalleryRequestSuccessAction(result['data']));
-  }
-  catch(error: any) {
-
-    dispatch(getGalleryRequestFailAction());
-  }
-};
-
-export const getCurrencies = () => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getCurrenciesRequestAction());
-
-    const result = await request({
-      url: '/api/v1/currencies',
-      method: 'get',
-    });
-
-    dispatch(getCurrenciesRequestSuccessAction(result['data']));
-  }
-  catch(error: any) {
-
-    dispatch(getCurrenciesRequestFailAction());
-  }
-};
 
 export const getAttributes = (categoryUuid: string) => async (dispatch: any): Promise<any> => {
   try {
@@ -127,23 +81,6 @@ export const getCategories = (groupUuid: string) => async (dispatch: any): Promi
   catch(error: any) {
 
     dispatch(getCategoriesRequestFailAction());
-  }
-};
-
-export const getBrands = () => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getBrandsRequestAction());
-
-    const result = await request({
-      url: '/api/v1/brands',
-      method: 'get',
-    });
-
-    dispatch(getBrandsRequestSuccessAction(result['data']));
-  }
-  catch(error: any) {
-
-    dispatch(getBrandsRequestFailAction());
   }
 };
 

@@ -1,11 +1,11 @@
 {
   "private": true,
-  "name": "@module/product",
+  "name": "@package/base-data",
   "version": "0.0.1",
-  "description": "users",
-  "author": "Viktor Pyatakov <pyatakov.viktor@gmail.com>",
-  "homepage": "",
-  "license": "ISC",
+  "author": {
+    "name": "Viktor Pyatakov",
+    "email": "viktor.pyatakov@pimpay.ru"
+  },
   "main": "lib/index.js",
   "module": "lib/index.js",
   "types": "types",
@@ -15,24 +15,21 @@
     "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
   },
   "dependencies": {
-    "@package/errors": "0.0.1",
-    "@package/push": "0.0.1",
+    "@helper/utils": "0.0.1",
+    "@package/dialog": "0.0.1",
     "@package/request": "0.0.1",
-    "@package/base-data": "0.0.1",
-    "@widget/store": "0.0.1",
-    "@widget/gallery": "0.0.1",
-    "redux-form": "8.3.8"
+    "@reduxjs/toolkit": "1.8.5"
   },
   "peerDependencies": {
+    "classnames": "2.3.1",
     "react": "18.2.0",
-    "react-router-dom": "6.3.0"
+    "react-redux": "8.0.2"
   },
   "devDependencies": {
     "@babel/cli": "7.18.10",
     "@babel/core": "7.18.10",
     "@babel/preset-env": "7.18.10",
     "@babel/preset-typescript": "7.18.6",
-    "@types/redux-form": "8.3.5",
     "cross-env": "7.0.3"
   }
 }

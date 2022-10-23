@@ -1,10 +1,9 @@
 
 import { SelectField, CheckboxField, Button, Text } from '@library/kit';
+import { selectGroups, selectBrands, selectCategories } from '@package/base-data';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
-
-import { selectGroups, selectBrands, selectCategories } from '../../../store/slice';
 
 import styles from './default.module.scss';
 

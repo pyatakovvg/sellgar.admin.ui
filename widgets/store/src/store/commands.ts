@@ -21,6 +21,7 @@ export const getStore = (params: any): any => async (dispatch: Dispatch) => {
       method: 'get',
       params: {
         ...params,
+        hasParent: false,
       },
     });
 

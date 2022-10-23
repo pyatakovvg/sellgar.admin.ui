@@ -11,7 +11,7 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-function Modes() {
+function Attributes() {
   const inProcess = useSelector(selectInProcess);
   const errors: any = useSelector(getFormSyncErrors('modify')) || {};
   const contentClassName = React.useMemo(() => cn(styles['content'], {
@@ -33,4 +33,4 @@ function Modes() {
   );
 }
 
-export default Modes;
+export default Attributes;

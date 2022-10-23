@@ -10,9 +10,6 @@ interface IRootStore {
 }
 
 interface IState {
-  groups: Array<any>;
-  categories: Array<any>;
-  brands: Array<any>;
   data: Array<any>;
   meta: any;
   inProcess: boolean;
@@ -20,9 +17,6 @@ interface IState {
 }
 
 const initialState = {
-  groups: [],
-  categories: [],
-  brands: [],
   data: [],
   meta: {},
   inProcess: false,
@@ -35,31 +29,10 @@ const slice = createSlice({
   initialState,
   reducers: {
     resetStateAction(state: IState) {
-      state['groups'] = [];
-      state['categories'] = [];
-      state['brands'] = [];
       state['data'] = [];
       state['meta'] = {};
       state['inProcess'] = false;
       state['inUploadProcess'] = false;
-    },
-
-    getGroupsRequestAction() {},
-    getGroupsRequestFailAction() {},
-    getGroupsRequestSuccessAction(state: IState, { payload }) {
-      state['groups'] = payload;
-    },
-
-    getCategoriesRequestAction() {},
-    getCategoriesRequestFailAction() {},
-    getCategoriesRequestSuccessAction(state: IState, { payload }) {
-      state['categories'] = payload;
-    },
-
-    getBrandsRequestAction() {},
-    getBrandsRequestFailAction() {},
-    getBrandsRequestSuccessAction(state: IState, { payload }) {
-      state['brands'] = payload;
     },
 
     createProductTemplateRequest(state: IState) {
@@ -103,18 +76,6 @@ const slice = createSlice({
 export const {
   resetStateAction,
 
-  getGroupsRequestAction,
-  getGroupsRequestFailAction,
-  getGroupsRequestSuccessAction,
-
-  getCategoriesRequestAction,
-  getCategoriesRequestFailAction,
-  getCategoriesRequestSuccessAction,
-
-  getBrandsRequestAction,
-  getBrandsRequestFailAction,
-  getBrandsRequestSuccessAction,
-
   createProductTemplateRequest,
   createProductTemplateRequestFail,
   createProductTemplateRequestSuccess,
@@ -128,9 +89,6 @@ export const {
   changeStatusRequestSuccessAction,
 } = slice['actions'] as any;
 
-export const selectGroups = (state: IRootStore): Array<any> => state[REDUCER_NAME]['groups'];
-export const selectCategories = (state: IRootStore): Array<any> => state[REDUCER_NAME]['categories'];
-export const selectBrands = (state: IRootStore): Array<any> => state[REDUCER_NAME]['brands'];
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
 export const selectMeta = (state: IRootStore): any => state[REDUCER_NAME]['meta'];
 export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];

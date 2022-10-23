@@ -71,6 +71,11 @@ echo 'Пакет "Table"'
 echo '------------------------------------'
 cd ../table && npx yarn build && yarn build:types
 
+echo '------------------------------------'
+echo 'Пакет "Base data"'
+echo '------------------------------------'
+cd ../base && npx yarn build && yarn build:types
+
 
 
 echo '------------------------------------'

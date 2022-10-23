@@ -18,7 +18,7 @@ interface IModifyFieldProps {
 }
 
 
-function ModeField({ field, data, disabled, onRemove }: IModifyFieldProps) {
+function Item({ field, data, disabled, onRemove }: IModifyFieldProps) {
   const attributes = useSelector(selectAttributes);
 
   const attribute = React.useMemo(() => attributes.find((item) => item['uuid'] === data['attributeUuid']), [data]);
@@ -59,4 +59,4 @@ function ModeField({ field, data, disabled, onRemove }: IModifyFieldProps) {
   );
 }
 
-export default ModeField;
+export default Item;

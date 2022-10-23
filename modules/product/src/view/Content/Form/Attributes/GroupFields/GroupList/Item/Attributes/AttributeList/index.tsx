@@ -8,7 +8,7 @@ import Item from './Item';
 import styles from './default.module.scss';
 
 
-function OptionsList({ fields, disabled }: any) {
+function AttributeList({ fields, disabled }: any) {
   function handleRemoveAttr(index: number) {
     fields.remove(index)
   }
@@ -52,4 +52,4 @@ function OptionsList({ fields, disabled }: any) {
   );
 }
 
-export default OptionsList;
+export default AttributeList;

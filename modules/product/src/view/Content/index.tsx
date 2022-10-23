@@ -6,7 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import Form from './Form';
 
-import { selectData, selectCurrencies, updateProduct } from '../../index';
+import { selectData } from '../../store/slice';
+import { updateProduct } from '../../store/commands';
 
 import styles from './default.module.scss';
 
@@ -15,8 +16,6 @@ function Content() {
   const dispatch = useDispatch();
 
   const data: any = useSelector(selectData);
-  const currencies: any = useSelector(selectCurrencies);
-  const defaultCurrencyCode = React.useMemo(() => currencies?.[0]?.['code'] ?? null, [currencies]);
 
   async function handleSubmit(data: any) {
     await dispatch<any>(updateProduct(data));
@@ -34,7 +33,6 @@ function Content() {
     <Form
       initialValues={{
         ...data,
-        currencyCode: data['currencyCode'] || defaultCurrencyCode,
       }}
       onSubmit={handleSubmit}
     />

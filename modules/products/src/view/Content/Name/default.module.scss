@@ -6,20 +6,14 @@
 
   display: flex;
   flex-direction: column;
-  flex: 1 0;
+  flex: 0 0 auto;
 }
 
 .line {
 
   display: block;
-  text-align: right;
 
   & + & {
-    margin: 8px 0 0;
+    margin: 16px 0 0;
   }
-}
-
-.danger {
-
-  color: $danger;
 }

@@ -1,4 +1,6 @@
 
+import { Text } from "@library/kit";
+
 import React from 'react';
 
 import Item from './Item';
@@ -13,6 +15,9 @@ interface IProps {
 function Products({ items }: IProps) {
   return (
     <div className={styles['wrapper']}>
+      { ! items.length && (
+        <Text>Нет товаров</Text>
+      )}
       {items.map((item) => {
         return (
           <div key={item['uuid']} className={styles['item']}>

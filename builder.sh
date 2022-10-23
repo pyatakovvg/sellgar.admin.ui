@@ -111,6 +111,11 @@ echo 'Пакет "Gallery"'
 echo '------------------------------------'
 cd ../gallery && npx yarn build && yarn build:types
 
+echo '------------------------------------'
+echo 'Пакет "Store"'
+echo '------------------------------------'
+cd ../store && npx yarn build && yarn build:types
+
 
 
 echo '------------------------------------'
@@ -200,5 +205,10 @@ echo '------------------------------------'
 echo 'Модуль "Comments"'
 echo '------------------------------------'
 cd ../comments && npx yarn build && yarn build:types
+
+echo '------------------------------------'
+echo 'Модуль "Store"'
+echo '------------------------------------'
+cd ../store && npx yarn build && yarn build:types
 
 exit 0

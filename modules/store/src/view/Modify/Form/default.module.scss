@@ -1,0 +1,58 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  width: 480px;
+  padding: 40px 78px;
+  box-sizing: border-box;
+}
+
+.header {
+
+  display: block;
+  text-align: center;
+}
+
+.content {
+
+  display: block;
+  margin: 32px 0 0;
+}
+
+.row {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+
+  & + & {
+    margin: 16px 0 0;
+  }
+}
+
+.col {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+
+  & + & {
+    margin: 0 0 0 16px;
+  }
+}
+
+.col {
+
+}
+
+.controls {
+
+  display: block;
+  text-align: center;
+  margin: 32px 0 0;
+}

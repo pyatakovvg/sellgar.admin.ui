@@ -1,12 +1,12 @@
 
-import { SelectField, InputField } from "@library/kit";
+import { SelectField } from "@library/kit";
 
 import React from 'react';
 import { getFormValues, change } from 'redux-form';
 import { useSelector, useDispatch } from "react-redux";
 
 import { getCategories, getAttributes } from '../../../../store/commands';
-import { selectGroups, selectCategories, selectBrands, selectInProcess } from "../../../../index";
+import { selectGroups, selectCategories, selectInProcess } from "../../../../index";
 
 import styles from './default.module.scss';
 
@@ -16,7 +16,6 @@ function Types() {
 
   const groups = useSelector(selectGroups);
   const categories = useSelector(selectCategories);
-  const brands = useSelector(selectBrands);
   const inProcess = useSelector(selectInProcess);
 
   const values = useSelector(getFormValues('modify')) as any;
@@ -51,67 +50,30 @@ function Types() {
     <div className={styles['wrapper']}>
       <div className={styles['content']}>
         <div className={styles['fields']}>
-          <div className={styles['field']}>
-            <SelectField
-              required
-              simple
-              name="groupUuid"
-              label="Группа"
-              options={groups}
-              optionKey="uuid"
-              optionValue="name"
-              disabled={inProcess}
-              onChange={handleResetCategory}
-            />
-          </div>
-          <div className={styles['field']}>
-            <SelectField
-              required
-              simple
-              name="categoryUuid"
-              label="Категория"
-              options={categories}
-              optionKey="uuid"
-              optionValue="name"
-              disabled={inProcess || ! values['groupUuid']}
-              onChange={handleResetAttributes}
-            />
-          </div>
-          <div className={styles['field']}>
-            <SelectField
-              required
-              simple
-              name="brandUuid"
-              label="Производитель"
-              options={brands}
-              optionKey="uuid"
-              optionValue="name"
-              disabled={inProcess}
-            />
-          </div>
+          <SelectField
+            required
+            simple
+            name="groupUuid"
+            label="Группа"
+            options={groups}
+            optionKey="uuid"
+            optionValue="name"
+            disabled={inProcess}
+            onChange={handleResetCategory}
+          />
         </div>
         <div className={styles['fields']}>
-          <div className={styles['field']}>
-            <InputField
-              required
-              name={'vendor'}
-              label={'Артикул'}
-              maxLength={256}
-              disabled={inProcess}
-            />
-          </div>
-          <div className={styles['field']}>
-            <InputField
-              required
-              name={'barcode'}
-              label={'Штрихкод'}
-              maxLength={256}
-              disabled={inProcess}
-            />
-          </div>
-          {/*<div className={styles['field']}>*/}
-          {/*  <Price inProcess={inProcess} />*/}
-          {/*</div>*/}
+          <SelectField
+            required
+            simple
+            name="categoryUuid"
+            label="Категория"
+            options={categories}
+            optionKey="uuid"
+            optionValue="name"
+            disabled={inProcess || ! values['groupUuid']}
+            onChange={handleResetAttributes}
+          />
         </div>
       </div>
     </div>

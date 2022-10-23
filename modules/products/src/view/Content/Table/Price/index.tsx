@@ -8,29 +8,29 @@ import styles from './default.module.scss';
 
 
 interface IProps {
-  price?: number;
-  purchasePrice?: number;
-  currency?: any;
+  products?: Array<any>;
 }
 
 
-function Item({ price, purchasePrice, currency }: IProps) {
+function Item({ products }: IProps) {
+  const product = React.useMemo(() => (products || []).find((item) => item['isTarget'])?.['product'] ?? {}, [products]);
+
   return (
     <div className={styles['wrapper']}>
       <div className={styles['field']}>
         <div className={styles['price']}>
-          <Text type={'strong'}>{ numeral(price).format() }</Text>
+          <Text type={'strong'}>{ numeral(Number(product['price'])).format() }</Text>
         </div>
         <div className={styles['currency']}>
-          <Text type={'strong'}>{ currency?.['displayName'] ?? '---' }</Text>
+          <Text type={'strong'}>{ product['currency']?.['displayName'] ?? '---' }</Text>
         </div>
       </div>
       <div className={styles['field']}>
         <div className={styles['price']}>
-          <Text type={'description'}>{ numeral(purchasePrice).format() }</Text>
+          <Text type={'description'}>{ numeral(Number(product['purchasePrice'])).format() }</Text>
         </div>
         <div className={styles['currency']}>
-          <Text type={'description'}>{ currency?.['displayName'] ?? '---' }</Text>
+          <Text type={'description'}>{ product['currency']?.['displayName'] ?? '---' }</Text>
         </div>
       </div>
     </div>

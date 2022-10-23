@@ -24,7 +24,7 @@ function Products() {
   const meta = useSelector(selectMeta);
 
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const cancelBrands = createCancelToken();
     const cancelGroups = createCancelToken();
     const cancelCategories = createCancelToken();
@@ -44,7 +44,7 @@ function Products() {
     }
   }, []);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const cancelProducts = createCancelToken();
 
     async function init() {

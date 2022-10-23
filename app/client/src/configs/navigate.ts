@@ -1,7 +1,12 @@
 
 const navigate = [
   {
-    title: 'Витрина',
+    title: 'Склад',
+    path: '/store',
+    icon: 'fa-solid fa-database',
+  },
+  {
+    title: 'Каталог',
     path: '/products',
     icon: 'fa-solid fa-bag-shopping',
   },

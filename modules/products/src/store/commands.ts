@@ -33,8 +33,12 @@ export const createProduct = () => async (dispatch: any): Promise<any> => {
     dispatch(createProductTemplateRequest());
 
     const result = await request({
-      url: '/api/v1/products/create',
+      url: '/api/v1/products',
       method: 'post',
+      data: {
+        name: 'New product',
+        isUse: false,
+      }
     });
 
     dispatch(createProductTemplateRequestSuccess());
@@ -70,13 +74,13 @@ export const getProducts = (search: any, options: any) => async (dispatch: any):
   }
 };
 
-export const updateProduct = (uuid: string, data: any) => async (dispatch: any): Promise<any> => {
+export const updateProduct = (data: any) => async (dispatch: any): Promise<any> => {
   try {
     dispatch(changeStatusRequestAction());
 
     const result = await request({
-      url: '/api/v1/products/' + uuid,
-      method: 'put',
+      url: '/api/v1/products',
+      method: 'post',
       data,
     });
 

@@ -1,0 +1,23 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: block;
+}
+
+.content {
+
+  display: block;
+  background: $white;
+  padding: 16px;
+  border-radius: $border-radius-small;
+}
+
+.controls {
+
+  display: block;
+  text-align: right;
+  margin: 24px 0 0;
+}

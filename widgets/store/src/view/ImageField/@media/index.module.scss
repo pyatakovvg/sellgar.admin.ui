@@ -1,0 +1,41 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  height: 100%;
+  border: 1px solid $gray;
+  border-radius: $border-radius-small;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.content {
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.thumb {
+
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  display: block;
+  background: $white;
+  padding: 4px;
+  border-radius: $border-radius-small;
+  @include box-shadow('bottom');
+}
+
+.icon {
+
+  font-size: 24px;
+  color: $gray;
+}

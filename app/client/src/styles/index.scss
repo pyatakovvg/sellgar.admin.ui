@@ -1,4 +1,6 @@
 
+@import "~@library/theme";
+
 @import "./_reset.css";
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
@@ -14,6 +16,10 @@ body {
   height: 100%;
   font-family: 'Nunito Sans', sans-serif;
   overflow: auto;
+}
+
+strong {
+  font-weight: $font-weight-medium;
 }
 
 #root {
@@ -33,6 +39,13 @@ body {
 }
 
 #gallery {
+
+  position: relative;
+  display: block;
+  z-index: 110;
+}
+
+#store {
 
   position: relative;
   display: block;

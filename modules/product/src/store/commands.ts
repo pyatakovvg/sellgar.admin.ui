@@ -47,8 +47,6 @@ export const getGallery = () => async (dispatch: any): Promise<any> => {
       method: 'get',
     });
 
-    console.log(444, result)
-
     dispatch(getGalleryRequestSuccessAction(result['data']));
   }
   catch(error: any) {
@@ -156,9 +154,6 @@ export const getProduct = (uuid: string) => async (dispatch: any): Promise<any> 
     const result = await request({
       url: '/api/v1/products/' + uuid,
       method: 'get',
-      params: {
-        include: ['prices']
-      }
     });
 
     if ( ! result['data']) {
@@ -178,14 +173,11 @@ export const updateProduct = (data: any) => async (dispatch: any): Promise<any> 
     dispatch(updateProductRequestAction());
 
     const result = await request({
-      url: '/api/v1/products/' + data['uuid'],
-      method: 'put',
+      url: '/api/v1/products',
+      method: 'post',
       data: {
         ...data,
       },
-      params: {
-        include: ['prices']
-      }
     });
 
     dispatch(updateProductRequestSuccessAction(result['data']));
@@ -194,5 +186,31 @@ export const updateProduct = (data: any) => async (dispatch: any): Promise<any> 
   catch(error: any) {
 
     dispatch(updateProductRequestFailAction());
+  }
+};
+
+export const getProductFromStore = (uuid: string): any => async (dispatch: any): Promise<any> => {
+  try {
+    // dispatch(getProductRequestAction());
+
+    const result = await request({
+      url: '/api/v1/store',
+      method: 'get',
+      params: {
+        uuid,
+      },
+    });
+
+    if ( ! result['data'][0]) {
+      throw new NotFoundError({ code: '1.0.2', message: 'Продукт не найден' });
+    }
+
+    // dispatch(getProductRequestSuccessAction(result['data']));
+    return result['data'][0];
+  }
+  catch(error: any) {
+
+    // dispatch(getProductRequestFailAction());
+    return null;
   }
 };

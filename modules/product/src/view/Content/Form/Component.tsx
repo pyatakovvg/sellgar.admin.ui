@@ -4,7 +4,7 @@ import React from 'react';
 import Images from './Images';
 import Title from './Title';
 import Types from './Types';
-import Price from './Price';
+import Products from './Products';
 import Attributes from './Attributes';
 import Description from './Description';
 
@@ -24,7 +24,7 @@ function Form({ handleSubmit }: any) {
         <Types />
       </div>
       <div className={styles['block']}>
-        <Price />
+        <Products />
       </div>
       <div className={styles['block']}>
         <Attributes />

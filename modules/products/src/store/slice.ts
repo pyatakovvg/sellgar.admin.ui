@@ -91,7 +91,7 @@ const slice = createSlice({
         if (payload['uuid'] === item['uuid']) {
           return {
             ...item,
-            ...payload,
+            isUse: payload['isUse'],
           };
         }
         return item;

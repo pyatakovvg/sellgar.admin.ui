@@ -1,0 +1,20 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+}
+
+.icon {
+
+  font-size: 14px;
+  color: $gray;
+}
+
+.target {
+  color: $gray-dark;
+}

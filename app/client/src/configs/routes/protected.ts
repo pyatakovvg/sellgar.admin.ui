@@ -5,6 +5,10 @@ const routes: Array<any> = [
     module: import('@module/main'),
   },
   {
+    path: '/store',
+    module: import('@module/store'),
+  },
+  {
     path: '/products/:uuid',
     module: import('@module/product'),
   },

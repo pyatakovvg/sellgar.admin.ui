@@ -7,23 +7,14 @@
   display: flex;
   flex-direction: row;
   flex: 1 0;
-  background: $white;
-  border-radius: 8px;
-  padding: 40px 50px;
+  align-items: flex-end;
 }
 
-.content {
+.fields {
 
   display: flex;
   flex-direction: row;
   flex: 1 0;
-}
-
-.currency {
-
-  display: block;
-  width: 80px;
-  margin: 0 0 0 24px;
 }
 
 .field {
@@ -33,7 +24,18 @@
   flex: 1 0;
 
   & + & {
-
     margin: 0 0 0 16px;
   }
+}
+
+.check {
+
+  display: block;
+  margin: 26px 0 0 16px;
+}
+
+.control {
+
+  display: block;
+  margin: 0 0 0 24px;
 }

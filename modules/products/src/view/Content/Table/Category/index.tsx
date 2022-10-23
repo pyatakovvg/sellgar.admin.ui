@@ -9,7 +9,7 @@ import styles from './default.module.scss';
 interface IProps {
   group?: any;
   category?: any;
-  brand?: any;
+  products?: Array<any>;
 }
 
 
@@ -26,12 +26,14 @@ function Label({ label, children }: any) {
   );
 }
 
-function Item({ group, category, brand }: IProps) {
+function Item({ group, category, products }: IProps) {
+  const product = React.useMemo(() => (products || []).find((item) => item['isTarget'])?.['product'] ?? {}, [products]);
+
   return (
     <div className={styles['wrapper']}>
       <Label label={'Группа:'}>{ group?.['name'] ?? '---' }</Label>
       <Label label={'Категория:'}>{ category?.['name'] ?? '---' }</Label>
-      <Label label={'Производитель:'}>{ brand?.['name'] ?? '---' }</Label>
+      <Label label={'Производитель:'}>{ product['brand']?.['name'] ?? '---' }</Label>
     </div>
   );
 }

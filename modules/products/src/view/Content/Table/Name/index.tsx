@@ -3,37 +3,25 @@ import { Text } from '@library/kit';
 
 import React from 'react';
 
+import Products from './Products';
+
 import styles from './default.module.scss';
 
 
 interface IProps {
-  title?: any;
-  vendor?: string;
-  barcode?: string;
+  name?: any;
+  products?: Array<any>;
 }
 
-
-function Label({ label, children }: any) {
-  return (
-    <div className={styles['row']}>
-      {label && (
-        <div className={styles['label']}>
-          <Text>{ label }</Text>
-        </div>
-      )}
-      <div className={styles['content']}>
-        <Text type={'strong'}>{ children }</Text>
-      </div>
-    </div>
-  );
-}
-
-function Item({ title, vendor, barcode }: IProps) {
+function Item({ name, products }: IProps) {
   return (
     <div className={styles['wrapper']}>
-      <Label>{ title ?? '---' }</Label>
-      {vendor && <Label label={'Артикул:'}>{ vendor }</Label>}
-      {barcode && <Label label={'Штрихкод:'}>{ barcode }</Label>}
+      <div className={styles['line']}>
+        <Text type={'strong'}>{ name || '---' }</Text>
+      </div>
+      <div className={styles['line']}>
+        <Products items={products || []} />
+      </div>
     </div>
   );
 }

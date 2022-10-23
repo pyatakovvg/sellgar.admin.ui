@@ -20,7 +20,7 @@ function Title() {
           <InputField
             required
             label={'Наименование'}
-            name={'title'}
+            name={'name'}
             disabled={inProcess}
           />
         </div>

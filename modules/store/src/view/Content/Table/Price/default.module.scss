@@ -5,25 +5,29 @@
 .wrapper {
 
   display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.field {
+
+  display: flex;
   flex-direction: row;
   flex: 1 0;
+  justify-content: right;
+
+  & + & {
+    margin: 8px 0 0;
+  }
 }
 
 .price {
 
-  display: flex;
-  flex-direction: column;
-  flex: 1 0;
-
-  & + & {
-
-    margin: 0 0 0 8px;
-  }
+  display: block;
 }
 
 .currency {
 
   display: block;
-  width: 100px;
-  margin: 0 0 0 8px;
+  margin: 0 0 0 4px;
 }

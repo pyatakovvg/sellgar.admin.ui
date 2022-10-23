@@ -21,7 +21,7 @@ function OptionsList({ fields, disabled }: any) {
   }
 
   function handleChangeTarget(field: string) {
-    fields.forEach((item) => {
+    fields.forEach((item: string) => {
       dispatch(change('modify', item + '.isTarget', false));
     });
     dispatch(change('modify', field + '.isTarget', true));

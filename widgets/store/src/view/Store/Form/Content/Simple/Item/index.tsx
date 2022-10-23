@@ -8,6 +8,9 @@ import styles from './default.module.scss';
 
 interface IProps {
   uuid: string;
+  name: string;
+  price: number;
+  currency: any;
   isSelected: boolean;
   onChange(data: string): void;
 }

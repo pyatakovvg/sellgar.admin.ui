@@ -22,7 +22,6 @@ interface IProps {
   image: IImage,
   code: string;
   name: string;
-  category: any;
   unit: any;
   description: string;
 }
@@ -49,9 +48,6 @@ function Item(props: IProps) {
           <div className={styles['field']}>
             <div className={styles['row']}>
               <Header level={3}>{ props['name'] } ({ props?.['unit']?.['name'] ?? '---' })</Header>
-            </div>
-            <div className={styles['row']}>
-              <Text>{ props['category']['name'] }</Text>
             </div>
           </div>
           <div className={styles['field']}>

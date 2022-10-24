@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
+  getUnits,
   getBrands,
   getGroups,
   getCategories,
@@ -21,6 +22,7 @@ function Base({ children }: IProps) {
 
   React.useEffect(() => {
     (async function init() {
+      dispatch(getUnits());
       dispatch(getGroups());
       dispatch(getBrands());
       dispatch(getCurrencies());

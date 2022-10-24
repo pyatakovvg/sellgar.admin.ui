@@ -12,7 +12,7 @@ import Modify from './Modify';
 import Content from './Content';
 
 import { resetStateAction } from '../store/slice';
-import { getAttributes, getCategories, getUnits } from '../store/commands';
+import { getAttributes } from '../store/commands';
 
 import styles from './default.module.scss';
 
@@ -22,11 +22,6 @@ function Brand() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    async function init() {
-      await dispatch(getUnits());
-      await dispatch(getCategories());
-    }
-    init();
     return () => {
       dispatch(resetStateAction());
     }

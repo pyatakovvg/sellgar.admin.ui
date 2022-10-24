@@ -2,6 +2,10 @@
 import request from "@package/request";
 
 import {
+  getUnitsRequestAction,
+  getUnitsRequestFailAction,
+  getUnitsRequestSuccessAction,
+
   getBrandsRequestAction,
   getBrandsRequestFailAction,
   getBrandsRequestSuccessAction,
@@ -18,7 +22,27 @@ import {
   getCurrenciesRequestFailAction,
   getCurrenciesRequestSuccessAction,
 } from './slice';
+import {Dispatch} from "@reduxjs/toolkit";
 
+
+export function getUnits(): any {
+  return async function(dispatch: Dispatch) {
+    try {
+      dispatch(getUnitsRequestAction());
+
+      const result = await request({
+        url: '/api/v1/units',
+        method: 'get',
+      });
+
+      dispatch(getUnitsRequestSuccessAction(result['data']));
+    }
+    catch(error: any) {
+
+      dispatch(getUnitsRequestFailAction());
+    }
+  };
+}
 
 export const getGroups = (): any => async (dispatch: any): Promise<any> => {
   try {

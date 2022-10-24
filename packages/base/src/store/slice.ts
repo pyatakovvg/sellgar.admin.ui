@@ -1,5 +1,5 @@
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
 const REDUCER_NAME = 'package/base';
@@ -10,6 +10,7 @@ interface IRootStore {
 }
 
 interface IState {
+  units: Array<any>;
   groups: Array<any>;
   categories: Array<any>;
   brands: Array<any>;
@@ -17,10 +18,11 @@ interface IState {
 }
 
 const initialState = {
+  units: [],
   groups: [],
-  categories: [],
   brands: [],
   currency: [],
+  categories: [],
 };
 
 
@@ -29,33 +31,40 @@ const slice = createSlice({
   initialState,
   reducers: {
     resetStateAction(state: IState) {
+      state['units'] = [];
       state['groups'] = [];
-      state['categories'] = [];
       state['brands'] = [];
       state['currency'] = [];
+      state['categories'] = [];
+    },
+
+    getUnitsRequestAction() {},
+    getUnitsRequestFailAction() {},
+    getUnitsRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
+      state['units'] = payload;
     },
 
     getGroupsRequestAction() {},
     getGroupsRequestFailAction() {},
-    getGroupsRequestSuccessAction(state: IState, { payload }) {
+    getGroupsRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
       state['groups'] = payload;
     },
 
     getCategoriesRequestAction() {},
     getCategoriesRequestFailAction() {},
-    getCategoriesRequestSuccessAction(state: IState, { payload }) {
+    getCategoriesRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
       state['categories'] = payload;
     },
 
     getBrandsRequestAction() {},
     getBrandsRequestFailAction() {},
-    getBrandsRequestSuccessAction(state: IState, { payload }) {
+    getBrandsRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
       state['brands'] = payload;
     },
 
     getCurrenciesRequestAction() {},
     getCurrenciesRequestFailAction() {},
-    getCurrenciesRequestSuccessAction(state: IState, { payload }) {
+    getCurrenciesRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
       state['currency'] = payload;
     },
   },
@@ -63,6 +72,10 @@ const slice = createSlice({
 
 export const {
   resetStateAction,
+
+  getUnitsRequestAction,
+  getUnitsRequestFailAction,
+  getUnitsRequestSuccessAction,
 
   getGroupsRequestAction,
   getGroupsRequestFailAction,
@@ -81,6 +94,7 @@ export const {
   getCurrenciesRequestSuccessAction,
 } = slice['actions'] as any;
 
+export const selectUnits = (state: IRootStore): Array<any> => state[REDUCER_NAME]['units'];
 export const selectGroups = (state: IRootStore): Array<any> => state[REDUCER_NAME]['groups'];
 export const selectBrands = (state: IRootStore): Array<any> => state[REDUCER_NAME]['brands'];
 export const selectCurrencies = (state: IRootStore): Array<any> => state[REDUCER_NAME]['currency'];

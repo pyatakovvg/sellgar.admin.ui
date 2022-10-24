@@ -3,14 +3,6 @@ import request from "@package/request";
 import { Dispatch } from '@reduxjs/toolkit';
 
 import {
-  getUnitsRequestAction,
-  getUnitsRequestFailAction,
-  getUnitsRequestSuccessAction,
-
-  getCategoriesRequestAction,
-  getCategoriesRequestFailAction,
-  getCategoriesRequestSuccessAction,
-
   getAttributeRequestAction,
   getAttributeRequestFailAction,
   getAttributeRequestSuccessAction,
@@ -28,44 +20,6 @@ import {
   deleteAttributeRequestSuccessAction,
 } from './slice';
 
-
-export function getUnits(): any {
-  return async function(dispatch: Dispatch) {
-    try {
-      dispatch(getUnitsRequestAction());
-
-      const result = await request({
-        url: '/api/v1/units',
-        method: 'get',
-      });
-
-      dispatch(getUnitsRequestSuccessAction(result['data']));
-    }
-    catch(error: any) {
-
-      dispatch(getUnitsRequestFailAction());
-    }
-  };
-}
-
-export function getCategories(): any {
-  return async function(dispatch: Dispatch) {
-    try {
-      dispatch(getCategoriesRequestAction());
-
-      const result = await request({
-        url: '/api/v1/categories',
-        method: 'get',
-      });
-
-      dispatch(getCategoriesRequestSuccessAction(result['data']));
-    }
-    catch(error: any) {
-
-      dispatch(getCategoriesRequestFailAction());
-    }
-  };
-}
 
 export function getAttribute(uuid: string): any {
   return async function(dispatch: Dispatch): Promise<any> {
@@ -106,7 +60,7 @@ export function getAttributes(search: any): any {
         },
       });
 
-      dispatch(getAttributesRequestSuccessAction(result['data']));
+      dispatch(getAttributesRequestSuccessAction(result));
     }
     catch(error: any) {
 
@@ -131,7 +85,7 @@ export function upsertAttributes(data: any, search: any): any {
         },
       });
 
-      dispatch(upsertAttributeRequestSuccessAction(result['data']));
+      dispatch(upsertAttributeRequestSuccessAction(result));
 
       return true;
     }
@@ -158,7 +112,7 @@ export function deleteAttributes(uuid: Array<string>, search: any): any {
         },
       });
 
-      dispatch(deleteAttributeRequestSuccessAction(result['data']));
+      dispatch(deleteAttributeRequestSuccessAction(result));
     }
     catch (error: any) {
 

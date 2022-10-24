@@ -12,10 +12,6 @@ interface IError {
 function validate(values: any): any {
   const error: IError = {};
 
-  if ( ! ('category' in values)) {
-    error['code'] = 'Необходимо выбрать';
-  }
-
   if ( ! ('code' in values)) {
     error['code'] = 'Необходимо заполнить';
   }

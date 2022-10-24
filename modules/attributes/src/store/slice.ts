@@ -10,6 +10,11 @@ interface IRootStore {
   [path:string]: any;
 }
 
+interface IPayload {
+  data: Array<any>;
+  meta: any;
+}
+
 interface IState {
   data: Array<any>;
   meta: any;
@@ -17,7 +22,6 @@ interface IState {
   inProcessOne: boolean;
   inUploadProcess: boolean;
 }
-
 
 const initialState = {
   data: [],
@@ -56,7 +60,7 @@ const slice = createSlice({
     getAttributesRequestFailAction(state: IState) {
       state['inProcessAll'] = false;
     },
-    getAttributesRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
+    getAttributesRequestSuccessAction(state: IState, { payload }: PayloadAction<IPayload>) {
       state['data'] = payload['data'];
       state['meta'] = payload['meta'];
       state['inProcessAll'] = false;
@@ -68,7 +72,7 @@ const slice = createSlice({
     upsertAttributeRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    upsertAttributeRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
+    upsertAttributeRequestSuccessAction(state: IState, { payload }: PayloadAction<IPayload>) {
       state['data'] = payload['data'];
       state['meta'] = payload['meta'];
       state['inUploadProcess'] = false;
@@ -80,7 +84,7 @@ const slice = createSlice({
     deleteAttributeRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    deleteAttributeRequestSuccessAction(state: IState, { payload }: PayloadAction<Array<any>>) {
+    deleteAttributeRequestSuccessAction(state: IState, { payload }: PayloadAction<IPayload>) {
       state['data'] = payload['data'];
       state['meta'] = payload['meta'];
       state['inUploadProcess'] = false;

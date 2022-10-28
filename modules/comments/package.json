@@ -16,12 +16,11 @@
   },
   "dependencies": {
     "@package/moment": "0.0.1",
-    "@package/numeral": "0.0.1"
-  },
-  "peerDependencies": {
+    "@package/numeral": "0.0.1",
     "react": "18.2.0",
     "react-router-dom": "6.3.0"
   },
+  "peerDependencies": {},
   "devDependencies": {
     "@babel/cli": "7.18.10",
     "@babel/core": "7.18.10",

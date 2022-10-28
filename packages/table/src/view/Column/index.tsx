@@ -21,6 +21,7 @@ function Column(props: IProps) {
     return (
       <Header
         title={props['title'] || null}
+        width={props['width'] || 'auto'}
         align={props['align'] || 'center'}
       />
     );
@@ -31,6 +32,7 @@ function Column(props: IProps) {
       children={props['children']}
       alias={props['alias'] || null}
       width={props['width'] || 'auto'}
+      align={props['align'] || 'center'}
     />
   );
 }

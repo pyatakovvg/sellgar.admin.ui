@@ -12,13 +12,15 @@ td {
 .col {
 
   display: block;
+  padding: 16px;
+  text-align: center;
   overflow: auto;
 }
 
-.content {
+.align--left {
+  text-align: left;
+}
 
-  display: block;
-  height: 100%;
-  padding: 16px;
-  overflow: auto;
+.align--right {
+  text-align: right;
 }

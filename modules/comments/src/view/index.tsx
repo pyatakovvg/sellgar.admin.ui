@@ -8,7 +8,6 @@ import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Header from './Header';
-import Filter from './Filter';
 import Content from './Content';
 
 import { getComments } from '../store/commands';
@@ -49,9 +48,6 @@ function Comments() {
         <Header />
       </header>
       <section className={styles['content']}>
-        <aside className={styles['filter']}>
-          <Filter />
-        </aside>
         <div className={styles['list']}>
           <Content />
         </div>

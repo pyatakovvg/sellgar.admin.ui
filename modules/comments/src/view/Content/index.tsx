@@ -1,36 +1,55 @@
 
-import { Text } from '@library/kit';
+import { Header, Text } from '@library/kit';
+import Table, { Column } from '@package/table';
+import { nounDeclension } from '@helper/utils';
 
 import React from 'react';
+import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
-import Item from './Item';
+import { selectData, selectMeta } from '../../store/slice';
 
-import { selectData } from '../../store/slice';
-
+import cn from "classnames";
 import styles from './default.module.scss';
 
 
-function Content() {
-  const data: Array<any> = useSelector(selectData);
+function List() {
+  const iconClassName = React.useMemo(() => cn(styles['link'], 'fa-solid fa-ellipsis'), []);
 
-  if ( ! data.length) {
-    return (
-      <div className={styles['empty']}>
-        <Text type={'strong'}>Нет данных для отображение</Text>
-      </div>
-    );
-  }
+  const meta: any = useSelector(selectMeta);
+  const data: Array<any> = useSelector(selectData);
 
   return (
     <div className={styles['wrapper']}>
-      {data.map((item: any) => (
-        <div key={item['uuid']} className={styles['item']}>
-          <Item {...item} />
-        </div>
-      ))}
+      <div className={styles['header']}>
+        <Header level={3}>Найдено { meta['totalRows'] } { nounDeclension(meta['totalRows'], ['товар', 'товара', 'товаров']) }</Header>
+      </div>
+      <div className={styles['content']}>
+        <Table columns={data}>
+          <Column title={'Товар'} align={'left'}>
+            {(props: any) => (
+              <Text>{ props['name'] }</Text>
+            )}
+          </Column>
+          <Column title={'Новых'} width={60}>
+            {(props: any) => (
+              <Text type={'strong'}>{ props['newCommentCount'] }</Text>
+            )}
+          </Column>
+          <Column title={'Всего'} width={60}>
+            {(props: any) => (
+              <Text type={'strong'}>{ props['allCommentCount'] }</Text>
+            )}
+          </Column>
+          <Column width={35}>
+            {(props: any) => (
+              <Link className={iconClassName} to={process.env['PUBLIC_URL'] + '/comments/' + props['uuid']} />
+            )}
+          </Column>
+        </Table>
+      </div>
     </div>
   );
 }
 
-export default Content;
+export default React.memo(List);

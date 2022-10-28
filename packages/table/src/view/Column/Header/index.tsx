@@ -7,11 +7,12 @@ import styles from './@media/index.module.scss';
 
 interface IProps {
   title: string | null;
+  width: number | 'auto';
   align: 'left' | 'right' | 'center';
 }
 
 
-function Header({ title, align }: IProps) {
+function Header({ title, align, width }: IProps) {
   const className = React.useMemo(() => cn(styles['content'], {
     [styles['left']]: align === 'left',
     [styles['right']]: align === 'right',
@@ -19,13 +20,13 @@ function Header({ title, align }: IProps) {
   }), [align]);
 
   return (
-    <th>
+    <td width={width === 'auto' ? width : width + 32}>
       {title && (
         <div className={className}>
           { title }
         </div>
       )}
-    </th>
+    </td>
   );
 }
 

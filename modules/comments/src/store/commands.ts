@@ -13,7 +13,7 @@ export const getComments = (search: any, options: any): any => async (dispatch: 
     dispatch(getCommentsRequestAction());
 
     const result = await request({
-      url: '/api/v1/comments',
+      url: '/api/v1/comments/products',
       method: 'get',
       cancelToken: options['cancel']['token'],
       params: {

@@ -1,6 +1,7 @@
 
 import React from 'react';
 
+import cn from 'classnames';
 import styles from './@media/index.module.scss';
 
 
@@ -12,24 +13,28 @@ interface IProps {
   data: IData;
   alias?: string | null;
   width: number | 'auto';
+  align?: 'right' | 'left' | 'center';
   children?: any;
 }
 
 
-function Row({ width, children }: any) {
+function Row({ width, children , align}: any) {
+  const colClassName = React.useMemo(() => cn(styles['col'], {
+    [styles['align--left']]: align === 'left',
+    [styles['align--right']]: align === 'right',
+  }), []);
+
   return (
     <td width={width}>
-      <div className={styles['col']}>
-        <div className={styles['content']}>
-          { children }
-        </div>
+      <div className={colClassName}>
+        { children }
       </div>
     </td>
   );
 }
 
 
-function Content({ width, alias, data, children }: IProps) {
+function Content({ width, alias, align, data, children }: IProps) {
   const rowData = React.useMemo(() => {
     return alias ? data[alias] : data;
   }, [alias, data]);
@@ -38,14 +43,14 @@ function Content({ width, alias, data, children }: IProps) {
     if (children instanceof Function) {
       const child = children.call(null, data) || null;
       return (
-        <Row width={width === 'auto' ? width : width + 32}>
+        <Row align={align} width={width === 'auto' ? width : width + 32}>
           { child }
         </Row>
       );
     }
 
     return (
-      <Row width={width}>
+      <Row align={align} width={width}>
         {React.Children.map(children, (child: any) => {
           return React.cloneElement(child, { ...data });
         })}
@@ -54,7 +59,7 @@ function Content({ width, alias, data, children }: IProps) {
   }
 
   return (
-    <Row>
+    <Row align={align}>
       { rowData }
     </Row>
   );

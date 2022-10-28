@@ -29,11 +29,11 @@ function Table({ columns, children }: IProps) {
       </thead>
       {columns.map((item: any, index: number) => (
         <tbody key={index}>
-        <tr>
-          {React.Children.map(children, (child: any) => {
-            return React.cloneElement<any, any>(child, { data: item });
-          })}
-        </tr>
+          <tr>
+            {React.Children.map(children, (child: any) => {
+              return React.cloneElement<any, any>(child, { data: item });
+            })}
+          </tr>
         </tbody>
       ))}
     </table>

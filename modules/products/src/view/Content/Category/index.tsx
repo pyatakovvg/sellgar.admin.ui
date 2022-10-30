@@ -13,9 +13,7 @@ interface IProps {
 }
 
 
-function Item({ group, category, products }: IProps) {
-  const product = React.useMemo(() => (products || []).find((item) => item['isTarget'])?.['product'] ?? {}, [products]);
-
+function Item({ group, category, product }: IProps) {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['line']}>
@@ -25,7 +23,7 @@ function Item({ group, category, products }: IProps) {
         <Text type={'strong'}>{ category?.['name'] ?? '---' }</Text>
       </div>
       <div className={styles['line']}>
-        <Text type={'strong'}>{ product['brand']?.['name'] ?? '---' }</Text>
+        <Text type={'strong'}>{ product?.['brand']?.['name'] ?? '---' }</Text>
       </div>
     </div>
   );

@@ -8,13 +8,14 @@ import styles from './default.module.scss';
 
 
 interface IProps {
-  products?: Array<any>;
+  product?: any;
 }
 
 
-function Item({ products }: IProps) {
-  const product = React.useMemo(() => (products || []).find((item) => item['isTarget'])?.['product'] ?? {}, [products]);
-
+function Item({ product }: IProps) {
+  if ( ! product) {
+    return null;
+  }
   return (
     <div className={styles['wrapper']}>
       <div className={styles['field']}>

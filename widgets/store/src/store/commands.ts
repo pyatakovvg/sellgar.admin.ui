@@ -33,6 +33,28 @@ export const getStore = (params: any): any => async (dispatch: Dispatch) => {
   }
 };
 
+export const getProduct = (uuid: string): any => async (dispatch: Dispatch) => {
+  try {
+    // dispatch(getStoreRequestAction());
+
+    const result = await request({
+      url: '/api/v1/store',
+      method: 'get',
+      params: {
+        uuid,
+      },
+    });
+
+    // dispatch(getStoreRequestSuccessAction(result['data']));
+    return result['data'][0];
+  }
+  catch(error: any) {
+
+    // dispatch(getStoreRequestFailAction());
+    return null;
+  }
+};
+
 export const openStore = (name: string): any => (dispatch: Dispatch) => {
   dispatch(openStoreAction(name));
 };

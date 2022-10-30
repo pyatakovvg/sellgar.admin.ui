@@ -1,10 +1,10 @@
 
 import React from 'react';
 
-import Images from './Images';
 import Title from './Title';
 import Types from './Types';
-import Products from './Products';
+import Images from './Images';
+import Product from './Product';
 import Attributes from './Attributes';
 import Description from './Description';
 
@@ -24,7 +24,7 @@ function Form({ handleSubmit }: any) {
         <Types />
       </div>
       <div className={styles['block']}>
-        <Products />
+        <Product />
       </div>
       <div className={styles['block']}>
         <Attributes />

@@ -38,7 +38,7 @@ function Widget({ type, value, onSubmit }: IProps) {
   }, [page]);
 
   function handleSubmit(data: any) {
-    onSubmit(data['products']);
+    onSubmit(data['product']);
   }
 
   function handleSubmitForm() {
@@ -60,7 +60,7 @@ function Widget({ type, value, onSubmit }: IProps) {
         <Form
           type={type || 'simple'}
           initialValues={{
-            products: value,
+            product: value,
           }}
           onSubmit={handleSubmit}
         />

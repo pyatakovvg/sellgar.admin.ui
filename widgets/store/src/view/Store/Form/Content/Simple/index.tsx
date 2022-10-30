@@ -16,7 +16,7 @@ function Simple() {
   const value = useSelector(getFormValues('store')) as any;
 
   function handleSelect(uuid: string) {
-    dispatch(change('store', 'products', uuid));
+    dispatch(change('store', 'product', uuid));
   }
 
   return (
@@ -24,7 +24,7 @@ function Simple() {
       {data.map((item) => {
         return (
           <div key={item['uuid']} className={styles['item']}>
-            <Item isSelected={ !!~ (value['products'] || []).indexOf(item['uuid']) } {...item} onChange={handleSelect} />
+            <Item isSelected={ !!~ (value['product'] || null).indexOf(item['uuid']) } {...item} onChange={handleSelect} />
           </div>
         )
       })}

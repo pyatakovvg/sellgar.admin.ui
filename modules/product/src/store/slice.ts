@@ -79,6 +79,16 @@ const slice = createSlice({
       state['data'] = payload;
       state['inUploadProcess'] = false;
     },
+
+    copyProductRequestAction(state: IState) {
+      state['inUploadProcess'] = true;
+    },
+    copyProductRequestFailAction(state: IState) {
+      state['inUploadProcess'] = false;
+    },
+    copyProductRequestSuccessAction(state: IState) {
+      state['inUploadProcess'] = false;
+    },
   },
 });
 
@@ -104,6 +114,10 @@ export const {
   updateProductRequestAction,
   updateProductRequestFailAction,
   updateProductRequestSuccessAction,
+
+  copyProductRequestAction,
+  copyProductRequestFailAction,
+  copyProductRequestSuccessAction,
 } = slice['actions'] as any;
 
 export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];

@@ -23,10 +23,14 @@ import {
   updateProductRequestAction,
   updateProductRequestFailAction,
   updateProductRequestSuccessAction,
+
+  copyProductRequestAction,
+  copyProductRequestFailAction,
+  copyProductRequestSuccessAction,
 } from './slice';
 
 
-export const getAttributes = (categoryUuid: string) => async (dispatch: any): Promise<any> => {
+export const getAttributes = (categoryUuid: string): any => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getAttributesRequestAction());
 
@@ -47,7 +51,7 @@ export const getAttributes = (categoryUuid: string) => async (dispatch: any): Pr
   }
 };
 
-export const getGroups = () => async (dispatch: any): Promise<any> => {
+export const getGroups = (): any => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getGroupsRequestAction());
 
@@ -84,7 +88,7 @@ export const getCategories = (groupUuid: string) => async (dispatch: any): Promi
   }
 };
 
-export const getProduct = (uuid: string) => async (dispatch: any): Promise<any> => {
+export const getProduct = (uuid: string): any => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getProductRequestAction());
 
@@ -105,7 +109,7 @@ export const getProduct = (uuid: string) => async (dispatch: any): Promise<any> 
   }
 };
 
-export const updateProduct = (data: any) => async (dispatch: any): Promise<any> => {
+export const updateProduct = (data: any): any => async (dispatch: any): Promise<any> => {
   try {
     dispatch(updateProductRequestAction());
 
@@ -123,6 +127,27 @@ export const updateProduct = (data: any) => async (dispatch: any): Promise<any> 
   catch(error: any) {
 
     dispatch(updateProductRequestFailAction());
+  }
+};
+
+export const copyProduct = (uuid: any): any => async (dispatch: any): Promise<any> => {
+  try {
+    dispatch(copyProductRequestAction());
+
+    const result = await request({
+      url: '/api/v1/products/' + uuid + '/copy',
+      method: 'get',
+    });
+
+    dispatch(copyProductRequestSuccessAction(result['data']));
+
+    return result['data'];
+  }
+  catch(error: any) {
+
+    dispatch(copyProductRequestFailAction());
+
+    return null;
   }
 };
 

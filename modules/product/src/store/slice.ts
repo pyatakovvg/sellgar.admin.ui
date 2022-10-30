@@ -120,7 +120,7 @@ export const {
   copyProductRequestSuccessAction,
 } = slice['actions'] as any;
 
-export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
+export const selectData = (state: IRootStore): any => state[REDUCER_NAME]['data'];
 export const selectCategories = (state: IRootStore): Array<any> => state[REDUCER_NAME]['categories'];
 export const selectAttributes = (state: IRootStore): Array<any> => state[REDUCER_NAME]['attributes'];
 export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];

@@ -23,7 +23,7 @@ interface IProps extends WrappedFieldProps {
 
 function BaseInputField({ input, meta: { error, invalid, touched, active }, ...props }: IProps) {
   const dispatch = useDispatch();
-  const [product, setProduct] = React.useState(null);
+  const [product, setProduct] = React.useState<any>(null);
 
   React.useEffect(() => {
     (async () => {

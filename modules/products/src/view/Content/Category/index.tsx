@@ -9,7 +9,7 @@ import styles from './default.module.scss';
 interface IProps {
   group?: any;
   category?: any;
-  products?: Array<any>;
+  product?: any;
 }
 
 

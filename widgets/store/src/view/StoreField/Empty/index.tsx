@@ -1,15 +1,16 @@
 
+import { Text } from '@library/kit';
+
 import React from 'react';
-import cn from "classnames";
 
 import styles from './default.module.scss';
 
 
 function Empty() {
   return (
-    <span className={styles['wrapper']}>
-      <span className={cn(styles['icon'], "fa-solid fa-image")} />
-    </span>
+    <div className={styles['wrapper']}>
+      <Text>Товар со склада не указан</Text>
+    </div>
   );
 }
 

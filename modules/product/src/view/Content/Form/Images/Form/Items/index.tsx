@@ -13,6 +13,10 @@ function AddImageForm({ items, onChange }: any) {
     onChange(arrayMoveImmutable(items, from, to));
   }
 
+  function handleDelete(image: any) {
+    onChange(items.filter((item: any) => item['uuid'] !== image['uuid']));
+  }
+
   if ( ! items.length) {
     return (
       <div className={styles['empty']}>
@@ -27,7 +31,7 @@ function AddImageForm({ items, onChange }: any) {
         <Draggable type={'grid'} onChange={handleOrderChange}>
           {items.map((image: any) => {
             return (
-              <Item key={image['uuid']} {...image} />
+              <Item key={image['uuid']} {...image} onDelete={() => handleDelete(image)} />
             );
           })}
         </Draggable>

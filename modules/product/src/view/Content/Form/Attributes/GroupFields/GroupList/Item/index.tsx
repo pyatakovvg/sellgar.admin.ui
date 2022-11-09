@@ -19,7 +19,7 @@ interface IModifyFieldProps {
 
 
 function Group({ field, disabled, onRemove }: IModifyFieldProps) {
-  const classNameRemoveAttr = React.useMemo(() => cn(styles['icon'], 'far fa-trash-alt'), []);
+  const classNameRemoveAttr = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-xmark'), []);
 
   function handleRemove() {
     onRemove && onRemove();

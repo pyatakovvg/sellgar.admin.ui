@@ -23,7 +23,7 @@ function AddImageForm({ input }: any) {
         <Items items={input['value']} onChange={input.onChange} />
       </div>
       <div className={styles['controls']}>
-        <Button form={'outline'} onClick={() => handleAddImages()}>Редактировать</Button>
+        <Button form={'outline'} onClick={() => handleAddImages()}>Выбрать другие</Button>
       </div>
     </div>
   );

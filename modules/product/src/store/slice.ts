@@ -11,24 +11,16 @@ interface IRootStore {
 
 interface IState {
   data: object | null;
-  images: Array<any>;
-  groups: Array<any>;
   categories: Array<any>;
-  currencies: Array<any>;
   attributes: Array<any>;
-  brands: Array<any>;
   inProcess: boolean;
   inUploadProcess: boolean;
 }
 
 const initialState = {
   data: null,
-  images: [],
-  groups: [],
   categories: [],
-  currencies: [],
   attributes: [],
-  brands: [],
   inProcess: false,
   inUploadProcess: false,
 };
@@ -86,7 +78,8 @@ const slice = createSlice({
     copyProductRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    copyProductRequestSuccessAction(state: IState) {
+    copyProductRequestSuccessAction(state: IState, { payload }) {
+      state['data'] = payload;
       state['inUploadProcess'] = false;
     },
   },

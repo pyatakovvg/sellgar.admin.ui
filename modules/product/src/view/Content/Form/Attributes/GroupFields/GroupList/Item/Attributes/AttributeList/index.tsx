@@ -22,7 +22,7 @@ function AttributeList({ fields, disabled }: any) {
   if ( ! fields.length) {
     return (
       <div className={styles['empty']}>
-        <Text type={'strong'}>Добавте свойство</Text>
+        <Text type={'strong'}>Нет характеристик</Text>
       </div>
     );
   }

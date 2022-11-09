@@ -6,7 +6,7 @@ import React from 'react';
 import { getFormValues, change } from 'redux-form';
 import { useSelector, useDispatch } from "react-redux";
 
-import { getCategories, getAttributes } from '../../../../store/commands';
+import { getCategories } from '../../../../store/commands';
 import { selectCategories, selectInProcess } from "../../../../store/slice";
 
 import styles from './default.module.scss';
@@ -30,21 +30,8 @@ function Types() {
     init();
   }, [values['groupUuid']]);
 
-  React.useEffect(() => {
-    async function init() {
-      if (values['categoryUuid']) {
-        await dispatch<any>(getAttributes(values['categoryUuid']));
-      }
-    }
-    init();
-  }, [values['categoryUuid']]);
-
   function handleResetCategory() {
     dispatch(change('modify', 'categoryUuid', null));
-  }
-
-  function handleResetAttributes() {
-    dispatch(change('modify', 'attributes', []));
   }
 
   return (
@@ -73,7 +60,6 @@ function Types() {
             optionKey="uuid"
             optionValue="name"
             disabled={inProcess || ! values['groupUuid']}
-            onChange={handleResetAttributes}
           />
         </div>
       </div>

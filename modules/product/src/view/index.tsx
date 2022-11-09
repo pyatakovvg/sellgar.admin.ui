@@ -9,8 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from './Header';
 import Content from './Content';
 
-import { getProduct } from '../store/commands';
 import { resetStateAction } from '../store/slice';
+import { getProduct, getAttributes } from '../store/commands';
 
 import styles from './default.module.scss';
 
@@ -22,6 +22,7 @@ function Product() {
 
   React.useEffect(() => {
     async function init() {
+      await dispatch<any>(getAttributes());
       await dispatch<any>(getProduct(params['uuid']));
     }
     init();

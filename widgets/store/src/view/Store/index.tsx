@@ -31,7 +31,7 @@ function Widget({ type, value, onSubmit }: IProps) {
 
   React.useEffect(() => {
     dispatch<any>(getStore({
-      products: value,
+      products: !! value ? value : undefined,
       take: 12,
       skip: page * 12,
     }));

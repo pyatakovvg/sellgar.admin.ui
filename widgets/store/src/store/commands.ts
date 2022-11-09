@@ -15,7 +15,7 @@ import {
 export const getStore = (params: any): any => async (dispatch: Dispatch) => {
   try {
     dispatch(getStoreRequestAction());
-
+console.log(params)
     const result = await request({
       url: '/api/v1/store',
       method: 'get',

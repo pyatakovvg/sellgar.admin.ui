@@ -27,11 +27,16 @@ function BaseInputField({ input, meta: { error, invalid, touched, active }, ...p
 
   React.useEffect(() => {
     (async () => {
-      const result = await dispatch(getProduct(input['value']));
-      if (result) {
-        setProduct(result);
+      if (input['value']) {
+        const result = await dispatch(getProduct(input['value']));
+        if (result) {
+          setProduct(result);
+        }
       }
     })();
+    return () => {
+      setProduct(null);
+    }
   }, [input['value']]);
 
   function handleOpenGallery() {
@@ -50,8 +55,10 @@ function BaseInputField({ input, meta: { error, invalid, touched, active }, ...p
         {...input}
         error={(touched && invalid && ! active) ? error : null}
       >
-        <div className={styles['wrapper']}>
-          <div className={styles['content']} onClick={handleOpenGallery}>
+        <div className={cn(styles['wrapper'], {
+          [styles['error']]: (invalid && ! active) ? error : null
+        })} onClick={handleOpenGallery}>
+          <div className={styles['content']}>
             { !! product ? (
               <Product {...product} />
             ) : (
@@ -63,6 +70,7 @@ function BaseInputField({ input, meta: { error, invalid, touched, active }, ...p
           </div>
         </div>
       </BaseField>
+
       <Gallery name={'store'} value={input['value'] ?? null} onSubmit={handleChange} />
     </>
   );

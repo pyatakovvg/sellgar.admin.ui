@@ -4,10 +4,6 @@ import { NotFoundError } from "@package/errors";
 import { pushSuccess } from '@package/push';
 
 import {
-  getGroupsRequestAction,
-  getGroupsRequestFailAction,
-  getGroupsRequestSuccessAction,
-
   getAttributesRequestAction,
   getAttributesRequestFailAction,
   getAttributesRequestSuccessAction,
@@ -30,17 +26,13 @@ import {
 } from './slice';
 
 
-export const getAttributes = (categoryUuid: string): any => async (dispatch: any): Promise<any> => {
+export const getAttributes = (): any => async (dispatch: any): Promise<any> => {
   try {
     dispatch(getAttributesRequestAction());
 
     const result = await request({
       url: '/api/v1/attributes',
       method: 'get',
-      params: {
-        categoryUuid,
-        include: ['category'],
-      }
     });
 
     dispatch(getAttributesRequestSuccessAction(result['data']));
@@ -48,23 +40,6 @@ export const getAttributes = (categoryUuid: string): any => async (dispatch: any
   catch(error: any) {
 
     dispatch(getAttributesRequestFailAction());
-  }
-};
-
-export const getGroups = (): any => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getGroupsRequestAction());
-
-    const result = await request({
-      url: '/api/v1/groups',
-      method: 'get',
-    });
-
-    dispatch(getGroupsRequestSuccessAction(result['data']));
-  }
-  catch(error: any) {
-
-    dispatch(getGroupsRequestFailAction());
   }
 };
 
@@ -140,6 +115,7 @@ export const copyProduct = (uuid: any): any => async (dispatch: any): Promise<an
     });
 
     dispatch(copyProductRequestSuccessAction(result['data']));
+    dispatch(pushSuccess('Данные скопированы'));
 
     return result['data'];
   }
@@ -147,32 +123,6 @@ export const copyProduct = (uuid: any): any => async (dispatch: any): Promise<an
 
     dispatch(copyProductRequestFailAction());
 
-    return null;
-  }
-};
-
-export const getProductFromStore = (uuid: string): any => async (dispatch: any): Promise<any> => {
-  try {
-    // dispatch(getProductRequestAction());
-
-    const result = await request({
-      url: '/api/v1/store',
-      method: 'get',
-      params: {
-        uuid,
-      },
-    });
-
-    if ( ! result['data'][0]) {
-      throw new NotFoundError({ code: '1.0.2', message: 'Продукт не найден' });
-    }
-
-    // dispatch(getProductRequestSuccessAction(result['data']));
-    return result['data'][0];
-  }
-  catch(error: any) {
-
-    // dispatch(getProductRequestFailAction());
     return null;
   }
 };

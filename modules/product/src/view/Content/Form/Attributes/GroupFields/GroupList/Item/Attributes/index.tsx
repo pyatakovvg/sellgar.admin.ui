@@ -16,15 +16,18 @@ function AttributesValues({ fields, disabled }: any) {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['content']}>
-        <AttributeList disabled={disabled} fields={fields} />
+        <AttributeList
+          disabled={disabled}
+          fields={fields}
+        />
       </div>
       <div className={styles['controls']}>
         <Button
           mode={'primary'}
           form={'outline'}
           disabled={disabled}
-          onClick={() => handleAddAttr()}
-        >Добавить аттрибут</Button>
+          onClick={handleAddAttr}
+        >Добавить характеристику</Button>
       </div>
     </div>
   );

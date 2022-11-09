@@ -29,6 +29,10 @@ function validate(value: any) {
     errors['name'] = 'Необходимо заполнить';
   }
 
+  if ( ! value['productUuid']) {
+    errors['productUuid'] = 'Необходимо выбрать';
+  }
+
   if (value['attributes'] && !! value['attributes'].length) {
     const groupArrayErrors: Array<any> = [];
 

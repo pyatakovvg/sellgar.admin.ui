@@ -24,7 +24,11 @@ function Simple() {
       {data.map((item) => {
         return (
           <div key={item['uuid']} className={styles['item']}>
-            <Item isSelected={ !!~ (value['product'] || null).indexOf(item['uuid']) } {...item} onChange={handleSelect} />
+            <Item
+              {...item}
+              onChange={handleSelect}
+              isSelected={ !!~ (value['product'] || '').indexOf(item['uuid']) }
+            />
           </div>
         )
       })}

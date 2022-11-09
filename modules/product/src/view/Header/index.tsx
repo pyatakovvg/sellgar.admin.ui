@@ -23,6 +23,7 @@ function Controls() {
 
   async function handleCopy() {
     const result = await dispatch(copyProduct(data['uuid']));
+
     if (result) {
       navigate(process.env['PUBLIC_URL'] + '/products/' + result['uuid']);
     }

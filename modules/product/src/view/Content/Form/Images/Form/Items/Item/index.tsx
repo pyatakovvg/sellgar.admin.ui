@@ -7,13 +7,12 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-function AddImageForm({ uuid, new: isNew }: any) {
-  const imageClassName = React.useMemo(() => cn(styles['wrapper'], {
-    [styles['new']]: !! isNew,
-  }), [isNew]);
+function AddImageForm({ uuid, onDelete }: any) {
+  const removeClassName = React.useMemo(() => cn(styles['remove'], 'fa-solid fa-xmark'), []);
 
   return (
-    <div className={imageClassName}>
+    <div className={styles['wrapper']}>
+      <span className={removeClassName} onClick={onDelete}/>
       <div className={styles['image']}>
         <Image
           width={124}

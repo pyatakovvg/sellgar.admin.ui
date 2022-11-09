@@ -21,7 +21,7 @@ function Empty() {
         <Text type={'strong'}>Нет выбранных изображений</Text>
       </div>
       <div className={styles['control']}>
-        <Button form={'outline'} onClick={handleAddImages}>Добавить</Button>
+        <Button form={'outline'} onClick={handleAddImages}>Выбрать из галлереи</Button>
       </div>
     </div>
   );

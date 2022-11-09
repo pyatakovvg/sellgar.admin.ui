@@ -22,7 +22,7 @@ function Item({ field, data, disabled, onRemove }: IModifyFieldProps) {
   const attributes = useSelector(selectAttributes);
 
   const attribute = React.useMemo(() => attributes.find((item) => item['uuid'] === data['attributeUuid']), [data]);
-  const classNameRemoveAttr = React.useMemo(() => cn(styles['icon'], 'far fa-trash-alt'), []);
+  const classNameRemoveAttr = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-xmark'), []);
 
   function handleRemove() {
     onRemove && onRemove();

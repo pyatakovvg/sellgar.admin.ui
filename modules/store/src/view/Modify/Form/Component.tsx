@@ -1,5 +1,5 @@
 
-import { selectCurrencies } from '@package/base-data';
+import { selectCurrencies, selectBrands } from '@package/base-data';
 import { Header, InputField, TextareaField, SelectField, Button } from '@library/kit';
 
 
@@ -11,6 +11,7 @@ import styles from './default.module.scss';
 
 
 function Form({ handleSubmit }: InjectedFormProps) {
+  const brands = useSelector(selectBrands);
   const currencies = useSelector(selectCurrencies);
 
   return (
@@ -21,6 +22,16 @@ function Form({ handleSubmit }: InjectedFormProps) {
       <div className={styles['content']}>
         <div className={styles['row']}>
           <InputField name={'name'} label={'Наименование'} required />
+        </div>
+        <div className={styles['row']}>
+          <SelectField
+            required
+            name={'brand.uuid'}
+            label={'Производитель'}
+            options={brands}
+            optionKey={'uuid'}
+            optionValue={'name'}
+          />
         </div>
         <div className={styles['row']}>
           <div className={styles['col']}>

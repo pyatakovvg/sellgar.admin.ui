@@ -197,6 +197,11 @@ echo '------------------------------------'
 cd ../users && npx yarn build && yarn build:types
 
 echo '------------------------------------'
+echo 'Модуль "User"'
+echo '------------------------------------'
+cd ../user && npx yarn build && yarn build:types
+
+echo '------------------------------------'
 echo 'Модуль "Checkout"'
 echo '------------------------------------'
 cd ../checkout && npx yarn build && yarn build:types

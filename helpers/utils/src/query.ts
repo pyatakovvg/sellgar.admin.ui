@@ -6,6 +6,9 @@ interface IParams {
 
 function normalizeParam(param: any): any {
   if (/^\d+$/ig.test(param)) {
+    if (/^0+/ig.test(param)) {
+      return String(param);
+    }
     return Number(param);
   }
   else if (/^true$/.test(param)) {
@@ -47,6 +50,7 @@ const withURLSearchParams = (query: string) => {
   do {
     result = entries.next();
     const value = result['value'];
+
     if (value) {
       if ( ! (value[0] in params)) {
         params[value[0]] = value[1];

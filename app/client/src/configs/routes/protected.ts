@@ -69,6 +69,11 @@ const routes: Array<any> = [
     wrapper: 'composite',
     module: import('@module/users'),
   },
+  {
+    path: '/users/:uuid',
+    wrapper: 'composite',
+    module: import('@module/user'),
+  },
 ];
 
 export default routes;

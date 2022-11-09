@@ -16,10 +16,10 @@ function Vendor({ vendor, barcode }: IProps) {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['line']}>
-        <Text type={'strong'}>{ vendor || 'Нет артикула'}</Text>
+        <Text type={'strong'}>А: { vendor || 'Не задан'}</Text>
       </div>
       <div className={styles['line']}>
-        <Text type={'description'}>{ barcode || 'Нет штрихкода'}</Text>
+        <Text type={'description'}>Ш: { barcode || 'Не задан'}</Text>
       </div>
     </div>
   );

@@ -83,7 +83,6 @@ export const upsertProducts = (data: any): any => async (dispatch: any): Promise
     return true;
   }
   catch(error: any) {
-console.log(error)
     dispatch(upsertProductRequestFailAction());
     return false;
   }

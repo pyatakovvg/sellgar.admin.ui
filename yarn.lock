@@ -4672,6 +4672,11 @@ classnames@2.3.1, classnames@^2.2.6:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
   integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
+classnames@2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
+  integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
+
 clean-css@^5.2.2:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-5.3.1.tgz#d0610b0b90d125196a2894d35366f734e5d7aa32"
@@ -5679,6 +5684,23 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
+
+effector-forms@0.0.24:
+  version "0.0.24"
+  resolved "https://registry.yarnpkg.com/effector-forms/-/effector-forms-0.0.24.tgz#2ff2ee251b4aa059baa9f6883866da0758a896bb"
+  integrity sha512-bFExfHd2WKwAuDbCQ6kdGU/5ivx+C3N6cEcLBXcdTJefpnh5D0+Sp59ai8+xV+xUEVC1RTB1jA8WCeYbgG04fQ==
+
+effector-react@22.3.4:
+  version "22.3.4"
+  resolved "https://registry.yarnpkg.com/effector-react/-/effector-react-22.3.4.tgz#d9020eeb0203729833472807f76d90b180b05b63"
+  integrity sha512-iyPMjnIW7pUoSuvxumAu4oRan4d8sbXmYPTlRXR75HOag2aH805m+xElyhyXCsQMXxQebjk7/GSC8Caeriv/+A==
+  dependencies:
+    use-sync-external-store "^1.0.0"
+
+effector@22.4.0:
+  version "22.4.0"
+  resolved "https://registry.yarnpkg.com/effector/-/effector-22.4.0.tgz#6f94352d30268f644321892167ebe52ebc3e70a6"
+  integrity sha512-WQ0rboUp1fvkzo2rPymtWzR9isUl8v9McGvBA4g8zvQaTgZnXQ1iCbNj2S54bADGpSNl1CYv1/61vvdbc5Goyw==
 
 ejs@^3.1.6:
   version "3.1.8"

@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "react-scripts start",
-    "build": "NODE_OPTIONS=--max-old-space-size=4096 react-scripts build"
+    "build": "react-scripts build --node-flags --max-old-space-size=4096 --no-warnings"
   },
   "dependencies": {
     "@helper/utils": "0.0.1",

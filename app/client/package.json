@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts --max-old-space-size=1024 build"
+    "build": "react-scripts --max-old-space-size=4096 build"
   },
   "dependencies": {
     "@helper/utils": "0.0.1",

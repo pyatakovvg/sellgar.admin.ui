@@ -32,7 +32,7 @@ function BaseField({ className, required, children, label, error, ...props }: IP
         {React.Children.map(children, (child: any) => {
           return React.cloneElement(child, {
             ...props,
-            mode: !!error ? 'danger' : props['mode'],
+            mode: !! error ? 'danger' : props['mode'],
           })
         })}
       </div>
@@ -50,4 +50,4 @@ BaseField.defaultProps = {
   error: null
 };
 
-export default React.memo(BaseField);
+export default BaseField;

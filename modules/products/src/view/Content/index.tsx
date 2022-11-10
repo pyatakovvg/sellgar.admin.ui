@@ -44,10 +44,10 @@ function Table1() {
           <Column title={'Цена'} align={'right'} width={160}>
             <Price />
           </Column>
-          <Column align={'right'} width={140}>
+          <Column align={'right'} width={100}>
             <Controls />
           </Column>
-          <Column width={35}>
+          <Column width={24}>
             {(props: any) => (
               <Link className={iconClassName} to={process.env['PUBLIC_URL'] + '/products/' + props['uuid']} />
             )}

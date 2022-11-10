@@ -38,7 +38,7 @@ function DefaultInput({ className, type, mode, value, name, readOnly, placeholde
     [styles['in-focus']]: isFocus,
     [styles['disabled']]: disabled,
     [styles['read-only']]: readOnly,
-  }), [className, isFocus, disabled]);
+  }), [className, isFocus, disabled, mode]);
   const inputClassName = React.useMemo(() => cn(styles['input']), []);
 
   function handleFocus(event: React.FocusEvent<HTMLInputElement>) {
@@ -74,12 +74,12 @@ function DefaultInput({ className, type, mode, value, name, readOnly, placeholde
       <input
         className={inputClassName}
         {...rest}
-        type={type}
-        value={value}
-        name={name}
-        readOnly={readOnly}
-        autoFocus={autoFocus}
-        disabled={disabled}
+        type={type || 'text'}
+        value={value || ''}
+        name={name || ''}
+        readOnly={readOnly || false}
+        autoFocus={autoFocus || false}
+        disabled={disabled || false}
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChange={handleChange}

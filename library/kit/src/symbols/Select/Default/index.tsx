@@ -37,7 +37,7 @@ function useGetValue(value: string, option: any, optionValue: string = ''): stri
 }
 
 
-function DefaultSelect({ mode, value, options, optionKey, optionValue, placeholder, disabled, clearable, onFocus, onChange, onBlur }: IProps): JSX.Element | null {
+function DefaultSelect({ mode, value, options, optionKey, optionValue, placeholder, disabled, clearable, onFocus, onChange, onBlur }: IProps) {
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const [isFocus, setFocus] = React.useState(false);
 
@@ -96,11 +96,11 @@ function DefaultSelect({ mode, value, options, optionKey, optionValue, placehold
   return (
     <div ref={wrapperRef} className={styles['wrapper']}>
       <Select
-        mode={mode}
+        mode={mode || 'default'}
         value={selectedValue}
-        placeholder={placeholder}
-        disabled={disabled}
-        clearable={clearable}
+        placeholder={placeholder || ''}
+        disabled={disabled || false}
+        clearable={clearable || false}
         inFocus={isFocus}
         onClick={handleFocus}
         onReset={handleReset}
@@ -111,8 +111,8 @@ function DefaultSelect({ mode, value, options, optionKey, optionValue, placehold
             className={styles['shadow']}
             value={value}
             options={options}
-            optionKey={optionKey}
-            optionValue={optionValue}
+            optionKey={optionKey || 'id'}
+            optionValue={optionValue || 'value'}
             onClick={handleChange}
           />
         </div>

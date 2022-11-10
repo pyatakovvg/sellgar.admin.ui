@@ -65,7 +65,7 @@ function Select({ inFocus, mode, value, placeholder, disabled, clearable, onClic
         )}
       </div>
       <div className={styles['controls']}>
-        {(clearable && value) && <Reset disabled={disabled} onClick={handleReset} />}
+        {(clearable && value) && <Reset disabled={disabled || false} onClick={handleReset} />}
       </div>
       <div className={styles['arrow']} onClick={handleClick}>
         <span className={cn(styles['icon'], 'fa-solid fa-sort-down')} />

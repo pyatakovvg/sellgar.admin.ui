@@ -9,11 +9,10 @@ import styles from './default.module.scss';
 interface IProps {
   group?: any;
   category?: any;
-  product?: any;
 }
 
 
-function Item({ group, category, product }: IProps) {
+function Item({ group, category }: IProps) {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['line']}>
@@ -21,9 +20,6 @@ function Item({ group, category, product }: IProps) {
       </div>
       <div className={styles['line']}>
         <Text type={'strong'}>{ category?.['name'] ?? '---' }</Text>
-      </div>
-      <div className={styles['line']}>
-        <Text type={'strong'}>{ product?.['brand']?.['name'] ?? '---' }</Text>
       </div>
     </div>
   );

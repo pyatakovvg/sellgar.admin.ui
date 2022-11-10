@@ -26,8 +26,10 @@ function Form({ handleSubmit }: InjectedFormProps) {
         <div className={styles['row']}>
           <SelectField
             required
+            clearable
             name={'brand.uuid'}
             label={'Производитель'}
+            placeholder={'Выбрать из списка'}
             options={brands}
             optionKey={'uuid'}
             optionValue={'name'}

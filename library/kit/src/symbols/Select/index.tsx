@@ -27,7 +27,7 @@ interface IProps {
 }
 
 
-function Factory({ type, ...rest }: IProps): JSX.Element | null {
+function Factory({ type, ...rest }: IProps) {
   switch(type) {
     default: return <DefaultSelect {...rest} />;
   }

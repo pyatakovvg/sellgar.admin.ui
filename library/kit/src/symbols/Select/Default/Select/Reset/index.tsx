@@ -11,7 +11,7 @@ interface IProps {
 }
 
 
-function Reset({ disabled = false, onClick }: IProps): JSX.Element | null {
+function Reset({ disabled = false, onClick }: IProps) {
   const wrapperClassName = React.useMemo(() => cn(styles['wrapper'], {
     [styles['disabled']]: disabled,
   }), [disabled]);

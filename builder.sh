@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 echo '------------------------------------'
 echo '|        Сборка helpers            |'
@@ -9,7 +9,7 @@ cd ./helpers || return
 echo '------------------------------------'
 echo 'Пакет "Utils"'
 echo '------------------------------------'
-cd ./utils && npx yarn build
+cd ./utils && npm run build
 
 
 echo ''
@@ -22,12 +22,12 @@ cd ../../library || return
 echo '------------------------------------'
 echo 'Библиотека "app"'
 echo '------------------------------------'
-cd ./app && npx yarn build && yarn build:types
+cd ./app && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Библиотека "kit"'
 echo '------------------------------------'
-cd ../kit && npx yarn build && yarn build:types
+cd ../kit && npm run build && yarn build:types
 
 
 
@@ -40,41 +40,41 @@ cd ../../packages || return
 echo '------------------------------------'
 echo 'Пакет "Errors"'
 echo '------------------------------------'
-cd ./errors && npx yarn build && yarn build:types
+cd ./errors && npm run build && yarn build:types
 echo ''
 echo 'Пакет "request"'
 echo '------------------------------------'
-cd ../request && npx yarn build && yarn build:types
+cd ../request && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Пакет "Dialog"'
 echo '------------------------------------'
-cd ../dialog && npx yarn build && yarn build:types
+cd ../dialog && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Пакет "Push"'
 echo '------------------------------------'
-cd ../push && npx yarn build && yarn build:types
+cd ../push && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Пакет "Numeral"'
 echo '------------------------------------'
-cd ../numeral && npx yarn build && yarn build:types
+cd ../numeral && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Пакет "Moment"'
 echo '------------------------------------'
-cd ../moment && npx yarn build && yarn build:types
+cd ../moment && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Пакет "Table"'
 echo '------------------------------------'
-cd ../table && npx yarn build && yarn build:types
+cd ../table && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Пакет "Base data"'
 echo '------------------------------------'
-cd ../base && npx yarn build && yarn build:types
+cd ../base && npm run build && yarn build:types
 
 
 
@@ -87,17 +87,17 @@ cd ../../wrappers || return
 echo '------------------------------------'
 echo 'Пакет "Default"'
 echo '------------------------------------'
-cd ./default && npx yarn build && yarn build:types
+cd ./default && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Пакет "Empty"'
 echo '------------------------------------'
-cd ../empty && npx yarn build && yarn build:types
+cd ../empty && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Пакет "Composite"'
 echo '------------------------------------'
-cd ../composite && npx yarn build && yarn build:types
+cd ../composite && npm run build && yarn build:types
 
 
 echo '------------------------------------'
@@ -109,24 +109,24 @@ cd ../../widgets || return
 echo '------------------------------------'
 echo 'Пакет "Profile"'
 echo '------------------------------------'
-cd ./profile && npx yarn build && yarn build:types
+cd ./profile && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Пакет "Gallery"'
 echo '------------------------------------'
-cd ../gallery && npx yarn build && yarn build:types
+cd ../gallery && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Пакет "Store"'
 echo '------------------------------------'
-cd ../store && npx yarn build && yarn build:types
+cd ../store && npm run build && yarn build:types
 
 
 
 echo '------------------------------------'
 echo 'Библиотека "design"'
 echo '------------------------------------'
-cd ../../library/design && npx yarn build && yarn build:types
+cd ../../library/design && npm run build && yarn build:types
 
 
 
@@ -139,86 +139,86 @@ cd ../../modules || return
 echo '------------------------------------'
 echo 'Модуль "Attributes"'
 echo '------------------------------------'
-cd ./attributes && npx yarn build && yarn build:types
+cd ./attributes && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Brands"'
 echo '------------------------------------'
-cd ../brands && npx yarn build && yarn build:types
+cd ../brands && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Categories"'
 echo '------------------------------------'
-cd ../categories && npx yarn build && yarn build:types
+cd ../categories && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Error"'
 echo '------------------------------------'
-cd ../error && npx yarn build && yarn build:types
+cd ../error && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Groups"'
 echo '------------------------------------'
-cd ../groups && npx yarn build && yarn build:types
+cd ../groups && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Gallery"'
 echo '------------------------------------'
-cd ../gallery && npx yarn build && yarn build:types
+cd ../gallery && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Main"'
 echo '------------------------------------'
-cd ../main && npx yarn build && yarn build:types
+cd ../main && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Product"'
 echo '------------------------------------'
-cd ../product && npx yarn build && yarn build:types
+cd ../product && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Products"'
 echo '------------------------------------'
-cd ../products && npx yarn build && yarn build:types
+cd ../products && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "SignIn"'
 echo '------------------------------------'
-cd ../sign-in && npx yarn build && yarn build:types
+cd ../sign-in && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Units"'
 echo '------------------------------------'
-cd ../units && npx yarn build && yarn build:types
+cd ../units && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Users"'
 echo '------------------------------------'
-cd ../users && npx yarn build && yarn build:types
+cd ../users && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "User"'
 echo '------------------------------------'
-cd ../user && npx yarn build && yarn build:types
+cd ../user && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Checkout"'
 echo '------------------------------------'
-cd ../checkout && npx yarn build && yarn build:types
+cd ../checkout && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Checkouts"'
 echo '------------------------------------'
-cd ../checkouts && npx yarn build && yarn build:types
+cd ../checkouts && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Comments"'
 echo '------------------------------------'
-cd ../comments && npx yarn build && yarn build:types
+cd ../comments && npm run build && yarn build:types
 
 echo '------------------------------------'
 echo 'Модуль "Store"'
 echo '------------------------------------'
-cd ../store && npx yarn build && yarn build:types
+cd ../store && npm run build && yarn build:types
 
 exit 0

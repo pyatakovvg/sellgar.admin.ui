@@ -5,7 +5,7 @@ import Component from './Component';
 
 
 function validate(value: any): any {
-  const errors = {};
+  const errors: any = {};
 
   if ( ! ('name' in value)) {
     errors['name'] = 'Необходимо заполнить';

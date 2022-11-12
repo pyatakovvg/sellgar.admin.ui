@@ -31,3 +31,5 @@ export { default as Header } from './typography/Header';
 export { default as Metric } from './typography/Metric';
 export { default as Status } from './typography/Status';
 export { default as Logotype } from './typography/Logotype';
+
+export { default as ScrollProvider } from './providers/Scroll';

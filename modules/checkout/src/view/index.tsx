@@ -18,10 +18,10 @@ function Checkout() {
   const data: any = useSelector(selectData);
 
   React.useEffect(() => {
-    async function init() {
+    async function init(): Promise<void> {
       await dispatch<any>(getOrder(params['uuid']));
     }
-    init();
+    init().then(() => {});
     return () => {
       dispatch(resetStateAction());
     }

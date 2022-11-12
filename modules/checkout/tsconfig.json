@@ -1,13 +1,11 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["node"],
     "declaration": true,
     "declarationDir": "./types",
     "emitDeclarationOnly": true,
   },
   "include": [
-    "src",
-    "react-app-env.d.ts"
+    "src"
   ]
 }

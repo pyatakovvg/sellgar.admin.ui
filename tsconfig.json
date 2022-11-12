@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "typeRoots": ["@types"],
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "target": "es5",
     "lib": [
@@ -10,6 +11,7 @@
     "types": [
       "node",
       "react/next",
+      "react-scripts",
       "react-dom/next"
     ],
     "allowJs": true,
@@ -28,6 +30,8 @@
   },
   "include": [
     "src",
+    "scss.d.ts",
+    "process.d.ts"
   ],
   "exclude": [
     "node_modules",

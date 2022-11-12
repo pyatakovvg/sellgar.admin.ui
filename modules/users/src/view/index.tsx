@@ -32,10 +32,10 @@ function Users() {
       <section className={styles['content']}>
         <Table columns={data}>
           <Column title={'ID'} align={'left'}>
-            {({ uuid }) => <Text>{ uuid }</Text>}
+            {({ uuid }: any) => <Text>{ uuid }</Text>}
           </Column>
           <Column title={'Name'}>
-            {({ login }) => <Text>{ login }</Text>}
+            {({ login }: any) => <Text>{ login }</Text>}
           </Column>
         </Table>
       </section>

@@ -3,6 +3,7 @@ import React from 'react';
 
 import Select from './Select';
 import List from '../../List';
+import { context as scrollProviderContext } from '../../../providers/Scroll';
 
 import styles from './default.module.scss';
 
@@ -38,8 +39,11 @@ function useGetValue(value: string, option: any, optionValue: string = ''): stri
 
 
 function DefaultSelect({ mode, value, options, optionKey, optionValue, placeholder, disabled, clearable, onFocus, onChange, onBlur }: IProps) {
+  const listRef = React.useRef<HTMLDivElement | null>(null);
   const wrapperRef = React.useRef<HTMLDivElement | null>(null);
   const [isFocus, setFocus] = React.useState(false);
+  const { isScroll } = React.useContext(scrollProviderContext);
+
 
   function handleFocus() {
     if (isFocus) {
@@ -71,6 +75,24 @@ function DefaultSelect({ mode, value, options, optionKey, optionValue, placehold
   function handleReset() {
     handleChange(null);
   }
+
+  React.useEffect(() => {
+    if (isScroll) {
+      if (isFocus) {
+        handleBlur();
+      }
+    }
+  }, [isScroll]);
+
+  React.useEffect(() => {
+    const listElement = listRef['current'];
+    const wrapperElement = wrapperRef['current'];
+
+    if (listElement && wrapperElement) {
+      const wrapperRect: DOMRect = wrapperElement.getBoundingClientRect();
+      listElement.style.top = wrapperRect.bottom + 'px';
+    }
+  }, [isFocus]);
 
   React.useEffect(() => {
     function handleReset(event: any) {
@@ -106,7 +128,7 @@ function DefaultSelect({ mode, value, options, optionKey, optionValue, placehold
         onReset={handleReset}
       />
       {isFocus && (
-        <div className={styles['list']}>
+        <div ref={listRef} className={styles['list']}>
           <List
             className={styles['shadow']}
             value={value}

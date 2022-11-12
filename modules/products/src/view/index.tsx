@@ -2,6 +2,7 @@
 import { query } from '@helper/utils';
 import { Paging } from '@library/design';
 import { createCancelToken } from '@package/request';
+import { ScrollProvider } from '@library/kit';
 
 import React from 'react';
 import { useLocation } from 'react-router-dom';
@@ -49,7 +50,7 @@ function Products() {
       <header className={styles['header']}>
         <Header />
       </header>
-      <section className={styles['content']}>
+      <ScrollProvider className={styles['content']}>
         <aside className={styles['filter']}>
           <Filter />
         </aside>
@@ -59,7 +60,7 @@ function Products() {
         <div className={styles['controls']}>
           <Paging totalRows={meta?.['totalRows'] ?? 0} />
         </div>
-      </section>
+      </ScrollProvider>
     </section>
   );
 }

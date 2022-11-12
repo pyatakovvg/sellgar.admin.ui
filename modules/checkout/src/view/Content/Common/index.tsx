@@ -1,5 +1,5 @@
 
-import { Header, Metric } from '@library/kit';
+import { Metric } from '@library/kit';
 
 import React from 'react';
 

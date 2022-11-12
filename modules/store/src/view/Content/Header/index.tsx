@@ -1,19 +1,28 @@
 
-import {Header} from "@library/kit";
-import {nounDeclension} from "@helper/utils";
+import { Header, Link } from '@library/kit';
+import { nounDeclension } from '@helper/utils';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectMeta } from '../../../store/slice';
 
+import styles from './default.module.scss';
 
-function Controls() {
-  const meta = useSelector(selectMeta);
+
+function Headers() {
+  const meta: any = useSelector(selectMeta);
 
   return (
-    <Header level={3}>Найдено { meta['totalRows'] } { nounDeclension(meta['totalRows'], ['товар', 'товара', 'товаров']) }</Header>
+    <div className={styles['wrapper']}>
+      <div className={styles['header']}>
+        <Header level={3}>Найдено { meta['totalRows'] } { nounDeclension(meta['totalRows'], ['товар', 'товара', 'товаров']) }</Header>
+      </div>
+      <div className={styles['control']}>
+        <Link href={process.env['PUBLIC_URL'] + '/store'}>Сбросить фильтр</Link>
+      </div>
+    </div>
   );
 }
 
-export default Controls;
+export default React.memo(Headers);

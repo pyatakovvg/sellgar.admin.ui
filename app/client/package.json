@@ -16,8 +16,8 @@
     "@module/checkouts": "0.0.1",
     "@module/comments": "0.0.1",
     "@module/error": "0.0.1",
-    "@module/groups": "0.0.1",
     "@module/gallery": "0.0.1",
+    "@module/groups": "0.0.1",
     "@module/kit": "0.0.1",
     "@module/main": "0.0.1",
     "@module/products": "0.0.1",
@@ -25,31 +25,31 @@
     "@module/units": "0.0.1",
     "@module/user": "0.0.1",
     "@module/users": "0.0.1",
+    "@package/base-data": "0.0.1",
     "@package/dialog": "0.0.1",
     "@package/push": "0.0.1",
     "@package/request": "0.0.1",
-    "@package/base-data": "0.0.1",
     "@reduxjs/toolkit": "1.8.5",
+    "@widget/gallery": "0.0.1",
     "@widget/profile": "0.0.1",
     "@widget/store": "0.0.1",
-    "@widget/gallery": "0.0.1",
     "@wrapper/composite": "0.0.1",
     "@wrapper/default": "0.0.1",
     "@wrapper/empty": "0.0.1",
     "history": "5.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-redux": "8.0.2",
-    "react-router-dom": "6.3.0",
+    "react-redux": "8.0.5",
+    "react-router-dom": "6.4.3",
     "redux-form": "8.3.8",
     "resolve": "1.22.1",
-    "web-vitals": "2.1.4"
+    "web-vitals": "3.0.4"
   },
   "devDependencies": {
-    "@types/react-dom": "18.0.6",
+    "@types/react-dom": "18.0.8",
     "@types/redux-form": "8.3.5",
     "react-scripts": "5.0.1",
-    "sass": "1.54.5"
+    "sass": "1.56.1"
   },
   "eslintConfig": {
     "extends": [

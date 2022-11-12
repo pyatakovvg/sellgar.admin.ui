@@ -7,7 +7,6 @@
     "emitDeclarationOnly": false,
   },
   "include": [
-    "src",
-    "react-app-env.d.ts"
+    "src"
   ]
 }

@@ -1,6 +1,6 @@
 
-import { SelectField, CheckboxField, Button, Text } from '@library/kit';
 import { selectGroups, selectBrands, selectCategories } from '@package/base-data';
+import { InputField, SelectField, CheckboxField, Button, Text } from '@library/kit';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -49,12 +49,17 @@ function Form({ handleSubmit }: any) {
             optionValue={'name'}
           />
         </div>
+      </div>
+      <div className={styles['fields']}>
+        <div className={styles['field']}>
+          <InputField name={'search'} placeholder={'Поиск'} />
+        </div>
         <div className={styles['check']}>
           <CheckboxField name={'isUse'}><Text>на витрине</Text></CheckboxField>
         </div>
-      </div>
-      <div className={styles['control']}>
-        <Button type={'submit'}>Применить</Button>
+        <div className={styles['control']}>
+          <Button type={'submit'}>Применить</Button>
+        </div>
       </div>
     </form>
   );

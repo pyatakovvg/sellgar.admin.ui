@@ -15,20 +15,20 @@
     "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
   },
   "dependencies": {
+    "@package/base-data": "0.0.1",
     "@package/errors": "0.0.1",
     "@package/push": "0.0.1",
     "@package/request": "0.0.1",
-    "@package/base-data": "0.0.1",
-    "@widget/store": "0.0.1",
     "@widget/gallery": "0.0.1",
-    "redux-form": "8.3.8",
+    "@widget/store": "0.0.1",
     "react": "18.2.0",
-    "react-router-dom": "6.3.0"
+    "react-router-dom": "6.4.3",
+    "redux-form": "8.3.8"
   },
   "devDependencies": {
-    "@babel/cli": "7.18.10",
-    "@babel/core": "7.18.10",
-    "@babel/preset-env": "7.18.10",
+    "@babel/cli": "7.19.3",
+    "@babel/core": "7.20.2",
+    "@babel/preset-env": "7.20.2",
     "@babel/preset-typescript": "7.18.6",
     "@types/redux-form": "8.3.5",
     "cross-env": "7.0.3"

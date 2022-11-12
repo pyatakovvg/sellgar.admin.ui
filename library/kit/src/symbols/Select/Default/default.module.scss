@@ -24,13 +24,10 @@
 
 .list {
 
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  display: inline-flex;
+  position: fixed;
+  display: flex;
   flex-direction: column;
-  flex: 1 0;
+  flex: 1 0 auto;
   padding: 4px 0 0;
   max-height: 280px;
   min-width: 220px;

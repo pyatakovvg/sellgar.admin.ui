@@ -10,7 +10,7 @@ import {
 } from '@package/errors';
 
 import qs from "qs";
-import axios from "axios";
+import axios, {ParamsSerializerOptions} from "axios";
 import type { AxiosRequestConfig, CancelTokenSource } from "axios";
 
 
@@ -53,9 +53,11 @@ async function request(options: AxiosRequestConfig): Promise<any> {
     });
 
     instance.interceptors.request.use(function (config) {
-      config.paramsSerializer = (params) => {
-        return qs.stringify(params, { arrayFormat: 'repeat' })
-      }
+      config.paramsSerializer = {
+        serialize: function(params: ParamsSerializerOptions): string {
+          return qs.stringify(params, { arrayFormat: 'repeat' });
+        },
+      };
       return config;
     });
 

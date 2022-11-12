@@ -10,8 +10,8 @@ import {
 } from '@package/errors';
 
 import qs from "qs";
-import axios, {ParamsSerializerOptions} from "axios";
-import type { AxiosRequestConfig, CancelTokenSource } from "axios";
+import axios from "axios";
+import type { AxiosRequestConfig, CancelTokenSource, ParamsSerializerOptions } from "axios";
 
 
 interface IConfig {
@@ -46,7 +46,7 @@ async function request(options: AxiosRequestConfig): Promise<any> {
       ...options,
     };
 
-    const instance = axios.create({
+    const instance = await axios.create({
       baseURL: requestConfig['baseUrl'],
       timeout: 24000,
       withCredentials: true,
@@ -54,7 +54,7 @@ async function request(options: AxiosRequestConfig): Promise<any> {
 
     instance.interceptors.request.use(function (config) {
       config.paramsSerializer = {
-        serialize: function(params: ParamsSerializerOptions): string {
+        encode: function(params: ParamsSerializerOptions): string {
           return qs.stringify(params, { arrayFormat: 'repeat' });
         },
       };
@@ -66,6 +66,7 @@ async function request(options: AxiosRequestConfig): Promise<any> {
     return data;
   }
   catch(error: any) {
+    console.log(error)
     let InstanceError = null;
 
     if (axios.isCancel(error)) {

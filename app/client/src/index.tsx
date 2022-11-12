@@ -20,7 +20,7 @@ import './styles/index.scss';
 (async () => {
   try {
     requestConfig({
-      baseUrl: process.env['REACT_APP_GATEWAY_API'],
+      baseUrl: process.env['REACT_APP_GATEWAY_API'] || '/',
     });
 
     const app = new Application(new Config({

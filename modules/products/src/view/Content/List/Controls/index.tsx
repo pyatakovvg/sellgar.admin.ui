@@ -4,7 +4,7 @@ import { Checkbox, Text } from '@library/kit';
 import React from 'react';
 import { useDispatch } from "react-redux";
 
-import { updateProduct } from "../../../store/commands";
+import { updateProduct } from "../../../../store/commands";
 
 import styles from './default.module.scss';
 

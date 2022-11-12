@@ -22,6 +22,9 @@
   flex-direction: column;
   flex: 1 0;
   margin: 32px 0 0;
+  background: $white;
+  border-radius: $border-radius-small;
+  padding: 32px;
 }
 
 .item {

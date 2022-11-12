@@ -21,9 +21,7 @@
     "@package/base-data": "0.0.1",
     "@widget/store": "0.0.1",
     "@widget/gallery": "0.0.1",
-    "redux-form": "8.3.8"
-  },
-  "peerDependencies": {
+    "redux-form": "8.3.8",
     "react": "18.2.0",
     "react-router-dom": "6.3.0"
   },

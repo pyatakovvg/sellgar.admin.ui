@@ -26,7 +26,7 @@ function Item({ uuid, name }: IProps): JSX.Element {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['image']} onClick={() => handleView(uuid)}>
-        <Image width={124} height={124} src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + uuid} />
+        <Image width={96} height={96} src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + uuid} />
       </div>
       <div className={styles['description']}>
         <Text>{ name }</Text>

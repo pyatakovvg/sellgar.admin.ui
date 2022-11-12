@@ -11,9 +11,7 @@
     "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
   },
   "dependencies": {
-    "@wrapper/default": "0.0.1"
-  },
-  "peerDependencies": {
+    "@wrapper/default": "0.0.1",
     "react": "18.2.0",
     "react-redux": "8.0.2"
   },

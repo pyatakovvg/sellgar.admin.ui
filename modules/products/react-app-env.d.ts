@@ -1,12 +1,10 @@
 /// <reference types="react-scripts" />
 
 
-declare namespace NodeJS {
-  interface ProcessEnv {
-    readonly NODE_ENV: 'development' | 'production' | 'test';
-    readonly PUBLIC_URL: string;
-    readonly REACT_APP_TAKE_ROWS: number;
-  }
+declare interface Process {
+  readonly NODE_ENV: 'development' | 'production' | 'test';
+  readonly PUBLIC_URL: string;
+  readonly REACT_APP_TAKE_ROWS: number;
 }
 
 declare module '*.avif' {

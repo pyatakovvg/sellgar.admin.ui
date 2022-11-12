@@ -16,9 +16,7 @@
   },
   "dependencies": {
     "@package/dialog": "0.0.1",
-    "@package/push": "0.0.1"
-  },
-  "peerDependencies": {
+    "@package/push": "0.0.1",
     "react": "18.2.0",
     "react-router-dom": "6.3.0"
   },

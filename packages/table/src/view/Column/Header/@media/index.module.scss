@@ -2,9 +2,10 @@
 @import "~@library/theme";
 
 
-th {
+.column {
 
-  vertical-align: bottom;
+  display: block;
+  background: $gray-light;
 }
 
 .content {

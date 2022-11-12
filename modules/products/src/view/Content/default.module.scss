@@ -24,27 +24,3 @@
   flex: 1 0;
   margin: 24px 0 0;
 }
-
-.item {
-
-  display: block;
-
-  & + & {
-
-    border-top: 1px solid $gray-light;
-    padding: 16px 0 0;
-    margin: 16px 0 0;
-  }
-}
-
-.link {
-
-  display: inline-block;
-  font-size: 16px;
-  color: $gray-dark;
-  text-decoration: none;
-
-  &:hover {
-    color: $primary-dark;
-  }
-}

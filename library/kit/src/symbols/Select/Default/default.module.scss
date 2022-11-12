@@ -4,13 +4,22 @@
 
 .wrapper {
 
-  position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  overflow: auto;
 }
 
 .control {
 
-  display: block;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  width: 100%;
+  min-width: 0;
+  overflow: auto;
 }
 
 .list {

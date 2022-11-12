@@ -17,10 +17,9 @@
 .image {
 
   display: block;
-  width: 124px;
-  height: 124px;
-  border: 1px solid $gray-light;
-  border-radius: 6px;
+  width: 96px;
+  height: 96px;
+  border-radius: $border-radius-small;
   overflow: hidden;
   cursor: pointer;
 }

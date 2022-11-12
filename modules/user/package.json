@@ -23,7 +23,6 @@
     "effector-react": "22.3.4",
     "effector-forms": "0.0.24"
   },
-  "peerDependencies": {},
   "devDependencies": {
     "@babel/cli": "7.18.10",
     "@babel/core": "7.18.10",

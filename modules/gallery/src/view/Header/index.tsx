@@ -2,15 +2,17 @@
 import { Button, Header } from '@library/kit';
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { uploadImages } from '../../index';
+import { uploadImages } from '../../store/commands';
+import { selectInUploadProcess } from '../../store/slice';
 
 import styles from './default.module.scss';
 
 
-function HeaderPage(): JSX.Element {
+function HeaderPage() {
   const dispatch = useDispatch();
+  const inProcess = useSelector(selectInUploadProcess);
 
   function handleAdd(event: any) {
     event.preventDefault();
@@ -31,7 +33,7 @@ function HeaderPage(): JSX.Element {
         <Header level={2}>Галлерея</Header>
       </div>
       <div className={styles['control']}>
-        <Button onClick={handleAdd}>Загрузить</Button>
+        <Button disabled={inProcess} onClick={handleAdd}>Загрузить</Button>
       </div>
     </div>
   );

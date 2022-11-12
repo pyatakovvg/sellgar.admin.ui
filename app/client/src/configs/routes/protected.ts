@@ -14,30 +14,31 @@ const routes: Array<any> = [
   },
   {
     path: '/products',
+    wrapper: 'composite',
     module: import('@module/products'),
   },
   {
-    path: '/params/groups',
+    path: '/products/groups',
     wrapper: 'composite',
     module: import('@module/groups'),
   },
   {
-    path: '/params/categories',
+    path: '/products/categories',
     wrapper: 'composite',
     module: import('@module/categories'),
   },
   {
-    path: '/params/brands',
+    path: '/products/brands',
     wrapper: 'composite',
     module: import('@module/brands'),
   },
   {
-    path: '/params/attributes',
+    path: '/products/attributes',
     wrapper: 'composite',
     module: import('@module/attributes'),
   },
   {
-    path: '/params/units',
+    path: '/products/units',
     wrapper: 'composite',
     module: import('@module/units'),
   },

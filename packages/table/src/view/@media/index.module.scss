@@ -4,24 +4,17 @@
 
 .wrapper {
 
-  display: table;
-  table-layout: auto;
+  display: block;
 }
 
-thead {
+.content {
 
-  background: $gray-light;
-}
-
-tbody {
-
-  & + & {
-    border-top: 1px solid $gray-light;
-  }
+  display: grid;
 }
 
 .caption {
 
-  caption-side: bottom;
-  padding: 24px;
+  display: block;
+  padding: 24px 24px 23px;
+  text-align: center;
 }

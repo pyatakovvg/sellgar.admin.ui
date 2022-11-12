@@ -53,16 +53,22 @@ function Select({ inFocus, mode, value, placeholder, disabled, clearable, onClic
   return (
     <div className={wrapperClassName}>
       <div className={styles['content']} onClick={handleClick}>
-        { !! value && (
-          <div className={styles['value']}>
-            { value }
-          </div>
-        )}
-        { !! placeholder && ! value && (
-          <div className={styles['placeholder']}>
-            { placeholder }
-          </div>
-        )}
+        <div className={styles['container']}>
+          { !! value && (
+            <div className={styles['value']}>
+              <div className={styles['text']}>
+                { value }
+              </div>
+            </div>
+          )}
+          { !! placeholder && ! value && (
+            <div className={styles['placeholder']}>
+              <div className={styles['text']}>
+                { placeholder }
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       <div className={styles['controls']}>
         {(clearable && value) && <Reset disabled={disabled || false} onClick={handleReset} />}

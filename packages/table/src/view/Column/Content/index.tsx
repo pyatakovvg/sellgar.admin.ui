@@ -18,18 +18,18 @@ interface IProps {
 }
 
 
-function Row({ width, children , align}: any) {
-  const colClassName = React.useMemo(() => cn(styles['col'], {
+function Row({ children , align}: any) {
+  const colClassName = React.useMemo(() => cn(styles['wrapper'], {
     [styles['align--left']]: align === 'left',
     [styles['align--right']]: align === 'right',
   }), []);
 
   return (
-    <td width={width}>
-      <div className={colClassName}>
+    <div className={colClassName}>
+      <div className={styles['content']}>
         { children }
       </div>
-    </td>
+    </div>
   );
 }
 

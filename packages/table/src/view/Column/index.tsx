@@ -6,7 +6,7 @@ import Content from './Content';
 
 
 interface IProps {
-  type?: string;
+  type?: 'header' | 'column';
   data?: any;
   title?: string;
   alias?: string;

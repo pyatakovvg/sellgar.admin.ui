@@ -9,6 +9,37 @@ const navigate = [
     title: 'Каталог',
     path: '/products',
     icon: 'fa-solid fa-bag-shopping',
+    navigate: [
+      {
+        title: 'Каталог',
+        path: '/products',
+      },
+      {
+        title: 'Производитель',
+        path: '/products/brands',
+      },
+      {
+        title: 'Группа',
+        path: '/products/groups',
+      },
+      {
+        title: 'Категория',
+        path: '/products/categories',
+      },
+      {
+        title: 'Атрибуты',
+        path: '/products/attributes',
+      },
+      {
+        title: 'Единицы измерения',
+        path: '/products/units',
+      },
+    ]
+  },
+  {
+    title: 'Галлерея',
+    path: '/gallery',
+    icon: 'fa-solid fa-images',
   },
   {
     title: 'Заказы',
@@ -19,38 +50,6 @@ const navigate = [
     title: 'Комментарии',
     path: '/comments',
     icon: 'fa-solid fa-comments',
-  },
-  {
-    title: 'Параметры',
-    path: '/params/brands',
-    icon: 'fa-solid fa-gear',
-    navigate: [
-      {
-        title: 'Производитель',
-        path: '/params/brands',
-      },
-      {
-        title: 'Группа',
-        path: '/params/groups',
-      },
-      {
-        title: 'Категория',
-        path: '/params/categories',
-      },
-      {
-        title: 'Атрибуты',
-        path: '/params/attributes',
-      },
-      {
-        title: 'Единицы измерения',
-        path: '/params/units',
-      },
-    ]
-  },
-  {
-    title: 'Галлерея',
-    path: '/gallery',
-    icon: 'fa-solid fa-images',
   },
   {
     title: 'Пользователи',

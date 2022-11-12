@@ -12,7 +12,7 @@ interface IProps {
 }
 
 
-function Header({ title, align, width }: IProps) {
+function Header({ title, align }: IProps) {
   const className = React.useMemo(() => cn(styles['content'], {
     [styles['left']]: align === 'left',
     [styles['right']]: align === 'right',
@@ -20,13 +20,13 @@ function Header({ title, align, width }: IProps) {
   }), [align]);
 
   return (
-    <td width={width === 'auto' ? width : width + 32}>
+    <div className={styles['column']}>
       {title && (
         <div className={className}>
           { title }
         </div>
       )}
-    </td>
+    </div>
   );
 }
 

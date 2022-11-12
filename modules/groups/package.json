@@ -17,9 +17,7 @@
   "dependencies": {
     "@package/dialog": "0.0.1",
     "@widget/gallery": "0.0.1",
-    "@library/kit": "0.0.1"
-  },
-  "peerDependencies": {
+    "@library/kit": "0.0.1",
     "react": "18.2.0",
     "react-router-dom": "6.3.0"
   },

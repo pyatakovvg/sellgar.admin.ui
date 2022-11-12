@@ -13,30 +13,30 @@ interface IProps {
 
 
 function Table({ columns, children }: IProps) {
+  const gridStyles: string = React.useMemo(() => 'auto / ' + React.Children.map(children, (child: any) => {
+    return child['props']['width'] ? (child['props']['width'] + 32) + 'px' : 'auto';
+  }).join(' '), [children]);
+
   return (
-    <table className={styles['wrapper']} role={'table'}>
+    <div className={styles['wrapper']} role={'table'}>
+      <div className={styles['content']} style={{
+        'grid': gridStyles,
+      }}>
+        {React.Children.map(children, (child: any) => (
+          React.cloneElement(child, { type: 'header' })
+        ))}
+        {columns.map((item: any) => (
+          React.Children.map(children, (child: any) => (
+            React.cloneElement<any, any>(child, { data: item })
+          ))
+        ))}
+      </div>
       { ! columns.length && (
-        <caption className={styles['caption']}>
+        <div className={styles['caption']}>
           <Text type={'strong'}>Нет данных для отображения</Text>
-        </caption>
+        </div>
       )}
-      <thead>
-        <tr>
-          {React.Children.map(children, (child: any) => {
-            return React.cloneElement(child, { type: 'header' });
-          })}
-        </tr>
-      </thead>
-      {columns.map((item: any, index: number) => (
-        <tbody key={index}>
-          <tr>
-            {React.Children.map(children, (child: any) => {
-              return React.cloneElement<any, any>(child, { data: item });
-            })}
-          </tr>
-        </tbody>
-      ))}
-    </table>
+    </div>
   );
 }
 

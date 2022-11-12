@@ -18,9 +18,7 @@
     "@package/moment": "0.0.1",
     "@package/numeral": "0.0.1",
     "@package/table": "0.0.1",
-    "@package/base-data": "0.0.1"
-  },
-  "peerDependencies": {
+    "@package/base-data": "0.0.1",
     "react": "18.2.0",
     "react-router-dom": "6.3.0"
   },

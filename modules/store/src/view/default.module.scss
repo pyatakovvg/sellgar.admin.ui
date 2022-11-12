@@ -22,6 +22,7 @@
   flex-direction: column;
   flex: 1 0;
   padding: 40px 40px 80px;
+  overflow: auto;
   z-index: 10;
 }
 
@@ -38,4 +39,11 @@
   min-width: 900px;
   max-width: 1200px;
   margin: 40px 0 0;
+}
+
+.controls {
+
+  display: block;
+  margin: 24px 0 0;
+  text-align: right;
 }

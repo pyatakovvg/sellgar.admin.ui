@@ -1,10 +1,11 @@
 
 import Dialog from '@package/dialog';
 import { query } from '@helper/utils';
+import { Paging } from "@library/design";
 import { createCancelToken } from '@package/request';
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import Header from './Header';
@@ -13,14 +14,16 @@ import Modify from './Modify';
 import Content from './Content';
 
 import { getProducts } from '../store/commands';
-import { resetStateAction } from '../store/slice';
+import { resetStateAction, selectMeta } from '../store/slice';
 
 import styles from './default.module.scss';
 
 
-function Products() {
+function Page() {
   const location = useLocation();
   const dispatch = useDispatch();
+
+  const meta = useSelector(selectMeta);
 
   React.useEffect(() => {
     return () => {
@@ -54,6 +57,9 @@ function Products() {
         <div className={styles['list']}>
           <Content />
         </div>
+        <div className={styles['controls']}>
+          <Paging totalRows={meta?.['totalRows'] ?? 0} />
+        </div>
       </section>
 
       <Dialog name={'modify'}>
@@ -63,4 +69,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Page;

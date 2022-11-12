@@ -1,0 +1,52 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: block;
+  padding: 12px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: $black;
+  transition:
+    background-color $transition-duration,
+    color $transition-duration;
+
+  &:hover {
+
+    background: rgba($gray-light, .4);
+  }
+
+  & + & {
+
+    margin: 2px 0 0;
+  }
+}
+
+.selected,
+.selected:hover {
+
+  font-weight: $font-weight-medium;
+  background-color: rgba($primary-light, .4);
+}
+
+.value {
+
+  display: block;
+  font-size: 14px;
+  color: inherit;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.select {
+
+
+}
+
+.disabled,
+.disabled:hover, {
+
+  border-color: $gray-light;
+}

@@ -57,10 +57,10 @@ function Products() {
         <div className={styles['list']}>
           <Content />
         </div>
-        <div className={styles['controls']}>
-          <Paging totalRows={meta?.['totalRows'] ?? 0} />
-        </div>
       </ScrollProvider>
+      <div className={styles['controls']}>
+        <Paging totalRows={meta?.['totalRows'] ?? 0} />
+      </div>
     </section>
   );
 }

@@ -10,8 +10,6 @@
   padding: 24px 24px 40px;
   background: $white;
   border-radius: $border-radius-small;
-  min-width: 900px;
-  max-width: 1200px;
   box-sizing: border-box;
 }
 
@@ -26,13 +24,4 @@
   flex-direction: column;
   flex: 1 0;
   margin: 24px 0 0;
-}
-
-.controls {
-
-  display: block;
-  min-width: 900px;
-  max-width: 1200px;
-  margin: 40px 0 0;
-  text-align: center;
 }

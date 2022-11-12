@@ -9,9 +9,9 @@ import {
   InternalServerError
 } from '@package/errors';
 
-import qs from "qs";
+// import qs from "qs";
 import axios from "axios";
-import type { AxiosRequestConfig, CancelTokenSource, ParamsSerializerOptions } from "axios";
+import type { AxiosRequestConfig, CancelTokenSource } from "axios";
 
 
 interface IConfig {
@@ -53,11 +53,12 @@ async function request(options: AxiosRequestConfig): Promise<any> {
     });
 
     instance.interceptors.request.use(function (config) {
-      config.paramsSerializer = {
-        encode: function(params: ParamsSerializerOptions): string {
-          return qs.stringify(params, { arrayFormat: 'repeat' });
-        },
-      };
+      // config.paramsSerializer = {
+        // encode: function(params: ParamsSerializerOptions): string {
+        //   console.log(params,qs, qs.stringify(params, { arrayFormat: 'repeat' }))
+        //   return qs.stringify(params, { arrayFormat: 'repeat', skipNulls: true });
+        // },
+      // };
       return config;
     });
 
@@ -66,7 +67,6 @@ async function request(options: AxiosRequestConfig): Promise<any> {
     return data;
   }
   catch(error: any) {
-    console.log(error)
     let InstanceError = null;
 
     if (axios.isCancel(error)) {

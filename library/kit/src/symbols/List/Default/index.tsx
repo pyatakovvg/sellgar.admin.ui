@@ -1,7 +1,8 @@
 
 import React from 'react';
 
-import Option from "./Option";
+import Empty from './Empty';
+import Option from './Option';
 
 import cn from 'classnames';
 import styles from './default.module.scss';
@@ -37,6 +38,9 @@ function ListDefault({ className, value, options, optionKey = 'id', optionValue 
   return (
     <div className={wrapperClassName}>
       <div className={styles['content']}>
+        { ! options.length && (
+          <Empty />
+        )}
         {options.map((option: TOption) => (
           <Option key={option[optionKey]} isSelect={value === option[optionKey]} value={option[optionValue]} onClick={() => handleClick(option[optionKey])} />
         ))}

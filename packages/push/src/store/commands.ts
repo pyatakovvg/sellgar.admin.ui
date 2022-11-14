@@ -1,20 +1,21 @@
 
 import { UUID } from '@helper/utils';
+import { Dispatch } from '@reduxjs/toolkit';
 
 import { pushNotificationAction, closeNotificationAction } from './slice';
 
 
-export const close = (uuid: string) => (dispatch: any) => {
+export const close = (uuid: string) => (dispatch: Dispatch<any>) => {
   dispatch(closeNotificationAction(uuid));
 };
 
-export const push = (data: any) => (dispatch: any) => {
+export const push = (data: any) => (dispatch: Dispatch<any>) => {
   data['uuid'] = UUID();
   dispatch(pushNotificationAction(data));
 };
 
-export const pushFail = (title: string, content?: string) => (dispatch: any) => {
-  dispatch(pushNotificationAction({
+export const pushFail = (title: string, content?: string) => (dispatch: Dispatch<any>) => {
+  return dispatch(pushNotificationAction({
     title,
     content,
     autoClose: false,
@@ -23,7 +24,7 @@ export const pushFail = (title: string, content?: string) => (dispatch: any) => 
   }));
 };
 
-export const pushSuccess = (title: string, content?: string) => (dispatch: any) => {
+export const pushSuccess = (title: string, content?: string) => (dispatch: Dispatch<any>): any => {
   dispatch(pushNotificationAction({
     title,
     content,

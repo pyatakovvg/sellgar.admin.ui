@@ -4,7 +4,9 @@ import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { closeDialog } from '../store/commands';
-import { resetStateAction, selectName, selectData, selectIsOpen } from '../store/slice';
+import { resetStateAction, selectName, selectIsOpen } from '../store/slice';
+
+import Content from './Content';
 
 import cn from 'classnames';
 import styles from './defaults.module.scss';
@@ -22,7 +24,6 @@ function Dialog({ className, name, children, onClose }: IProps) {
   const dispatch = useDispatch();
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
-  const data = useSelector(selectData);
   const isOpen = useSelector(selectIsOpen);
   const actionDialogName = useSelector(selectName);
 
@@ -63,7 +64,9 @@ function Dialog({ className, name, children, onClose }: IProps) {
         <div className={classNameDialog}>
           <span className={classNameCloseDialog} onClick={handleCloseDialog} />
           <div className={styles['dialog__content']}>
-            { React.cloneElement<any, any>(children, { data }) }
+            <Content>
+              { children }
+            </Content>
           </div>
         </div>
       </div>

@@ -1,0 +1,46 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: center;
+}
+
+.root {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  align-items: center;
+
+  &:after {
+
+    display: block;
+    content: '/';
+    font-size: 12px;
+    padding: 0 16px;
+    color: $dark;
+  }
+}
+
+.icon {
+
+  font-size: 14px;
+  margin: -1px 0 0;
+}
+
+.item {
+
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+}
+
+.folder {
+
+  display: block;
+}

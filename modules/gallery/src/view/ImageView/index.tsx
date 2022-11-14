@@ -7,11 +7,11 @@ import styles from './default.module.scss';
 
 
 interface IProps {
-  data?: any;
+  data: IImage;
 }
 
 
-function Item({ data }: IProps): JSX.Element {
+function ImageView({ data }: IProps) {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['header']}>
@@ -24,4 +24,4 @@ function Item({ data }: IProps): JSX.Element {
   );
 }
 
-export default Item;
+export default ImageView;

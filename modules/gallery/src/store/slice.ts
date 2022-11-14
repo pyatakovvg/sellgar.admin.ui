@@ -1,5 +1,5 @@
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
 const REDUCER_NAME = 'module/images';
@@ -10,20 +10,22 @@ interface IRootStore {
 }
 
 interface IState {
-  data: Array<any>;
-  folders: Array<any>;
+  data: IResult;
   inProcess: boolean;
   inUploadProcess: boolean;
 }
 
-interface IData {
-  payload: Array<any>;
+interface IActions {
+  [key: string]: any;
 }
 
 
 const initialState: IState = {
-  data: [],
-  folders: [],
+  data: {
+    images: [],
+    folders: [],
+    parent: [],
+  },
   inProcess: false,
   inUploadProcess: false,
 };
@@ -34,8 +36,11 @@ const slice = createSlice({
   initialState,
   reducers: {
     resetStateAction(state: IState) {
-      state['data'] = [];
-      state['folders'] = [];
+      state['data'] = {
+        images: [],
+        folders: [],
+        parent: [],
+      };
       state['inProcess'] = false;
       state['inUploadProcess'] = false;
     },
@@ -46,17 +51,7 @@ const slice = createSlice({
     getFoldersRequestFailAction(state: IState) {
       state['inProcess'] = false;
     },
-    getFoldersRequestSuccessAction(state: IState, { payload }: IData) {
-      state['folders'] = payload;
-      state['inProcess'] = false;
-    },
-    getImagesRequestAction(state: IState) {
-      state['inProcess'] = true;
-    },
-    getImagesRequestFailAction(state: IState) {
-      state['inProcess'] = false;
-    },
-    getImagesRequestSuccessAction(state: IState, { payload }: IData) {
+    getFoldersRequestSuccessAction(state: IState, { payload }: PayloadAction<IResult>) {
       state['data'] = payload;
       state['inProcess'] = false;
     },
@@ -67,10 +62,10 @@ const slice = createSlice({
     createImagesRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    createImagesRequestSuccessAction(state: IState, { payload }: IData) {
-      state['data'] = [
+    createImagesRequestSuccessAction(state: IState, { payload }: PayloadAction<IImage[]>) {
+      state['data']['images'] = [
         ...payload,
-        ...state['data'],
+        ...state['data']['images'],
       ];
       state['inUploadProcess'] = false;
     },
@@ -82,7 +77,32 @@ const slice = createSlice({
       state['inUploadProcess'] = false;
     },
     deleteImagesRequestSuccessAction(state: IState, { payload }: any) {
-      state['data'] = state['data'].filter((item) => item['uuid'] !== payload['uuid']);
+      state.data.images = state.data.images.filter((item) => item['uuid'] !== payload['uuid']);
+      state['inUploadProcess'] = false;
+    },
+
+    createFolderRequestAction(state: IState) {
+      state['inUploadProcess'] = true;
+    },
+    createFolderRequestFailAction(state: IState) {
+      state['inUploadProcess'] = false;
+    },
+    createFolderRequestSuccessAction(state: IState, { payload }: PayloadAction<IFolder>) {
+      state['data']['folders'] = [
+        payload,
+        ...state['data']['folders'],
+      ];
+      state['inUploadProcess'] = false;
+    },
+
+    deleteFolderRequestAction(state: IState) {
+      state['inUploadProcess'] = true;
+    },
+    deleteFolderRequestFailAction(state: IState) {
+      state['inUploadProcess'] = false;
+    },
+    deleteFolderRequestSuccessAction(state: IState, { payload }: PayloadAction<IFolder>) {
+      state.data.folders = state.data.folders.filter((item) => item['uuid'] !== payload['uuid']);
       state['inUploadProcess'] = false;
     },
   },
@@ -95,10 +115,6 @@ export const {
   getFoldersRequestFailAction,
   getFoldersRequestSuccessAction,
 
-  getImagesRequestAction,
-  getImagesRequestFailAction,
-  getImagesRequestSuccessAction,
-
   createImagesRequestAction,
   createImagesRequestFailAction,
   createImagesRequestSuccessAction,
@@ -106,10 +122,17 @@ export const {
   deleteImagesRequestAction,
   deleteImagesRequestFailAction,
   deleteImagesRequestSuccessAction,
-} = slice['actions'] as any;
 
-export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
-export const selectFolders = (state: IRootStore): Array<any> => state[REDUCER_NAME]['folders'];
+  createFolderRequestAction,
+  createFolderRequestFailAction,
+  createFolderRequestSuccessAction,
+
+  deleteFolderRequestAction,
+  deleteFolderRequestFailAction,
+  deleteFolderRequestSuccessAction,
+} = slice['actions'] as IActions;
+
+export const selectData = (state: IRootStore): IResult => state[REDUCER_NAME]['data'];
 export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];
 export const selectInUploadProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inUploadProcess'];
 

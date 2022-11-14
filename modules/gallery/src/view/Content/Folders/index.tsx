@@ -2,30 +2,24 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Folder from './Folder';
+import Folder from './Item';
 
-import { selectFolders } from '../../../store/slice';
+import { selectData } from '../../../store/slice';
 
 import styles from './default.module.scss';
 
 
 function Folders() {
-  const folders: Array<any> = useSelector(selectFolders);
-
-  if ( ! folders.length) {
-    return null;
-  }
+  const data = useSelector(selectData);
 
   return (
-    <div className={styles['wrapper']}>
-      <div className={styles['content']}>
-        {folders.map((item: any): JSX.Element => (
-          <div key={item['uuid']} className={styles['item']}>
-            <Folder {...item} />
-          </div>
-        ))}
-      </div>
-    </div>
+    <React.Fragment>
+      {data['folders'].map((item) => (
+        <div key={item['uuid']} className={styles['item']}>
+          <Folder {...item} />
+        </div>
+      ))}
+    </React.Fragment>
   );
 }
 

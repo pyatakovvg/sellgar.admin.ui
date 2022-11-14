@@ -14,18 +14,18 @@ interface IProps {
   mode?: TMode;
   children?: string | number | null;
   disabled?: boolean;
-  onClick?(event: React.MouseEvent<HTMLButtonElement>): void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 
-function DefaultButton({ className, type, mode, children, disabled, onClick }: IProps): JSX.Element | null {
-  const buttonClassName = React.useMemo(() => cn(styles['button'], className, {
+function DefaultButton({ className, type, mode, children, disabled, onClick }: IProps) {
+  const buttonClassName = React.useMemo(() => cn(styles['button'], className || '', {
     [styles['mode--danger']]: mode === 'danger',
     [styles['mode--primary']]: mode === 'primary',
     [styles['mode--success']]: mode === 'success',
   }), [className, mode, disabled]);
 
-  function handleClick(event: React.MouseEvent<HTMLButtonElement>): void {
+  function handleClick(event: React.MouseEvent<HTMLButtonElement>) {
     if (disabled) {
       return void 0;
     }

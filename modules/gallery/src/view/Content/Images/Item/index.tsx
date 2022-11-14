@@ -1,32 +1,23 @@
 
-import { Text, Image } from '@library/kit';
 import { toBiteSize } from '@helper/utils';
 import { openDialog } from '@package/dialog';
+import { Text, Image, Checkbox } from '@library/kit';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { deleteImages } from '../../../../index';
+import { deleteImages } from '../../../../store/commands';
 
 import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-interface IProps {
-  uuid: string;
-  name: string;
-  size: number;
-  width: number;
-  height: number;
-}
-
-
-function Item({ uuid, name, size, width, height }: IProps): JSX.Element {
+function Item({ uuid, name, size, width, height }: IImage) {
   const dispatch = useDispatch();
   const iconClassName = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-trash'), []);
 
   function handleView() {
-    dispatch<any>(openDialog('view', { uuid, name }));
+    dispatch(openDialog('view', { uuid, name }));
   }
 
   function handleDelete(uuid: string) {
@@ -35,6 +26,9 @@ function Item({ uuid, name, size, width, height }: IProps): JSX.Element {
 
   return (
     <div className={styles['wrapper']}>
+      <div className={styles['select']}>
+        <Checkbox value={false} onChange={() => {}} />
+      </div>
       <div className={styles['image']} onClick={handleView}>
         <Image width={96} height={96} src={process.env['REACT_APP_GATEWAY_API'] + '/api/v1/images/' + uuid} />
       </div>

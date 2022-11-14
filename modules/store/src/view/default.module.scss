@@ -44,6 +44,10 @@
 .controls {
 
   display: block;
+  min-width: 900px;
+  max-width: 1200px;
   margin: 24px 0 0;
+  padding: 0 16px;
   text-align: right;
+  box-sizing: border-box;
 }

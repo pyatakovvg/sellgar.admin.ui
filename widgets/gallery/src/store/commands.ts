@@ -20,6 +20,7 @@ export const getGallery = (params: any): any => async (dispatch: Dispatch) => {
       url: '/api/v1/images',
       method: 'get',
       params: {
+        all: true,
         ...params,
       },
     });

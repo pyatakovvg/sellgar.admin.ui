@@ -1,9 +1,9 @@
 
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
 interface IState {
-  data: Array<any>;
+  data: Array<IPush>;
 }
 
 
@@ -22,7 +22,7 @@ const slice = createSlice({
       state['data'] = [];
     },
 
-    closeNotificationAction(state, { payload }) {
+    closeNotificationAction(state, { payload }: PayloadAction<string>) {
       const index = state['data'].findIndex(item => item['uuid'] === payload);
 
       state['data'] = [
@@ -31,10 +31,10 @@ const slice = createSlice({
       ];
     },
 
-    pushNotificationAction(state, { payload }) {
+    pushNotificationAction(state, { payload }: PayloadAction<IPush>) {
       state['data'] = [
         ...state['data'],
-        payload
+        payload,
       ]
     },
   },
@@ -45,9 +45,9 @@ export const {
 
   pushNotificationAction,
   closeNotificationAction,
-} = slice['actions'];
+} = slice['actions'] as any;
 
-export const selectNotifications = (state: any): Array<any> => state[REDUCER_NAME]['data'];
+export const selectNotifications = (state: any): Array<IPush> => state[REDUCER_NAME]['data'];
 
 export const name = slice['name'];
 export const reducer = slice['reducer'];

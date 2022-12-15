@@ -1,14 +1,15 @@
 
-const routes: Array<any> = [
+import React from 'react';
+
+
+const routes: Array<IRoute> = [
   {
     path: '/sign-in',
-    wrapper: 'empty',
-    module: import('@module/sign-in')
+    module: React.lazy(() => import(/* webpackChunkName: "module-sign-in" */'@module/sign-in')),
   },
   {
     path: '*',
-    wrapper: 'empty',
-    module: import('@module/error')
+    module: React.lazy(() => import(/* webpackChunkName: "module-not-found" */'@module/not-found')),
   },
 ];
 

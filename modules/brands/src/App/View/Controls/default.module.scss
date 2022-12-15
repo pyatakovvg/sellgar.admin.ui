@@ -1,0 +1,21 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.control {
+
+  display: block;
+
+  & + & {
+    margin: 0 0 0 16px;
+  }
+}

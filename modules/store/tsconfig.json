@@ -4,8 +4,10 @@
     "declaration": true,
     "declarationDir": "./types",
     "emitDeclarationOnly": true,
+    "isolatedModules": false,
   },
   "include": [
-    "src"
+    "src",
+    "react-app-env.d.ts"
   ]
 }

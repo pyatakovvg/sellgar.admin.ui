@@ -1,28 +1,61 @@
 {
   "name": "root",
   "private": true,
-  "dependencies": {
-    "audit-ci": "5.1.2",
-    "improved-yarn-audit": "3.0.0"
+  "scripts": {
+    "audit": "npx improved-yarn-audit --min-severity moderate --ignore-dev-deps",
+    "build": "npx yarn workspaces run build"
   },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "18.11.9",
-    "lerna": "6.0.3",
-    "lerna-update-wizard": "1.1.2",
-    "typescript": "4.8.4"
+    "audit-ci": "5.1.2",
+    "improved-yarn-audit": "3.0.0",
+    "lerna": "6.1.0",
+    "lerna-update-wizard": "1.1.2"
   },
   "license": "MIT",
-  "bin": {
-    "lerna": "node_modules/lerna/cli.js",
-    "yarn": "node_modules/yarn/cli.js"
-  },
   "workspaces": [
-    "wrappers/*",
-    "packages/*",
-    "modules/*",
-    "library/*",
-    "helpers/*",
-    "widgets/*",
-    "app/*"
+    "helpers/utils",
+
+    "library/theme",
+    "library/kit",
+
+    "packages/errors",
+    "packages/request",
+    "packages/dialog",
+    "packages/dialog2",
+    "packages/push",
+    "packages/push2",
+    "packages/numeral",
+    "packages/moment",
+    "packages/table",
+    "packages/base",
+
+    "widgets/profile",
+    "widgets/gallery",
+    "widgets/store",
+
+    "library/design",
+
+    "modules/attributes",
+    "modules/brands",
+    "modules/categories",
+    "modules/error",
+    "modules/groups",
+    "modules/gallery",
+    "modules/units",
+    "modules/users",
+    "modules/user",
+    "modules/checkouts",
+    "modules/checkout",
+    "modules/comments",
+    "modules/not-found",
+    "modules/sign-in",
+    "modules/store",
+    "modules/main",
+    "modules/product",
+    "modules/products",
+
+    "app/client"
   ]
 }

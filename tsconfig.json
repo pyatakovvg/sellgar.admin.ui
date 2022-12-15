@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "typeRoots": ["@types"],
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
-    "target": "es5",
+    "target": "ES2022",
     "lib": [
       "dom",
       "dom.iterable",
@@ -25,14 +24,11 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "downlevelIteration": false,
     "noEmit": false,
     "jsx": "react-jsx"
   },
-  "include": [
-    "src",
-    "scss.d.ts",
-    "process.d.ts"
-  ],
+  "include": [],
   "exclude": [
     "node_modules",
   ]

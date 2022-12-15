@@ -1,8 +1,7 @@
 {
-  "lerna": "4.0.0",
+  "lerna": "6.1.0",
   "version": "independent",
   "packages": [
-    "wrappers/*",
     "packages/*",
     "modules/*",
     "library/*",

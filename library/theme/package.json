@@ -5,11 +5,6 @@
   "license": "MIT",
   "main": "./src/default.scss",
   "scripts": {
-    "login": "npm login --registry=https://registry.npmjs.org/",
-    "publish": "npm publish --registry=https://registry.npmjs.org/ --access=public"
-  },
-  "files": [
-    "src",
-    "package.json"
-  ]
+    "build": "echo 'package theme'"
+  }
 }

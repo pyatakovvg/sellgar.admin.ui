@@ -10,27 +10,40 @@
   "module": "lib/index.js",
   "types": "types",
   "scripts": {
-    "build:types": "tsc",
-    "build": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --extensions '.ts,.tsx,.js,.jsx' --copy-files --no-copy-ignored",
-    "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
+    "types": "tsc",
+    "build": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --no-copy-ignored && npm run types",
+    "start": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
   },
   "dependencies": {
-    "@package/base-data": "0.0.1",
+    "@library/kit": "0.0.1",
+    "@package/dialog": "0.0.1",
     "@package/errors": "0.0.1",
     "@package/push": "0.0.1",
     "@package/request": "0.0.1",
+    "@reduxjs/toolkit": "1.9.1",
     "@widget/gallery": "0.0.1",
     "@widget/store": "0.0.1",
+    "classnames": "2.3.2",
     "react": "18.2.0",
-    "react-router-dom": "6.4.3",
-    "redux-form": "8.3.8"
+    "react-dom": "18.2.0",
+    "react-redux": "8.0.5",
+    "react-router-dom": "6.4.5",
+    "redux-form": "8.3.9"
   },
   "devDependencies": {
     "@babel/cli": "7.19.3",
-    "@babel/core": "7.20.2",
+    "@babel/core": "7.20.5",
     "@babel/preset-env": "7.20.2",
     "@babel/preset-typescript": "7.18.6",
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.9",
+    "@types/react-redux": "7.1.24",
     "@types/redux-form": "8.3.5",
-    "cross-env": "7.0.3"
+    "cross-env": "7.0.3",
+    "react-app-rewired": "0.0.2",
+    "react-scripts": "5.0.1",
+    "sass": "1.56.2",
+    "typescript": "4.9.4",
+    "webpack": "5.75.0"
   }
 }

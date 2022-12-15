@@ -1,0 +1,61 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  background: $black;
+  overflow: auto;
+}
+
+.aside {
+
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 220px;
+  padding: 24px;
+  box-sizing: border-box;
+  z-index: 20;
+}
+
+.header {
+
+  display: block;
+  z-index: 20;
+}
+
+.profile {
+
+  display: block;
+  margin: 48px 0 0;
+}
+
+.menu {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 48px 0 0;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  border-radius: 8px 0 0 8px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.module {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  overflow: auto;
+  z-index: 10;
+}

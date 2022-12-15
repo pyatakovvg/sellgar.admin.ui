@@ -14,26 +14,7 @@ import axios from "axios";
 import type { AxiosRequestConfig, CancelTokenSource } from "axios";
 
 
-interface IConfig {
-  baseUrl: string;
-}
-
-
-let requestConfig: IConfig = {
-  baseUrl: '',
-};
-
-const defaultOptions = {};
-
-
 export const events = new Events();
-
-export function config(config: IConfig) {
-  requestConfig = {
-    ...requestConfig,
-    ...config,
-  };
-}
 
 export function createCancelToken(): CancelTokenSource {
   return axios.CancelToken.source();
@@ -41,13 +22,8 @@ export function createCancelToken(): CancelTokenSource {
 
 async function request(options: AxiosRequestConfig): Promise<any> {
   try {
-    options = {
-      ...defaultOptions,
-      ...options,
-    };
-
     const instance = await axios.create({
-      baseURL: requestConfig['baseUrl'],
+      baseURL: process.env['REACT_APP_GATEWAY_API'] || '/',
       timeout: 24000,
       withCredentials: true,
     });

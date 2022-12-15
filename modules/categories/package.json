@@ -10,9 +10,9 @@
   "module": "lib/index.js",
   "types": "types",
   "scripts": {
-    "build:types": "tsc",
-    "build": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --extensions '.ts,.tsx,.js,.jsx' --copy-files --no-copy-ignored",
-    "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
+    "types": "tsc",
+    "build": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --no-copy-ignored && npm run types",
+    "start": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
   },
   "dependencies": {
     "@helper/utils": "0.0.1",
@@ -20,11 +20,11 @@
     "@package/dialog": "0.0.1",
     "@widget/gallery": "0.0.1",
     "react": "18.2.0",
-    "react-router-dom": "6.4.3"
+    "react-router-dom": "6.4.5"
   },
   "devDependencies": {
     "@babel/cli": "7.19.3",
-    "@babel/core": "7.20.2",
+    "@babel/core": "7.20.5",
     "@babel/preset-env": "7.20.2",
     "@babel/preset-typescript": "7.18.6",
     "cross-env": "7.0.3"

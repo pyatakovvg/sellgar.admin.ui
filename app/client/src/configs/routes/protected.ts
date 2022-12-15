@@ -1,79 +1,82 @@
 
-const routes: Array<any> = [
+import React from 'react';
+
+
+const routes: Array<IRoute> = [
   {
     path: '/',
-    module: import('@module/main'),
+    wrapper: 'default',
+    module: React.lazy(() => import(/* webpackChunkName: "module-main" */'@module/main')),
   },
   {
     path: '/store',
-    module: import('@module/store'),
-  },
-  {
-    path: '/products/:uuid',
-    module: import('@module/product'),
+    wrapper: 'default',
+    module: React.lazy(() => import(/* webpackChunkName: "module-store" */'@module/store')),
   },
   {
     path: '/products',
     wrapper: 'composite',
-    module: import('@module/products'),
-  },
-  {
-    path: '/products/groups',
-    wrapper: 'composite',
-    module: import('@module/groups'),
-  },
-  {
-    path: '/products/categories',
-    wrapper: 'composite',
-    module: import('@module/categories'),
+    module: React.lazy(() => import(/* webpackChunkName: "module-products" */'@module/products')),
   },
   {
     path: '/products/brands',
     wrapper: 'composite',
-    module: import('@module/brands'),
+    module: React.lazy(() => import(/* webpackChunkName: "module-brands" */'@module/brands')),
+  },
+  {
+    path: '/products/groups',
+    wrapper: 'composite',
+    module: React.lazy(() => import(/* webpackChunkName: "module-groups" */'@module/groups')),
+  },
+  {
+    path: '/products/categories',
+    wrapper: 'composite',
+    module: React.lazy(() => import(/* webpackChunkName: "module-categories" */'@module/categories')),
   },
   {
     path: '/products/attributes',
     wrapper: 'composite',
-    module: import('@module/attributes'),
+    module: React.lazy(() => import(/* webpackChunkName: "module-attributes" */'@module/attributes')),
   },
   {
     path: '/products/units',
     wrapper: 'composite',
-    module: import('@module/units'),
+    module: React.lazy(() => import(/* webpackChunkName: "module-units" */'@module/units')),
+  },
+  {
+    path: '/products/:uuid',
+    wrapper: 'composite',
+    module: React.lazy(() => import(/* webpackChunkName: "module-product" */'@module/product')),
+  },
+  {
+    path: '/gallery',
+    wrapper: 'default',
+    module: React.lazy(() => import(/* webpackChunkName: "module-gallery" */'@module/gallery')),
   },
   {
     path: '/checkouts',
     wrapper: 'default',
-    module: import('@module/checkouts'),
+    module: React.lazy(() => import(/* webpackChunkName: "module-checkouts" */'@module/checkouts')),
   },
   {
     path: '/checkouts/:uuid',
     wrapper: 'default',
-    module: import('@module/checkout'),
+    module: React.lazy(() => import(/* webpackChunkName: "module-checkout" */'@module/checkout')),
   },
   {
     path: '/comments',
     wrapper: 'default',
-    module: import('@module/comments'),
-  },
-  {
-    path: '/gallery',
-    module: import('@module/gallery'),
-  },
-  {
-    path: '/gallery/:uuid',
-    module: import('@module/gallery'),
+    module: React.lazy(() => import(/* webpackChunkName: "module-comments" */'@module/comments')),
   },
   {
     path: '/users',
-    wrapper: 'composite',
-    module: import('@module/users'),
+    wrapper: 'default',
+    module: React.lazy(() => import(/* webpackChunkName: "module-users" */'@module/users')),
   },
   {
     path: '/users/:uuid',
-    wrapper: 'composite',
-    module: import('@module/user'),
+    wrapper: 'default',
+    module: React.lazy(() => import(/* webpackChunkName: "module-user" */'@module/user')),
   },
 ];
 

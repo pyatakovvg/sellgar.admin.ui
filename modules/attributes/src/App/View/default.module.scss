@@ -1,0 +1,51 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  background: $gray-light;
+  overflow: auto;
+}
+
+.header {
+
+  display: block;
+  z-index: 20;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  padding: 40px 40px 80px;
+  overflow: auto;
+  z-index: 10;
+}
+
+.filter {
+
+  display: block;
+  width: 640px;
+}
+
+.list {
+
+  display: block;
+  width: 640px;
+  margin: 40px 0 0;
+}
+
+.controls {
+
+  display: block;
+  text-align: right;
+  margin: 32px 0 0;
+  background: $white;
+  padding: 16px;
+  border-radius: $border-radius-small;
+}

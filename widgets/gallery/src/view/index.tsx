@@ -1,6 +1,6 @@
 
+import React from 'react';
 import ReactDOM from 'react-dom';
-import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { closeGallery } from '../store/commands';
@@ -27,7 +27,7 @@ interface IProps {
 
 function Dialog({ className, name, type, value, onSubmit }: IProps) {
   const dispatch = useDispatch();
-  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const wrapperRef = React.useRef<HTMLDivElement | null>(null);
 
   const isOpen = useSelector(selectIsOpen);
   const actionDialogName = useSelector(selectName);
@@ -45,7 +45,7 @@ function Dialog({ className, name, type, value, onSubmit }: IProps) {
     }
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     return () => {
       dispatch(resetStateAction());
     };

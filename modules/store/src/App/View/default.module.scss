@@ -1,0 +1,48 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  background: $gray-light;
+  overflow: auto;
+}
+
+.controls {
+
+  display: block;
+  background: $white;
+  padding: 8px 40px;
+  @include box-shadow-large('bottom');
+  z-index: 20;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  padding: 24px 40px 80px;
+  overflow: auto;
+  z-index: 10;
+}
+
+.header {
+
+  display: block;
+}
+
+.filter {
+
+  display: block;
+  margin: 24px 0 0;
+}
+
+.list {
+
+  display: block;
+  margin: 40px 0 0;
+}

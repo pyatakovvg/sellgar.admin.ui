@@ -7,15 +7,15 @@
   "module": "lib/index.js",
   "types": "types",
   "scripts": {
-    "build:types": "tsc",
-    "build": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --extensions '.ts,.tsx,.js,.jsx' --copy-files --no-copy-ignored",
-    "start:dev": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
+    "types": "tsc",
+    "build": "cross-env NODE_ENV=production babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --no-copy-ignored && npm run types",
+    "start": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
   },
   "dependencies": {
     "@library/theme": "0.0.1",
-    "@tiptap/extension-document": "2.0.0-beta.199",
-    "@tiptap/react": "2.0.0-beta.199",
-    "@tiptap/starter-kit": "2.0.0-beta.199",
+    "@tiptap/extension-document": "2.0.0-beta.205",
+    "@tiptap/react": "2.0.0-beta.205",
+    "@tiptap/starter-kit": "2.0.0-beta.205",
     "array-move": "4.0.0",
     "classnames": "2.3.2",
     "prop-types": "15.8.1",
@@ -24,11 +24,16 @@
     "react-error-boundary": "3.1.4",
     "react-redux": "8.0.5",
     "react-sortable-hoc": "2.0.0",
-    "redux-form": "8.3.8"
+    "redux-form": "8.3.9"
   },
   "devDependencies": {
+    "@types/prosemirror-history": "1.3.0",
+    "@types/prosemirror-gapcursor": "1.3.0",
+    "@types/prosemirror-dropcursor": "1.5.0",
+    "@types/prosemirror-schema-list": "1.2.0",
+    "@types/prosemirror-commands": "1.3.0",
     "@babel/cli": "7.19.3",
-    "@babel/core": "7.20.2",
+    "@babel/core": "7.20.5",
     "@babel/preset-env": "7.20.2",
     "@babel/preset-typescript": "7.18.6",
     "@types/array-move": "2.0.0",

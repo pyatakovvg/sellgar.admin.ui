@@ -1,0 +1,23 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.link {
+
+  display: inline-block;
+  font-size: 16px;
+  color: $gray-dark;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: $primary-dark;
+  }
+}

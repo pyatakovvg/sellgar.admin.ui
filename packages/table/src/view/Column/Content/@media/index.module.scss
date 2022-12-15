@@ -10,7 +10,6 @@
   align-items: center;
   padding: 16px;
   border-top: 1px solid $gray-light;
-  overflow: auto;
 }
 
 .content {
@@ -19,7 +18,7 @@
   flex: 1 0;
   flex-direction: column;
   width: 100%;
-  overflow: auto;
+  align-items: inherit;
 }
 
 .align--left {

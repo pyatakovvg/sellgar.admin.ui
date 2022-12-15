@@ -1,0 +1,104 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: inline-flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+}
+
+.button {
+
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color $transition-duration, background $transition-duration;
+
+  & + & {
+    border-top: 1px solid $gray-light;
+  }
+}
+
+.icon {
+
+  display: block;
+  font-size: 11px;
+}
+
+.view {
+
+  color: $success;
+
+  &:hover {
+    color: $white;
+    background: $success;
+  }
+}
+
+.edit {
+
+  color: $primary;
+
+  &:hover {
+    color: $white;
+    background: $primary;
+  }
+}
+
+.delete {
+
+  color: $danger;
+
+  &:hover {
+    color: $white;
+    background: $danger;
+  }
+}
+
+.disabled,
+.disabled:hover {
+
+  background: transparent;
+  color: $gray;
+}
+
+.in-process::before,
+.in-process::after {
+  content: '';
+  position: absolute;
+  border: 2px solid;
+  left: -6px;
+  right: -6px;
+  top: -6px;
+  bottom: -6px;
+  border-radius: 50%;
+  animation: pulse 1.8s linear infinite;
+  opacity: 0;
+}
+.in-process::after {
+  animation-delay: .9s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(.3);
+    opacity: 0;
+  }
+  50% {
+    opacity: .7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}

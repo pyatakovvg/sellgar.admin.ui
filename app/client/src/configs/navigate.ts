@@ -37,14 +37,14 @@ const navigate = [
     ]
   },
   {
-    title: 'Галлерея',
-    path: '/gallery',
-    icon: 'fa-solid fa-images',
-  },
-  {
     title: 'Заказы',
     path: '/checkouts',
     icon: 'fa-solid fa-money-bill',
+  },
+  {
+    title: 'Галлерея',
+    path: '/gallery',
+    icon: 'fa-solid fa-images',
   },
   {
     title: 'Комментарии',

@@ -1,0 +1,39 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+}
+
+.header {
+
+  display: block;
+  text-align: center;
+}
+
+.fields {
+
+  display: block;
+  margin: 40px 0 0;
+}
+
+.field {
+
+  display: block;
+
+  & + & {
+
+    margin: 24px 0 0;
+  }
+}
+
+.controls {
+
+  display: block;
+  text-align: center;
+  margin: 24px 0 0;
+}

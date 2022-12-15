@@ -1,0 +1,36 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  justify-content: center;
+  align-items: center;
+  background: $primary-dark;
+  margin: -40px 0 0;
+}
+
+.content {
+
+  display: block;
+}
+
+.header {
+
+  display: block;
+  text-align: center;
+}
+
+.form {
+
+  display: block;
+  padding: 40px 72px 56px;
+  background: $white;
+  width: 256px;
+  margin: 16px 0 0;
+  border-radius: $border-radius-medium;
+  @include box-shadow('bottom');
+}

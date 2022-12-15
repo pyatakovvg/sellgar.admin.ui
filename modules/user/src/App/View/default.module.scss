@@ -1,0 +1,35 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  background: $gray-light;
+  padding: 40px 40px 80px;
+}
+
+.header {
+
+  display: block;
+}
+
+.content {
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 0;
+  margin: 32px 0 0;
+}
+
+.item {
+
+  display: block;
+
+  & + & {
+
+    margin: 16px 0 0;
+  }
+}

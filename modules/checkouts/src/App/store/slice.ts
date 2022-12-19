@@ -1,17 +1,15 @@
 
-import { createSlice, Slice } from '@reduxjs/toolkit';
+import { createSlice, Slice, PayloadAction } from '@reduxjs/toolkit';
+
+import { TRootState } from './create';
 
 
 const REDUCER_NAME = 'module/orders';
 
 
-interface IRootStore {
-  [path:string]: any;
-}
-
 interface IState {
-  data: Array<any>;
-  meta: any;
+  data: ICheckout[];
+  meta: IMeta;
   payments: Array<any>;
   statuses: Array<any>;
   delivery: Array<any>;
@@ -21,7 +19,7 @@ interface IState {
 
 const initialState = {
   data: [],
-  meta: {},
+  meta: { totalRows: 0 },
   payments: [],
   statuses: [],
   delivery: [],
@@ -36,7 +34,7 @@ const slice: Slice = createSlice({
   reducers: {
     resetStateAction(state: IState) {
       state['data'] = [];
-      state['meta'] = {};
+      state['meta'] = { totalRows: 0 };
       state['statuses'] = [];
       state['delivery'] = [];
       state['payments'] = [];
@@ -50,10 +48,20 @@ const slice: Slice = createSlice({
     getOrdersRequestFailAction(state: IState) {
       state['inProcess'] = false;
     },
-    getOrdersRequestSuccessAction(state: IState, { payload }) {
+    getOrdersRequestSuccessAction(state: IState, { payload }: PayloadAction<IResult<ICheckout>>) {
       state['data'] = payload['data'];
       state['meta'] = payload['meta'];
       state['inProcess'] = false;
+    },
+
+    upsertOrdersRequestAction(state: IState) {
+      state['inUploadProcess'] = true;
+    },
+    upsertOrdersRequestFailAction(state: IState) {
+      state['inUploadProcess'] = false;
+    },
+    upsertOrdersRequestSuccessAction(state: IState) {
+      state['inUploadProcess'] = false;
     },
 
     getStatusesRequestAction() {},
@@ -83,6 +91,10 @@ export const {
   getOrdersRequestFailAction,
   getOrdersRequestSuccessAction,
 
+  upsertOrdersRequestAction,
+  upsertOrdersRequestFailAction,
+  upsertOrdersRequestSuccessAction,
+
   getStatusesRequestAction,
   getStatusesRequestFailAction,
   getStatusesRequestSuccessAction,
@@ -96,13 +108,13 @@ export const {
   getPaymentsRequestSuccessAction,
 } = slice['actions'] as any;
 
-export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
-export const selectMeta = (state: IRootStore): any => state[REDUCER_NAME]['meta'];
-export const selectStatuses = (state: IRootStore): Array<any> => state[REDUCER_NAME]['statuses'];
-export const selectDelivery = (state: IRootStore): Array<any> => state[REDUCER_NAME]['delivery'];
-export const selectPayments = (state: IRootStore): Array<any> => state[REDUCER_NAME]['payments'];
-export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];
-export const selectInUploadProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inUploadProcess'];
+export const selectData = (state: TRootState): ICheckout[] => state[REDUCER_NAME]['data'];
+export const selectMeta = (state: TRootState): IMeta => state[REDUCER_NAME]['meta'];
+export const selectStatuses = (state: TRootState): Array<any> => state[REDUCER_NAME]['statuses'];
+export const selectDelivery = (state: TRootState): Array<any> => state[REDUCER_NAME]['delivery'];
+export const selectPayments = (state: TRootState): Array<any> => state[REDUCER_NAME]['payments'];
+export const selectInProcess = (state: TRootState): boolean => state[REDUCER_NAME]['inProcess'];
+export const selectInUploadProcess = (state: TRootState): boolean => state[REDUCER_NAME]['inUploadProcess'];
 
 export const name = slice['name'];
 export const reducer = slice['reducer'];

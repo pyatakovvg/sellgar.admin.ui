@@ -1,18 +1,17 @@
 
-import { selectCurrencies, selectBrands } from '@package/base-data';
+import { useGetBrands, useGetCurrencies } from '@package/base-data';
 import { Header, InputField, TextareaField, SelectField, Button } from '@library/kit';
 
 
 import React from 'react';
-import { useSelector } from 'react-redux';
 import type { InjectedFormProps } from 'redux-form';
 
 import styles from './default.module.scss';
 
 
-function Form({ handleSubmit }: InjectedFormProps) {
-  const brands = useSelector(selectBrands);
-  const currencies = useSelector(selectCurrencies);
+function Form({ handleSubmit }: InjectedFormProps<any>) {
+  const brands = useGetBrands();
+  const currencies = useGetCurrencies();
 
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>

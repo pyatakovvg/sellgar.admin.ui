@@ -91,6 +91,7 @@ function DefaultSelect({ mode, value, options, optionKey, optionValue, placehold
     if (listElement && wrapperElement) {
       const wrapperRect: DOMRect = wrapperElement.getBoundingClientRect();
       listElement.style.top = wrapperRect.bottom + 'px';
+      listElement.style.width = wrapperRect.width + 'px';
     }
   }, [isFocus]);
 

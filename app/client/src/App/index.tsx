@@ -35,6 +35,7 @@ function App(props: IProps) {
   return (
     <Routes>
       {props.protectedRoutes.map((route) => (
+
         <Route
           key={route['path']}
           path={process.env['PUBLIC_URL'] + route['path'].replace(/^\//, '')}

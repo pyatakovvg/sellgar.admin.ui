@@ -1,6 +1,7 @@
 
 import request from "@package/request";
 import { Dispatch } from '@reduxjs/toolkit';
+import { NotFoundError } from "@package/errors";
 
 import {
   getGroupRequestAction,
@@ -22,7 +23,7 @@ import {
 
 
 export function getGroup(uuid: string): any {
-  return async function(dispatch: Dispatch): Promise<any> {
+  return async function(dispatch: Dispatch) {
     try {
       dispatch(getGroupRequestAction());
 
@@ -34,9 +35,13 @@ export function getGroup(uuid: string): any {
         },
       });
 
-      dispatch(getGroupRequestSuccessAction(result['data']));
+      if ( ! result.data.length) {
+        throw new NotFoundError({ code: '2.3.4', message: `Производитель "${uuid}" не найден` });
+      }
 
-      return result['data'][0];
+      dispatch(getGroupRequestSuccessAction());
+
+      return result.data[0];
     }
     catch(error: any) {
 
@@ -47,7 +52,7 @@ export function getGroup(uuid: string): any {
   };
 }
 
-export function getGroups(): any {
+export function getGroups(search: IFilter): any {
   return async function(dispatch: Dispatch) {
     try {
       dispatch(getGroupsRequestAction());
@@ -55,9 +60,14 @@ export function getGroups(): any {
       const result = await request({
         url: '/api/v1/groups',
         method: 'get',
+        params: {
+          ...search,
+          take: Number(process.env['REACT_APP_TAKE_ROWS']),
+          skip: (Number(search['page'] ?? 1) - 1) * Number(process.env['REACT_APP_TAKE_ROWS']),
+        },
       });
 
-      dispatch(getGroupsRequestSuccessAction(result['data']));
+      dispatch(getGroupsRequestSuccessAction(result));
     }
     catch(error: any) {
 
@@ -66,18 +76,20 @@ export function getGroups(): any {
   };
 }
 
-export function upsertGroups(data: any): any {
-  return async function (dispatch: Dispatch): Promise<boolean> {
+export function upsertGroups(data: any, search: IFilter): any {
+  return async function (dispatch: Dispatch) {
     try {
       dispatch(upsertGroupRequestAction());
 
-      const result = await request({
+      await request({
         url: '/api/v1/groups',
         method: 'post',
         data,
       });
 
-      dispatch(upsertGroupRequestSuccessAction(result['data']));
+      await dispatch(getGroups(search));
+
+      dispatch(upsertGroupRequestSuccessAction());
 
       return true;
     }
@@ -90,12 +102,12 @@ export function upsertGroups(data: any): any {
   }
 }
 
-export function deleteGroups(uuid: Array<string>): any {
+export function deleteGroups(uuid: string[], search: IFilter): any {
   return async function(dispatch: Dispatch) {
     try {
-      dispatch(deleteGroupRequestAction());
+      dispatch(deleteGroupRequestAction(uuid));
 
-      const result = await request({
+      await request({
         url: '/api/v1/groups',
         method: 'delete',
         params: {
@@ -103,11 +115,13 @@ export function deleteGroups(uuid: Array<string>): any {
         },
       });
 
-      dispatch(deleteGroupRequestSuccessAction(result['data']));
+      await dispatch(getGroups(search))
+
+      dispatch(deleteGroupRequestSuccessAction(uuid));
     }
     catch (error: any) {
 
-      dispatch(deleteGroupRequestFailAction());
+      dispatch(deleteGroupRequestFailAction(uuid));
     }
   }
 }

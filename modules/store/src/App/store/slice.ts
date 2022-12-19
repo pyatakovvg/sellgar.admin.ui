@@ -9,6 +9,10 @@ const REDUCER_NAME = 'module/store';
 
 
 interface IState {
+  groups: IGroup[];
+  categories: ICategory[];
+  brands: IBrand[];
+  currency: ICurrency[];
   data: IProduct[];
   meta: IMeta;
   inProcess: boolean;
@@ -17,6 +21,10 @@ interface IState {
 }
 
 const initialState = {
+  groups: [],
+  categories: [],
+  brands: [],
+  currency: [],
   data: [],
   meta: { totalRows: 0 },
   inProcess: false,
@@ -30,6 +38,10 @@ const slice = createSlice({
   initialState,
   reducers: {
     resetStateAction(state: IState) {
+      state['groups'] = [];
+      state['categories'] = [];
+      state['brands'] = [];
+      state['currency'] = [];
       state['data'] = [];
       state['meta'] = { totalRows: 0 };
       state['inProcess'] = false;
@@ -37,36 +49,37 @@ const slice = createSlice({
       state['inUploadProcess'] = false;
     },
 
-    getProductsRequestAction(state: IState) {
-      state['inProcess'] = true;
+    loadingPageProcessAction(state: IState, { payload }: PayloadAction<boolean>) {
+      state['inProcess'] = payload;
     },
-    getProductsRequestFailAction(state: IState) {
-      state['inProcess'] = false;
+
+    loadingProductProcessAction(state: IState, { payload }: PayloadAction<boolean>) {
+      state['inLoadProcess'] = payload;
     },
+
+    uploadingProductProcessAction(state: IState, { payload }: PayloadAction<boolean>) {
+      state['inUploadProcess'] = payload;
+    },
+
     getProductsRequestSuccessAction(state: IState, { payload }: PayloadAction<IResult<IProduct>>) {
       state['data'] = payload['data'];
       state['meta'] = payload['meta'];
-      state['inProcess'] = false;
     },
 
-    getProductRequestAction(state: IState) {
-      state['inLoadProcess'] = true;
-    },
-    getProductRequestFailAction(state: IState) {
-      state['inLoadProcess'] = false;
-    },
-    getProductRequestSuccessAction(state: IState) {
-      state['inLoadProcess'] = false;
+    getGroupsRequestSuccessAction(state: IState, { payload }: PayloadAction<IGroup[]>) {
+      state['groups'] = payload;
     },
 
-    upsertProductRequestAction(state: IState) {
-      state['inUploadProcess'] = true;
+    getCategoriesRequestSuccessAction(state: IState, { payload }: PayloadAction<ICategory[]>) {
+      state['categories'] = payload;
     },
-    upsertProductRequestFailAction(state: IState) {
-      state['inUploadProcess'] = false;
+
+    getBrandsRequestSuccessAction(state: IState, { payload }: PayloadAction<IBrand[]>) {
+      state['brands'] = payload;
     },
-    upsertProductRequestSuccessAction(state: IState) {
-      state['inUploadProcess'] = false;
+
+    getCurrenciesRequestSuccessAction(state: IState, { payload }: PayloadAction<ICurrency[]>) {
+      state['currency'] = payload;
     },
   },
 });
@@ -74,19 +87,22 @@ const slice = createSlice({
 export const {
   resetStateAction,
 
-  getProductsRequestAction,
-  getProductsRequestFailAction,
+  loadingPageProcessAction,
+  loadingProductProcessAction,
+  uploadingProductProcessAction,
+
   getProductsRequestSuccessAction,
 
-  getProductRequestAction,
-  getProductRequestFailAction,
-  getProductRequestSuccessAction,
-
-  upsertProductRequestAction,
-  upsertProductRequestFailAction,
-  upsertProductRequestSuccessAction,
+  getGroupsRequestSuccessAction,
+  getCategoriesRequestSuccessAction,
+  getBrandsRequestSuccessAction,
+  getCurrenciesRequestSuccessAction,
 } = slice['actions'] as any;
 
+export const selectBrands = (state: TRootState): IBrand[] => state[REDUCER_NAME]['brands'];
+export const selectGroups = (state: TRootState): IGroup[] => state[REDUCER_NAME]['groups'];
+export const selectCategories = (state: TRootState): ICategory[] => state[REDUCER_NAME]['categories'];
+export const selectCurrencies = (state: TRootState): ICurrency[] => state[REDUCER_NAME]['currency'];
 export const selectMeta = (state: TRootState): IMeta => state[REDUCER_NAME]['meta'];
 export const selectData = (state: TRootState): IProduct[] => state[REDUCER_NAME]['data'];
 export const selectInProcess = (state: TRootState): boolean => state[REDUCER_NAME]['inProcess'];

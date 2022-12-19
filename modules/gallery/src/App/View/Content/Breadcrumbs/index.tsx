@@ -17,10 +17,6 @@ function Breadcrumbs({}: any) {
 
   const rootClassName = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-house'), []);
 
-  if ( ! data || ! data['folder']) {
-    return null;
-  }
-
   return (
     <div className={styles['wrapper']}>
       <div className={styles['root']}>
@@ -34,7 +30,7 @@ function Breadcrumbs({}: any) {
         })}
       </div>
       <div className={styles['folder']}>
-        <Text type={'strong'}>{ data.folder.name }</Text>
+        <Text type={'strong'}>{ data?.folder?.name }</Text>
       </div>
     </div>
   );

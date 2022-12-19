@@ -9,10 +9,10 @@ import styles from './default.module.scss';
 
 function Information({ uuid, status }: any) {
   const statusClassName = React.useMemo(() => cn({
-    [styles['gray-light']]: status['code'] === 'bucket',
-    [styles['danger']]: status['code'] === 'new',
-    [styles['primary']]: status['code'] === 'finished',
-    [styles['success']]: status['code'] === 'payed',
+    [styles['gray-light']]: status?.['code'] === 'bucket',
+    [styles['danger']]: status?.['code'] === 'new',
+    [styles['primary']]: status?.['code'] === 'finished',
+    [styles['success']]: status?.['code'] === 'payed',
   }), [status]);
 
   return (
@@ -24,7 +24,7 @@ function Information({ uuid, status }: any) {
           </div>
           <div className={styles['col']}>
             <Metric label={'Статус'}>
-              <span className={statusClassName}>{ status['displayName'] }</span>
+              <span className={statusClassName}>{ status?.['displayName'] }</span>
             </Metric>
           </div>
         </div>

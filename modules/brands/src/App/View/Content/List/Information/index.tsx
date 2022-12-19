@@ -10,7 +10,7 @@ function Information(props: Partial<IBrand>) {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['line']}>
-        <Header level={3}>{ props.name }</Header>
+        <Header level={4}>{ props.name }</Header>
       </div>
       <div className={styles['line']}>
         <Text>Код: <strong>{ props.code }</strong></Text>

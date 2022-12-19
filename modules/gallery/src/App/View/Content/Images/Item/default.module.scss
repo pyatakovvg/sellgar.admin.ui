@@ -9,7 +9,7 @@
   flex: 1 1;
   background: $white;
   padding: 8px 24px 8px 16px;
-  border-radius: 8px;
+  border-radius: $border-radius-small;
   align-items: center;
   @include box-shadow('bottom');
 }

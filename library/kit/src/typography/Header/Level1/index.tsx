@@ -5,7 +5,7 @@ import cn from 'classnames';
 import styles from './default.module.scss';
 
 
-interface IProps {
+interface IProps extends React.HTMLProps<HTMLHeadingElement>{
   className?: string | undefined;
   children: any;
 }

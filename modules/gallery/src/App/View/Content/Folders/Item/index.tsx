@@ -1,6 +1,6 @@
 
-import { Text } from '@library/kit';
 import { query } from '@helper/utils';
+import { Text, Checkbox } from '@library/kit';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -29,6 +29,9 @@ function Folder({ uuid, name }: IFolder) {
 
   return (
     <div className={styles['wrapper']}>
+      <div className={styles['checkout']}>
+        <Checkbox onChange={() => {}} />
+      </div>
       <div className={styles['content']} onClick={handleEnter}>
         <div className={styles['thumb']}>
           <span className={folderClassName} />

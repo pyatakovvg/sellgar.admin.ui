@@ -1,9 +1,17 @@
 
+interface IGroup {
+  uuid: string;
+  name: string;
+}
+
+interface ICategory {
+  uuid: string;
+  name: string;
+}
+
 interface IBrand {
   uuid: string;
-  code: string;
   name: string;
-  description: string;
 }
 
 interface ICurrency {

@@ -16,15 +16,18 @@ function Content() {
   const data = useSelector(selectData);
   const inProcess = useSelector(selectInProcess);
 
-  if ( ! inProcess && ! data.folders.length && ! data.images.length) {
-    return <Empty />;
-  }
-
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['breadcrumbs']}>
-        <Breadcrumbs />
-      </div>
+      {( !! data.folder || !! data.parent.length) && (
+        <div className={styles['breadcrumbs']}>
+          <Breadcrumbs />
+        </div>
+      )}
+      {( ! inProcess && ! data.folders.length && ! data.images.length) && (
+        <div className={styles['block']}>
+          <Empty />
+        </div>
+      )}
       { !! data.folders.length && (
         <div className={styles['block']}>
           <Folders />

@@ -13,8 +13,8 @@ import Filter from './Filter';
 import Modify from './Modify';
 import Content from './Content';
 
-import { getProducts } from '../store/commands';
-import { resetStateAction } from '../store/slice';
+import { resetStateAction, loadingPageProcessAction } from '../store/slice';
+import { getProducts, getBrands, getGroups, getCategories } from '../store/commands';
 
 import styles from './default.module.scss';
 
@@ -24,22 +24,29 @@ function Page() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
+    const cancel = createCancelToken();
+
+    dispatch(getBrands({ token: cancel['token'] }));
+    dispatch(getGroups({ token: cancel['token'] }));
+    dispatch(getCategories({ token: cancel['token'] }));
+
     return () => {
+      cancel.cancel();
       dispatch(resetStateAction());
     }
   }, []);
 
-  React.useLayoutEffect(() => {
-    const cancelProducts = createCancelToken();
+  React.useEffect(() => {
+    const cancel = createCancelToken();
+    const search = query.toObject(location['search']);
 
-    async function init() {
-      const search = query.toObject(location['search']);
-
-      await dispatch(getProducts(search, { token: cancelProducts['token'] }));
-    }
-    init();
+    (async () => {
+      dispatch(loadingPageProcessAction(true));
+      await dispatch(getProducts(search, { token: cancel['token'] }));
+      dispatch(loadingPageProcessAction(false));
+    })();
     return () => {
-      cancelProducts.cancel();
+      cancel.cancel();
     };
   }, [location]);
 

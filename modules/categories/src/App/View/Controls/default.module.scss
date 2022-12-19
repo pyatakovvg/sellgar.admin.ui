@@ -1,0 +1,23 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: flex;
+  flex-direction: row;
+  flex: 1 0;
+  justify-content: flex-end;
+  background: $white;
+  padding: 8px 40px;
+  @include box-shadow-large('bottom');
+}
+
+.control {
+
+  display: block;
+
+  & + & {
+    margin: 0 0 0 16px;
+  }
+}

@@ -48,9 +48,9 @@ function List() {
         <Column align={'right'} width={72}>
           {(props: IBrand) => (
             <Control
-              inDeleteProcess={ !!~ inDeleteProcess.indexOf(props.uuid)}
               onEdit={() => handleEdit(props.uuid)}
               onDelete={() => handleDelete(props.uuid)}
+              inDeleteProcess={ !!~ inDeleteProcess.indexOf(props.uuid)}
             />
           )}
         </Column>

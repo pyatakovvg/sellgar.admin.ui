@@ -21,22 +21,22 @@ function Content() {
       <div className={styles['block']}>
         <Common {...data} />
       </div>
-      <div className={styles['block']}>
-        <Customer {...data} />
-      </div>
-      <div className={styles['block']}>
-        <Information {...data} />
-      </div>
-      { !! data['products'].length && (
-        <div className={styles['block']}>
-          <Products {...data} />
-        </div>
-      )}
-      {data['description'] && (
-        <div className={styles['block']}>
-          <Description {...data} />
-        </div>
-      )}
+      {/*<div className={styles['block']}>*/}
+      {/*  <Customer {...data} />*/}
+      {/*</div>*/}
+      {/*<div className={styles['block']}>*/}
+      {/*  <Information {...data} />*/}
+      {/*</div>*/}
+      {/*{ !! data['products'].length && (*/}
+      {/*  <div className={styles['block']}>*/}
+      {/*    <Products {...data} />*/}
+      {/*  </div>*/}
+      {/*)}*/}
+      {/*{data['description'] && (*/}
+      {/*  <div className={styles['block']}>*/}
+      {/*    <Description {...data} />*/}
+      {/*  </div>*/}
+      {/*)}*/}
     </div>
   );
 }

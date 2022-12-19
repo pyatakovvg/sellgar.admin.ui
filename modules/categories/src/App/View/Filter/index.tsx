@@ -16,7 +16,7 @@ function Filter() {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const params = query.toObject(location['search']);
+
 
   React.useEffect(() => {
     dispatch(getGroups());
@@ -29,11 +29,11 @@ function Filter() {
   return (
     <div className={styles['wrapper']}>
       <Form
-        initialValues={params}
+        initialValues={query.toObject(location.search)}
         onSubmit={handleSubmit}
       />
     </div>
   );
 }
 
-export default Filter;
+export default React.memo(Filter);

@@ -4,24 +4,18 @@ import { NotFoundError } from '@package/errors';
 
 import type { TAppDispatch } from './create';
 import {
-  getProductsRequestAction,
-  getProductsRequestFailAction,
+  uploadingProductProcessAction,
+
   getProductsRequestSuccessAction,
-
-  getProductRequestAction,
-  getProductRequestFailAction,
-  getProductRequestSuccessAction,
-
-  upsertProductRequestAction,
-  upsertProductRequestFailAction,
-  upsertProductRequestSuccessAction,
+  getBrandsRequestSuccessAction,
+  getCategoriesRequestSuccessAction,
+  getCurrenciesRequestSuccessAction,
+  getGroupsRequestSuccessAction,
 } from './slice';
 
 
 export const getProducts = (search: IFilter, options: any): any => async (dispatch: TAppDispatch) => {
   try {
-    dispatch(getProductsRequestAction());
-
     const result = await request({
       url: '/api/v1/store',
       method: 'get',
@@ -37,14 +31,11 @@ export const getProducts = (search: IFilter, options: any): any => async (dispat
   }
   catch(error: any) {
 
-    dispatch(getProductsRequestFailAction());
   }
 };
 
-export const getProduct = (uuid: string, options: any): any => async (dispatch: TAppDispatch): Promise<any> => {
+export const getProduct = (uuid: string, options: any): any => async (): Promise<IProduct | null> => {
   try {
-    dispatch(getProductRequestAction());
-
     const result = await request({
       url: '/api/v1/store',
       method: 'get',
@@ -58,13 +49,9 @@ export const getProduct = (uuid: string, options: any): any => async (dispatch: 
       throw new NotFoundError({ code: '9.9.9', message: 'Нет данных' });
     }
 
-    dispatch(getProductRequestSuccessAction(result));
-
     return result['data'][0];
   }
   catch(error: any) {
-
-    dispatch(getProductRequestFailAction());
 
     return null;
   }
@@ -72,19 +59,78 @@ export const getProduct = (uuid: string, options: any): any => async (dispatch: 
 
 export const upsertProducts = (data: any): any => async (dispatch: TAppDispatch): Promise<boolean> => {
   try {
-    dispatch(upsertProductRequestAction());
+    dispatch(uploadingProductProcessAction(true));
 
-    const result = await request({
+    await request({
       url: '/api/v1/store',
       method: 'post',
       data,
     });
 
-    dispatch(upsertProductRequestSuccessAction(result));
+    dispatch(uploadingProductProcessAction(false));
     return true;
   }
   catch(error: any) {
-    dispatch(upsertProductRequestFailAction());
+    dispatch(uploadingProductProcessAction(false));
     return false;
+  }
+};
+
+export const getGroups = (options: any): any => async (dispatch: TAppDispatch) => {
+  try {
+    const result = await request({
+      url: '/api/v1/groups',
+      method: 'get',
+      cancelToken: options['token'],
+    });
+
+    dispatch(getGroupsRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+  }
+};
+
+export const getCategories = (options: any): any => async (dispatch: TAppDispatch) => {
+  try {
+    const result = await request({
+      url: '/api/v1/categories',
+      method: 'get',
+      cancelToken: options['token'],
+    });
+
+    dispatch(getCategoriesRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
+  }
+};
+
+export const getBrands = (options: any): any => async (dispatch: TAppDispatch) => {
+  try {
+    const result = await request({
+      url: '/api/v1/brands',
+      method: 'get',
+      cancelToken: options['token'],
+    });
+
+    dispatch(getBrandsRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
+  }
+};
+
+export const getCurrencies = (options: any): any => async (dispatch: any) => {
+  try {
+    const result = await request({
+      url: '/api/v1/currencies',
+      method: 'get',
+      cancelToken: options['token'],
+    });
+
+    dispatch(getCurrenciesRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
   }
 };

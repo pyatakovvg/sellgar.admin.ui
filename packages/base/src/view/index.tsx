@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 
 import {
   getUnits,
@@ -9,19 +9,37 @@ import {
   getCategories,
   getCurrencies,
 } from '../store/commands';
-import { resetStateAction } from '../store/slice';
+import {
+  resetStateAction,
+
+  selectUnits,
+  selectBrands,
+  selectGroups,
+  selectCategories,
+  selectCurrencies,
+} from '../store/slice';
+import { setupStore } from '../store/create';
+import { Provider as BaseDataProvider } from '../context';
 
 
 interface IProps {
   children: any;
 }
 
+const store = setupStore();
+
 
 function Base({ children }: IProps) {
   const dispatch = useDispatch();
 
+  const units = useSelector(selectUnits);
+  const brands = useSelector(selectBrands);
+  const groups = useSelector(selectGroups);
+  const categories = useSelector(selectCategories);
+  const currencies = useSelector(selectCurrencies);
+
   React.useEffect(() => {
-    (async function init() {
+    (async function() {
       dispatch(getUnits());
       dispatch(getGroups());
       dispatch(getBrands());
@@ -33,7 +51,25 @@ function Base({ children }: IProps) {
     };
   }, []);
 
-  return children;
+  return (
+    <BaseDataProvider value={{
+      units,
+      brands,
+      groups,
+      categories,
+      currencies,
+    }}>
+      { children }
+    </BaseDataProvider>
+  );
 }
 
-export default Base;
+export default function({ children }: any) {
+  return (
+    <Provider store={store}>
+      <Base>
+        { children }
+      </Base>
+    </Provider>
+  );
+};

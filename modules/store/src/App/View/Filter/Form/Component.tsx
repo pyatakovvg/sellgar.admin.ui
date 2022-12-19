@@ -1,17 +1,18 @@
 
-import {SelectField, Button, InputField} from '@library/kit';
-// import { selectGroups, selectBrands, selectCategories } from '@package/base-data';
+import { SelectField, Button, InputField } from '@library/kit';
 
 import React from 'react';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+
+import { selectGroups, selectBrands, selectCategories } from '../../../store/slice';
 
 import styles from './default.module.scss';
 
 
 function Form({ handleSubmit }: any) {
-  // const groups = useSelector(selectGroups);
-  // const brands = useSelector(selectBrands);
-  // const categories = useSelector(selectCategories);
+  const brands = useSelector(selectBrands);
+  const groups = useSelector(selectGroups);
+  const categories = useSelector(selectCategories);
 
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>
@@ -22,7 +23,7 @@ function Form({ handleSubmit }: any) {
             label={'Группа в каталоге'}
             name={'groupUuid'}
             placeholder={'Все группы'}
-            options={[]}
+            options={groups}
             optionKey={'uuid'}
             optionValue={'name'}
           />
@@ -33,7 +34,7 @@ function Form({ handleSubmit }: any) {
             label={'Категория в каталоге'}
             name={'categoryUuid'}
             placeholder={'Все категории'}
-            options={[]}
+            options={categories}
             optionKey={'uuid'}
             optionValue={'name'}
           />
@@ -44,7 +45,7 @@ function Form({ handleSubmit }: any) {
             label={'Производитель'}
             name={'brandUuid'}
             placeholder={'Все производители'}
-            options={[]}
+            options={brands}
             optionKey={'uuid'}
             optionValue={'name'}
           />

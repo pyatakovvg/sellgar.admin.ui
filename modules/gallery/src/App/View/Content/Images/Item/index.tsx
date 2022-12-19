@@ -14,7 +14,7 @@ import styles from './default.module.scss';
 
 function Item({ uuid, name, size, width, height }: IImage) {
   const dispatch = useDispatch();
-  const iconClassName = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-trash'), []);
+  const iconClassName = React.useMemo(() => cn(styles['icon'], 'fa-solid fa-xmark'), []);
 
   function handleView() {
     dispatch(openDialog('view', { uuid, name }));

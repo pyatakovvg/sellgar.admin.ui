@@ -1,25 +1,35 @@
 
+import {Paging} from "@library/design";
+
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import Item from './Item';
-import { selectData } from '../../store/slice';
+import Header from './Header';
+import List from './List';
+
+import { selectMeta } from '../../store/slice';
 
 import styles from './@media/index.module.scss';
 
 
 function Content() {
-  const data = useSelector(selectData);
+  const meta = useSelector(selectMeta);
 
   return (
     <section className={styles['wrapper']}>
-      <section className={styles['content']}>
-        {data.map((item: any) => (
-          <div key={item['uuid']} className={styles['item']}>
-            <Item {...item} />
-          </div>
-        ))}
-      </section>
+      <div className={styles['content']}>
+        <div className={styles['header']}>
+          <Header />
+        </div>
+        <div className={styles['list']}>
+          <List />
+        </div>
+      </div>
+      { !! meta.totalRows && (
+        <div className={styles['controls']}>
+          <Paging totalRows={meta.totalRows} />
+        </div>
+      )}
     </section>
   );
 }

@@ -1,11 +1,16 @@
 
 import request from "@package/request";
-import { Dispatch } from '@reduxjs/toolkit';
+
+import { TAppDispatch } from './create';
 
 import {
   getOrdersRequestAction,
   getOrdersRequestFailAction,
   getOrdersRequestSuccessAction,
+
+  upsertOrdersRequestAction,
+  upsertOrdersRequestFailAction,
+  upsertOrdersRequestSuccessAction,
 
   getStatusesRequestAction,
   getStatusesRequestFailAction,
@@ -22,7 +27,7 @@ import {
 
 
 export function getStatuses(options: any): any {
-  return async function(dispatch: Dispatch) {
+  return async function(dispatch: TAppDispatch) {
     try {
       dispatch(getStatusesRequestAction());
 
@@ -41,7 +46,7 @@ export function getStatuses(options: any): any {
 }
 
 export function getDelivery(options: any): any {
-  return async function(dispatch: Dispatch) {
+  return async function(dispatch: TAppDispatch) {
     try {
       dispatch(getDeliveryRequestAction());
 
@@ -60,7 +65,7 @@ export function getDelivery(options: any): any {
 }
 
 export function getPayments(options: any): any {
-  return async function(dispatch: Dispatch) {
+  return async function(dispatch: TAppDispatch) {
     try {
       dispatch(getPaymentsRequestAction());
 
@@ -78,23 +83,45 @@ export function getPayments(options: any): any {
   }
 }
 
-export const getOrders = (search: any, options: any) => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getOrdersRequestAction());
+export function getOrders(search: IFilter, options: any): any {
+  return async function(dispatch: TAppDispatch) {
+    try {
+      dispatch(getOrdersRequestAction());
 
-    const result = await request({
-      url: '/api/v1/checkouts',
-      method: 'get',
-      params: {
-        ...search,
-      },
-      cancelToken: options['token'],
-    });
+      const result = await request({
+        url: '/api/v1/checkouts',
+        method: 'get',
+        params: {
+          ...search,
+        },
+        cancelToken: options['token'],
+      });
 
-    dispatch(getOrdersRequestSuccessAction(result));
-  }
-  catch(error: any) {
+      dispatch(getOrdersRequestSuccessAction(result));
+    }
+    catch(error: any) {
 
-    dispatch(getOrdersRequestFailAction());
-  }
-};
+      dispatch(getOrdersRequestFailAction());
+    }
+  };
+}
+
+export function upsertOrders(data: Partial<ICheckout>, options: any): any {
+  return async function(dispatch: TAppDispatch) {
+    try {
+      dispatch(upsertOrdersRequestAction());
+
+      await request({
+        url: '/api/v1/checkouts',
+        method: 'post',
+        cancelToken: options['token'],
+      });
+
+      dispatch(upsertOrdersRequestSuccessAction());
+    }
+    catch(error: any) {
+
+      dispatch(upsertOrdersRequestFailAction());
+    }
+  };
+}

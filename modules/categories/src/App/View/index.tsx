@@ -1,12 +1,13 @@
 
 import Dialog from '@package/dialog';
 import { query } from '@helper/utils';
+import { Header } from '@library/kit';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import Header from './Header';
+import Controls from './Controls';
 import Filter from './Filter';
 import Modify from './Modify';
 import Content from './Content';
@@ -28,20 +29,20 @@ function Category() {
   }, []);
 
   React.useEffect(() => {
-    async function init() {
-      const search = query.toObject(location['search']);
-
-      await dispatch(getCategories(search));
-    }
-    init();
+    (async function() {
+      await dispatch(getCategories(query.toObject(location['search'])));
+    })();
   }, [location]);
 
   return (
     <section className={styles['wrapper']}>
-      <header className={styles['header']}>
-        <Header />
-      </header>
+      <div className={styles['controls']}>
+        <Controls />
+      </div>
       <section className={styles['content']}>
+        <div className={styles['header']}>
+          <Header>Категория товара</Header>
+        </div>
         <div className={styles['filter']}>
           <Filter />
         </div>
@@ -57,4 +58,4 @@ function Category() {
   );
 }
 
-export default Category;
+export default React.memo(Category);

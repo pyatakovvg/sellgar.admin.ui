@@ -1,17 +1,17 @@
 
 interface IError {
   name: string;
-  status: number;
+  status: number | string;
   data: any;
 }
 
 
 export class BaseError extends Error implements IError {
   name: string;
-  status: number;
+  status: number | string;
   data: any;
 
-  constructor(status: number, data: any) {
+  constructor(status: number | string, data: any) {
     super();
 
     this.name = 'BaseError';
@@ -28,6 +28,18 @@ export class BaseError extends Error implements IError {
 export class BadRequestError extends BaseError {
   constructor(data: any = 'Неправильный, некорректный запрос') {
     super(400, data);
+
+    this.name = 'BadRequestError';
+
+    if ('captureStackTrace' in Error) {
+      Error.captureStackTrace(this, BadRequestError);
+    }
+  }
+}
+
+export class CanceledError extends BaseError {
+  constructor(data: any = 'Неправильный, некорректный запрос') {
+    super('canceled', data);
 
     this.name = 'BadRequestError';
 

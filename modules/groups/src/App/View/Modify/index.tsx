@@ -1,7 +1,9 @@
 
+import { query } from '@helper/utils';
 import { closeDialog } from '@package/dialog';
 
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Form from './Form';
@@ -13,23 +15,26 @@ import { getGroup, upsertGroups } from '../../store/commands';
 
 function Modify({ data }: any) {
   const dispatch = useDispatch();
+  const location = useLocation();
+
   const inProcess = useSelector(selectInProcessOne);
+
   const [group, setGroup] = React.useState(null);
 
+
   React.useEffect(() => {
-    async function init() {
-      const result = await dispatch(getGroup(data['uuid']));
-      if (result) {
-        setGroup(result);
-      }
-    }
-    if ( !! data?.['uuid']) {
-      init();
+    if (data?.uuid) {
+      (async function init() {
+        const result = await dispatch(getGroup(data['uuid']));
+        if (result) {
+          setGroup(result);
+        }
+      })();
     }
   }, [data]);
 
   async function handleSave(values: any) {
-    const isSuccess = await dispatch(upsertGroups(values));
+    const isSuccess = await dispatch(upsertGroups(values, query.toObject(location.search)));
     if (isSuccess) {
       dispatch(closeDialog());
     }

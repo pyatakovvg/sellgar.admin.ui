@@ -6,7 +6,8 @@ import {
   NotFoundError,
   ServiceUnavailableError,
   UnauthorizedError,
-  InternalServerError
+  InternalServerError,
+  CanceledError,
 } from '@package/errors';
 
 import qs from "qs";
@@ -44,7 +45,7 @@ async function request(options: AxiosRequestConfig): Promise<any> {
 
     if (axios.isCancel(error)) {
       events.emit('cancel', error);
-      return { success: true, data: null };
+      throw new CanceledError({ code: '0.0.0', message: error.message });
     }
 
     if (error['response']) {

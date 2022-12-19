@@ -14,7 +14,7 @@ function Form({ handleSubmit }: InjectedFormProps<IFolder>) {
         <Header level={3}>Каталог</Header>
       </div>
       <div className={styles['content']}>
-        <InputField name={'name'} label={'Название'} />
+        <InputField name={'name'} label={'Название'} autoFocus />
       </div>
       <div className={styles['controls']}>
         <Button type={'submit'} mode={'success'}>Сохранить</Button>

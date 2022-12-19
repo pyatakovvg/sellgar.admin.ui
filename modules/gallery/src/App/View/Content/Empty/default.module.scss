@@ -5,42 +5,24 @@
 .wrapper {
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex: 1 0;
   align-items: center;
+  background: $white;
+  padding: 48px 32px;
+  line-height: 1.6;
+  border-radius: $border-radius-medium;
 }
 
-.root {
+.link {
 
-  display: flex;
-  flex-direction: row;
-  flex: 0 0 auto;
-  align-items: center;
+  display: inline-block;
+  color: $primary;
+  font-weight: $font-weight-medium;
+  cursor: pointer;
 
-  &:after {
+  &:hover {
 
-    display: block;
-    content: '/';
-    font-size: 12px;
-    padding: 0 16px;
-    color: $dark;
+    color: $primary-dark;
   }
-}
-
-.icon {
-
-  font-size: 14px;
-  margin: -1px 0 0;
-}
-
-.item {
-
-  display: flex;
-  flex-direction: row;
-  flex: 0 0 auto;
-}
-
-.folder {
-
-  display: block;
 }

@@ -1,20 +1,37 @@
 
+import {Paging} from "@library/design";
+
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
-import Table from './Table';
-import Empty from './Empty';
+import Header from './Header';
+import List from './List';
 
-import { selectData } from '../../store/slice';
+import { selectMeta } from "../../store/slice";
+
+import styles from './default.module.scss';
 
 
-function Checkouts() {
-  const data: Array<any> = useSelector(selectData);
+function Content() {
+  const meta = useSelector(selectMeta);
 
-  if ( ! data.length) {
-    return <Empty />;
-  }
-  return <Table />;
+  return (
+    <div className={styles['wrapper']}>
+      <div className={styles['content']}>
+        <div className={styles['header']}>
+          <Header />
+        </div>
+        <div className={styles['list']}>
+          <List />
+        </div>
+      </div>
+      { !! meta?.['totalRows'] && (
+        <div className={styles['controls']}>
+          <Paging totalRows={meta?.['totalRows'] ?? 0} />
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default React.memo(Checkouts);
+export default React.memo(Content);

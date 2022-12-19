@@ -1,6 +1,7 @@
 
 import request from "@package/request";
 import { Dispatch } from '@reduxjs/toolkit';
+import { NotFoundError } from "@package/errors";
 
 import {
   getGroupsRequestAction,
@@ -26,7 +27,7 @@ import {
 
 
 export function getGroups(): any {
-  return async function(dispatch: Dispatch): Promise<any> {
+  return async function(dispatch: Dispatch) {
     try {
       dispatch(getGroupsRequestAction());
 
@@ -35,9 +36,9 @@ export function getGroups(): any {
         method: 'get',
       });
 
-      dispatch(getGroupsRequestSuccessAction(result['data']));
+      dispatch(getGroupsRequestSuccessAction(result.data));
 
-      return result['data'][0];
+      return result.data[0];
     }
     catch(error: any) {
 
@@ -49,7 +50,7 @@ export function getGroups(): any {
 }
 
 export function getCategory(uuid: string): any {
-  return async function(dispatch: Dispatch): Promise<any> {
+  return async function(dispatch: Dispatch) {
     try {
       dispatch(getCategoryRequestAction());
 
@@ -61,9 +62,13 @@ export function getCategory(uuid: string): any {
         },
       });
 
-      dispatch(getCategoryRequestSuccessAction(result['data']));
+      if ( ! result.data.length) {
+        throw new NotFoundError({ code: '1.2.3', message: `Категория "${uuid}" не найдена` });
+      }
 
-      return result['data'][0];
+      dispatch(getCategoryRequestSuccessAction());
+
+      return result.data[0];
     }
     catch(error: any) {
 
@@ -74,7 +79,7 @@ export function getCategory(uuid: string): any {
   };
 }
 
-export function getCategories(params: any): any {
+export function getCategories(search: IFilter): any {
   return async function(dispatch: Dispatch) {
     try {
       dispatch(getCategoriesRequestAction());
@@ -82,10 +87,14 @@ export function getCategories(params: any): any {
       const result = await request({
         url: '/api/v1/categories',
         method: 'get',
-        params,
+        params: {
+          ...search,
+          take: Number(process.env['REACT_APP_TAKE_ROWS']),
+          skip: (Number(search['page'] ?? 1) - 1) * Number(process.env['REACT_APP_TAKE_ROWS']),
+        },
       });
 
-      dispatch(getCategoriesRequestSuccessAction(result['data']));
+      dispatch(getCategoriesRequestSuccessAction(result));
     }
     catch(error: any) {
 
@@ -94,23 +103,21 @@ export function getCategories(params: any): any {
   };
 }
 
-export function upsertCategory(data: any, search: any): any {
-  return async function (dispatch: Dispatch): Promise<boolean> {
+export function upsertCategory(data: any, search: IFilter): any {
+  return async function (dispatch: Dispatch) {
     try {
       dispatch(upsertCategoryRequestAction());
 
-      const result = await request({
+      await request({
         url: '/api/v1/categories',
         method: 'post',
         data: {
           ...data,
-        },
-        params: {
-          ...search,
-        },
+        }
       });
 
-      dispatch(upsertCategoryRequestSuccessAction(result['data']));
+      await dispatch(getCategories(search));
+      dispatch(upsertCategoryRequestSuccessAction());
 
       return true;
     }
@@ -123,25 +130,25 @@ export function upsertCategory(data: any, search: any): any {
   }
 }
 
-export function deleteCategories(uuid: Array<string>, search: any): any {
+export function deleteCategories(uuid: string[], search: IFilter): any {
   return async function(dispatch: Dispatch) {
     try {
-      dispatch(deleteCategoryRequestAction());
+      dispatch(deleteCategoryRequestAction(uuid));
 
-      const result = await request({
+      await request({
         url: '/api/v1/categories',
         method: 'delete',
         params: {
           uuid,
-          ...search,
         },
       });
 
-      dispatch(deleteCategoryRequestSuccessAction(result['data']));
+      await getCategories(search);
+      dispatch(deleteCategoryRequestSuccessAction(uuid));
     }
     catch (error: any) {
 
-      dispatch(deleteCategoryRequestFailAction());
+      dispatch(deleteCategoryRequestFailAction(uuid));
     }
   }
 }

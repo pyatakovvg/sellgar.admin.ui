@@ -11,7 +11,7 @@
   overflow: auto;
 }
 
-.header {
+.controls {
 
   display: block;
   z-index: 20;
@@ -22,16 +22,20 @@
   display: flex;
   flex-direction: column;
   flex: 1 0;
-  padding: 40px 40px 80px;
+  padding: 24px 40px 80px;
   overflow: auto;
   z-index: 10;
 }
 
+.header {
+
+  display: block;
+}
 
 .filter {
 
   display: block;
-  width: 900px;
+  margin: 24px 0 0;
 }
 
 .list {
@@ -40,11 +44,4 @@
   min-width: 900px;
   max-width: 1200px;
   margin: 40px 0 0;
-}
-
-.controls {
-
-  display: block;
-  margin: 40px 0 0;
-  text-align: center;
 }

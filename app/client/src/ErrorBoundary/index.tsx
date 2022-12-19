@@ -30,7 +30,7 @@ function Boundary({ children }: any) {
   const location = useLocation();
 
   return (
-    <ErrorBoundary key={location.key} FallbackComponent={ErrorFallback}>
+    <ErrorBoundary key={location.pathname} FallbackComponent={ErrorFallback}>
       { children }
     </ErrorBoundary>
   );

@@ -1,7 +1,7 @@
 
 import { closeDialog } from '@package/dialog';
 import { createCancelToken } from '@package/request';
-import { selectCurrencies } from '@package/base-data';
+import { useGetCurrencies } from '@package/base-data';
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,7 +25,7 @@ function Modify({ data }: IProps) {
   const location = useLocation();
   const [item, setItem] = React.useState<any>({});
 
-  const currencies = useSelector(selectCurrencies);
+  const currencies = useGetCurrencies();
   const inLoadProcess = useSelector(selectInLoadProcess);
 
 
@@ -59,10 +59,10 @@ function Modify({ data }: IProps) {
   return (
     <Form
       initialValues={{
-        count: 1,
-        reserve: 0,
-        price: 0,
-        purchasePrice: 0,
+        count: '1',
+        reserve: '0',
+        price: '0',
+        purchasePrice: '0',
         currency: currencies?.[0] ?? null,
         ...item,
       }}

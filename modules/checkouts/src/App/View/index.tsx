@@ -1,17 +1,17 @@
 
 import { query } from '@helper/utils';
-import { Paging } from '@library/design';
+import { Header } from '@library/kit';
 import { createCancelToken } from '@package/request';
 
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
-import Header from './Header';
+import Controls from './Controls';
 import Filter from './Filter';
 import Content from './Content';
 
-import { resetStateAction, selectMeta } from '../store/slice';
+import { resetStateAction } from '../store/slice';
 import { getOrders, getStatuses, getDelivery, getPayments } from '../store/commands';
 
 import styles from './default.module.scss';
@@ -20,8 +20,6 @@ import styles from './default.module.scss';
 function Checkouts() {
   const location = useLocation();
   const dispatch = useDispatch();
-
-  const meta = useSelector(selectMeta);
 
   React.useEffect(() => {
     const cancelStatuses = createCancelToken();
@@ -42,13 +40,9 @@ function Checkouts() {
 
   React.useEffect(() => {
     const cancelOrders = createCancelToken();
-
-    async function init() {
-      const search = query.toObject(location['search']);
-
-      await dispatch<any>(getOrders(search, { token: cancelOrders.token }));
-    }
-    init();
+    (async function init() {
+      await dispatch<any>(getOrders(query.toObject(location['search']), { token: cancelOrders.token }));
+    })();
     return () => {
       cancelOrders.cancel();
     };
@@ -56,18 +50,18 @@ function Checkouts() {
 
   return (
     <section className={styles['wrapper']}>
-      <header className={styles['header']}>
-        <Header />
-      </header>
+      <div className={styles['controls']}>
+        <Controls />
+      </div>
       <section className={styles['content']}>
+        <header className={styles['header']}>
+          <Header>Заказы</Header>
+        </header>
         <aside className={styles['filter']}>
           <Filter />
         </aside>
         <div className={styles['list']}>
           <Content />
-        </div>
-        <div className={styles['controls']}>
-          <Paging totalRows={meta?.['totalRows'] ?? 0} />
         </div>
       </section>
     </section>

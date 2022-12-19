@@ -1,12 +1,13 @@
 
 import Dialog from '@package/dialog';
+import { Header } from '@library/kit';
 import { query } from '@helper/utils';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import Header from './Header';
+import Controls from './Controls';
 import Content from './Content';
 import ImageView from './ImageView';
 import FolderModify from './FolderModify';
@@ -27,11 +28,16 @@ function Page() {
 
   return (
     <section className={styles['wrapper']}>
-      <div className={styles['header']}>
-        <Header />
+      <div className={styles['controls']}>
+        <Controls />
       </div>
       <div className={styles['content']}>
-        <Content />
+        <div className={styles['header']}>
+          <Header>Галлерея</Header>
+        </div>
+        <div className={styles['list']}>
+          <Content />
+        </div>
       </div>
 
       <Dialog name={'folder'}>

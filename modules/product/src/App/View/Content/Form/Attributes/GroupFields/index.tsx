@@ -26,7 +26,7 @@ function GroupField({ fields, disabled }: any) {
           form={'outline'}
           disabled={disabled}
           onClick={() => handleAddAttr()}
-        >Добавить группу характеристик</Button>
+        >Добавить группу свойств</Button>
       </div>
     </div>
   );

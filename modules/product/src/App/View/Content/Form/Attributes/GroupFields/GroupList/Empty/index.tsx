@@ -10,7 +10,7 @@ function Empty() {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['content']}>
-        <Text type={'strong'}>Нет характеристик</Text>
+        <Text type={'strong'}>Свойства не указаны</Text>
       </div>
     </div>
   );

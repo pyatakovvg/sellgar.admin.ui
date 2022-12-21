@@ -27,7 +27,7 @@ function AttributesValues({ fields, disabled }: any) {
           form={'outline'}
           disabled={disabled}
           onClick={handleAddAttr}
-        >Добавить характеристику</Button>
+        >Добавить свойство</Button>
       </div>
     </div>
   );

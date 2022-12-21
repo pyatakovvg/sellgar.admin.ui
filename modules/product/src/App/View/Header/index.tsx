@@ -1,5 +1,5 @@
 
-import { Header, Button } from '@library/kit';
+import { Button } from '@library/kit';
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -36,16 +36,11 @@ function Controls() {
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['content']}>
-        <Header level={2}>Редактировать товар</Header>
+      <div className={styles['control']}>
+        <Button mode={'success'} disabled={ ! valid || inProcess} onClick={handleCopy}>Копировать</Button>
       </div>
-      <div className={styles['controls']}>
-        <div className={styles['copy']}>
-          <Button mode={'primary'} disabled={ ! valid || inProcess} onClick={handleCopy}>Копировать</Button>
-        </div>
-        <div className={styles['update']}>
-          <Button mode={'success'} disabled={ ! valid || pristine || inProcess} onClick={handleSubmit}>Сохранить</Button>
-        </div>
+      <div className={styles['control']}>
+        <Button mode={'success'} disabled={ ! valid || pristine || inProcess} onClick={handleSubmit}>Сохранить</Button>
       </div>
     </div>
   );

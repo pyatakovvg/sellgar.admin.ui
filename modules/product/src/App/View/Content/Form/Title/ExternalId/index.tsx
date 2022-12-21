@@ -32,7 +32,7 @@ function ExternalId({ inProcess }: IProps) {
         />
       </div>
       <div className={styles['button']}>
-        <Button mode={'success'} onClick={handleGenerateExternalId}>Генерировать</Button>
+        <Button mode={'primary'} onClick={handleGenerateExternalId}>Генерировать</Button>
       </div>
     </div>
   );

@@ -54,12 +54,11 @@ function Modify({ data }: IProps) {
     }
   }
 
-  if ( !! data || inLoadProcess) {
+  if (inLoadProcess) {
     return (
       <Loading />
     );
   }
-  console.log(currencies?.[0] ?? null)
 
   return (
     <Form

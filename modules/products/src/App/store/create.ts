@@ -1,7 +1,6 @@
 
 import type { PreloadedState } from '@reduxjs/toolkit';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { name as dialogReducerName, reducer as dialogReducer } from '@package/dialog';
 
 import { reducer as formReducer } from 'redux-form';
 
@@ -11,7 +10,6 @@ import { reducer, name } from './slice';
 const rootReducer = combineReducers({
   form: formReducer,
   [name]: reducer,
-  [dialogReducerName]: dialogReducer,
 });
 
 

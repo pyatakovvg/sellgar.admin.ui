@@ -15,10 +15,10 @@ import styles from './default.module.scss';
 function Content() {
   const dispatch = useDispatch();
 
-  const data: any = useSelector(selectData);
+  const data = useSelector(selectData);
 
   async function handleSubmit(data: any) {
-    await dispatch<any>(updateProduct(data));
+    await dispatch(updateProduct(data));
   }
 
   if ( ! data) {

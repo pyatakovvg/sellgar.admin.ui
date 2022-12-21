@@ -2,33 +2,30 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
+import { TRootState } from './create';
+
 
 const REDUCER_NAME = 'module/attributes';
 
 
-interface IRootStore {
-  [path:string]: any;
-}
-
-interface IPayload {
-  data: Array<any>;
-  meta: any;
-}
-
 interface IState {
-  data: Array<any>;
-  meta: any;
+  units: IUnit[];
+  data: IAttribute[];
+  meta: IMeta;
   inProcessAll: boolean;
   inProcessOne: boolean;
   inUploadProcess: boolean;
+  inDeleteProcess: string[];
 }
 
 const initialState = {
+  units: [],
   data: [],
-  meta: {},
+  meta: { totalRows: 0 },
   inProcessAll: false,
   inProcessOne: false,
   inUploadProcess: false,
+  inDeleteProcess: [],
 };
 
 
@@ -37,11 +34,13 @@ const slice = createSlice({
   initialState,
   reducers: {
     resetStateAction(state: IState) {
+      state['units'] = [];
       state['data'] = [];
-      state['meta'] = {};
+      state['meta'] = { totalRows: 0 };
       state['inProcessAll'] = false;
       state['inProcessOne'] = false;
       state['inUploadProcess'] = false;
+      state['inDeleteProcess'] = [];
     },
 
     getAttributeRequestAction(state: IState): any {
@@ -60,7 +59,7 @@ const slice = createSlice({
     getAttributesRequestFailAction(state: IState) {
       state['inProcessAll'] = false;
     },
-    getAttributesRequestSuccessAction(state: IState, { payload }: PayloadAction<IPayload>) {
+    getAttributesRequestSuccessAction(state: IState, { payload }: PayloadAction<IResult<IAttribute>>) {
       state['data'] = payload['data'];
       state['meta'] = payload['meta'];
       state['inProcessAll'] = false;
@@ -72,9 +71,7 @@ const slice = createSlice({
     upsertAttributeRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    upsertAttributeRequestSuccessAction(state: IState, { payload }: PayloadAction<IPayload>) {
-      state['data'] = payload['data'];
-      state['meta'] = payload['meta'];
+    upsertAttributeRequestSuccessAction(state: IState) {
       state['inUploadProcess'] = false;
     },
 
@@ -84,10 +81,12 @@ const slice = createSlice({
     deleteAttributeRequestFailAction(state: IState) {
       state['inUploadProcess'] = false;
     },
-    deleteAttributeRequestSuccessAction(state: IState, { payload }: PayloadAction<IPayload>) {
-      state['data'] = payload['data'];
-      state['meta'] = payload['meta'];
+    deleteAttributeRequestSuccessAction(state: IState) {
       state['inUploadProcess'] = false;
+    },
+
+    getUnitsRequestSuccessAction(state: IState, { payload }: PayloadAction<IUnit[]>) {
+      state['units'] = payload;
     },
   },
 });
@@ -110,12 +109,19 @@ export const {
   deleteAttributeRequestAction,
   deleteAttributeRequestFailAction,
   deleteAttributeRequestSuccessAction,
+
+  getUnitsRequestSuccessAction,
 } = slice['actions'] as any;
 
-export const selectData = (state: IRootStore): Array<any> => state[REDUCER_NAME]['data'];
-export const selectInProcessAll = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcessAll'];
-export const selectInProcessOne = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcessOne'];
-export const selectInUploadProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inUploadProcess'];
+export const selectUnits = (state: TRootState): IUnit[] => state[REDUCER_NAME]['units'];
+
+export const selectData = (state: TRootState): IAttribute[] => state[REDUCER_NAME]['data'];
+export const selectMeta = (state: TRootState): IMeta => state[REDUCER_NAME]['meta'];
+
+export const selectInProcessAll = (state: TRootState): boolean => state[REDUCER_NAME]['inProcessAll'];
+export const selectInProcessOne = (state: TRootState): boolean => state[REDUCER_NAME]['inProcessOne'];
+export const selectInUploadProcess = (state: TRootState): boolean => state[REDUCER_NAME]['inUploadProcess'];
+export const selectInDeleteProcess = (state: TRootState): string[] => state[REDUCER_NAME]['inDeleteProcess'];
 
 export const name = slice['name'];
 export const reducer = slice['reducer'];

@@ -1,6 +1,6 @@
 
+import { Button } from '@library/kit';
 import { openDialog } from '@package/dialog';
-import { Header, Button } from '@library/kit';
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ import styles from './default.module.scss';
 function Controls() {
   const dispatch = useDispatch();
 
-  const inProcess = useSelector(selectInUploadProcess) as boolean;
+  const inProcess = useSelector(selectInUploadProcess);
 
   function handleAdd() {
     dispatch(openDialog('modify'));
@@ -22,7 +22,7 @@ function Controls() {
   return (
     <div className={styles['wrapper']}>
       <div className={styles['control']}>
-        <Button disabled={inProcess} onClick={handleAdd}>Добавить</Button>
+        <Button mode={'success'} disabled={inProcess} onClick={handleAdd}>Добавить</Button>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 
+import { Button } from '@library/kit';
 import { openDialog } from '@package/dialog';
-import { Header, Button } from '@library/kit';
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,13 +21,8 @@ function Controls() {
 
   return (
     <div className={styles['wrapper']}>
-      <div className={styles['content']}>
-        <Header level={2}>Аттрибут товара</Header>
-      </div>
-      <div className={styles['controls']}>
-        <div className={styles['create']}>
-          <Button disabled={inProcess} onClick={handleAdd}>Добавить</Button>
-        </div>
+      <div className={styles['control']}>
+        <Button mode={'success'} disabled={inProcess} onClick={handleAdd}>Добавить</Button>
       </div>
     </div>
   );

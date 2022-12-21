@@ -2,24 +2,18 @@
 import request from "@package/request";
 
 import {
-  createProductTemplateRequest,
-  createProductTemplateRequestFail,
-  createProductTemplateRequestSuccess,
-
-  getProductsRequestAction,
-  getProductsRequestFailAction,
   getProductsRequestSuccessAction,
-
-  changeStatusRequestAction,
-  changeStatusRequestFailAction,
   changeStatusRequestSuccessAction,
+
+  getBrandsRequestSuccessAction,
+  getCategoriesRequestSuccessAction,
+  getGroupsRequestSuccessAction,
 } from './slice';
+import { TAppDispatch } from './create';
 
 
-export const createProduct = () => async (dispatch: any): Promise<any> => {
+export const createProduct = () => async (): Promise<IProduct | null> => {
   try {
-    dispatch(createProductTemplateRequest());
-
     const result = await request({
       url: '/api/v1/products',
       method: 'post',
@@ -29,20 +23,16 @@ export const createProduct = () => async (dispatch: any): Promise<any> => {
       }
     });
 
-    dispatch(createProductTemplateRequestSuccess());
     return result['data'];
   }
   catch(error: any) {
 
-    dispatch(createProductTemplateRequestFail());
     return null;
   }
 };
 
-export const getProducts = (search: any, options: any) => async (dispatch: any): Promise<any> => {
+export const getProducts = (search: any, options: any) => async (dispatch: TAppDispatch): Promise<any> => {
   try {
-    dispatch(getProductsRequestAction());
-
     const result = await request({
       url: '/api/v1/products',
       method: 'get',
@@ -58,14 +48,11 @@ export const getProducts = (search: any, options: any) => async (dispatch: any):
   }
   catch(error: any) {
 
-    dispatch(getProductsRequestFailAction());
   }
 };
 
-export const updateProduct = (data: any) => async (dispatch: any): Promise<any> => {
+export const updateProduct = (data: any) => async (dispatch: TAppDispatch) => {
   try {
-    dispatch(changeStatusRequestAction());
-
     const result = await request({
       url: '/api/v1/products',
       method: 'post',
@@ -76,6 +63,49 @@ export const updateProduct = (data: any) => async (dispatch: any): Promise<any> 
   }
   catch(error: any) {
 
-    dispatch(changeStatusRequestFailAction());
+  }
+};
+
+export const getGroups = (options: any): any => async (dispatch: TAppDispatch) => {
+  try {
+    const result = await request({
+      url: '/api/v1/groups',
+      method: 'get',
+      cancelToken: options['token'],
+    });
+
+    dispatch(getGroupsRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+  }
+};
+
+export const getCategories = (options: any): any => async (dispatch: TAppDispatch) => {
+  try {
+    const result = await request({
+      url: '/api/v1/categories',
+      method: 'get',
+      cancelToken: options['token'],
+    });
+
+    dispatch(getCategoriesRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
+  }
+};
+
+export const getBrands = (options: any): any => async (dispatch: TAppDispatch) => {
+  try {
+    const result = await request({
+      url: '/api/v1/brands',
+      method: 'get',
+      cancelToken: options['token'],
+    });
+
+    dispatch(getBrandsRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
   }
 };

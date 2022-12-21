@@ -27,7 +27,7 @@ const navigate = [
         path: '/products/categories',
       },
       {
-        title: 'Атрибуты',
+        title: 'Свойство',
         path: '/products/attributes',
       },
       {

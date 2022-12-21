@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from './Header';
 import Content from './Content';
 
-import { getProduct, getAttributes } from '../store/commands';
+import { getProduct, getGroups, getAttributes } from '../store/commands';
+import { resetStateAction, loadingPageProcessAction } from '../store/slice';
 
 import styles from './default.module.scss';
 
@@ -17,14 +18,19 @@ import styles from './default.module.scss';
 function Product() {
   const params: any = useParams();
   const dispatch = useDispatch();
-  const values = useSelector(getFormValues('modify')) as any;
+  const values = useSelector(getFormValues('modify')) as IProduct;
 
   React.useEffect(() => {
-    async function init() {
-      await dispatch<any>(getAttributes());
-      await dispatch<any>(getProduct(params['uuid']));
-    }
-    init();
+    (async function init() {
+      dispatch(loadingPageProcessAction(true));
+      await dispatch(getGroups());
+      await dispatch(getAttributes());
+      await dispatch(getProduct(params['uuid']));
+      dispatch(loadingPageProcessAction(false));
+    })();
+    return () => {
+      dispatch(resetStateAction());
+    };
   }, []);
 
   function handleImageChange(data: Array<any>) {

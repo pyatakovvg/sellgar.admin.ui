@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isPristine, isValid, submit } from "redux-form";
 
 import { copyProduct } from '../../store/commands';
-import { selectInProcess, selectData } from '../../store/slice';
+import { selectInProcess, selectData, uploadingProductProcessAction } from '../../store/slice';
 
 import styles from './default.module.scss';
 
@@ -22,11 +22,12 @@ function Controls() {
   const pristine = useSelector(isPristine('modify'));
 
   async function handleCopy() {
+    dispatch(uploadingProductProcessAction(true));
     const result = await dispatch(copyProduct(data['uuid']));
-
     if (result) {
       navigate(process.env['PUBLIC_URL'] + '/products/' + result['uuid']);
     }
+    dispatch(uploadingProductProcessAction(false));
   }
 
   function handleSubmit() {

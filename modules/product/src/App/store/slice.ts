@@ -1,26 +1,26 @@
 
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+
+import { TRootState } from './create';
 
 
 const REDUCER_NAME = 'module/product';
 
 
-interface IRootStore {
-  [path:string]: any;
-}
-
 interface IState {
-  data: object | null;
-  categories: Array<any>;
-  attributes: Array<any>;
+  groups: IGroup[];
+  categories: ICategory[];
+  attributes: IAttribute[];
+  data: IProduct | null;
   inProcess: boolean;
   inUploadProcess: boolean;
 }
 
 const initialState = {
-  data: null,
+  groups: [],
   categories: [],
   attributes: [],
+  data: null,
   inProcess: false,
   inUploadProcess: false,
 };
@@ -31,56 +31,45 @@ const slice = createSlice({
   initialState,
   reducers: {
     resetStateAction(state: IState) {
-      state['data'] = null;
+      state['groups'] = [];
       state['categories'] = [];
       state['attributes'] = [];
+      state['data'] = null;
       state['inProcess'] = false;
       state['inUploadProcess'] = false;
     },
 
-    getAttributesRequestAction() {},
-    getAttributesRequestFailAction() {},
-    getAttributesRequestSuccessAction(state: IState, { payload }) {
-      state['attributes'] = payload;
+    loadingPageProcessAction(state: IState, { payload }: PayloadAction<boolean>) {
+      state['inProcess'] = payload;
     },
 
-    getCategoriesRequestAction() {},
-    getCategoriesRequestFailAction() {},
-    getCategoriesRequestSuccessAction(state: IState, { payload }) {
-      state['categories'] = payload;
+    uploadingProductProcessAction(state: IState, { payload }: PayloadAction<boolean>) {
+      state['inUploadProcess'] = payload;
     },
 
-    getProductRequestAction(state: IState) {
-      state['inProcess'] = true;
-    },
-    getProductRequestFailAction(state: IState) {
-      state['inProcess'] = false;
-    },
     getProductRequestSuccessAction(state: IState, { payload }) {
       state['data'] = payload;
-      state['inProcess'] = false;
     },
 
-    updateProductRequestAction(state: IState) {
-      state['inUploadProcess'] = true;
-    },
-    updateProductRequestFailAction(state: IState) {
-      state['inUploadProcess'] = false;
-    },
     updateProductRequestSuccessAction(state: IState, { payload }) {
       state['data'] = payload;
-      state['inUploadProcess'] = false;
     },
 
-    copyProductRequestAction(state: IState) {
-      state['inUploadProcess'] = true;
-    },
-    copyProductRequestFailAction(state: IState) {
-      state['inUploadProcess'] = false;
-    },
     copyProductRequestSuccessAction(state: IState, { payload }) {
       state['data'] = payload;
       state['inUploadProcess'] = false;
+    },
+
+    getGroupsRequestSuccessAction(state: IState, { payload }: PayloadAction<IGroup[]>) {
+      state['groups'] = payload;
+    },
+
+    getCategoriesRequestSuccessAction(state: IState, { payload }: PayloadAction<ICategory[]>) {
+      state['categories'] = payload;
+    },
+
+    getAttributesRequestSuccessAction(state: IState, { payload }: PayloadAction<IAttribute[]>) {
+      state['attributes'] = payload;
     },
   },
 });
@@ -88,36 +77,25 @@ const slice = createSlice({
 export const {
   resetStateAction,
 
-  getAttributesRequestAction,
-  getAttributesRequestFailAction,
+  getGroupsRequestSuccessAction,
+  getCategoriesRequestSuccessAction,
   getAttributesRequestSuccessAction,
 
-  getGroupsRequestAction,
-  getGroupsRequestFailAction,
-  getGroupsRequestSuccessAction,
-
-  getCategoriesRequestAction,
-  getCategoriesRequestFailAction,
-  getCategoriesRequestSuccessAction,
-
-  getProductRequestAction,
-  getProductRequestFailAction,
   getProductRequestSuccessAction,
-
-  updateProductRequestAction,
-  updateProductRequestFailAction,
   updateProductRequestSuccessAction,
 
-  copyProductRequestAction,
-  copyProductRequestFailAction,
-  copyProductRequestSuccessAction,
+  loadingPageProcessAction,
+  uploadingProductProcessAction,
 } = slice['actions'] as any;
 
-export const selectData = (state: IRootStore): any => state[REDUCER_NAME]['data'];
-export const selectCategories = (state: IRootStore): Array<any> => state[REDUCER_NAME]['categories'];
-export const selectAttributes = (state: IRootStore): Array<any> => state[REDUCER_NAME]['attributes'];
-export const selectInProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inProcess'];
-export const selectInUploadProcess = (state: IRootStore): boolean => state[REDUCER_NAME]['inUploadProcess'];
+export const selectGroups = (state: TRootState): IGroup[] => state[REDUCER_NAME]['groups'];
+export const selectCategories = (state: TRootState): ICategory[] => state[REDUCER_NAME]['categories'];
+export const selectAttributes = (state: TRootState): Array<any> => state[REDUCER_NAME]['attributes'];
+
+export const selectData = (state: TRootState): any => state[REDUCER_NAME]['data'];
+
+export const selectInProcess = (state: TRootState): boolean => state[REDUCER_NAME]['inProcess'];
+export const selectInUploadProcess = (state: TRootState): boolean => state[REDUCER_NAME]['inUploadProcess'];
 
 export const name = slice['name'];
 export const reducer = slice['reducer'];

@@ -1,6 +1,5 @@
 
 import request from "@package/request";
-import { Dispatch } from '@reduxjs/toolkit';
 
 import {
   getAttributeRequestAction,
@@ -18,11 +17,14 @@ import {
   deleteAttributeRequestAction,
   deleteAttributeRequestFailAction,
   deleteAttributeRequestSuccessAction,
+
+  getUnitsRequestSuccessAction,
 } from './slice';
+import { TAppDispatch } from './create';
 
 
 export function getAttribute(uuid: string): any {
-  return async function(dispatch: Dispatch): Promise<any> {
+  return async function(dispatch: TAppDispatch): Promise<IAttribute | null> {
     try {
       dispatch(getAttributeRequestAction());
 
@@ -47,8 +49,24 @@ export function getAttribute(uuid: string): any {
   };
 }
 
-export function getAttributes(search: any): any {
-  return async function(dispatch: Dispatch) {
+export function getUnits(): any {
+  return async function(dispatch: TAppDispatch) {
+    try {
+      const result = await request({
+        url: '/api/v1/units',
+        method: 'get',
+      });
+
+      dispatch(getUnitsRequestSuccessAction(result['data']));
+    }
+    catch(error: any) {
+
+    }
+  };
+}
+
+export function getAttributes(search: IFilter): any {
+  return async function(dispatch: TAppDispatch) {
     try {
       dispatch(getAttributesRequestAction());
 
@@ -69,41 +87,39 @@ export function getAttributes(search: any): any {
   };
 }
 
-export function upsertAttributes(data: any, search: any): any {
-  return async function (dispatch: Dispatch): Promise<boolean> {
+export function upsertAttributes(data: IAttribute, search: IFilter): any {
+  return async function (dispatch: TAppDispatch): Promise<boolean> {
     try {
       dispatch(upsertAttributeRequestAction());
 
-      const result = await request({
+      await request({
         url: '/api/v1/attributes',
         method: 'post',
         data: {
           ...data,
         },
-        params: {
-          ...search,
-        },
       });
 
-      dispatch(upsertAttributeRequestSuccessAction(result));
+      await dispatch(getAttributes(search));
+
+      dispatch(upsertAttributeRequestSuccessAction());
 
       return true;
     }
     catch (error: any) {
 
       dispatch(upsertAttributeRequestFailAction());
-
       return false;
     }
   }
 }
 
-export function deleteAttributes(uuid: Array<string>, search: any): any {
-  return async function(dispatch: Dispatch) {
+export function deleteAttributes(uuid: string[], search: IFilter): any {
+  return async function(dispatch: TAppDispatch) {
     try {
       dispatch(deleteAttributeRequestAction());
 
-      const result = await request({
+      await request({
         url: '/api/v1/attributes',
         method: 'delete',
         params: {
@@ -112,7 +128,9 @@ export function deleteAttributes(uuid: Array<string>, search: any): any {
         },
       });
 
-      dispatch(deleteAttributeRequestSuccessAction(result));
+      await dispatch(getAttributes(search));
+
+      dispatch(deleteAttributeRequestSuccessAction());
     }
     catch (error: any) {
 

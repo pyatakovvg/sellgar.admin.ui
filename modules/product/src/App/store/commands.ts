@@ -4,69 +4,18 @@ import { pushSuccess } from '@package/push';
 import { NotFoundError } from "@package/errors";
 
 import {
-  getAttributesRequestAction,
-  getAttributesRequestFailAction,
+  getGroupsRequestSuccessAction,
+  getCategoriesRequestSuccessAction,
   getAttributesRequestSuccessAction,
 
-  getCategoriesRequestAction,
-  getCategoriesRequestFailAction,
-  getCategoriesRequestSuccessAction,
-
-  getProductRequestAction,
-  getProductRequestFailAction,
   getProductRequestSuccessAction,
-
-  updateProductRequestAction,
-  updateProductRequestFailAction,
   updateProductRequestSuccessAction,
-
-  copyProductRequestAction,
-  copyProductRequestFailAction,
-  copyProductRequestSuccessAction,
 } from './slice';
+import { TAppDispatch } from './create';
 
 
-export const getAttributes = (): any => async (dispatch: any): Promise<any> => {
+export const getProduct = (uuid: string): any => async (dispatch: TAppDispatch) => {
   try {
-    dispatch(getAttributesRequestAction());
-
-    const result = await request({
-      url: '/api/v1/attributes',
-      method: 'get',
-    });
-
-    dispatch(getAttributesRequestSuccessAction(result['data']));
-  }
-  catch(error: any) {
-
-    dispatch(getAttributesRequestFailAction());
-  }
-};
-
-export const getCategories = (groupUuid: string) => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getCategoriesRequestAction());
-
-    const result = await request({
-      url: '/api/v1/categories',
-      method: 'get',
-      params: {
-        groupUuid,
-      }
-    });
-
-    dispatch(getCategoriesRequestSuccessAction(result['data']));
-  }
-  catch(error: any) {
-
-    dispatch(getCategoriesRequestFailAction());
-  }
-};
-
-export const getProduct = (uuid: string): any => async (dispatch: any): Promise<any> => {
-  try {
-    dispatch(getProductRequestAction());
-
     const result = await request({
       url: '/api/v1/products/' + uuid,
       method: 'get',
@@ -80,14 +29,11 @@ export const getProduct = (uuid: string): any => async (dispatch: any): Promise<
   }
   catch(error: any) {
 
-    dispatch(getProductRequestFailAction());
   }
 };
 
-export const updateProduct = (data: any): any => async (dispatch: any): Promise<any> => {
+export const updateProduct = (data: any): any => async (dispatch: TAppDispatch) => {
   try {
-    dispatch(updateProductRequestAction());
-
     const result = await request({
       url: '/api/v1/products',
       method: 'post',
@@ -101,28 +47,66 @@ export const updateProduct = (data: any): any => async (dispatch: any): Promise<
   }
   catch(error: any) {
 
-    dispatch(updateProductRequestFailAction());
   }
 };
 
-export const copyProduct = (uuid: any): any => async (dispatch: any): Promise<any> => {
+export const copyProduct = (uuid: any): any => async (dispatch: TAppDispatch): Promise<IProduct | null> => {
   try {
-    dispatch(copyProductRequestAction());
-
     const result = await request({
       url: '/api/v1/products/' + uuid + '/copy',
       method: 'get',
     });
 
-    dispatch(copyProductRequestSuccessAction(result['data']));
     dispatch(pushSuccess('Данные скопированы'));
 
     return result['data'];
   }
   catch(error: any) {
 
-    dispatch(copyProductRequestFailAction());
-
     return null;
+  }
+};
+
+export const getGroups = (): any => async (dispatch: TAppDispatch) => {
+  try {
+    const result = await request({
+      url: '/api/v1/groups',
+      method: 'get',
+    });
+
+    dispatch(getGroupsRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+  }
+};
+
+export const getAttributes = (): any => async (dispatch: TAppDispatch) => {
+  try {
+    const result = await request({
+      url: '/api/v1/attributes',
+      method: 'get',
+    });
+
+    dispatch(getAttributesRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
+  }
+};
+
+export const getCategories = (groupUuid: string) => async (dispatch: TAppDispatch) => {
+  try {
+    const result = await request({
+      url: '/api/v1/categories',
+      method: 'get',
+      params: {
+        groupUuid,
+      }
+    });
+
+    dispatch(getCategoriesRequestSuccessAction(result['data']));
+  }
+  catch(error: any) {
+
   }
 };

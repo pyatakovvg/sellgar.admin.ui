@@ -4,20 +4,14 @@ import { reduxForm } from 'redux-form';
 import Component from './Component';
 
 
-function validate(value: any) {
+function validate(value: IProduct) {
   const errors: any = {};
 
-  if ('gallery' in value) {
-    if (!value['gallery'].length) {
-      errors['gallery'] = 'Необходимо выбрать';
-    }
-  }
-
-  if ( ! value['groupCode']) {
+  if ( ! value['groupUuid']) {
     errors['groupCode'] = 'Необходимо выбрать';
   }
 
-  if ( ! value['categoryCode']) {
+  if ( ! value['categoryUuid']) {
     errors['categoryCode'] = 'Необходимо выбрать';
   }
 
@@ -76,7 +70,7 @@ function validate(value: any) {
 }
 
 
-export default reduxForm({
+export default reduxForm<IProduct>({
   form: 'modify',
   validate,
   enableReinitialize: true,

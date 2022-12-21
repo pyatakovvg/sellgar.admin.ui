@@ -23,7 +23,6 @@
     "@module/units": "0.0.1",
     "@module/user": "0.0.1",
     "@module/users": "0.0.1",
-    "@package/base-data": "0.0.1",
     "@package/dialog": "0.0.1",
     "@package/push": "0.0.1",
     "@package/request": "0.0.1",

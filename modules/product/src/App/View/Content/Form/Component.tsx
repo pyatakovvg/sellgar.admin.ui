@@ -1,5 +1,6 @@
 
 import React from 'react';
+import type { InjectedFormProps } from 'redux-form';
 
 import Title from './Title';
 import Types from './Types';
@@ -11,7 +12,7 @@ import Description from './Description';
 import styles from './default.module.scss';
 
 
-function Form({ handleSubmit }: any) {
+function Form({ handleSubmit }: InjectedFormProps<IProduct>) {
   return (
     <form className={styles['wrapper']} onSubmit={handleSubmit}>
       <div className={styles['block']}>

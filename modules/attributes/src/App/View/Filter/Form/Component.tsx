@@ -1,14 +1,16 @@
 
-import { selectUnits } from '@package/base-data';
 import { SelectField, Button } from '@library/kit';
 
 import React from 'react';
 import { useSelector } from 'react-redux';
+import type { InjectedFormProps } from 'redux-form';
+
+import { selectUnits } from '../../../store/slice';
 
 import styles from './default.module.scss';
 
 
-function FilterForm({ handleSubmit }: any) {
+function FilterForm({ handleSubmit }: InjectedFormProps<IFilter>) {
   const units = useSelector(selectUnits);
 
   return (

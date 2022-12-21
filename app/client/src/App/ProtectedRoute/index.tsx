@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useStore, useEvent } from 'effector-react';
 
 import Loader from '../Loader';
+import MainLoader from "../MainLoader";
 import { getProfileFx } from '../store';
 import Wrapper from '../wrappers/factory';
 import ErrorBoundary from '../../ErrorBoundary';
@@ -17,7 +18,7 @@ interface IProps {
 }
 
 
-function Index(props: IProps) {
+function ProtectedRoute(props: IProps) {
   const navigate = useNavigate();
 
   const isInit = useStore(isInitStore);
@@ -36,7 +37,7 @@ function Index(props: IProps) {
 
   if ( ! isInit) {
     return (
-      <Loader />
+      <MainLoader />
     );
   }
 
@@ -61,4 +62,4 @@ function Index(props: IProps) {
   );
 }
 
-export default Index;
+export default ProtectedRoute;

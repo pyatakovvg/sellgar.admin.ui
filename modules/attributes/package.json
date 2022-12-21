@@ -15,7 +15,6 @@
     "start": "cross-env NODE_ENV=development babel ./src --out-dir ./lib --extensions '.ts,.tsx' --copy-files --watch"
   },
   "dependencies": {
-    "@package/base-data": "0.0.1",
     "react": "18.2.0",
     "react-router-dom": "6.4.5"
   },

@@ -20,9 +20,11 @@ function Logout() {
   }, [navigate]);
 
   return (
-    <div className={styles['wrapper']} onClick={() => logoutProfileFx()}>
-      <span className={iconClassName} />
-      <span className={styles['content']}>Выйти из кабинета</span>
+    <div className={styles['wrapper']}>
+      <div className={styles['content']} onClick={() => logoutProfileFx()}>
+        <span className={iconClassName} />
+        <span className={styles['text']}>Выйти</span>
+      </div>
     </div>
   );
 }

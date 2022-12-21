@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@library/kit": "0.0.1",
-    "@package/base-data": "0.0.1",
     "@package/dialog": "0.0.1",
     "@package/moment": "0.0.1",
     "@package/numeral": "0.0.1",

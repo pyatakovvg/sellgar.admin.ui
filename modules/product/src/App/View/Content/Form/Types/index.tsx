@@ -1,13 +1,12 @@
 
 import { SelectField } from "@library/kit";
-// import { selectGroups } from "@package/base-data";
 
 import React from 'react';
 import { getFormValues, change } from 'redux-form';
 import { useSelector, useDispatch } from "react-redux";
 
 import { getCategories } from '../../../../store/commands';
-import { selectCategories, selectInProcess } from "../../../../store/slice";
+import { selectGroups, selectCategories, selectInProcess } from "../../../../store/slice";
 
 import styles from './default.module.scss';
 
@@ -15,7 +14,7 @@ import styles from './default.module.scss';
 function Types() {
   const dispatch = useDispatch();
 
-  // const groups = useSelector(selectGroups);
+  const groups = useSelector(selectGroups);
   const categories = useSelector(selectCategories);
   const inProcess = useSelector(selectInProcess);
 
@@ -43,7 +42,7 @@ function Types() {
             simple
             name="groupUuid"
             label="Группа"
-            options={[]}
+            options={groups}
             optionKey="uuid"
             optionValue="name"
             disabled={inProcess}

@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Logotype from './Logotype';
 import Information from './Information';
+import Group from './Group';
 import Description from './Description';
 
 import { deleteCategories } from "../../../store/commands";
@@ -41,6 +42,9 @@ function List() {
         </Column>
         <Column title={'Информация'} align={'left'} width={160}>
           <Information />
+        </Column>
+        <Column title={'Группа'} align={'left'} width={160}>
+          <Group />
         </Column>
         <Column title={'Описание'} align={'left'}>
           <Description />

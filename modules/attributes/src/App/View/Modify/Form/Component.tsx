@@ -1,6 +1,5 @@
 
 import { query } from '@helper/utils';
-import { selectUnits } from '@package/base-data';
 import { Header, Text, SelectField, Button, InputField, TextareaField, CheckboxField } from '@library/kit';
 
 import React from 'react';
@@ -8,7 +7,7 @@ import { change } from 'redux-form';
 import { useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectInUploadProcess } from '../../../store/slice';
+import { selectUnits, selectInUploadProcess } from '../../../store/slice';
 
 import styles from './@media/index.module.scss';
 

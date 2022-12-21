@@ -3,6 +3,7 @@ import React from 'react';
 import { useStore } from 'effector-react';
 
 import Loader from '../Loader';
+import MainLoader from "../MainLoader";
 import Wrapper from '../wrappers/factory';
 
 import { isInitStore, setInitStore } from '../store';
@@ -23,7 +24,7 @@ function PublicRoute(props: IProps) {
 
   if ( ! isInit) {
     return (
-      <Loader />
+      <MainLoader />
     );
   }
 

@@ -1,18 +1,19 @@
 
 import Dialog from '@package/dialog';
 import { query } from '@helper/utils';
+import { Header } from '@library/kit';
 
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import Header from './Header';
+import Controls from './Controls';
 import Filter from './Filter';
 import Modify from './Modify';
 import Content from './Content';
 
 import { resetStateAction } from '../store/slice';
-import { getAttributes } from '../store/commands';
+import { getAttributes, getUnits } from '../store/commands';
 
 import styles from './default.module.scss';
 
@@ -22,6 +23,7 @@ function Brand() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
+    dispatch(getUnits());
     return () => {
       dispatch(resetStateAction());
     }
@@ -38,10 +40,13 @@ function Brand() {
 
   return (
     <section className={styles['wrapper']}>
-      <header className={styles['header']}>
-        <Header />
+      <header className={styles['controls']}>
+        <Controls />
       </header>
       <section className={styles['content']}>
+        <div className={styles['header']}>
+          <Header>Свойство товара</Header>
+        </div>
         <div className={styles['filter']}>
           <Filter />
         </div>

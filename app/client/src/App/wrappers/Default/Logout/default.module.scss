@@ -1,0 +1,36 @@
+
+@import "~@library/theme";
+
+
+.wrapper {
+
+  display: block;
+}
+
+.content {
+
+  display: inline-flex;
+  flex-direction: row;
+  flex: 0 0 auto;
+  align-items: center;
+  color: $danger;
+  cursor: pointer;
+  transition: color $transition-duration;
+
+  &:hover {
+    color: $danger-light;
+  }
+}
+
+.icon {
+
+  display: block;
+  font-size: 16px;
+}
+
+.text {
+
+  display: block;
+  font-size: 14px;
+  margin: 2px 0 0 8px;
+}

@@ -1,7 +1,6 @@
 
 import { closeDialog } from '@package/dialog';
 import { createCancelToken } from '@package/request';
-import { useGetCurrencies } from '@package/base-data';
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,8 +9,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import Form from './Form';
 import Loading from './Loading';
 
-import { selectInLoadProcess } from '../../store/slice';
-import { getProduct, upsertProducts } from '../../store/commands';
+import { getProduct, upsertProducts, getCurrencies } from '../../store/commands';
+import { loadingProductProcessAction, selectInLoadProcess, selectCurrencies } from '../../store/slice';
 
 
 interface IProps {
@@ -25,22 +24,27 @@ function Modify({ data }: IProps) {
   const location = useLocation();
   const [item, setItem] = React.useState<any>({});
 
-  const currencies = useGetCurrencies();
+  const currencies = useSelector(selectCurrencies);
   const inLoadProcess = useSelector(selectInLoadProcess);
 
 
   React.useEffect(() => {
     const productToken = createCancelToken();
 
-    if (data) {
-      dispatch(getProduct(data['uuid'], { token: productToken.token }))
-        .then((data: any) => setItem(data));
-    }
+    (async () => {
+      dispatch(loadingProductProcessAction(true));
+      await dispatch(getCurrencies({ token: productToken.token }));
+
+      if (data) {
+        await dispatch(getProduct(data['uuid'], { token: productToken.token }));
+        setItem(data);
+      }
+      dispatch(loadingProductProcessAction(false));
+    })();
     return () => {
       productToken.cancel();
     };
   }, [data]);
-
 
   async function handleSubmit(data: any) {
     const isSuccess = await dispatch(upsertProducts(data));
@@ -50,12 +54,13 @@ function Modify({ data }: IProps) {
     }
   }
 
-
-  if ( !! data && inLoadProcess) {
+  if ( !! data || inLoadProcess) {
     return (
       <Loading />
     );
   }
+  console.log(currencies?.[0] ?? null)
+
   return (
     <Form
       initialValues={{
